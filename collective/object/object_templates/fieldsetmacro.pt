@@ -363,4 +363,50 @@
     </div>
   </tal:disposal>
 
+  <tal:ownership_history tal:condition='python: fieldset_text == "ownership_history"'
+    tal:define='widgets group/widgets'>
+    <!-- Ownership history -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Ownership</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/ownership_current_owner/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">History</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/ownership_history_owner/@@ploneform-render-widget"/>
+          
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+        	<tal:widget tal:replace="structure widgets/ownership_history_from/@@ploneform-render-widget"/>
+      	  </div>
+          
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+          	<tal:widget tal:replace="structure widgets/ownership_history_until/@@ploneform-render-widget"/>
+      	  </div>
+          
+          <tal:widget tal:replace="structure widgets/ownership_exchange_method/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/ownership_acquired_from/@@ploneform-render-widget"/>
+          
+          <div class="col-sm-12 col-md-6 col-lg-6 div-50-triple">
+          	<tal:widget tal:replace="structure widgets/ownership_auction/@@ploneform-render-widget"/>
+      	  </div>
+      	  <div class="col-sm-12 col-md-3 col-lg-3 div-50 label-right">
+        	<tal:widget tal:replace="structure widgets/ownership_rec_no/@@ploneform-render-widget"/>
+      	  </div>
+      	  <div class="col-sm-12 col-md-3 col-lg-3 div-50 label-right">
+          	<tal:widget tal:replace="structure widgets/ownership_lot_no/@@ploneform-render-widget"/>
+      	  </div>
+          
+          <tal:widget tal:replace="structure widgets/ownership_place/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/ownership_price/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/ownership_category/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/ownership_access/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/ownership_notes/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:ownership_history>
+
 </div>

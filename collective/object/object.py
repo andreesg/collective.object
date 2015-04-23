@@ -767,6 +767,105 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('disposal_notes')
 
+    # # # # # # # # # # # # #
+    # Ownership history     #
+    # # # # # # # # # # # # #
+
+    model.fieldset('ownership_history', label=_(u'Ownership history'), 
+        fields=['ownership_current_owner', 'ownership_history_owner', 'ownership_history_from',
+                'ownership_history_until', 'ownership_exchange_method', 'ownership_acquired_from',
+                'ownership_auction', 'ownership_rec_no', 'ownership_lot_no', 'ownership_place',
+                'ownership_price', 'ownership_category', 'ownership_access', 'ownership_notes']
+    )
+
+    # Ownership
+    ownership_current_owner = schema.TextLine(
+        title=_(u'Current Owner'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_current_owner')
+
+    # History
+    ownership_history_owner = schema.TextLine(
+        title=_(u'Owner'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_history_owner')
+
+    ownership_history_from = schema.TextLine(
+        title=_(u'From'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_history_from')
+
+    ownership_history_until = schema.TextLine(
+        title=_(u'Until'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_history_until')
+
+    ownership_exchange_method = schema.TextLine(
+        title=_(u'Exchange method'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_exchange_method')
+
+    ownership_acquired_from = schema.TextLine(
+        title=_(u'Acquired from'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_acquired_from')
+
+    ownership_auction = schema.TextLine(
+        title=_(u'Auction'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_auction')
+
+    ownership_rec_no = schema.TextLine(
+        title=_(u'Rec.no.'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_rec_no')
+
+    ownership_lot_no = schema.TextLine(
+        title=_(u'Lot no.'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_lot_no')
+
+    ownership_place = schema.TextLine(
+        title=_(u'Place'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_place')
+
+    ownership_price = schema.TextLine(
+        title=_(u'Price'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_price')
+
+    ownership_category = schema.TextLine(
+        title=_(u'Ownership category'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_category')
+
+    ownership_access = schema.TextLine(
+        title=_(u'Access'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_access')
+
+    ownership_notes = schema.TextLine(
+        title=_(u'Notes'),
+        required=False
+    )
+    dexteritytextindexer.searchable('ownership_notes')
+
+
+
 
 
 

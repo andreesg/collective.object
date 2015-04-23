@@ -566,6 +566,63 @@ msgstr "Financiën"
 msgid "Disposal price"
 msgstr "Verkoopprijs"
 
+#
+# Ownership history
+#
+
+#: ../object.py
+msgid "Ownership history"
+msgstr "Eigendomsgeschiedenis"
+
+#: ../object.py
+msgid "Ownership"
+msgstr "Eigendom"
+
+#: ../object.py
+msgid "Current Owner"
+msgstr "Huidige eigenaar"
+
+#: ../object.py
+msgid "History"
+msgstr "Geschiedenis"
+
+#: ../object.py
+msgid "Owner"
+msgstr "Eigenaar"
+
+#: ../object.py
+msgid "From"
+msgstr "Vanaf"
+
+#: ../object.py
+msgid "Until"
+msgstr "Tot"
+
+#: ../object.py
+msgid "Exchange method"
+msgstr "Verwervingsmethode"
+
+#: ../object.py
+msgid "Acquired from"
+msgstr "Verworven van"
+
+#: ../object.py
+msgid "Auction"
+msgstr "Veiling"
+
+#: ../object.py
+msgid "Price"
+msgstr "Prijs"
+
+#: ../object.py
+msgid "Ownership category"
+msgstr "Eigendomscategorie"
+
+#: ../object.py
+msgid "Access"
+msgstr "Toegankelijkheid"
+
+
 
 
 
