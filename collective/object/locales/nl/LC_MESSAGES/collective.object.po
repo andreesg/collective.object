@@ -514,7 +514,57 @@ msgstr "Documentatie"
 msgid "Reference"
 msgstr "Referentie"
 
+#
+# Disposal
+#
 
+#: ../object.py
+msgid "Disposal"
+msgstr "Afstoting"
+
+#: ../object.py
+msgid "Deaccession"
+msgstr "Uitschrijving"
+
+#: ../object.py
+msgid "Deaccession date"
+msgstr "Uitschrijvingsdatum"
+
+#: ../object.py
+msgid "New object number"
+msgstr "Nieuw objectnummer"
+
+#: ../object.py
+msgid "Disposal"
+msgstr "Afstoting"
+
+#: ../object.py
+msgid "Disposal number"
+msgstr "Afstotingsnummer"
+
+#: ../object.py
+msgid "Proposed recipient"
+msgstr "Aspirant-ontvanger"
+
+#: ../object.py
+msgid "Recipient"
+msgstr "Ontvanger"
+
+#: ../object.py
+msgid "Reason"
+msgstr "Reden"
+
+#: ../object.py
+msgid "Provisos"
+msgstr "Voorwaarden"
+
+#: ../object.py
+msgid "Finance"
+msgstr "Financiën"
+
+#: ../object.py
+msgid "Disposal price"
+msgstr "Verkoopprijs"
 
 
 

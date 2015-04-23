@@ -672,6 +672,102 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('acquisition_notes')
 
+    # # # # # # # 
+    # Disposal  #
+    # # # # # # #
+
+    model.fieldset('disposal', label=_(u'Disposal'), 
+        fields=['disposal_deaccession', 'disposal_new_object_number', 'disposal_number',
+                'disposal_date', 'disposal_method', 'disposal_proposed_recipient', 'disposal_recipient',
+                'disposal_reason', 'disposal_provisos', 'finance_disposal_price', 'finance_curr',
+                'disposal_documentation', 'disposal_notes'
+        ]
+    )
+
+    # Deaccession
+    disposal_deaccession = schema.TextLine(
+        title=_(u'Deaccession date'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_deaccession')
+
+    disposal_new_object_number = schema.TextLine(
+        title=_(u'New object number'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_new_object_number')
+
+    # Disposal
+    disposal_number = schema.TextLine(
+        title=_(u'Disposal number'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_number')
+
+    disposal_date = schema.TextLine(
+        title=_(u'Date'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_date')
+
+    disposal_method = schema.TextLine(
+        title=_(u'Method'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_method')
+
+    disposal_proposed_recipient = schema.TextLine(
+        title=_(u'Proposed recipient'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_proposed_recipient')
+
+    disposal_recipient = schema.TextLine(
+        title=_(u'Recipient'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_recipient')
+
+    disposal_reason = schema.TextLine(
+        title=_(u'Reason'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_reason')
+
+    disposal_provisos = schema.TextLine(
+        title=_(u'Provisos'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_provisos')
+
+    # Finance
+    finance_disposal_price = schema.TextLine(
+        title=_(u'Disposal price'),
+        required=False
+    )
+    dexteritytextindexer.searchable('finance_disposal_price')
+
+    finance_curr = schema.TextLine(
+        title=_(u'Curr.'),
+        required=False
+    )
+    dexteritytextindexer.searchable('finance_curr')
+
+    # Documentation
+    disposal_documentation = ListField(title=_(u'Documentation'),
+        value_type=schema.Object(title=_(u'Documentation'), schema=IDocumentation),
+        required=False)
+    form.widget(disposal_documentation=DataGridFieldFactory)
+    dexteritytextindexer.searchable('disposal_documentation')
+
+    # Notes 
+    disposal_notes = schema.TextLine(
+        title=_(u'Notes'),
+        required=False
+    )
+    dexteritytextindexer.searchable('disposal_notes')
+
+
 
 
 # # # # # # # # # # # # #
