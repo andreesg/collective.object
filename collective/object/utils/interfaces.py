@@ -164,4 +164,4 @@ class IFreeFields(Interface):
 # Labels
 class ILabel(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
-    text = schema.Text(title=_(u'Text'), required=False)
+    text = schema.TextLine(title=_(u'Text'), required=False)
