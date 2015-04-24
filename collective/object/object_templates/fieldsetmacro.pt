@@ -421,13 +421,13 @@
 
         <h2 class="page-header" i18n:translate="">Current location</h2>
 
-        <div class="form-horizontal gridfield">
+        <div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/location_current_location/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Location checks</h2>
 
-        <div class="form-horizontal gridfield">
+        <div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/location_checks/@@ploneform-render-widget"/>
         </div>
     </div>
@@ -439,16 +439,28 @@
     <div class="row no-padding">
         <h2 class="page-header" i18n:translate="">Notes</h2>
 
-        <div class="form-horizontal gridfield hide-thead">
+        <div class="form-horizontal gridfield hide-thead table-responsive">
           <tal:widget tal:replace="structure widgets/notes/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Free Fields</h2>
 
-        <div class="form-horizontal gridfield">
+        <div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/notes_free_fields/@@ploneform-render-widget"/>
         </div>
     </div>
   </tal:notes>
+
+  <tal:labels tal:condition='python: fieldset_text == "labels"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Labels</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/labels/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:labels>
 
 </div>

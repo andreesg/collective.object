@@ -773,6 +773,19 @@ class IObject(form.Schema):
         required=False)
     form.widget(notes_free_fields=DataGridFieldFactory)
 
+    # # # # # # #
+    # Labels    #
+    # # # # # # #
+
+    model.fieldset('labels', label=_(u'Labels'), 
+        fields=['labels']
+    )
+
+    labels = ListField(title=_(u'Labels'),
+        value_type=schema.Object(title=_(u'Labels'), schema=ILabel),
+        required=False)
+    form.widget(labels=DataGridFieldFactory)
+
 
 
 

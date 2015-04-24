@@ -674,6 +674,13 @@ msgstr "Vrij Velden"
 msgid "Confidential"
 msgstr "Vertrouwelijk"
 
+#
+# Labels
+#
+
+#: ../object.py
+msgid "Labels"
+msgstr "Etiketten"
 
 
 
