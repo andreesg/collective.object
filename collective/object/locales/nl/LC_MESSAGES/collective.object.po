@@ -622,6 +622,48 @@ msgstr "Eigendomscategorie"
 msgid "Access"
 msgstr "Toegankelijkheid"
 
+#
+# Location
+#
+
+#: ../object.py
+msgid "Location"
+msgstr "Standplaats"
+
+#: ../object.py
+msgid "Normal location"
+msgstr "Vaste standplaats"
+
+#: ../object.py
+msgid "Current location"
+msgstr "Huidige locatie"
+
+#: ../object.py
+msgid "Start date"
+msgstr "Begindatum"
+
+#: ../object.py
+msgid "End date"
+msgstr "Einddatum"
+
+#: ../object.py
+msgid "Location type"
+msgstr "Soort standplaats"
+
+#: ../object.py
+msgid "Location"
+msgstr "Standplaats"
+
+#: ../object.py
+msgid "Fitness"
+msgstr "Geschiktheid"
+
+#: ../object.py
+msgid "Location checks"
+msgstr "Standplaatscontroles"
+
+
+
 
 
 

@@ -1,195 +1,60 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from five import grok
-
-from z3c.form import group, field
+#
+# Zope dependencies
+#
 from zope import schema
 from zope.interface import invariant, Invalid, Interface, implements
-from plone.supermodel import model
-from plone.dexterity.content import Container
+from zope.interface import alsoProvides
+from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.fieldproperty import FieldProperty
 from zope.component import getMultiAdapter
-from z3c.form.form import extends
-from z3c.form.browser.textlines import TextLinesFieldWidget
 
+#
+# Plone dependencies
+#
 from plone.directives import dexterity, form
 from plone.app.textfield import RichText
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.dexterity.browser.view import DefaultView
+from plone.supermodel import model
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from zope.schema.fieldproperty import FieldProperty
-from collective.leadmedia.adapters import ICanContainMedia
+#
+# z3c.forms dependencies
+#
+from z3c.form import group, field
+from z3c.form.form import extends
+from z3c.form.browser.textlines import TextLinesFieldWidget
 
-from collective.object import MessageFactory as _
-
+#
+# DataGridFields dependencies
+#
 from collective.z3cform.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.blockdatagridfield import BlockDataGridFieldFactory
+
+# # # # # # # # # # # # # # # 
+# Dexterity imports         # 
+# # # # # # # # # # # # # # # 
+from five import grok
 from collective import dexteritytextindexer
+from plone.dexterity.browser.view import DefaultView
+from plone.dexterity.content import Container
 from plone.dexterity.browser import add, edit
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.interface import alsoProvides
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
-class ListField(schema.List):
-    """We need to have a unique class for the field list so that we
-    can apply a custom adapter."""
-    pass
+# # # # # # # # # # # # # # # # 
+# !Object specific imports!   #
+# # # # # # # # # # # # # # # #
+from collective.object import MessageFactory as _
+from .utils.vocabularies import *
+from .utils.interfaces import *
+from .utils.views import *
 
-# # # # # # # # # # # # #
-# Widget interface      #
-# # # # # # # # # # # # #
-
-class IFormWidget(Interface):
-    pass
-
-
-# # # # # # # # # # # # # #
-# Vocabularies            #
-# # # # # # # # # # # # # #
-
-### !TODO! Move this vocabularies to a single file per fieldset [for the sake of reusability]
-
-def _createInsuranceTypeVocabulary():
-    insurance_types = {
-        "commercial": _(u"Commercial"),
-        "indemnity": _(u"Indemnity"),
-    }
-
-    for key, name in insurance_types.items():
-        term = SimpleTerm(value=key, token=str(key), title=name)
-        yield term
-
-def _createPriorityVocabulary():
-    priorities = {
-        "low": _(u"low"),
-        "medium": _(u"medium"),
-        "high": _(u"high"),
-        "urgent": _(u"urgent")
-    }
-
-    for key, name in priorities.items():
-        term = SimpleTerm(value=key, token=str(key), title=name)
-        yield term
-
-priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
-insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
-
-# # # # # # # # # # # # # #
-# DataGrid interfaces     # 
-# # # # # # # # # # # # # #
-
-### !TODO! Move this interfaces to a single file per fieldset [for the sake of reusability]
-
-class IKeyword(Interface):
-    part = schema.TextLine(title=_(u'Part'), required=False)
-    aspect = schema.TextLine(title=_(u'Aspect'), required=False)
-    keyword = schema.TextLine(title=_(u'Keyword'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-
-class ITechnique(Interface):
-    part = schema.TextLine(title=_(u'Part'), required=False)
-    technique = schema.TextLine(title=_(u'Technique'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-
-class IMaterial(Interface):
-    part = schema.TextLine(title=_(u'Part'), required=False)
-    material = schema.TextLine(title=_(u'Material'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-
-class IDimension(Interface):
-    part = schema.TextLine(title=_(u'Part'), required=False)
-    dimension = schema.TextLine(title=_(u'Dimension'), required=False)
-    value = schema.TextLine(title=_(u'Value'), required=False)
-    unit = schema.TextLine(title=_(u'Unit'), required=False)
-    precision = schema.TextLine(title=_(u'Precision'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-
-class IPeriod(Interface):
-    period = schema.TextLine(title=_(u'Period'), required=False)
-    date_early = schema.TextLine(title=_(u'Date (early)'), required=False)
-    date_early_precision = schema.TextLine(title=_(u'Precision'), required=False)
-    date_late = schema.TextLine(title=_(u'Date (late)'), required=False)
-    date_late_precision = schema.TextLine(title=_(u'Precision'), required=False)
-
-## Condition & Conservation Interfaces
-class ICompleteness(Interface):
-    completeness = schema.TextLine(title=_(u'Completeness'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-    checked_by = schema.TextLine(title=_(u'Checked by'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-
-class ICondition(Interface):
-    part = schema.TextLine(title=_(u'Part'), required=False)
-    condition = schema.TextLine(title=_(u'Condition'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-    checked_by = schema.TextLine(title=_(u'Checked by'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-
-class IEnvCondition(Interface):
-    preservation_form = schema.TextLine(title=_(u'Preservation form'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-
-class IConsRequest(Interface):
-    treatment = schema.TextLine(title=_(u'Treatment'), required=False)
-    requester = schema.TextLine(title=_(u'Requester'), required=False)
-    reason = schema.TextLine(title=_(u'Reason'), required=False)
-    status = schema.TextLine(title=_(u'Status'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-
-## Inscriptions and Markings
-
-class IInscription(Interface):
-    type = schema.TextLine(title=_(u'Type'), required=False)
-    position = schema.TextLine(title=_(u'Position'),required=False)
-    method = schema.TextLine(title=_(u'Method'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-    creator = schema.TextLine(title=_(u'Creator'), required=False)
-    creator_role = schema.TextLine(title=_(u'Role'), required=False)
-    content = schema.TextLine(title=_(u'Content'), required=False)
-    description = schema.TextLine(title=_(u'Description'), required=False)
-    interpretation = schema.TextLine(title=_(u'Interpretation'), required=False)
-    language = schema.TextLine(title=_(u'Language'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-
-# Value & Insurance
-class IValuation(Interface):
-    value = schema.TextLine(title=_(u'Value'), required=False)
-    curr = schema.TextLine(title=_(u'Curr.'), required=False)
-    valuer = schema.TextLine(title=_(u'Valuer'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-    reference = schema.TextLine(title=_(u'Reference'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-
-class IInsurance(Interface):
-    type = schema.Choice(
-        vocabulary=insurance_type_vocabulary,
-        title=_(u'Type'),
-        required=False
-    )
-    value = schema.TextLine(title=_(u'Value'), required=False)
-    curr = schema.TextLine(title=_(u'Curr.'), required=False)
-    valuer = schema.TextLine(title=_(u'Valuer'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-    policy_number = schema.TextLine(title=_(u'Policy number'), required=False)
-    insurance_company = schema.TextLine(title=_(u'Insurance company'), required=False)
-    confirmation_date = schema.TextLine(title=_(u'Confirmation date'), required=False)
-    renewal_date = schema.TextLine(title=_(u'Renewal date'), required=False)
-    reference = schema.TextLine(title=_(u'Reference'), required=False)
-    conditions = schema.TextLine(title=_(u'Conditions'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
-
-# Aquisition
-class IFunding(Interface):
-    amount = schema.TextLine(title=_(u'Amount'), required=False)
-    curr = schema.TextLine(title=_(u'Curr.'), required=False)
-    source = schema.TextLine(title=_(u'Source'), required=False)
-    provisos = schema.TextLine(title=_(u'Provisos'), required=False)
-
-class IDocumentation(Interface):
-    description = schema.TextLine(title=_(u'Description'), required=False)
-    reference = schema.TextLine(title=_(u'Reference'), required=False)
-
+# # # # # # # # # #
+# # # # # # # # # #
+# Object schema   #
+# # # # # # # # # #
+# # # # # # # # # #
 
 class IObject(form.Schema):
     text = RichText(
@@ -864,7 +729,31 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('ownership_notes')
 
+    # # # # # # # # 
+    # Location    #
+    # # # # # # # #
 
+    model.fieldset('location', label=_(u'Location'), 
+        fields=['location_normal_location', 'location_current_location', 'location_checks']
+    )
+
+    # Normal location
+    location_normal_location = schema.TextLine(
+        title=_(u'Normal location'),
+        required=False
+    )
+
+    # Current location
+    location_current_location = ListField(title=_(u'Current location'),
+        value_type=schema.Object(title=_(u'Current location'), schema=ICurrentLocation),
+        required=False)
+    form.widget(location_current_location=DataGridFieldFactory)
+
+    # Location checks
+    location_checks = ListField(title=_(u'Location checks'),
+        value_type=schema.Object(title=_(u'Location checks'), schema=ILocationChecks),
+        required=False)
+    form.widget(location_checks=DataGridFieldFactory)
 
 
 
@@ -902,127 +791,3 @@ class EditForm(edit.DefaultEditForm):
             for widget in group.widgets.values():
                 alsoProvides(widget, IFormWidget)
 
-#
-# Declare widgets
-#
-#form.widget(dimension=DataGridFieldFactory)
-
-
-# # # # # # # # # # # # #
-# View specific methods #
-# # # # # # # # # # # # #
-
-class ObjectView(DefaultView):
-    """ View class """
-
-    def trim_white_spaces(self, text):
-        if text != "" and text != None:
-            if len(text) > 0:
-                if text[0] == " ":
-                    text = text[1:]
-                if len(text) > 0:
-                    if text[-1] == " ":
-                        text = text[:-1]
-                return text
-            else:
-                return ""
-        else:
-            return ""
-
-    def create_author_name(self, value):
-        comma_split = value.split(",")
-
-        for i in range(len(comma_split)):       
-            name_split = comma_split[i].split('(')
-            
-            raw_name = name_split[0]
-            name_split[0] = self.trim_white_spaces(raw_name)
-            name_artist = name_split[0]
-            
-            name_artist_link = '<a href="/'+self.context.language+'/search?SearchableText=%s">%s</a>' % (name_artist, name_artist)
-            name_split[0] = name_artist_link
-
-            if len(name_split) > 1:
-                if len(name_split[1]) > 0:
-                    name_split[0] = name_artist_link + " "
-        
-            comma_split[i] = '('.join(name_split)
-
-        _value = ", ".join(comma_split)
-
-        return _value
-
-    def create_materials(self, value):
-        materials = value.split(',')
-        _value = ""
-        for i, mat in enumerate(materials):
-            if i == (len(materials)-1):
-                _value += '<a href="/'+self.context.language+'/search?SearchableText=%s">%s</a>' % (mat, mat)
-            else:
-                _value += '<a href="/'+self.context.language+'/search?SearchableText=%s">%s</a>, ' % (mat, mat)
-
-        return _value
-
-    def getSearchableValue(self, name, value):
-        _value = ""
-
-        if (name == 'artist') or (name == 'author'):
-            _value = self.create_author_name(value)
-        elif (name == 'material') or (name == 'technique'):
-            _value = self.create_materials(value)
-        else:
-            _value = '<a href="/'+self.context.language+'/search?SearchableText=%s">%s</a>' % (value, value)
-
-        return _value
-
-    def getFBdetails(self):
-        item = self.context
-        
-        state = getMultiAdapter(
-                (item, self.request),
-                name=u'plone_context_state')
-
-        # Check view type
-        view_type = state.view_template_id()
-
-        obj = ICanContainMedia(item)
-
-        details = {}
-        details["title"] = item.Title()
-        details["type"] = "article"
-        details["site_name"] = "ZM"
-        details["url"] = item.absolute_url()
-        details["description"] = item.Description()
-        details["double_image"] = ""
-        details["image"] = ""
-        
-        if view_type == "instruments_view":
-            if hasattr(item, 'slideshow'):
-                catalog = getToolByName(self.context, 'portal_catalog')
-                slideshow = item['slideshow']
-                path = '/'.join(slideshow.getPhysicalPath())
-                results = catalog.searchResults(path={'query': path, 'depth': 1, 'portal_type': 'Image'}, sort_on='sortable_title')
-                if len(results) > 0:
-                    lead_image = results[0]
-                    if lead_image.portal_type == "Image":
-                        details["image"] = lead_image.getObject().absolute_url()+"/@@images/image/large"
-                else:
-                    details["image"] = ""
-                
-
-        if details["image"] == "":
-            if obj.hasMedia():
-                image = obj.getLeadMedia()
-                details["image"] = image.absolute_url()+"/@@images/image/large"
-                
-                if view_type == "double_view":
-                    if hasattr(item, 'slideshow'):
-                        slideshow = item['slideshow']
-                        if len(slideshow.objectIds()) > 1:
-                            double_image = slideshow[slideshow.objectIds()[1]]
-                            if double_image.portal_type == "Image":
-                                details["double_image"] = double_image.absolute_url()+"/@@images/image/large"
-            else:
-                details["image"] = ""
-
-        return details

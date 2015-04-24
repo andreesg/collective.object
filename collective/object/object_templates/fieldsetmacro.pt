@@ -409,4 +409,28 @@
     </div>
   </tal:ownership_history>
 
+  <tal:location tal:condition='python: fieldset_text == "location"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Normal location</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/location_normal_location/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Current location</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/location_current_location/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Location checks</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/location_checks/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:location>
+
 </div>
