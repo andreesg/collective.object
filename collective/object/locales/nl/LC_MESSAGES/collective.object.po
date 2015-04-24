@@ -662,7 +662,17 @@ msgstr "Geschiktheid"
 msgid "Location checks"
 msgstr "Standplaatscontroles"
 
+#
+# Notes
+#
 
+#: ../object.py
+msgid "Free Fields"
+msgstr "Vrij Velden"
+
+#: ../object.py
+msgid "Confidential"
+msgstr "Vertrouwelijk"
 
 
 

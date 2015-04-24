@@ -151,3 +151,14 @@ class ILocationChecks(Interface):
     checked_by = schema.TextLine(title=_(u'Checked by'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+# Notes
+class INotes(Interface):
+	notes = schema.Text(title=_(u'Notes'), required=False)
+
+class IFreeFields(Interface):
+	date = schema.TextLine(title=_(u'Date'), required=False)
+	type = schema.TextLine(title=_(u'Type'), required=False)
+	confidential = schema.TextLine(title=_(u'Confidential'), required=False)
+	content = schema.TextLine(title=_(u'Content'), required=False)
+
+

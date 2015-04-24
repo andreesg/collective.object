@@ -433,4 +433,22 @@
     </div>
   </tal:location>
 
+  <tal:notes tal:condition='python: fieldset_text == "notes"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Notes</h2>
+
+        <div class="form-horizontal gridfield hide-thead">
+          <tal:widget tal:replace="structure widgets/notes/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Free Fields</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/notes_free_fields/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:notes>
+
 </div>

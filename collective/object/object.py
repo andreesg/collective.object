@@ -755,6 +755,24 @@ class IObject(form.Schema):
         required=False)
     form.widget(location_checks=DataGridFieldFactory)
 
+    # # # # # #
+    # Notes   #
+    # # # # # #
+    model.fieldset('notes', label=_(u'Notes'), 
+        fields=['notes', 'notes_free_fields']
+    )
+
+    notes = ListField(title=_(u'Notes'),
+        value_type=schema.Object(title=_(u'Notes'), schema=INotes),
+        required=False)
+    form.widget(notes=DataGridFieldFactory)
+
+    # Free fields
+    notes_free_fields = ListField(title=_(u'Free Fields'),
+        value_type=schema.Object(title=_(u'Free Fields'), schema=IFreeFields),
+        required=False)
+    form.widget(notes_free_fields=DataGridFieldFactory)
+
 
 
 
