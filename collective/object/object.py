@@ -30,7 +30,7 @@ from z3c.form.browser.textlines import TextLinesFieldWidget
 #
 # DataGridFields dependencies
 #
-from collective.z3cform.datagridfield import DataGridFieldFactory
+from collective.z3cform.datagridfield import DataGridFieldFactory, DictRow
 from collective.z3cform.datagridfield.blockdatagridfield import BlockDataGridFieldFactory
 
 # # # # # # # # # # # # # # # 
@@ -763,7 +763,7 @@ class IObject(form.Schema):
     )
 
     notes = ListField(title=_(u'Notes'),
-        value_type=schema.Object(title=_(u'Notes'), schema=INotes),
+        value_type=DictRow(title=_(u'Notes'), schema=INotes),
         required=False)
     form.widget(notes=DataGridFieldFactory)
 
