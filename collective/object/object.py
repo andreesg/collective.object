@@ -175,25 +175,25 @@ class IObject(form.Schema):
 
     # Keywords #
     keywords = ListField(title=_(u'Keywords'),
-        value_type=schema.Object(title=_(u'Keywords'), schema=IKeyword),
+        value_type=DictRow(title=_(u'Keywords'), schema=IKeyword),
         required=False)
     form.widget(keywords=DataGridFieldFactory)
 
     # Techniques #
     techniques = ListField(title=_(u'Techniques'),
-        value_type=schema.Object(title=_(u'Techniques'), schema=ITechnique),
+        value_type=DictRow(title=_(u'Techniques'), schema=ITechnique),
         required=False)
     form.widget(techniques=DataGridFieldFactory)
 
     # Materials #
     materials = ListField(title=_(u'Materials'),
-        value_type=schema.Object(title=_(u'Materials'), schema=IMaterial),
+        value_type=DictRow(title=_(u'Materials'), schema=IMaterial),
         required=False)
     form.widget(materials=DataGridFieldFactory)
 
     # Dimensions #
     dimensions = ListField(title=_(u'Dimensions'),
-        value_type=schema.Object(title=_(u'Dimensions'), schema=IDimension),
+        value_type=DictRow(title=_(u'Dimensions'), schema=IDimension),
         required=False)
     form.widget(dimensions=DataGridFieldFactory)
 
@@ -270,7 +270,7 @@ class IObject(form.Schema):
 
     # Dating #
     production_period = ListField(title=_(u'Period'),
-        value_type=schema.Object(title=_(u'Period'), schema=IPeriod),
+        value_type=DictRow(title=_(u'Period'), schema=IPeriod),
         required=False)
     form.widget(production_period=DataGridFieldFactory)
     dexteritytextindexer.searchable('production_period')
@@ -315,28 +315,28 @@ class IObject(form.Schema):
 
     # Completeness*
     completeness = ListField(title=_(u'Completeness'),
-        value_type=schema.Object(title=_(u'Completeness'), schema=ICompleteness),
+        value_type=DictRow(title=_(u'Completeness'), schema=ICompleteness),
         required=False)
     form.widget(completeness=DataGridFieldFactory)
     dexteritytextindexer.searchable('completeness')
 
     # Condition*
     condition = ListField(title=_(u'Condition'),
-        value_type=schema.Object(title=_(u'Condition'), schema=ICondition),
+        value_type=DictRow(title=_(u'Condition'), schema=ICondition),
         required=False)
     form.widget(condition=DataGridFieldFactory)
     dexteritytextindexer.searchable('condition')
 
     # Enviromental condition*
     enviromental_condition = ListField(title=_(u'Enviromental condition'),
-        value_type=schema.Object(title=_(u'Enviromental condition'), schema=IEnvCondition),
+        value_type=DictRow(title=_(u'Enviromental condition'), schema=IEnvCondition),
         required=False)
     form.widget(enviromental_condition=DataGridFieldFactory)
     dexteritytextindexer.searchable('enviromental_condition')
 
     # Conservation request*
     conservation_request = ListField(title=_(u'Conservation request'),
-        value_type=schema.Object(title=_(u'Conservation request'), schema=IConsRequest),
+        value_type=DictRow(title=_(u'Conservation request'), schema=IConsRequest),
         required=False)
     form.widget(conservation_request=DataGridFieldFactory)
     dexteritytextindexer.searchable('conservation_request')
@@ -351,7 +351,7 @@ class IObject(form.Schema):
     )
 
     inscriptions = ListField(title=_(u'Inscriptions and markings'),
-        value_type=schema.Object(title=_(u'Inscriptions and markings'), schema=IInscription),
+        value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscription),
         required=False)
     form.widget(inscriptions=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('inscriptions')
@@ -365,13 +365,13 @@ class IObject(form.Schema):
     )
 
     valuation = ListField(title=_(u'Valuation'),
-        value_type=schema.Object(title=_(u'Valuation'), schema=IValuation),
+        value_type=DictRow(title=_(u'Valuation'), schema=IValuation),
         required=False)
     form.widget(valuation=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('valuation')
 
     insurance = ListField(title=_(u'Insurance'),
-        value_type=schema.Object(title=_(u'Insurance'), schema=IInsurance),
+        value_type=DictRow(title=_(u'Insurance'), schema=IInsurance),
         required=False)
     form.widget(insurance=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('insurance')
@@ -511,14 +511,14 @@ class IObject(form.Schema):
 
     # Funding *
     funding = ListField(title=_(u'Funding'),
-        value_type=schema.Object(title=_(u'Funding'), schema=IFunding),
+        value_type=DictRow(title=_(u'Funding'), schema=IFunding),
         required=False)
     form.widget(funding=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('funding')
 
     # Documentation *
     documentation = ListField(title=_(u'Documentation'),
-        value_type=schema.Object(title=_(u'Documentation'), schema=IDocumentation),
+        value_type=DictRow(title=_(u'Documentation'), schema=IDocumentation),
         required=False)
     form.widget(documentation=DataGridFieldFactory)
     dexteritytextindexer.searchable('documentation')
@@ -620,7 +620,7 @@ class IObject(form.Schema):
 
     # Documentation
     disposal_documentation = ListField(title=_(u'Documentation'),
-        value_type=schema.Object(title=_(u'Documentation'), schema=IDocumentation),
+        value_type=DictRow(title=_(u'Documentation'), schema=IDocumentation),
         required=False)
     form.widget(disposal_documentation=DataGridFieldFactory)
     dexteritytextindexer.searchable('disposal_documentation')
@@ -745,13 +745,13 @@ class IObject(form.Schema):
 
     # Current location
     location_current_location = ListField(title=_(u'Current location'),
-        value_type=schema.Object(title=_(u'Current location'), schema=ICurrentLocation),
+        value_type=DictRow(title=_(u'Current location'), schema=ICurrentLocation),
         required=False)
     form.widget(location_current_location=DataGridFieldFactory)
 
     # Location checks
     location_checks = ListField(title=_(u'Location checks'),
-        value_type=schema.Object(title=_(u'Location checks'), schema=ILocationChecks),
+        value_type=DictRow(title=_(u'Location checks'), schema=ILocationChecks),
         required=False)
     form.widget(location_checks=DataGridFieldFactory)
 
@@ -769,7 +769,7 @@ class IObject(form.Schema):
 
     # Free fields
     notes_free_fields = ListField(title=_(u'Free Fields'),
-        value_type=schema.Object(title=_(u'Free Fields'), schema=IFreeFields),
+        value_type=DictRow(title=_(u'Free Fields'), schema=IFreeFields),
         required=False)
     form.widget(notes_free_fields=DataGridFieldFactory)
 
@@ -782,7 +782,7 @@ class IObject(form.Schema):
     )
 
     labels = ListField(title=_(u'Labels'),
-        value_type=schema.Object(title=_(u'Labels'), schema=ILabel),
+        value_type=DictRow(title=_(u'Labels'), schema=ILabel),
         required=False)
     form.widget(labels=DataGridFieldFactory)
 
