@@ -69,7 +69,9 @@ class IObject(form.Schema):
     model.fieldset('identification', label=_(u'Identification'), 
         fields=['identification_institution_name', 'identification_administrative_name', 'identification_collection', 'identification_object_number',
                 'identification_rec_type', 'identification_part', 'identification_tot_number', 'identification_copy_number', 'identification_edition', 'identification_distinguish_features', 
-                'identification_object_category', 'identification_object_name', 'identification_other_name']
+                'identification_object_category', 'identification_object_name', 'identification_other_name', 'identification_title_notes',
+                'identification_translated_title', 'identification_title_language', 'identification_describer', 'identification_describer_date',
+                'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_object_status', 'identification_taxonomy_notes']
     )
 
     # Identification #
@@ -87,12 +89,11 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('identification_administrative_name')
 
-    identification_collection = schema.TextLine(
-        title=_(u'Collection'), 
+    identification_collection = ListField(title=_(u'Collection'),
+        value_type=DictRow(title=_(u'Collection'), schema=ICollection),
         required=False,
-        description=_(u"Collection<br><br>If this object is part of a specific collection within the overall museum collection, use this field to enter its name.<br><br>Examples:<br>manuscripts<br>Muller")
-    )
-    dexteritytextindexer.searchable('identification_collection')
+        description=_(u"Collection<br><br>If this object is part of a specific collection within the overall museum collection, use this field to enter its name.<br><br>Examples:<br>manuscripts<br>Muller"))
+    form.widget(identification_collection=DataGridFieldFactory)
 
     identification_object_number = schema.TextLine(
         title=_(u'Object number'),
@@ -110,7 +111,7 @@ class IObject(form.Schema):
         title=_(u'Part'),
         required=False
     )
-    dexteritytextindexer.searchable('part')
+    dexteritytextindexer.searchable('identification_part')
 
     identification_tot_number = schema.TextLine(
         title=_(u'Tot. Number'),
@@ -137,23 +138,81 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('identification_distinguish_features')
 
     # Object name #
-    identification_object_category = schema.TextLine(
-        title=_(u'Object Category'),
-        required=False
-    )
+    identification_object_category = ListField(title=_(u'Object Category'),
+        value_type=DictRow(title=_(u'Object Category'), schema=IObjectCategory),
+        required=False)
+    form.widget(identification_object_category=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_object_category')
 
-    identification_object_name = schema.TextLine(
-        title=_(u'Object name'),
-        required=False
-    )
+    identification_object_name = ListField(title=_(u'Object name'),
+        value_type=DictRow(title=_(u'Object name'), schema=IObjectName),
+        required=False)
+    form.widget(identification_object_name=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_object_name')
 
-    identification_other_name = schema.TextLine(
-        title=_(u'Other name'),
+    identification_other_name = ListField(title=_(u'Other name'),
+        value_type=DictRow(title=_(u'Other name'), schema=IOtherName),
+        required=False)
+    form.widget(identification_other_name=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_other_name')
+
+    # Title and description
+    identification_title_notes = schema.TextLine(
+        title=_(u'Notes'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_other_name')
+    dexteritytextindexer.searchable('identification_title_notes')
+
+    identification_translated_title = schema.TextLine(
+        title=_(u'Translated title'),
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_translated_title')
+
+    identification_title_language = schema.TextLine(
+        title=_(u'Language'),
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_title_language')
+
+    identification_describer = schema.TextLine(
+        title=_(u'Describer'),
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_describer')
+
+    identification_describer_date = schema.TextLine(
+        title=_(u'Date'),
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_describer_date')
+
+    # Taxonomy
+    identification_taxonomy = ListField(title=_(u'Taxonomy'),
+        value_type=DictRow(title=_(u'Taxonomy'), schema=ITaxonomy),
+        required=False)
+    form.widget(identification_taxonomy=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_taxonomy')
+
+    identification_taxonomy_determiner = ListField(title=_(u'Determiner'),
+        value_type=DictRow(title=_(u'Determiner'), schema=IDeterminer),
+        required=False)
+    form.widget(identification_taxonomy_determiner=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_taxonomy_determiner')
+
+    identification_taxonomy_object_status = schema.TextLine(
+        title=_(u'Object status'),
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_taxonomy_object_status')
+
+    identification_taxonomy_notes = ListField(title=_(u'Notes'),
+        value_type=DictRow(title=_(u'Notes'), schema=INotes),
+        required=False)
+    form.widget(identification_taxonomy_notes=DataGridFieldFactory)
+
+
+
 
 
     # # # # # # # # # # # # # # # # #
@@ -381,21 +440,21 @@ class IObject(form.Schema):
     # # # # # # # # # #
 
     model.fieldset('acquisition', label=_(u'Acquisition'), 
-        fields=['aquisition_accession_date', 'acquisition_number', 'acquisition_date', 'acquisition_precision',
+        fields=['acquisition_accession_date', 'acquisition_number', 'acquisition_date', 'acquisition_precision',
                 'acquisition_method', 'acquisition_rec_no', 'acquisition_lot_no',
                 'acquisition_from', 'acquisition_auction', 'acquisition_place', 'acquisition_reason',
-                'acquisition_conditions', 'aquisition_authorization_authorizer', 'aquisition_authorization_date',
-                'aquisition_costs_offer_price', 'aquisition_costs_offer_price_curr', 'aquisition_costs_purchase_price',
-                'aquisition_costs_purchase_price_curr', 'aquisision_costs_notes', 'aquisition_funding', 'aquisition_documentation',
+                'acquisition_conditions', 'acquisition_authorization_authorizer', 'acquisition_authorization_date',
+                'acquisition_costs_offer_price', 'acquisition_costs_offer_price_curr', 'acquisition_costs_purchase_price',
+                'acquisition_costs_purchase_price_curr', 'acquisition_costs_notes', 'acquisition_funding', 'acquisition_documentation',
                 'acquisition_copyright', 'acquisition_notes']
     )
 
     # Accession
-    aquisition_accession_date = schema.TextLine(
+    acquisition_accession_date = schema.TextLine(
         title=_(u'Accession date'),
         required=False
     )
-    dexteritytextindexer.searchable('aquisition_accessionDate')
+    dexteritytextindexer.searchable('acquisition_accession_date')
 
     # Acquisition
     acquisition_number = schema.TextLine(
@@ -466,62 +525,62 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('acquisition_conditions')
 
     # Authorization
-    aquisition_authorization_authorizer = schema.TextLine(
+    acquisition_authorization_authorizer = schema.TextLine(
         title=_(u'Authorizer'),
         required=False
     )
-    dexteritytextindexer.searchable('authorization_authorizer')
+    dexteritytextindexer.searchable('acquisition_authorization_authorizer')
 
-    aquisition_authorization_date = schema.TextLine(
+    acquisition_authorization_date = schema.TextLine(
         title=_(u'Date'),
         required=False
     )
-    dexteritytextindexer.searchable('authorization_date')
+    dexteritytextindexer.searchable('acquisition_authorization_date')
 
     # Costs
-    aquisition_costs_offer_price = schema.TextLine(
+    acquisition_costs_offer_price = schema.TextLine(
         title=_(u'Offer price'),
         required=False
     )
-    dexteritytextindexer.searchable('aquisition_costs_offer_price')
+    dexteritytextindexer.searchable('acquisition_costs_offer_price')
 
-    aquisition_costs_offer_price_curr = schema.TextLine(
+    acquisition_costs_offer_price_curr = schema.TextLine(
         title=_(u'Curr.'),
         required=False
     )
-    dexteritytextindexer.searchable('aquisition_costs_offer_price_curr')
+    dexteritytextindexer.searchable('acquisition_costs_offer_price_curr')
 
-    aquisition_costs_purchase_price = schema.TextLine(
+    acquisition_costs_purchase_price = schema.TextLine(
         title=_(u'Purchase price'),
         required=False
     )
-    dexteritytextindexer.searchable('aquisition_costs_purchase_price')
+    dexteritytextindexer.searchable('acquisition_costs_purchase_price')
 
-    aquisition_costs_purchase_price_curr = schema.TextLine(
+    acquisition_costs_purchase_price_curr = schema.TextLine(
         title=_(u'Curr.'),
         required=False
     )
-    dexteritytextindexer.searchable('aquisition_costs_purchase_price_curr')
+    dexteritytextindexer.searchable('acquisition_costs_purchase_price_curr')
 
-    aquisision_costs_notes = schema.TextLine(
+    acquisition_costs_notes = schema.TextLine(
         title=_(u'Notes'),
         required=False
     )
-    dexteritytextindexer.searchable('aquisision_costs_notes')
+    dexteritytextindexer.searchable('acquisition_costs_notes')
 
     # Funding *
-    aquisition_funding = ListField(title=_(u'Funding'),
+    acquisition_funding = ListField(title=_(u'Funding'),
         value_type=DictRow(title=_(u'Funding'), schema=IFunding),
         required=False)
-    form.widget(aquisition_funding=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('aquisition_funding')
+    form.widget(acquisition_funding=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('acquisition_funding')
 
     # Documentation *
-    aquisition_documentation = ListField(title=_(u'Documentation'),
+    acquisition_documentation = ListField(title=_(u'Documentation'),
         value_type=DictRow(title=_(u'Documentation'), schema=IDocumentation),
         required=False)
-    form.widget(aquisition_documentation=DataGridFieldFactory)
-    dexteritytextindexer.searchable('aquisition_documentation')
+    form.widget(acquisition_documentation=DataGridFieldFactory)
+    dexteritytextindexer.searchable('acquisition_documentation')
 
     # Copyright
     acquisition_copyright = schema.TextLine(

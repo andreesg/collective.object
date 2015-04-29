@@ -27,6 +27,36 @@ class IFormWidget(Interface):
 # DataGrid interfaces     # 
 # # # # # # # # # # # # # #
 
+# Identification
+class ICollection(Interface):
+    term = schema.TextLine(title=_(u'Collection'), required=False)
+
+class IObjectName(Interface):
+    name = schema.TextLine(title=_(u'Object name'), required=False)
+    type = schema.TextLine(title=_(u'Type'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IObjectCategory(Interface):
+    term = schema.TextLine(title=_(u'Object Category'), required=False)
+
+class IOtherName(Interface):
+    name = schema.TextLine(title=_(u'Other name'), required=False)
+    type = schema.TextLine(title=_(u'Type'), required=False)
+
+class ITaxonomyRank(Interface):
+    text = schema.TextLine(title=_(u'Taxonomy rank'), required=False)
+
+class ITaxonomy(Interface):
+    rank = schema.TextLine(title=_(u'Taxonomy rank'), required=False)
+    scientific_name = schema.TextLine(title=_(u'Scient. name'), required=False)
+    common_name = schema.TextLine(title=_(u'Common name'), required=False)
+
+class IDeterminer(Interface):
+    name = schema.TextLine(title=_(u'Determiner'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+
+
+# Physical Characteristics
 class IKeyword(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
     aspect = schema.TextLine(title=_(u'Aspect'), required=False)

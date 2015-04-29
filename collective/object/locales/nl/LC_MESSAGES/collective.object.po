@@ -682,6 +682,40 @@ msgstr "Vertrouwelijk"
 msgid "Labels"
 msgstr "Etiketten"
 
+# Identification
+
+#: ../object.py
+msgid "Translated title"
+msgstr "Vertaalde titel"
+
+#: ../object.py
+msgid "Describer"
+msgstr "Beschrijver"
+
+#: ../object.py
+msgid "Taxonomy"
+msgstr "Taxonomie"
+
+#: ../object.py
+msgid "Taxonomy rank"
+msgstr "Taxonomie rang"
+
+#: ../object.py
+msgid "Scient. name"
+msgstr "Wet. naam"
+
+#: ../object.py
+msgid "Common name"
+msgstr "Populaire naam"
+
+#: ../object.py
+msgid "Determiner"
+msgstr "Determinator"
+
+#: ../object.py
+msgid "Object status"
+msgstr "Objectstatus"
+
 
 
 
