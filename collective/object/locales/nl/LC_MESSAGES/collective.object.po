@@ -716,6 +716,10 @@ msgstr "Determinator"
 msgid "Object status"
 msgstr "Objectstatus"
 
+#: ../object.py
+msgid "Title and description"
+msgstr "Titel en beschrijving"
+
 
 
 
