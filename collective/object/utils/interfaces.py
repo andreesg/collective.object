@@ -88,6 +88,17 @@ class IPeriod(Interface):
     date_late = schema.TextLine(title=_(u'Date (late)'), required=False)
     date_late_precision = schema.TextLine(title=_(u'Precision'), required=False)
 
+## Production & Dating
+class IProduction(Interface):
+    maker = schema.TextLine(title=_(u'Maker'), required=False)
+    qualifier = schema.TextLine(title=_(u'Qualifier'), required=False)
+    role = schema.TextLine(title=_(u'Role'), required=False)
+    place = schema.TextLine(title=_(u'Place'), required=False)
+    production_notes = schema.TextLine(title=_(u'Production notes'), required=False)
+
+class ISchool(Interface):
+    term = schema.TextLine(title=_(u'School / style'), required=False)
+
 ## Condition & Conservation Interfaces
 class ICompleteness(Interface):
     completeness = schema.TextLine(title=_(u'Completeness'), required=False)

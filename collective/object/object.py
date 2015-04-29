@@ -67,125 +67,126 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # 
     
     model.fieldset('identification', label=_(u'Identification'), 
-        fields=['identification_institution_name', 'identification_administrative_name', 'identification_collection', 'identification_object_number',
-                'identification_rec_type', 'identification_part', 'identification_tot_number', 'identification_copy_number', 'identification_edition', 'identification_distinguish_features', 
-                'identification_object_category', 'identification_object_name', 'identification_other_name', 'identification_title_notes',
-                'identification_translated_title', 'identification_title_language', 'identification_describer', 'identification_describer_date',
-                'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_object_status', 'identification_taxonomy_notes']
+        fields=['identification_identification_institutionName', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
+                'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
+                'identification_identification_edition', 'identification_identification_distinguishFeatures', 
+                'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_notes',
+                'identification_titleDescription_translatedTitle', 'identification_titleDescription_language', 'identification_titleDescription_describer', 'identification_titleDescription_date',
+                'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_notes']
     )
 
     # Identification #
-    identification_institution_name = schema.TextLine(
+    identification_identification_institutionName = schema.TextLine(
         title=_(u'Institution name'), 
         required=False,
         description=_(u"Institution name<br><br>The name of the institution responsible for managing the object.<br><br>Enter the common name of your institution, possibly shortened and with a place name. This field is especially relevant if object descriptions are used by third parties.<br><br> Examples:<br>National Museums of Scotland<br>NMS<br>REME<br>Met")
     )
-    dexteritytextindexer.searchable('identification_institution_name')
+    dexteritytextindexer.searchable('identification_identification_institutionName')
 
-    identification_administrative_name = schema.TextLine(
+    identification_identification_administrativeName = schema.TextLine(
         title=_(u'Administrative name'), 
         required=False,
         description=_(u"Administration name<br><br>The name of the department responsible for the object itself and for the documentation about the object.<br><br>Examples:<br>Textiles<br>Geology<br>Glass and ceramics")
     )
-    dexteritytextindexer.searchable('identification_administrative_name')
+    dexteritytextindexer.searchable('identification_identification_administrativeName')
 
-    identification_collection = ListField(title=_(u'Collection'),
+    identification_identification_collection = ListField(title=_(u'Collection'),
         value_type=DictRow(title=_(u'Collection'), schema=ICollection),
         required=False,
         description=_(u"Collection<br><br>If this object is part of a specific collection within the overall museum collection, use this field to enter its name.<br><br>Examples:<br>manuscripts<br>Muller"))
-    form.widget(identification_collection=DataGridFieldFactory)
+    form.widget(identification_identification_collection=DataGridFieldFactory)
 
-    identification_object_number = schema.TextLine(
+    identification_identification_objectNumber = schema.TextLine(
         title=_(u'Object number'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_object_number')
+    dexteritytextindexer.searchable('identification_identification_objectNumber')
 
-    identification_rec_type = schema.TextLine(
+    identification_identification_recType = schema.TextLine(
         title=_(u'Rec. type'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_rec_type')
+    dexteritytextindexer.searchable('identification_identification_recType')
 
-    identification_part = schema.TextLine(
+    identification_identification_part = schema.TextLine(
         title=_(u'Part'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_part')
+    dexteritytextindexer.searchable('identification_identification_part')
 
-    identification_tot_number = schema.TextLine(
+    identification_identification_totNumber = schema.TextLine(
         title=_(u'Tot. Number'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_tot_number')
+    dexteritytextindexer.searchable('identification_identification_totNumber')
 
-    identification_copy_number = schema.TextLine(
+    identification_identification_copyNumber = schema.TextLine(
         title=_(u'Copy number'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_copy_number')
+    dexteritytextindexer.searchable('identification_identification_copyNumber')
 
-    identification_edition = schema.TextLine(
+    identification_identification_edition = schema.TextLine(
         title=_(u'Edition'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_edition')
+    dexteritytextindexer.searchable('identification_identification_edition')
 
-    identification_distinguish_features = schema.TextLine(
+    identification_identification_distinguishFeatures = schema.TextLine(
         title=_(u'Distinguish features'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_distinguish_features')
+    dexteritytextindexer.searchable('identification_identification_distinguishFeatures')
 
     # Object name #
-    identification_object_category = ListField(title=_(u'Object Category'),
+    identification_objectName_objectCategory = ListField(title=_(u'Object Category'),
         value_type=DictRow(title=_(u'Object Category'), schema=IObjectCategory),
         required=False)
-    form.widget(identification_object_category=DataGridFieldFactory)
-    dexteritytextindexer.searchable('identification_object_category')
+    form.widget(identification_objectName_objectCategory=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_objectName_objectCategory')
 
-    identification_object_name = ListField(title=_(u'Object name'),
+    identification_objectName_objectName = ListField(title=_(u'Object name'),
         value_type=DictRow(title=_(u'Object name'), schema=IObjectName),
         required=False)
-    form.widget(identification_object_name=DataGridFieldFactory)
-    dexteritytextindexer.searchable('identification_object_name')
+    form.widget(identification_objectName_objectName=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_objectName_objectName')
 
-    identification_other_name = ListField(title=_(u'Other name'),
+    identification_objectName_otherName = ListField(title=_(u'Other name'),
         value_type=DictRow(title=_(u'Other name'), schema=IOtherName),
         required=False)
-    form.widget(identification_other_name=DataGridFieldFactory)
-    dexteritytextindexer.searchable('identification_other_name')
+    form.widget(identification_objectName_otherName=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_objectName_otherName')
 
     # Title and description
-    identification_title_notes = schema.TextLine(
+    identification_titleDescription_notes = schema.TextLine(
         title=_(u'Notes'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_title_notes')
+    dexteritytextindexer.searchable('identification_titleDescription_notes')
 
-    identification_translated_title = schema.TextLine(
+    identification_titleDescription_translatedTitle = schema.TextLine(
         title=_(u'Translated title'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_translated_title')
+    dexteritytextindexer.searchable('identification_titleDescription_translatedTitle')
 
-    identification_title_language = schema.TextLine(
+    identification_titleDescription_language = schema.TextLine(
         title=_(u'Language'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_title_language')
+    dexteritytextindexer.searchable('identification_titleDescription_language')
 
-    identification_describer = schema.TextLine(
+    identification_titleDescription_describer = schema.TextLine(
         title=_(u'Describer'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_describer')
+    dexteritytextindexer.searchable('identification_titleDescription_describer')
 
-    identification_describer_date = schema.TextLine(
+    identification_titleDescription_date = schema.TextLine(
         title=_(u'Date'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_describer_date')
+    dexteritytextindexer.searchable('identification_titleDescription_date')
 
     # Taxonomy
     identification_taxonomy = ListField(title=_(u'Taxonomy'),
@@ -200,19 +201,16 @@ class IObject(form.Schema):
     form.widget(identification_taxonomy_determiner=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_taxonomy_determiner')
 
-    identification_taxonomy_object_status = schema.TextLine(
+    identification_taxonomy_objectStatus = schema.TextLine(
         title=_(u'Object status'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_taxonomy_object_status')
+    dexteritytextindexer.searchable('identification_taxonomy_objectStatus')
 
     identification_taxonomy_notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
         required=False)
     form.widget(identification_taxonomy_notes=DataGridFieldFactory)
-
-
-
 
 
     # # # # # # # # # # # # # # # # #
@@ -276,68 +274,43 @@ class IObject(form.Schema):
 
 
     # # # # # # # # # # # # # # # # #
-    # Production | Dating           #
+    # Production & Dating           #
     # # # # # # # # # # # # # # # # #
 
-    model.fieldset('production_dating', label=_(u'Production | Dating'), 
-        fields=['productionDating_creator', 'productionDating_qualifier',
-                'productionDating_role', 'productionDating_place', 'productionDating_school', 'productionDating_notes',
-                'productionDating_reason', 'productionDating_period', 'productionDating_dating_notes']
+    model.fieldset('production_dating', label=_(u'Production & Dating'), 
+        fields=['productionDating_production', 'productionDating_production_productionReason', 'productionDating_production_schoolStyle',
+                'productionDating_dating_period', 'productionDating_dating_notes']
     )
 
-    productionDating_creator = schema.TextLine(
-        title=_(u'Creator'),
-        required=False
-    )
-    dexteritytextindexer.searchable('productionDating_creator')
+    productionDating_production = ListField(title=_(u'Production & Dating'),
+        value_type=DictRow(title=_(u'Production & Dating'), schema=IProduction),
+        required=False)
+    form.widget(productionDating_production=DataGridFieldFactory)
+    dexteritytextindexer.searchable('productionDating_production')
 
-    productionDating_qualifier = schema.TextLine(
-        title=_(u'Qualifier'),
-        required=False
-    )
-    dexteritytextindexer.searchable('productionDating_qualifier')
-
-    productionDating_role = schema.TextLine(
-        title=_(u'Role'),
-        required=False
-    )
-    dexteritytextindexer.searchable('productionDating_role')
-
-    productionDating_place = schema.TextLine(
-        title=_(u'Place'),
-        required=False
-    )
-    dexteritytextindexer.searchable('productionDating_place')
-
-    productionDating_school = schema.TextLine(
-        title=_(u'School / style'),
-        required=False
-    )
-    dexteritytextindexer.searchable('productionDating_school')
-
-    productionDating_notes = schema.TextLine(
-        title=_(u'Production notes'),
-        required=False
-    )
-    dexteritytextindexer.searchable('productionDating_notes')
-
-    productionDating_reason = schema.TextLine(
+    productionDating_production_productionReason = schema.TextLine(
         title=_(u'Production reason'),
         required=False
     )
-    dexteritytextindexer.searchable('productionDating_reason')
+    dexteritytextindexer.searchable('productionDating_production_productionReason')
+
+    productionDating_production_schoolStyle = ListField(title=_(u'School / style'),
+        value_type=DictRow(title=_(u'School / style'), schema=ISchool),
+        required=False)
+    form.widget(productionDating_production_schoolStyle=DataGridFieldFactory)
+    dexteritytextindexer.searchable('productionDating_production_schoolStyle')
 
     # Dating #
-    productionDating_period = ListField(title=_(u'Period'),
+    productionDating_dating_period = ListField(title=_(u'Period'),
         value_type=DictRow(title=_(u'Period'), schema=IPeriod),
         required=False)
-    form.widget(productionDating_period=DataGridFieldFactory)
-    dexteritytextindexer.searchable('productionDating_period')
+    form.widget(productionDating_dating_period=DataGridFieldFactory)
+    dexteritytextindexer.searchable('productionDating_dating_period')
 
-    productionDating_dating_notes = schema.TextLine(
-        title=_(u'Notes'),
-        required=False
-    )
+    productionDating_dating_notes = ListField(title=_(u'Notes'),
+        value_type=DictRow(title=_(u'Notes'), schema=INotes),
+        required=False)
+    form.widget(productionDating_dating_notes=DataGridFieldFactory)
     dexteritytextindexer.searchable('productionDating_dating_notes')
 
 

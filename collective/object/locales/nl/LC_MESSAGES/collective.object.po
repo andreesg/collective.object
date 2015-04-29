@@ -163,11 +163,15 @@ msgid "Detail"
 msgstr "Bijzonderheden"
 
 #: ../object.py
-msgid "Production | Dating"
-msgstr "Vervaardiging | Datering"
+msgid "Production & Dating"
+msgstr "Vervaardiging & Datering"
 
 #: ../object.py
 msgid "Creator"
+msgstr "Vervaardiger"
+
+#: ../object.py
+msgid "Maker"
 msgstr "Vervaardiger"
 
 #: ../object.py
@@ -720,6 +724,10 @@ msgstr "Objectstatus"
 msgid "Title and description"
 msgstr "Titel en beschrijving"
 
+
+#: ../object.py
+msgid "Title and description"
+msgstr "Titel en beschrijving"
 
 
 
