@@ -834,6 +834,36 @@ msgid "Transliteration"
 msgstr "Transliteratie"
 
 
+#
+# Associations
+#
+
+#: ../object.py
+msgid "Associated person/institution"
+msgstr "Geassocieerde persoon/instelling"
+
+#: ../object.py
+msgid "Association"
+msgstr "Associatie"
+
+#: ../object.py
+msgid "Associated subject"
+msgstr "Geassocieerd onderwerp"
+
+#: ../object.py
+msgid "Associated period"
+msgstr "Geassocieerde periode"
+
+#: ../object.py
+msgid "Associations"
+msgstr "Associaties"
+
+
+
+
+
+
+
 
 
 

@@ -140,7 +140,7 @@
       <div class="form-horizontal gridfield table-responsive">
         <tal:widget tal:replace="structure widgets/physicalCharacteristics_dimensions/@@ploneform-render-widget"/>
       </div>
-      
+
       <h2 class="page-header" i18n:translate="">Frame</h2>
       <div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/physicalCharacteristics_frame/@@ploneform-render-widget"/>
@@ -287,7 +287,31 @@
     </div>
   </tal:inscriptions_markings>
 
-  
+  <tal:associations tal:condition='python: fieldset_text == "associations"'
+    tal:define='widgets group/widgets'>
+    <!-- Associations -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Associated person/institution</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/associations_associatedPersonInstitution/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Associated subject</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/associations_associatedSubject/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Associated period</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/associations_associatedPeriod/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:associations>
+
   <tal:value_insurance tal:condition='python: fieldset_text == "value_insurance"'
     tal:define='widgets group/widgets'>
     <!-- Value & Insurance -->

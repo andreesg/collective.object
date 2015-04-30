@@ -146,6 +146,33 @@ class IInscription(Interface):
     transliteration = schema.TextLine(title=_(u'Transliteration'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+## Associations
+class IAssociatedPersonInstitution(Interface):
+    association = schema.TextLine(title=_(u'Association'), required=False)
+    nameType = schema.TextLine(title=_(u'Name Type'), required=False)
+    name = schema.TextLine(title=_(u'Name'), required=False)
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    
+class IAssociatedSubject(Interface):
+    association = schema.TextLine(title=_(u'Association'), required=False)
+    subjectType = schema.TextLine(title=_(u'Subject type'), required=False)
+    subject = schema.TextLine(title=_(u'Subject'), required=False)
+    taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
+    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    properName = schema.TextLine(title=_(u'Proper name'), required=False)
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IAssociatedPeriod(Interface):
+    association = schema.TextLine(title=_(u'Association'), required=False)
+    period = schema.TextLine(title=_(u'Period'), required=False)
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
 # Value & Insurance
 class IValuation(Interface):
     value = schema.TextLine(title=_(u'Value'), required=False)
