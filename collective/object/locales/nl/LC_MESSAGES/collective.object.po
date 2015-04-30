@@ -817,6 +817,10 @@ msgstr "Bron objectnummer"
 msgid "Iconography"
 msgstr "Iconografie"
 
+#: ../object.py
+msgid "Content period/date"
+msgstr "Afgebeelde periode/datum"
+
 #
 # Inscriptions
 #
@@ -828,6 +832,9 @@ msgstr "Schrijt"
 #: ../object.py
 msgid "Transliteration"
 msgstr "Transliteratie"
+
+
+
 
 
 
