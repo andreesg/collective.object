@@ -817,6 +817,17 @@ msgstr "Bron objectnummer"
 msgid "Iconography"
 msgstr "Iconografie"
 
+#
+# Inscriptions
+#
+
+#: ../object.py
+msgid "Script"
+msgstr "Schrijt"
+
+#: ../object.py
+msgid "Transliteration"
+msgstr "Transliteratie"
 
 
 

@@ -444,14 +444,14 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # #
 
     model.fieldset('inscriptions_markings', label=_(u'Inscriptions and markings'), 
-        fields=['inscriptionsMarkings_inscriptions']
+        fields=['inscriptionsMarkings_inscriptionsMarkings']
     )
 
-    inscriptionsMarkings_inscriptions = ListField(title=_(u'Inscriptions and markings'),
+    inscriptionsMarkings_inscriptionsMarkings = ListField(title=_(u'Inscriptions and markings'),
         value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscription),
         required=False)
-    form.widget(inscriptionsMarkings_inscriptions=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('inscriptionsMarkings_inscriptions')
+    form.widget(inscriptionsMarkings_inscriptionsMarkings=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('inscriptionsMarkings_inscriptionsMarkings')
 
     # # # # # # # # # # #
     # Value & Insurance #

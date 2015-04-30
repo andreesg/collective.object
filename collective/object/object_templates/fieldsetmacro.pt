@@ -281,7 +281,7 @@
       <h2 class="page-header" i18n:translate="">Inscriptions and markings</h2>
 
         <div class="form-horizontal gridfield">
-          <tal:widget tal:replace="structure widgets/inscriptionsMarkings_inscriptions/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/inscriptionsMarkings_inscriptionsMarkings/@@ploneform-render-widget"/>
         </div>
 
     </div>

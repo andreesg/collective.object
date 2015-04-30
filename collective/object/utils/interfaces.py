@@ -137,11 +137,13 @@ class IInscription(Interface):
     method = schema.TextLine(title=_(u'Method'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
     creator = schema.TextLine(title=_(u'Creator'), required=False)
-    creator_role = schema.TextLine(title=_(u'Role'), required=False)
+    role = schema.TextLine(title=_(u'Role'), required=False)
     content = schema.TextLine(title=_(u'Content'), required=False)
     description = schema.TextLine(title=_(u'Description'), required=False)
     interpretation = schema.TextLine(title=_(u'Interpretation'), required=False)
     language = schema.TextLine(title=_(u'Language'), required=False)
+    script = schema.TextLine(title=_(u'Script'), required=False)
+    transliteration = schema.TextLine(title=_(u'Transliteration'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 # Value & Insurance
