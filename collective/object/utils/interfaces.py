@@ -99,6 +99,10 @@ class IProduction(Interface):
 class ISchool(Interface):
     term = schema.TextLine(title=_(u'School / style'), required=False)
 
+class IFrame(Interface):
+    frame = schema.TextLine(title=_(u'Frame'), required=False)
+    detail = schema.TextLine(title=_(u'Detail'), required=False)
+
 ## Condition & Conservation Interfaces
 class ICompleteness(Interface):
     completeness = schema.TextLine(title=_(u'Completeness'), required=False)
@@ -206,3 +210,43 @@ class IFreeFields(Interface):
 class ILabel(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
     text = schema.TextLine(title=_(u'Text'), required=False)
+
+
+# Iconography
+class IIconographyGeneralTheme(Interface):
+    term = schema.TextLine(title=_(u'General theme'), required=False)
+
+class IIconographySpecificTheme(Interface):
+    term = schema.TextLine(title=_(u'Specific theme'), required=False)
+
+class IIconographyClassificationTheme(Interface):
+    term = schema.TextLine(title=_(u'Classification theme'), required=False)
+    code = schema.TextLine(title=_(u'Code'), required=False)
+
+class IIconographyContentDescription(Interface):
+    part = schema.TextLine(title=_(u'Part'), required=False)
+    description = schema.TextLine(title=_(u'Description'), required=False)
+
+class IIconographyContentPersonInstitution(Interface):
+    position = schema.TextLine(title=_(u'Position'), required=False)
+    nameType = schema.TextLine(title=_(u'Name type'), required=False)
+    name = schema.TextLine(title=_(u'Name'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IIconographyContentSubject(Interface):
+    position = schema.TextLine(title=_(u'Position'), required=False)
+    subjectType = schema.TextLine(title=_(u'Subject type'), required=False)
+    subject = schema.TextLine(title=_(u'Subject'), required=False)
+    taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
+    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    properName = schema.TextLine(title=_(u'Proper name'), required=False)
+    identifier = schema.TextLine(title=_(u'Identifier'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IIconographyContentPeriodDate(Interface):
+    position = schema.TextLine(title=_(u'Position'), required=False)
+    period = schema.TextLine(title=_(u'Period'), required=False)
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+

@@ -212,67 +212,6 @@ class IObject(form.Schema):
         required=False)
     form.widget(identification_taxonomy_notes=DataGridFieldFactory)
 
-
-    # # # # # # # # # # # # # # # # #
-    # Physical Characteristics      #
-    # # # # # # # # # # # # # # # # #
-
-    model.fieldset('physical_characteristics', label=_(u'Physical Characteristics'), 
-        fields=['physicalCharacteristics_description', 'physicalCharacteristics_keywords',
-                'physicalCharacteristics_techniques', 'physicalCharacteristics_materials', 'physicalCharacteristics_dimensions', 'physicalCharacteristics_dimensions_free_text',
-                'physicalCharacteristics_frame', 'physicalCharacteristics_frame_detail']
-    )
-
-    # Physical Description
-    physicalCharacteristics_description = schema.TextLine(
-        title=_(u'Description'),
-        required=False
-    )
-    dexteritytextindexer.searchable('physicalCharacteristics_description')
-
-    # Keywords #
-    physicalCharacteristics_keywords = ListField(title=_(u'Keywords'),
-        value_type=DictRow(title=_(u'Keywords'), schema=IKeyword),
-        required=False)
-    form.widget(physicalCharacteristics_keywords=DataGridFieldFactory)
-
-    # Techniques #
-    physicalCharacteristics_techniques = ListField(title=_(u'Techniques'),
-        value_type=DictRow(title=_(u'Techniques'), schema=ITechnique),
-        required=False)
-    form.widget(physicalCharacteristics_techniques=DataGridFieldFactory)
-
-    # Materials #
-    physicalCharacteristics_materials = ListField(title=_(u'Materials'),
-        value_type=DictRow(title=_(u'Materials'), schema=IMaterial),
-        required=False)
-    form.widget(physicalCharacteristics_materials=DataGridFieldFactory)
-
-    # Dimensions #
-    physicalCharacteristics_dimensions = ListField(title=_(u'Dimensions'),
-        value_type=DictRow(title=_(u'Dimensions'), schema=IDimension),
-        required=False)
-    form.widget(physicalCharacteristics_dimensions=DataGridFieldFactory)
-
-    physicalCharacteristics_dimensions_free_text = schema.TextLine(
-        title=_(u'Dimensions (free text)'),
-        required=False
-    )
-
-    # Frame #
-    physicalCharacteristics_frame = schema.TextLine(
-        title=_(u'Frame'),
-        required=False
-    )
-    dexteritytextindexer.searchable('physicalCharacteristics_frame')
-
-    physicalCharacteristics_frame_detail = schema.TextLine(
-        title=_(u'Detail'),
-        required=False
-    )
-    dexteritytextindexer.searchable('physicalCharacteristics_frame_detail')
-
-
     # # # # # # # # # # # # # # # # #
     # Production & Dating           #
     # # # # # # # # # # # # # # # # #
@@ -312,6 +251,132 @@ class IObject(form.Schema):
         required=False)
     form.widget(productionDating_dating_notes=DataGridFieldFactory)
     dexteritytextindexer.searchable('productionDating_dating_notes')
+
+
+    # # # # # # # # # # # # # # # # #
+    # Physical Characteristics      #
+    # # # # # # # # # # # # # # # # #
+
+    model.fieldset('physical_characteristics', label=_(u'Physical Characteristics'), 
+        fields=['physicalCharacteristics_physicalDescription_description', 'physicalCharacteristics_keywords',
+                'physicalCharacteristics_techniques', 'physicalCharacteristics_materials', 'physicalCharacteristics_dimensions',
+                'physicalCharacteristics_frame']
+    )
+
+    # Physical Description
+    physicalCharacteristics_physicalDescription_description = schema.TextLine(
+        title=_(u'Description'),
+        required=False
+    )
+    dexteritytextindexer.searchable('physicalCharacteristics_physicalDescription_description')
+
+    # Keywords #
+    physicalCharacteristics_keywords = ListField(title=_(u'Keywords'),
+        value_type=DictRow(title=_(u'Keywords'), schema=IKeyword),
+        required=False)
+    form.widget(physicalCharacteristics_keywords=DataGridFieldFactory)
+
+    # Techniques #
+    physicalCharacteristics_techniques = ListField(title=_(u'Techniques'),
+        value_type=DictRow(title=_(u'Techniques'), schema=ITechnique),
+        required=False)
+    form.widget(physicalCharacteristics_techniques=DataGridFieldFactory)
+
+    # Materials #
+    physicalCharacteristics_materials = ListField(title=_(u'Materials'),
+        value_type=DictRow(title=_(u'Materials'), schema=IMaterial),
+        required=False)
+    form.widget(physicalCharacteristics_materials=DataGridFieldFactory)
+
+    # Dimensions #
+    physicalCharacteristics_dimensions = ListField(title=_(u'Dimensions'),
+        value_type=DictRow(title=_(u'Dimensions'), schema=IDimension),
+        required=False)
+    form.widget(physicalCharacteristics_dimensions=DataGridFieldFactory)
+
+    # Frame #
+    physicalCharacteristics_frame = ListField(title=_(u'Frame'),
+        value_type=DictRow(title=_(u'Frame'), schema=IFrame),
+        required=False)
+    form.widget(physicalCharacteristics_frame=DataGridFieldFactory)
+
+    # # # # # # # # # #
+    # Iconography     #
+    # # # # # # # # # #
+
+    model.fieldset('iconography', label=_(u'Iconography'), 
+        fields=['iconography_generalSearchCriteria_generalTheme', 'iconography_generalSearchCriteria_specificTheme',
+                'iconography_generalSearchCriteria_classificationTheme', 'iconography_contentDescription',
+                'iconography_contentPersonInstitution', 'iconography_contentSubject', 'iconography_contentPeriodDate',
+                'iconography_iconographySource_sourceGeneral', 'iconography_iconographySource_sourceSpecific',
+                'iconography_iconographySource_sourceObjectNumber']
+    )
+
+    # General search criteria
+    iconography_generalSearchCriteria_generalTheme = ListField(title=_(u'General theme'),
+        value_type=DictRow(title=_(u'General theme'), schema=IIconographyGeneralTheme),
+        required=False)
+    form.widget(iconography_generalSearchCriteria_generalTheme=DataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_generalSearchCriteria_generalTheme')
+
+    iconography_generalSearchCriteria_specificTheme = ListField(title=_(u'Specific theme'),
+        value_type=DictRow(title=_(u'Specific theme'), schema=IIconographySpecificTheme),
+        required=False)
+    form.widget(iconography_generalSearchCriteria_specificTheme=DataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_generalSearchCriteria_specificTheme')
+
+    iconography_generalSearchCriteria_classificationTheme = ListField(title=_(u'Classification theme'),
+        value_type=DictRow(title=_(u'Classification theme'), schema=IIconographyClassificationTheme),
+        required=False)
+    form.widget(iconography_generalSearchCriteria_classificationTheme=DataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_generalSearchCriteria_classificationTheme')
+
+    # Content description
+    iconography_contentDescription = ListField(title=_(u'Content description'),
+        value_type=DictRow(title=_(u'Content description'), schema=IIconographyContentDescription),
+        required=False)
+    form.widget(iconography_contentDescription=DataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_contentDescription')
+
+    # Content person/institution
+    iconography_contentPersonInstitution = ListField(title=_(u'Content person/institution'),
+        value_type=DictRow(title=_(u'Content person/institution'), schema=IIconographyContentPersonInstitution),
+        required=False)
+    form.widget(iconography_contentPersonInstitution=DataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_contentPersonInstitution')
+
+    # Content subject
+    iconography_contentSubject = ListField(title=_(u'Content subject'),
+        value_type=DictRow(title=_(u'Content subject'), schema=IIconographyContentSubject),
+        required=False)
+    form.widget(iconography_contentSubject=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_contentSubject')
+
+    # Content period/date
+    iconography_contentPeriodDate = ListField(title=_(u'Content period/date'),
+        value_type=DictRow(title=_(u'Content period/date'), schema=IIconographyContentPeriodDate),
+        required=False)
+    form.widget(iconography_contentPeriodDate=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_contentPeriodDate')
+
+    # Iconography source
+    iconography_iconographySource_sourceGeneral = schema.TextLine(
+        title=_(u'Source general'),
+        required=False
+    )
+    dexteritytextindexer.searchable('iconography_iconographySource_sourceGeneral')
+
+    iconography_iconographySource_sourceSpecific = schema.TextLine(
+        title=_(u'Source specific'),
+        required=False
+    )
+    dexteritytextindexer.searchable('iconography_iconographySource_sourceSpecific')
+
+    iconography_iconographySource_sourceObjectNumber = schema.TextLine(
+        title=_(u'Source object number'),
+        required=False
+    )
+    dexteritytextindexer.searchable('iconography_iconographySource_sourceObjectNumber')
 
 
     # # # # # # # # # # # # # # #
@@ -774,18 +839,21 @@ class IObject(form.Schema):
         title=_(u'Normal location'),
         required=False
     )
+    dexteritytextindexer.searchable('location_normal_location')
 
     # Current location
     location_current_location = ListField(title=_(u'Current location'),
         value_type=DictRow(title=_(u'Current location'), schema=ICurrentLocation),
         required=False)
     form.widget(location_current_location=DataGridFieldFactory)
+    dexteritytextindexer.searchable('location_current_location')
 
     # Location checks
     location_checks = ListField(title=_(u'Location checks'),
         value_type=DictRow(title=_(u'Location checks'), schema=ILocationChecks),
         required=False)
     form.widget(location_checks=DataGridFieldFactory)
+    dexteritytextindexer.searchable('location_checks')
 
     # # # # # #
     # Notes   #
@@ -798,12 +866,14 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
         required=False)
     form.widget(notes=DataGridFieldFactory)
+    dexteritytextindexer.searchable('notes')
 
     # Free fields
     notes_free_fields = ListField(title=_(u'Free Fields'),
         value_type=DictRow(title=_(u'Free Fields'), schema=IFreeFields),
         required=False)
     form.widget(notes_free_fields=DataGridFieldFactory)
+    dexteritytextindexer.searchable('notes_free_fields')
 
     # # # # # # #
     # Labels    #
@@ -817,8 +887,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Labels'), schema=ILabel),
         required=False)
     form.widget(labels=DataGridFieldFactory)
-
-
+    dexteritytextindexer.searchable('labels')
 
 
 # # # # # # # # # # # # #

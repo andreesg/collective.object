@@ -118,7 +118,7 @@
       <h2 class="page-header" i18n:translate="">Physical Description</h2>
 
       <div class="form-horizontal">
-        <tal:widget tal:replace="structure widgets/physicalCharacteristics_description/@@ploneform-render-widget"/>
+        <tal:widget tal:replace="structure widgets/physicalCharacteristics_physicalDescription_description/@@ploneform-render-widget"/>
       </div>
 
       <h2 class="page-header" i18n:translate="">Keywords</h2>
@@ -140,23 +140,60 @@
       <div class="form-horizontal gridfield table-responsive">
         <tal:widget tal:replace="structure widgets/physicalCharacteristics_dimensions/@@ploneform-render-widget"/>
       </div>
-
-      <div class="form-horizontal">
-        <tal:widget tal:replace="structure widgets/physicalCharacteristics_dimensions_free_text/@@ploneform-render-widget"/>
-      </div>
-
+      
       <h2 class="page-header" i18n:translate="">Frame</h2>
-      <div class="form-horizontal">
-        <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
-            <tal:widget tal:replace="structure widgets/physicalCharacteristics_frame/@@ploneform-render-widget"/>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6 div-40-60 label-right">
-          <tal:widget tal:replace="structure widgets/physicalCharacteristics_frame_detail/@@ploneform-render-widget"/>
-        </div>
+      <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/physicalCharacteristics_frame/@@ploneform-render-widget"/>
       </div>
     </div>
   </tal:physical_characteristics>
 
+  <tal:iconography tal:condition='python: fieldset_text == "iconography"'
+    tal:define='widgets group/widgets'>
+    <!-- Iconography -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">General search criteria</h2>
+
+        <div class="form-horizontal gridfield show-label hide-th">
+          <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_generalTheme/@@ploneform-render-widget"/>
+        </div>
+        <div class="form-horizontal gridfield show-label hide-th">
+          <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_specificTheme/@@ploneform-render-widget"/>
+        </div>
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_classificationTheme/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Content description</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/iconography_contentDescription/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Content person/institution</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/iconography_contentPersonInstitution/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Content subject</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/iconography_contentSubject/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Content period/date</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/iconography_contentPeriodDate/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Iconography source</h2>
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/iconography_iconographySource_sourceGeneral/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/iconography_iconographySource_sourceSpecific/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/iconography_iconographySource_sourceObjectNumber/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:iconography>
   
   <tal:production_dating tal:condition='python: fieldset_text == "production_dating"'
     tal:define='widgets group/widgets'>

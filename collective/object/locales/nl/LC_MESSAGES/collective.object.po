@@ -729,6 +729,94 @@ msgstr "Titel en beschrijving"
 msgid "Title and description"
 msgstr "Titel en beschrijving"
 
+#
+# Iconography
+#
+
+#: ../object.py
+msgid "General theme"
+msgstr "Hoofdmotief algemeen"
+
+#: ../object.py
+msgid "Specific theme"
+msgstr "Hoofdmotief specifiek"
+
+#: ../object.py
+msgid "Classification theme"
+msgstr "Classificatieschema"
+
+#: ../object.py
+msgid "Code"
+msgstr "Code"
+
+#: ../object.py
+msgid "General search criteria"
+msgstr "Algemene onderwerpsontsluiting"
+
+#: ../object.py
+msgid "Content description"
+msgstr "Inhoudsbeschrijving"
+
+#: ../object.py
+msgid "Content person/institution"
+msgstr "Afgebeelde persoon/instelling"
+
+#: ../object.py
+msgid "Name type"
+msgstr "Soort naam"
+
+#: ../object.py
+msgid "Content subject"
+msgstr "Afgebeeld onderwerp"
+
+#: ../object.py
+msgid "Subject type"
+msgstr "Soort onderwerp"
+
+#: ../object.py
+msgid "Subject"
+msgstr "Naam"
+
+#: ../object.py
+msgid "Taxonomic rank"
+msgstr "Taxonomische rang"
+
+#: ../object.py
+msgid "Scientific name"
+msgstr "Wet. Naam"
+
+#: ../object.py
+msgid "Proper name"
+msgstr "Eigennaam"
+
+#: ../object.py
+msgid "Identifier"
+msgstr "Identifier"
+
+#: ../object.py
+msgid "Content period/date"
+msgstr "Content period/date"
+
+#: ../object.py
+msgid "Iconography source"
+msgstr "Iconografisch bron"
+
+#: ../object.py
+msgid "Source general"
+msgstr "Bron algemeen"
+
+#: ../object.py
+msgid "Source specific"
+msgstr "Bron specifiek"
+
+#: ../object.py
+msgid "Source object number"
+msgstr "Bron objectnummer"
+
+#: ../object.py
+msgid "Iconography"
+msgstr "Iconografie"
+
 
 
 
