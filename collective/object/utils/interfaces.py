@@ -130,7 +130,6 @@ class IConsRequest(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
 
 ## Inscriptions and Markings
-
 class IInscription(Interface):
     type = schema.TextLine(title=_(u'Type'), required=False)
     position = schema.TextLine(title=_(u'Position'),required=False)
@@ -145,6 +144,37 @@ class IInscription(Interface):
     script = schema.TextLine(title=_(u'Script'), required=False)
     transliteration = schema.TextLine(title=_(u'Transliteration'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+## Numbers/relationships
+class INumbers(Interface):
+    type = schema.TextLine(title=_(u'Type'), required=False)
+    number = schema.TextLine(title=_(u'Number'), required=False)
+    institution = schema.TextLine(title=_(u'Institution'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+
+class IParts(Interface):
+    parts = schema.TextLine(title=_(u'Parts'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IRelatedObject(Interface):
+    relatedObject = schema.TextLine(title=_(u'Related object'), required=False)
+    association = schema.TextLine(title=_(u'Association'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IDigitalReferences(Interface):
+    type = schema.TextLine(title=_(u'Type'), required=False)
+    reference = schema.TextLine(title=_(u'Reference'), required=False)
+     
+## Documentation
+
+class IDocumentationDocumentation(Interface):
+    article = schema.TextLine(title=_(u'Article'), required=False)
+    title = schema.TextLine(title=_(u'Title'), required=False)
+    author = schema.TextLine(title=_(u'Author'), required=False)
+    pageMark = schema.TextLine(title=_(u'Page mark'), required=False)
+    shelfMark = schema.TextLine(title=_(u'Shelf mark'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
 
 ## Associations
 class IAssociatedPersonInstitution(Interface):

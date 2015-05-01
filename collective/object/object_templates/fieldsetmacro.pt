@@ -312,6 +312,51 @@
     </div>
   </tal:associations>
 
+  <tal:numbers_relationships tal:condition='python: fieldset_text == "numbers_relationships"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Numbers</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/numbersRelationships_numbers/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Relationships with other objects</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/numbersRelationships_relationshipsWithOtherObjects_partOf/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/numbersRelationships_relationshipsWithOtherObjects_notes/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/numbersRelationships_relationshipsWithOtherObjects_parts/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/numbersRelationships_relationshipsWithOtherObjects_relatedObject/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Digital references</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+            <tal:widget tal:replace="structure widgets/numbersRelationships_digitalReferences/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:numbers_relationships>
+
+  <tal:documentation tal:condition='python: fieldset_text == "documentation"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Documentation</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/documentation_documentation/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:documentation>
+
   <tal:value_insurance tal:condition='python: fieldset_text == "value_insurance"'
     tal:define='widgets group/widgets'>
     <!-- Value & Insurance -->

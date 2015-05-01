@@ -858,6 +858,61 @@ msgstr "Geassocieerde periode"
 msgid "Associations"
 msgstr "Associaties"
 
+#
+# Numbers/relationships
+#
+
+#: ../object.py
+msgid "Numbers/relationships"
+msgstr "Nummers/relaties"
+
+#: ../object.py
+msgid "Numbers"
+msgstr "Nummers"
+
+#: ../object.py
+msgid "Institution"
+msgstr "Instelling"
+
+#: ../object.py
+msgid "Number"
+msgstr "Nummer"
+
+#: ../object.py
+msgid "Relationships with other objects"
+msgstr "Relaties met andere objecten"
+
+#: ../object.py
+msgid "Part of"
+msgstr "Is deel van"
+
+#: ../object.py
+msgid "Parts"
+msgstr "Heeft als deel"
+
+#: ../object.py
+msgid "Related object"
+msgstr "Gerelateerd object"
+
+#: ../object.py
+msgid "Digital references"
+msgstr "Digitale referenties"
+
+#: ../object.py
+msgid "Title"
+msgstr "Title"
+
+#: ../object.py
+msgid "Page mark"
+msgstr "Pagina-aanduiding"
+
+#: ../object.py
+msgid "Author"
+msgstr "Auteur"
+
+#: ../object.py
+msgid "Shelf mark"
+msgstr "Signatuur"
 
 
 

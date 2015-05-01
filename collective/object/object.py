@@ -480,6 +480,71 @@ class IObject(form.Schema):
     form.widget(associations_associatedPeriod=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('associations_associatedPeriod')
 
+
+
+    # # # # # # # # # # # # # 
+    # Numbers/relationships #
+    # # # # # # # # # # # # # 
+    model.fieldset('numbers_relationships', label=_(u'Numbers/relationships'), 
+        fields=['numbersRelationships_numbers', 'numbersRelationships_relationshipsWithOtherObjects_partOf',
+                'numbersRelationships_relationshipsWithOtherObjects_notes', 'numbersRelationships_relationshipsWithOtherObjects_parts',
+                'numbersRelationships_relationshipsWithOtherObjects_relatedObject',
+                'numbersRelationships_digitalReferences']
+    )
+
+    # Numbers
+    numbersRelationships_numbers = ListField(title=_(u'Numbers'),
+        value_type=DictRow(title=_(u'Numbers'), schema=INumbers),
+        required=False)
+    form.widget(numbersRelationships_numbers=DataGridFieldFactory)
+    dexteritytextindexer.searchable('numbersRelationships_numbers')
+
+    # Relationships with other objects
+    numbersRelationships_relationshipsWithOtherObjects_partOf = schema.TextLine(
+        title=_(u'Part of'),
+        required=False
+    )
+    dexteritytextindexer.searchable('numbersRelationships_relationshipsWithOtherObjects_partOf')
+
+    numbersRelationships_relationshipsWithOtherObjects_notes = schema.TextLine(
+        title=_(u'Notes'),
+        required=False
+    )
+    dexteritytextindexer.searchable('numbersRelationships_relationshipsWithOtherObjects_notes')
+
+    numbersRelationships_relationshipsWithOtherObjects_parts = ListField(title=_(u'Parts'),
+        value_type=DictRow(title=_(u'Parts'), schema=IParts),
+        required=False)
+    form.widget(numbersRelationships_relationshipsWithOtherObjects_parts=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('numbersRelationships_relationshipsWithOtherObjects_parts')
+
+    numbersRelationships_relationshipsWithOtherObjects_relatedObject = ListField(title=_(u'Related object'),
+        value_type=DictRow(title=_(u'Related object'), schema=IRelatedObject),
+        required=False)
+    form.widget(numbersRelationships_relationshipsWithOtherObjects_relatedObject=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('numbersRelationships_relationshipsWithOtherObjects_relatedObject')
+
+    # Digital references
+    numbersRelationships_digitalReferences = ListField(title=_(u'Digital references'),
+        value_type=DictRow(title=_(u'Digital references'), schema=IDigitalReferences),
+        required=False)
+    form.widget(numbersRelationships_digitalReferences=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('numbersRelationships_digitalReferences')
+
+
+    # # # # # # # # # #
+    # Documentation   #
+    # # # # # # # # # #
+    model.fieldset('documentation', label=_(u'Documentation'), 
+        fields=['documentation_documentation']
+    )
+
+    documentation_documentation = ListField(title=_(u'Documentation'),
+        value_type=DictRow(title=_(u'Documentation'), schema=IDocumentationDocumentation),
+        required=False)
+    form.widget(documentation_documentation=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('documentation_documentation')
+
     
     # # # # # # # # # # #
     # Value & Insurance #
