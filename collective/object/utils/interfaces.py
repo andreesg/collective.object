@@ -103,6 +103,14 @@ class IFrame(Interface):
     frame = schema.TextLine(title=_(u'Frame'), required=False)
     detail = schema.TextLine(title=_(u'Detail'), required=False)
 
+## Recommendations/requirements
+class IRequirements(Interface):
+    requirementsHeld = schema.TextLine(title=_(u'Requirements held'), required=False)
+    number = schema.TextLine(title=_(u'Number'), required=False)
+    currentFrom = schema.TextLine(title=_(u'Current From'), required=False)
+    until = schema.TextLine(title=_(u'Until'), required=False)
+    renewalDate = schema.TextLine(title=_(u'Renewal date'), required=False)
+
 ## Condition & Conservation Interfaces
 class ICompleteness(Interface):
     completeness = schema.TextLine(title=_(u'Completeness'), required=False)
@@ -166,7 +174,6 @@ class IDigitalReferences(Interface):
     reference = schema.TextLine(title=_(u'Reference'), required=False)
      
 ## Documentation
-
 class IDocumentationDocumentation(Interface):
     article = schema.TextLine(title=_(u'Article'), required=False)
     title = schema.TextLine(title=_(u'Title'), required=False)
@@ -175,6 +182,21 @@ class IDocumentationDocumentation(Interface):
     shelfMark = schema.TextLine(title=_(u'Shelf mark'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+## Documentation (free) / archive
+class IDocumentationFreeText(Interface):
+    title = schema.TextLine(title=_(u'Title'), required=False)
+
+class IArchive(Interface):
+    archiveNumber = schema.TextLine(title=_(u'Archive number'), required=False)
+
+## Reproductions
+class IReproduction(Interface):
+    reference = schema.TextLine(title=_(u'Reference'), required=False)
+    type = schema.TextLine(title=_(u'Type'), required=False)
+    format = schema.TextLine(title=_(u'Format'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    identifierURL = schema.TextLine(title=_(u'Identifier (URL)'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 ## Associations
 class IAssociatedPersonInstitution(Interface):
@@ -309,3 +331,77 @@ class IIconographyContentPeriodDate(Interface):
     endDate = schema.TextLine(title=_(u'End date'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+# Field Collection
+class IFieldCollNumber(Interface):
+    number = schema.TextLine(title=_(u'Field coll. number'), required=False)
+
+class ICollector(Interface):
+    name = schema.TextLine(title=_(u'Collector'), required=False)
+    role = schema.TextLine(title=_(u'Role'), required=False)
+
+class IEvent(Interface):
+    term = schema.TextLine(title=_(u'Event'), required=False)
+
+class IMethod(Interface):
+    term = schema.TextLine(title=_(u'Method'), required=False)
+
+class IPlace(Interface):
+    term = schema.TextLine(title=_(u'Place'), required=False)
+
+class IPlaceCode(Interface):
+    code = schema.TextLine(title=_(u'Place code'), required=False)
+    codeType = schema.TextLine(title=_(u'Code type'), required=False)
+
+class IPlaceFeature(Interface):
+    term = schema.TextLine(title=_(u'Place feature'), required=False)
+
+class IFieldCollectionPlace(Interface):
+    gridType = schema.TextLine(title=_(u'Grid type'), required=False)
+    xCoordinate = schema.TextLine(title=_(u'X co-ordinate'), required=False)
+    xAddition = schema.TextLine(title=_(u'Addition'), required=False)
+    yCoordinate = schema.TextLine(title=_(u'Y co-ordinate'), required=False)
+    yAddition = schema.TextLine(title=_(u'Addition'), required=False)
+    precision = schema.TextLine(title=_(u'Precision'), required=False)
+
+class IHabitat(Interface):
+    term = schema.TextLine(title=_(u'Habitat'), required=False)
+
+class IStratigraphy(Interface):
+    unit = schema.TextLine(title=_(u'Stratigraphy'), required=False)
+    type = schema.TextLine(title=_(u'Strat. type'), required=False)
+
+## Exhibitions
+class IExhibition(Interface):
+    name = schema.TextLine(title=_(u'Exhibition name'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    to = schema.TextLine(title=_(u'to'), required=False)
+    organiser = schema.TextLine(title=_(u'Organiser'), required=False)
+    venue = schema.TextLine(title=_(u'Venue'), required=False)
+    place = schema.TextLine(title=_(u'Place'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    catObject = schema.TextLine(title=_(u'Cat. no. object'), required=False)
+
+
+## Loans
+class IIncomingLoan(Interface):
+    loanNumber = schema.TextLine(title=_(u'Loan number'), required=False)
+    status = schema.TextLine(title=_(u'Status'), required=False)
+    lender = schema.TextLine(title=_(u'Lender'), required=False)
+    contact = schema.TextLine(title=_(u'Contact'), required=False)
+    requestReason = schema.TextLine(title=_(u'Request reason'), required=False)
+    requestPeriod = schema.TextLine(title=_(u'Request period'), required=False)
+    requestPeriodTo = schema.TextLine(title=_(u'to'), required=False)
+    contractPeriod = schema.TextLine(title=_(u'Contract period'), required=False)
+    contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)
+
+
+class IOutgoingLoan(Interface):
+    loanNumber = schema.TextLine(title=_(u'Loan number'), required=False)
+    status = schema.TextLine(title=_(u'Status'), required=False)
+    requester = schema.TextLine(title=_(u'Requester'), required=False)
+    contact = schema.TextLine(title=_(u'Contact'), required=False)
+    requestReason = schema.TextLine(title=_(u'Request reason'), required=False)
+    requestPeriod = schema.TextLine(title=_(u'Request period'), required=False)
+    requestPeriodTo = schema.TextLine(title=_(u'to'), required=False)
+    contractPeriod = schema.TextLine(title=_(u'Contract period'), required=False)
+    contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)

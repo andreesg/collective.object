@@ -900,7 +900,7 @@ msgstr "Digitale referenties"
 
 #: ../object.py
 msgid "Title"
-msgstr "Title"
+msgstr "Titel"
 
 #: ../object.py
 msgid "Page mark"
@@ -913,6 +913,282 @@ msgstr "Auteur"
 #: ../object.py
 msgid "Shelf mark"
 msgstr "Signatuur"
+
+#
+# Documentation (free) / archive
+#
+
+#: ../object.py
+msgid "Documentation (free) / archive"
+msgstr "Documentatie (vrij) / archief"
+
+#: ../object.py
+msgid "Documentation (free text)"
+msgstr "Documentatie (vrij tekst)"
+
+#: ../object.py
+msgid "Archive"
+msgstr "Archief"
+
+#: ../object.py
+msgid "Archive number"
+msgstr "Archiefnummer"
+
+
+#
+# Reproductions
+#
+
+#: ../object.py
+msgid "Reproductions"
+msgstr "Reproducties"
+
+#: ../object.py
+msgid "Reproduction"
+msgstr "Reproductie"
+
+#: ../object.py
+msgid "Reference"
+msgstr "Referentie"
+
+#: ../object.py
+msgid "Format"
+msgstr "Formaat"
+
+#: ../object.py
+msgid "Identifier (URL)"
+msgstr "Identifier (URL)"
+
+#
+# Recommendations/requirements
+#
+
+#: ../object.py
+msgid "Recommendations/requirements"
+msgstr "Aanbevelingen / vereisten"
+
+#: ../object.py
+msgid "Recommendations"
+msgstr "Aanbevelingen"
+
+#: ../object.py
+msgid "Display"
+msgstr "Tentoonstelling"
+
+#: ../object.py
+msgid "Enviroment"
+msgstr "Omgeving"
+
+#: ../object.py
+msgid "Handling"
+msgstr "Behandeling"
+
+#: ../object.py
+msgid "Packing"
+msgstr "Verpakking"
+
+#: ../object.py
+msgid "Security"
+msgstr "Veiligheid"
+
+#: ../object.py
+msgid "Security"
+msgstr "Veiligheid"
+
+#: ../object.py
+msgid "Storage"
+msgstr "Berging"
+
+#: ../object.py
+msgid "Legal / license requirements"
+msgstr "Wettelijke eisen / vergunningen"
+
+#: ../object.py
+msgid "Requirements"
+msgstr "Eisen"
+
+#: ../object.py
+msgid "Requirements held"
+msgstr "Vereisten in Bezit"
+
+#: ../object.py
+msgid "Current From"
+msgstr "Geldig van"
+
+#
+# Field collection
+#
+
+#: ../object.py
+msgid "Field Collection"
+msgstr "Vondstomstandigheden"
+
+#: ../object.py
+msgid "Field coll. number"
+msgstr "Vondstnummer"
+
+#: ../object.py
+msgid "Collector"
+msgstr "Vinder"
+
+#: ../object.py
+msgid "Event"
+msgstr "Gebeurtenis"
+
+#: ../object.py
+msgid "Date (early)"
+msgstr "Begindatum"
+
+
+#: ../object.py
+msgid "Date (late)"
+msgstr "Einddatum"
+
+#: ../object.py
+msgid "Method"
+msgstr "Methode"
+
+#: ../object.py
+msgid "Place"
+msgstr "Vindplaats"
+
+#: ../object.py
+msgid "Place code"
+msgstr "Code vindplaats"
+
+#: ../object.py
+msgid "Place feature"
+msgstr "Kenmerk vindplaats"
+
+#: ../object.py
+msgid "Co-ordinates field collection place"
+msgstr "Coördnaten vindplaats"
+
+#: ../object.py
+msgid "Grid type"
+msgstr "Coördinatenstelsel"
+
+#: ../object.py
+msgid "X co-ordinate"
+msgstr "X-coördnaat"
+
+#: ../object.py
+msgid "Addition"
+msgstr "Toevoeging"
+
+#: ../object.py
+msgid "Y co-ordinate"
+msgstr "Y-coördnaat"
+
+#: ../object.py
+msgid "Habitat and stratigraphy"
+msgstr "Milieu en stratigrafie"
+
+#: ../object.py
+msgid "Habitat"
+msgstr "Landschap/milieu"
+
+#: ../object.py
+msgid "Stratigraphy"
+msgstr "Stratigrafie"
+
+#: ../object.py
+msgid "Strat. type"
+msgstr "Soort strat."
+
+#
+# Exhibitions
+#
+
+#: ../object.py
+msgid "Exhibitions"
+msgstr "Tentoonstellingen"
+
+#: ../object.py
+msgid "Exhibition"
+msgstr "Tentoonstelling"
+
+
+#: ../object.py
+msgid "Exhibition name"
+msgstr "Tentoonstellingsnaam"
+
+#: ../object.py
+msgid "to"
+msgstr "t/m"
+
+#: ../object.py
+msgid "Venue"
+msgstr "Locatie"
+
+#: ../object.py
+msgid "Cat. no. object"
+msgstr "Cat.nr. object"
+
+#
+# Loans
+#
+
+#: ../object.py
+msgid "Loans"
+msgstr "Bruiklenen"
+
+#: ../object.py
+msgid "Incoming loans"
+msgstr "Inkomende bruiklenen"
+
+#: ../object.py
+msgid "Loan number"
+msgstr "Bruikleennummer"
+
+#: ../object.py
+msgid "Lender"
+msgstr "Bruikleengever"
+
+#: ../object.py
+msgid "Requester"
+msgstr "Aanvrager"
+
+#: ../object.py
+msgid "Request reason"
+msgstr "Reden aanvraag"
+
+#: ../object.py
+msgid "Request period"
+msgstr "Aaanvraagperiode"
+
+#: ../object.py
+msgid "Contract period"
+msgstr "Contractperiode"
+
+
+#: ../object.py
+msgid "Contact"
+msgstr "Contactpersoon"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

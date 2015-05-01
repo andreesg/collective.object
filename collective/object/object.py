@@ -439,6 +439,75 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('conditionConservation_conservation_request')
 
 
+    # # # # # # # # # # # # # # # # # 
+    # Recommendations/requirements  #
+    # # # # # # # # # # # # # # # # # 
+    model.fieldset('recommendations_requirements', label=_(u'Recommendations/requirements'), 
+        fields=['recommendationsRequirements_creditLine_creditLine', 'recommendationsRequirements_recommendations_display',
+                'recommendationsRequirements_recommendations_environment', 'recommendationsRequirements_recommmendations_handling',
+                'recommendationsRequirements_recommendations_packing', 'recommendationsRequirements_recommendations_security',
+                'recommendationsRequirements_recommendations_storage', 'recommendationsRequirements_legalLicenceRequirements_requirements',
+                'recommendationsRequirements_legalLicenceRequirements_requirementsHeld']
+    )
+
+    # Credit line
+    recommendationsRequirements_creditLine_creditLine = schema.TextLine(
+        title=_(u'Credit line'),
+        required=False
+    )
+    dexteritytextindexer.searchable('recommendationsRequirements_creditLine_creditLine')
+
+    # Recommendations
+    recommendationsRequirements_recommendations_display = schema.TextLine(
+        title=_(u'Display'),
+        required=False
+    )
+    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_display')
+    
+    recommendationsRequirements_recommendations_environment = schema.TextLine(
+        title=_(u'Environment'),
+        required=False
+    )
+    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_environment')
+
+    recommendationsRequirements_recommmendations_handling = schema.TextLine(
+        title=_(u'Handling'),
+        required=False
+    )
+    dexteritytextindexer.searchable('recommendationsRequirements_recommmendations_handling')
+
+    recommendationsRequirements_recommendations_packing = schema.TextLine(
+        title=_(u'Packing'),
+        required=False
+    )
+    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_packing')
+
+    recommendationsRequirements_recommendations_security = schema.TextLine(
+        title=_(u'Security'),
+        required=False
+    )
+    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_security')
+
+    recommendationsRequirements_recommendations_storage = schema.TextLine(
+        title=_(u'Storage'),
+        required=False
+    )
+    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_storage')
+
+    # Legal / license requirements
+    recommendationsRequirements_legalLicenceRequirements_requirements = schema.TextLine(
+        title=_(u'Requirements'),
+        required=False
+    )
+    dexteritytextindexer.searchable('recommendationsRequirements_legalLicenceRequirements_requirements')
+
+    recommendationsRequirements_legalLicenceRequirements_requirementsHeld = ListField(title=_(u'Requirements held'),
+        value_type=DictRow(title=_(u'Requirements held'), schema=IRequirements),
+        required=False)
+    form.widget(recommendationsRequirements_legalLicenceRequirements_requirementsHeld=DataGridFieldFactory)
+    dexteritytextindexer.searchable('recommendationsRequirements_legalLicenceRequirements_requirementsHeld')
+
+
     # # # # # # # # # # # # # # #
     # Inscriptions & Markings   #
     # # # # # # # # # # # # # # #
@@ -545,7 +614,42 @@ class IObject(form.Schema):
     form.widget(documentation_documentation=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('documentation_documentation')
 
-    
+    # # # # # # # # # # # # # # # # # # #
+    # Documentation (free) / archive    #
+    # # # # # # # # # # # # # # # # # # #
+
+    model.fieldset('documentation_free_archive', label=_(u'Documentation (free) / archive'), 
+        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive']
+    )
+
+    documentationFreeArchive_documentationFreeText = ListField(title=_(u'Documentation (free text)'),
+        value_type=DictRow(title=_(u'Documentation (free text)'), schema=IDocumentationFreeText),
+        required=False)
+    form.widget(documentationFreeArchive_documentationFreeText=DataGridFieldFactory)
+    dexteritytextindexer.searchable('documentationFreeArchive_documentationFreeText')
+
+    documentationFreeArchive_archive = ListField(title=_(u'Archive'),
+        value_type=DictRow(title=_(u'Archive'), schema=IArchive),
+        required=False)
+    form.widget(documentationFreeArchive_archive=DataGridFieldFactory)
+    dexteritytextindexer.searchable('documentationFreeArchive_archive')
+
+
+    # # # # # # # # # #
+    # Reproductions   #
+    # # # # # # # # # #
+    model.fieldset('reproductions', label=_(u'Reproductions'), 
+        fields=['reproductions_reproduction']
+    )
+
+    # Reproduction
+    reproductions_reproduction = ListField(title=_(u'Reproduction'),
+        value_type=DictRow(title=_(u'Reproduction'), schema=IReproduction),
+        required=False)
+    form.widget(reproductions_reproduction=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('reproductions_reproduction')
+
+
     # # # # # # # # # # #
     # Value & Insurance #
     # # # # # # # # # # #
@@ -981,6 +1085,153 @@ class IObject(form.Schema):
         required=False)
     form.widget(labels=DataGridFieldFactory)
     dexteritytextindexer.searchable('labels')
+
+    # # # # # # # # # # # 
+    # Field Collection  #
+    # # # # # # # # # # #
+
+    model.fieldset('field_collection', label=_(u'Field Collection'), 
+        fields=['fieldCollection_fieldCollection_fieldCollNumber', 'fieldCollection_fieldCollection_collector',
+                'fieldCollection_fieldCollection_event', 'fieldCollection_fieldCollection_dateEarly',
+                'fieldCollection_fieldCollection_dateEarlyPrecision', 'fieldCollection_fieldCollection_dateLate',
+                'fieldCollection_fieldCollection_dateLatePrecision', 'fieldCollection_fieldCollection_method',
+                'fieldCollection_fieldCollection_place', 'fieldCollection_fieldCollection_placeCode',
+                'fieldCollection_fieldCollection_placeFeature', 'fieldCollection_coordinatesFieldCollectionPlace',
+                'fieldCollection_habitatStratigraphy_habitat', 'fieldCollection_habitatStratigraphy_stratigraphy',
+                'fieldCollection_notes']
+    )
+
+    fieldCollection_fieldCollection_fieldCollNumber = ListField(title=_(u'Field coll. number'),
+        value_type=DictRow(title=_(u'Field coll. number'), schema=IFieldCollNumber),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_fieldCollNumber=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_fieldCollNumber')
+
+    fieldCollection_fieldCollection_collector = ListField(title=_(u'Collector'),
+        value_type=DictRow(title=_(u'Collector'), schema=ICollector),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_collector=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_collector')
+
+    fieldCollection_fieldCollection_event = ListField(title=_(u'Event'),
+        value_type=DictRow(title=_(u'Event'), schema=IEvent),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_event=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_event')
+
+    fieldCollection_fieldCollection_dateEarly = schema.TextLine(
+        title=_(u'Date (early)'),
+        required=False
+    )
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_dateEarly')
+
+    fieldCollection_fieldCollection_dateEarlyPrecision = schema.TextLine(
+        title=_(u'Precision'),
+        required=False
+    )
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_dateEarlyPrecision')
+
+    fieldCollection_fieldCollection_dateLate = schema.TextLine(
+        title=_(u'Date (late)'),
+        required=False
+    )
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_dateLate')
+
+    fieldCollection_fieldCollection_dateLatePrecision = schema.TextLine(
+        title=_(u'Precision'),
+        required=False
+    )
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_dateLatePrecision')
+
+    fieldCollection_fieldCollection_method = ListField(title=_(u'Method'),
+        value_type=DictRow(title=_(u'Method'), schema=IMethod),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_method=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_method')
+
+    fieldCollection_fieldCollection_place = ListField(title=_(u'Place'),
+        value_type=DictRow(title=_(u'Place'), schema=IPlace),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_place=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_place')
+
+    fieldCollection_fieldCollection_placeCode = ListField(title=_(u'Place code'),
+        value_type=DictRow(title=_(u'Place code'), schema=IPlaceCode),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_placeCode=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_placeCode')
+
+    fieldCollection_fieldCollection_placeFeature = ListField(title=_(u'Place feature'),
+        value_type=DictRow(title=_(u'Place feature'), schema=IPlaceFeature),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_placeFeature=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_placeFeature')
+
+    # Co-ordinates field collection place
+    fieldCollection_coordinatesFieldCollectionPlace = ListField(title=_(u'Co-ordinates field collection place'),
+        value_type=DictRow(title=_(u'Co-ordinates field collection place'), schema=IFieldCollectionPlace),
+        required=False)
+    form.widget(fieldCollection_coordinatesFieldCollectionPlace=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_coordinatesFieldCollectionPlace')
+
+
+    # Habitat and stratigraphy
+    fieldCollection_habitatStratigraphy_habitat = ListField(title=_(u'Habitat'),
+        value_type=DictRow(title=_(u'Habitat'), schema=IHabitat),
+        required=False)
+    form.widget(fieldCollection_habitatStratigraphy_habitat=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_habitatStratigraphy_habitat')
+
+    fieldCollection_habitatStratigraphy_stratigraphy = ListField(title=_(u'Stratigraphy'),
+        value_type=DictRow(title=_(u'Stratigraphy'), schema=IStratigraphy),
+        required=False)
+    form.widget(fieldCollection_habitatStratigraphy_stratigraphy=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_habitatStratigraphy_stratigraphy')
+
+    # Notes
+    fieldCollection_notes = ListField(title=_(u'Notes'),
+        value_type=DictRow(title=_(u'Notes'), schema=INotes),
+        required=False)
+    form.widget(fieldCollection_notes=DataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_notes')
+
+    # # # # # # # # #
+    # Exhibitions   #
+    # # # # # # # # #
+
+    model.fieldset('exhibitions', label=_(u'Exhibitions'), 
+        fields=['exhibitions_exhibition']
+    )
+
+    exhibitions_exhibition = ListField(title=_(u'Exhibition'),
+        value_type=DictRow(title=_(u'Exhibition'), schema=IExhibition),
+        required=False)
+    form.widget(exhibitions_exhibition=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('exhibitions_exhibition')
+
+
+    # # # # # # # #
+    # Loans       #
+    # # # # # # # #
+
+    model.fieldset('loans', label=_(u'Loans'), 
+        fields=['loans_incomingLoans', 'loans_outgoingLoans']
+    )
+
+    loans_incomingLoans = ListField(title=_(u'Incoming loans'),
+        value_type=DictRow(title=_(u'Incoming loans'), schema=IIncomingLoan),
+        required=False)
+    form.widget(loans_incomingLoans=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('loans_incomingLoans')
+
+    loans_outgoingLoans = ListField(title=_(u'Outgoing loans'),
+        value_type=DictRow(title=_(u'Outgoing loans'), schema=IOutgoingLoan),
+        required=False)
+    form.widget(loans_outgoingLoans=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('loans_outgoingLoans')
+
+
+    
 
 
 # # # # # # # # # # # # #
