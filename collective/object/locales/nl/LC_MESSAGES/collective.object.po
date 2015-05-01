@@ -1138,6 +1138,10 @@ msgid "Incoming loans"
 msgstr "Inkomende bruiklenen"
 
 #: ../object.py
+msgid "Outgoing loans"
+msgstr "Uitgaande bruiklenen"
+
+#: ../object.py
 msgid "Loan number"
 msgstr "Bruikleennummer"
 
