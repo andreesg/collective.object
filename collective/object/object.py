@@ -388,6 +388,7 @@ class IObject(form.Schema):
                 'conditionConservation_completeness', 'conditionConservation_condition', 'conditionConservation_enviromental_condition', 'conditionConservation_conservation_request']
     )
 
+
     # Conservation treatment
 
     # Choice field
