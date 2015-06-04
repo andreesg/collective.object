@@ -706,7 +706,7 @@ msgstr "Taxonomie rang"
 
 #: ../object.py
 msgid "Scient. name"
-msgstr "Wet. naam"
+msgstr "Wetenschappelijke naam"
 
 #: ../object.py
 msgid "Common name"
@@ -775,7 +775,7 @@ msgstr "Soort onderwerp"
 
 #: ../object.py
 msgid "Subject"
-msgstr "Naam"
+msgstr "Onderwerp"
 
 #: ../object.py
 msgid "Taxonomic rank"
@@ -783,7 +783,7 @@ msgstr "Taxonomische rang"
 
 #: ../object.py
 msgid "Scientific name"
-msgstr "Wet. Naam"
+msgstr "Wetenschappelijke naam"
 
 #: ../object.py
 msgid "Proper name"
