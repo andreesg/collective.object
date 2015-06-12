@@ -1172,6 +1172,11 @@ msgstr "Contactpersoon"
 
 
 
+#: ../object.py
+msgid "Books"
+msgstr "Boeken"
+
+
 
 
 
