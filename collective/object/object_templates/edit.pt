@@ -4,11 +4,13 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="collective.object"
       metal:use-macro="context/main_template/macros/master">
-      
-      
+            
       <metal:block fill-slot="main">
 
-      <h1 tal:content="view/label" class="documentFirstHeading">EDIT: OBJECT</h1>
+      <div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)">
+        <h1 tal:content="view/label" class="documentFirstHeading">EDIT: OBJECT</h1>
+      </div>
+
       <div id="content-core">
         
         <div id="editing-bar"

@@ -26,12 +26,15 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import group, field
 from z3c.form.form import extends
 from z3c.form.browser.textlines import TextLinesFieldWidget
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 
 #
 # DataGridFields dependencies
 #
 from collective.z3cform.datagridfield import DataGridFieldFactory, DictRow
 from collective.z3cform.datagridfield.blockdatagridfield import BlockDataGridFieldFactory
+
 
 # # # # # # # # # # # # # # # 
 # Dexterity imports         # 
@@ -49,6 +52,8 @@ from collective.object import MessageFactory as _
 from .utils.vocabularies import *
 from .utils.interfaces import *
 from .utils.views import *
+from .utils.source import ObjPathSourceBinder
+
 
 # # # # # # # # # #
 # # # # # # # # # #
@@ -1201,7 +1206,7 @@ class IObject(form.Schema):
     # # # # # # # # #
 
     model.fieldset('exhibitions', label=_(u'Exhibitions'), 
-        fields=['exhibitions_exhibition']
+        fields=['exhibitions_exhibition', 'exhibitions_relatedExhibitions']
     )
 
     exhibitions_exhibition = ListField(title=_(u'Exhibition'),
@@ -1210,6 +1215,16 @@ class IObject(form.Schema):
     form.widget(exhibitions_exhibition=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('exhibitions_exhibition')
 
+
+    exhibitions_relatedExhibitions = RelationList(
+        title=_(u'Exhibition'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Exhibition')
+        ),
+        required=False
+    )
 
     # # # # # # # #
     # Loans       #
@@ -1261,6 +1276,26 @@ class AddView(add.DefaultAddView):
 
 class EditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('object_templates/edit.pt')
+
+    def get_lead_media(self):
+        obj = self.context
+
+        uid = obj.UID()
+        catalog = self.context.portal_catalog
+
+        url = ""
+        brains = catalog.searchResults({"UID":uid})
+        if len(brains) > 0:
+            brain = brains[0]
+            if brain.hasMedia:
+                lead_uid = brain.leadMedia
+                lead_brains = catalog.searchResults({"UID":lead_uid})
+                if lead_brains:
+                    image = lead_brains[0]
+                    url = image.getURL()+"/@@images/image/large"
+
+        return url
+
     
     def update(self):
         super(EditForm, self).update()
