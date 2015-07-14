@@ -28,6 +28,16 @@ from z3c.form.form import extends
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
+try:
+    from z3c.form.browser.textlines import TextLinesFieldWidget
+except ImportError:
+    from plone.z3cform.textlines.textlines import TextLinesFieldWidget
+
+#
+# Plone app widget dependencies
+#
+from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget
+
 
 #
 # DataGridFields dependencies
@@ -44,6 +54,7 @@ from collective import dexteritytextindexer
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.content import Container
 from plone.dexterity.browser import add, edit
+
 
 # # # # # # # # # # # # # # # # 
 # !Object specific imports!   #
@@ -62,11 +73,19 @@ from .utils.source import ObjPathSourceBinder
 # # # # # # # # # #
 
 class IObject(form.Schema):
+
+    identification_objectName_category = schema.List(
+        title=_(u'Object Category'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="plone.app.vocabularies.Keywords")
+
     text = RichText(
         title=_(u"Body"),
         required=False
     )
-
+  
     # # # # # # # # # # # # # # 
     # Identification fieldset #
     # # # # # # # # # # # # # # 
@@ -74,7 +93,7 @@ class IObject(form.Schema):
     model.fieldset('identification', label=_(u'Identification'), 
         fields=['identification_identification_institutionName', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
                 'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
-                'identification_identification_edition', 'identification_identification_distinguishFeatures', 
+                'identification_identification_edition', 'identification_identification_distinguishFeatures',
                 'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_notes',
                 'identification_titleDescription_translatedTitle', 'identification_titleDescription_language', 'identification_titleDescription_describer', 'identification_titleDescription_date',
                 'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_notes']
@@ -149,6 +168,8 @@ class IObject(form.Schema):
         required=False)
     form.widget(identification_objectName_objectCategory=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_objectName_objectCategory')
+
+    
 
     identification_objectName_objectName = ListField(title=_(u'Object name'),
         value_type=DictRow(title=_(u'Object name'), schema=IObjectName),
