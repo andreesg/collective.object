@@ -36,8 +36,8 @@ except ImportError:
 #
 # Plone app widget dependencies
 #
-from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget
-
+from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget
+from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 #
 # DataGridFields dependencies
@@ -79,13 +79,13 @@ class IObject(form.Schema):
         required=False,
         value_type=schema.TextLine()
     )
-    form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="plone.app.vocabularies.Keywords")
+    form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
 
     text = RichText(
         title=_(u"Body"),
         required=False
     )
-  
+
     # # # # # # # # # # # # # # 
     # Identification fieldset #
     # # # # # # # # # # # # # # 

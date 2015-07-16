@@ -56,9 +56,9 @@
           <tal:widget tal:replace="structure view/widgets/identification_objectName_category/@@ploneform-render-widget"/>
         </div>
 
-        <!--<div class="form-horizontal table-responsive gridfield">
+        <div class="form-horizontal table-responsive gridfield">
           <tal:widget tal:replace="structure widgets/identification_objectName_objectCategory/@@ploneform-render-widget"/>
-        </div>-->
+        </div>
         
         <div class="form-horizontal table-responsive gridfield">
           <tal:widget tal:replace="structure widgets/identification_objectName_objectName/@@ploneform-render-widget"/>

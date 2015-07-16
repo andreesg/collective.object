@@ -84,6 +84,13 @@
       permission="zope.Public"
     />
 
+  <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
+
+  <utility
+    component=".utils.vocabularies.CategoryVocabularyFactory"
+    name="collective.object.objectCategory"
+    />
+
   <!-- -*- extra stuff goes here -*- -->
 
 </configure>
