@@ -12,6 +12,7 @@
         <div class="form-horizontal">
         
           <tal:widget tal:replace="structure widgets/identification_identification_institutionName/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/identification_identification_institutionCode/@@ploneform-render-widget"/>
           <tal:widget tal:replace="structure widgets/identification_identification_administrativeName/@@ploneform-render-widget"/>
 
         </div>
@@ -56,12 +57,12 @@
           <tal:widget tal:replace="structure view/widgets/identification_objectName_category/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal table-responsive gridfield">
+        <!--<div class="form-horizontal table-responsive gridfield">
           <tal:widget tal:replace="structure widgets/identification_objectName_objectCategory/@@ploneform-render-widget"/>
-        </div>
+        </div>-->
         
         <div class="form-horizontal table-responsive gridfield">
-          <tal:widget tal:replace="structure widgets/identification_objectName_objectName/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure view/widgets/identification_objectName_objectname/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal table-responsive gridfield">
@@ -85,8 +86,12 @@
             <tal:widget tal:replace="structure widgets/identification_titleDescription_describer/@@ploneform-render-widget"/>
           </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+          <!--<div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
             <tal:widget tal:replace="structure widgets/identification_titleDescription_date/@@ploneform-render-widget"/>
+          </div>-->
+
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/identification_titleDescription_titleDate/@@ploneform-render-widget"/>
           </div>
 
         </div>
@@ -101,8 +106,12 @@
            <tal:widget tal:replace="structure widgets/identification_taxonomy_determiner/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal">
+        <!--<div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/identification_taxonomy_objectStatus/@@ploneform-render-widget"/>
+        </div>-->
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/identification_taxonomy_objectstatus/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal table-responsive gridfield">

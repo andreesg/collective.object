@@ -7,8 +7,9 @@
             
       <metal:block fill-slot="main">
 
-      <div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)">
-        <h1 tal:content="view/label" class="documentFirstHeading">EDIT: OBJECT</h1>
+      <div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media(); page_title python: view.get_page_title()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)">
+        <!--<h1 tal:content="view/label" class="documentFirstHeading">EDIT: OBJECT</h1>-->
+        <h1 class="documentFirstHeading" tal:content="page_title"></h1>
       </div>
 
       <div id="content-core">
@@ -48,7 +49,7 @@
                 </tal:errors>
 
                 <metal:description-slot define-slot="description">
-                  <p  class="discreet"
+                  <p  class="discreet description"
                       tal:define="description view/description | nothing"
                       tal:condition="description"
                       tal:content="structure description">
@@ -101,7 +102,7 @@
                                   <tal:widgets repeat="widget view/widgets/values">
                                       <metal:field-slot define-slot="field">
                                           <metal:field define-macro="field">
-                                              <tal:notcategory tal:condition="python: widget.__name__ not in ['identification_objectName_category']">
+                                              <tal:notcategory tal:condition="python: widget.__name__ not in ['identification_objectName_category', 'identification_objectName_objectname']">
                                                   <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
                                               </tal:notcategory>
                                           </metal:field>

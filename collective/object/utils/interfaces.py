@@ -6,6 +6,10 @@ from zope.interface import Interface
 from collective.object import MessageFactory as _
 from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceTypeVocabulary
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from plone.directives import form
+from plone.app.widgets.dx import AjaxSelectFieldWidget
+from plone.formwidget.autocomplete import AutocompleteFieldWidget
+
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
@@ -31,7 +35,18 @@ class IFormWidget(Interface):
 class ICollection(Interface):
     term = schema.TextLine(title=_(u'Collection'), required=False)
 
-class IObjectName(Interface):
+class IObjectname(form.Schema):
+    form.widget('name', AjaxSelectFieldWidget, vocabulary="collective.object.objectname")
+    name = schema.List(
+        title=_(u'Object name'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+
+    #type = schema.TextLine(title=_(u'Type'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IObjectName(form.Schema):
     name = schema.TextLine(title=_(u'Object name'), required=False)
     type = schema.TextLine(title=_(u'Type'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
@@ -51,9 +66,11 @@ class ITaxonomy(Interface):
     scientific_name = schema.TextLine(title=_(u'Scient. name'), required=False)
     common_name = schema.TextLine(title=_(u'Common name'), required=False)
 
-class IDeterminer(Interface):
+class IDeterminer(form.Schema):
     name = schema.TextLine(title=_(u'Determiner'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
+    #form.widget(determinerDate=DatetimeFieldWidget)
+    #determinerDate = schema.Datetime(title=_(u'Date'), required=False)
 
 
 # Physical Characteristics

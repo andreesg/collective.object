@@ -38,7 +38,7 @@ from collective.z3cform.datagridfield.interfaces import IDataGridField
 #
 # Plone app widget dependencies
 #
-from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget
+from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 #
@@ -75,6 +75,13 @@ from .utils.source import ObjPathSourceBinder
 # # # # # # # # # #
 
 class IObject(form.Schema):
+    # Vocabularies
+
+    identification_objectName_objectname = ListField(title=_(u'Object name'),
+        value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
+        required=False)
+    form.widget(identification_objectName_objectname=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_objectName_objectname')
 
     identification_objectName_category = schema.List(
         title=_(u'Object Category'),
@@ -87,18 +94,18 @@ class IObject(form.Schema):
         title=_(u"Body"),
         required=False
     )
-
+    
     # # # # # # # # # # # # # # 
     # Identification fieldset #
     # # # # # # # # # # # # # # 
     
     model.fieldset('identification', label=_(u'Identification'), 
-        fields=['identification_identification_institutionName', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
+        fields=['identification_identification_institutionName', 'identification_identification_institutionCode', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
                 'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
                 'identification_identification_edition', 'identification_identification_distinguishFeatures',
                 'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_notes',
                 'identification_titleDescription_translatedTitle', 'identification_titleDescription_language', 'identification_titleDescription_describer', 'identification_titleDescription_date',
-                'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_notes']
+                'identification_titleDescription_titleDate', 'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_objectstatus', 'identification_taxonomy_notes']
     )
 
     # Identification #
@@ -108,6 +115,12 @@ class IObject(form.Schema):
         description=_(u"Institution name<br><br>The name of the institution responsible for managing the object.<br><br>Enter the common name of your institution, possibly shortened and with a place name. This field is especially relevant if object descriptions are used by third parties.<br><br> Examples:<br>National Museums of Scotland<br>NMS<br>REME<br>Met")
     )
     dexteritytextindexer.searchable('identification_identification_institutionName')
+
+    identification_identification_institutionCode = schema.TextLine(
+        title=_(u'Institution code'), 
+        required=False,
+    )
+    dexteritytextindexer.searchable('identification_identification_institutionCode')
 
     identification_identification_administrativeName = schema.TextLine(
         title=_(u'Administrative name'), 
@@ -172,12 +185,13 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('identification_objectName_objectCategory')
 
     
-
     identification_objectName_objectName = ListField(title=_(u'Object name'),
         value_type=DictRow(title=_(u'Object name'), schema=IObjectName),
         required=False)
     form.widget(identification_objectName_objectName=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_objectName_objectName')
+
+    
 
     identification_objectName_otherName = ListField(title=_(u'Other name'),
         value_type=DictRow(title=_(u'Other name'), schema=IOtherName),
@@ -216,6 +230,13 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('identification_titleDescription_date')
 
+    identification_titleDescription_titleDate = schema.Datetime(
+        title=_(u'Date'),
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_titleDescription_titleDate')
+    form.widget(identification_titleDescription_titleDate=DatetimeFieldWidget)
+
     # Taxonomy
     identification_taxonomy = ListField(title=_(u'Taxonomy'),
         value_type=DictRow(title=_(u'Taxonomy'), schema=ITaxonomy),
@@ -234,6 +255,13 @@ class IObject(form.Schema):
         required=False
     )
     dexteritytextindexer.searchable('identification_taxonomy_objectStatus')
+
+    identification_taxonomy_objectstatus = schema.Choice(
+        title=_(u'Object status'),
+        required=False,
+        vocabulary=objectstatus_vocabulary
+    )
+    dexteritytextindexer.searchable('identification_taxonomy_objectstatus')
 
     identification_taxonomy_notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
@@ -1309,6 +1337,14 @@ class EditForm(edit.DefaultEditForm):
                     widget.auto_append = False
                     widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
+
+    def get_page_title(self):
+        context = self.context
+        heading = self.label
+        if hasattr(context, 'identification_identification_objectNumber'):
+            heading = str(context.identification_identification_objectNumber)
+
+        return heading
 
     def get_lead_media(self):
         obj = self.context

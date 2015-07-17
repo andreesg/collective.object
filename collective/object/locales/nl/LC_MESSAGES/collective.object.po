@@ -36,7 +36,11 @@ msgstr "Identificatie"
 
 #: ../object.py
 msgid "Institution name"
-msgstr "Instellingnaam"
+msgstr "Instellingsnaam"
+
+#: ../object.py
+msgid "Institution code"
+msgstr "Instellingscode"
 
 #: ../object.py
 msgid "Administrative name"
@@ -702,7 +706,7 @@ msgstr "Taxonomie"
 
 #: ../object.py
 msgid "Taxonomy rank"
-msgstr "Taxonomie rang"
+msgstr "Taxonomische rang"
 
 #: ../object.py
 msgid "Scient. name"
