@@ -33,6 +33,8 @@ try:
 except ImportError:
     from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 
+from collective.z3cform.datagridfield.interfaces import IDataGridField
+
 #
 # Plone app widget dependencies
 #
@@ -1266,8 +1268,6 @@ class IObject(form.Schema):
         required=False)
     form.widget(loans_outgoingLoans=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('loans_outgoingLoans')
-
-
     
 
 
@@ -1289,6 +1289,9 @@ class AddForm(add.DefaultAddForm):
         super(AddForm, self).update()
         for group in self.groups:
             for widget in group.widgets.values():
+                if IDataGridField.providedBy(widget):
+                    widget.auto_append = False
+                    widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
 
 class AddView(add.DefaultAddView):
@@ -1297,6 +1300,15 @@ class AddView(add.DefaultAddView):
 
 class EditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('object_templates/edit.pt')
+
+    def update(self):
+        super(EditForm, self).update()
+        for group in self.groups:
+            for widget in group.widgets.values():
+                if IDataGridField.providedBy(widget):
+                    widget.auto_append = False
+                    widget.allow_reorder = True
+                alsoProvides(widget, IFormWidget)
 
     def get_lead_media(self):
         obj = self.context
@@ -1318,9 +1330,5 @@ class EditForm(edit.DefaultEditForm):
         return url
 
     
-    def update(self):
-        super(EditForm, self).update()
-        for group in self.groups:
-            for widget in group.widgets.values():
-                alsoProvides(widget, IFormWidget)
+    
 

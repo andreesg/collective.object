@@ -47,7 +47,13 @@ class CategoryVocabulary(object):
         index = self.catalog._catalog.getIndex('identification_objectName_category')
         items = [SimpleTerm(i, i, i) for i in index._index]
         return SimpleVocabulary(items)
-
+        #atvm = getToolByName(context, 'portal_vocabularies')
+        #categories = atvm.getVocabularyByName('object-categories-vocabulary')
+        #terms = []
+        #for term in categories:
+        #    terms.append(SimpleVocabulary.createTerm(
+        #        term, term.encode('utf-8'), categories[term].title))
+        #return SimpleVocabulary(terms)
 
 
 CategoryVocabularyFactory = CategoryVocabulary()
