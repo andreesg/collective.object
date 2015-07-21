@@ -90,6 +90,20 @@ class IObject(form.Schema):
     )
     form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
 
+    # Production
+    productionDating_productionDating = ListField(title=_(u'Production & Dating'),
+        value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
+        required=False)
+    form.widget(productionDating_productionDating=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('productionDating_productionDating')
+
+    productionDating_production_schoolstyle = ListField(title=_(u'School / style'),
+        value_type=DictRow(title=_(u'School / style'), schema=ISchoolStyle),
+        required=False)
+    form.widget(productionDating_production_schoolstyle=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('productionDating_production_schoolStyle')
+
+
     text = RichText(
         title=_(u"Body"),
         required=False
@@ -280,7 +294,7 @@ class IObject(form.Schema):
     productionDating_production = ListField(title=_(u'Production & Dating'),
         value_type=DictRow(title=_(u'Production & Dating'), schema=IProduction),
         required=False)
-    form.widget(productionDating_production=DataGridFieldFactory)
+    form.widget(productionDating_production=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('productionDating_production')
 
     productionDating_production_productionReason = schema.TextLine(
@@ -1337,6 +1351,11 @@ class EditForm(edit.DefaultEditForm):
                     widget.auto_append = False
                     widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
+
+        for widget in self.widgets.values():
+            if IDataGridField.providedBy(widget):
+                widget.auto_append = False
+                #widget.allow_reorder = True
 
     def get_page_title(self):
         context = self.context

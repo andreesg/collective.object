@@ -86,6 +86,10 @@
 
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
   <adapter name="identification_objectName_objectname" factory=".indexers.identification_objectName_objectname" />
+  
+  <adapter name="productionDating_production_productionRole" factory=".indexers.productionDating_production_productionRole" />
+  <adapter name="productionDating_production_productionPlace" factory=".indexers.productionDating_production_productionPlace" />
+  <adapter name="productionDating_production_schoolStyle" factory=".indexers.productionDating_production_schoolStyle" />
 
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
@@ -95,6 +99,21 @@
   <utility
     component=".utils.vocabularies.ObjectNameVocabularyFactory"
     name="collective.object.objectname"
+    />
+
+  <utility
+    component=".utils.vocabularies.RoleVocabularyFactory"
+    name="collective.object.productionRole"
+    />
+
+  <utility
+    component=".utils.vocabularies.PlaceVocabularyFactory"
+    name="collective.object.productionPlace"
+    />
+
+  <utility
+    component=".utils.vocabularies.SchoolStyleVocabularyFactory"
+    name="collective.object.productionSchoolStyle"
     />
 
   <!-- -*- extra stuff goes here -*- -->

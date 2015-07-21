@@ -213,16 +213,22 @@
     <div class="row no-padding">
     	<!-- Production | Dating -->
       <h2 class="page-header" i18n:translate="">Production & Dating</h2>
-        <div class="form-horizontal gridfield table-responsive">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/productionDating_production/@@ploneform-render-widget"/>
+        </div>-->
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/productionDating_productionDating/@@ploneform-render-widget"/>
         </div>
         
         <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/productionDating_production_productionReason/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield table-responsive show-label hide-th">
+        <!--<div class="form-horizontal gridfield table-responsive show-label hide-th">
           <tal:widget tal:replace="structure widgets/productionDating_production_schoolStyle/@@ploneform-render-widget"/>
+        </div>-->
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/productionDating_production_schoolstyle/@@ploneform-render-widget"/>
         </div>
 
       <h2 class="page-header" i18n:translate="">Dating</h2>

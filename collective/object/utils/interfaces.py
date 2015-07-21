@@ -31,20 +31,63 @@ class IFormWidget(Interface):
 # DataGrid interfaces     # 
 # # # # # # # # # # # # # #
 
-# Identification
-class ICollection(Interface):
-    term = schema.TextLine(title=_(u'Collection'), required=False)
 
+##
+## Vocabularies
+##
+
+## Identification
 class IObjectname(form.Schema):
     form.widget('name', AjaxSelectFieldWidget, vocabulary="collective.object.objectname")
     name = schema.List(
         title=_(u'Object name'),
         required=False,
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
 
     #type = schema.TextLine(title=_(u'Type'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+## Production & Dating
+class IProductiondating(Interface):
+    maker = schema.TextLine(title=_(u'Maker'), required=False)
+    qualifier = schema.TextLine(title=_(u'Qualifier'), required=False)
+    
+    form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.productionRole")
+    role = schema.List(
+        title=_(u'Role'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    form.widget('place', AjaxSelectFieldWidget, vocabulary="collective.object.productionPlace")
+    place = schema.List(
+        title=_(u'Place'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    production_notes = schema.TextLine(title=_(u'Production notes'), required=False)
+
+class ISchoolStyle(Interface):
+    form.widget('term', AjaxSelectFieldWidget, vocabulary="collective.object.productionSchoolStyle")
+    term = schema.List(
+        title=_(u'School / style'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+##
+## Fields
+##
+
+# Identification
+class ICollection(Interface):
+    term = schema.TextLine(title=_(u'Collection'), required=False)
 
 class IObjectName(form.Schema):
     name = schema.TextLine(title=_(u'Object name'), required=False)

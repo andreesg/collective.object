@@ -86,8 +86,61 @@ class ObjectNameVocabulary(object):
 
         return SimpleVocabulary(items)
 
+
+class RoleVocabulary(object):
+    """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        self.context = context
+        portal = api.portal.get()
+        self.catalog = getToolByName(portal, "portal_catalog")
+        if self.catalog is None:
+            return SimpleVocabulary([])
+        index = self.catalog._catalog.getIndex('productionDating_production_productionRole')
+        items = [SimpleTerm(i, i, i) for i in index._index]
+
+        return SimpleVocabulary(items)
+
+class PlaceVocabulary(object):
+    """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        self.context = context
+        portal = api.portal.get()
+        self.catalog = getToolByName(portal, "portal_catalog")
+        if self.catalog is None:
+            return SimpleVocabulary([])
+        index = self.catalog._catalog.getIndex('productionDating_production_productionPlace')
+        items = [SimpleTerm(i, i, i) for i in index._index]
+
+        return SimpleVocabulary(items)
+
+class SchoolStyleVocabulary(object):
+    """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        self.context = context
+        portal = api.portal.get()
+        self.catalog = getToolByName(portal, "portal_catalog")
+        if self.catalog is None:
+            return SimpleVocabulary([])
+        index = self.catalog._catalog.getIndex('productionDating_production_schoolStyle')
+        items = [SimpleTerm(i, i, i) for i in index._index]
+
+        return SimpleVocabulary(items)
+
 CategoryVocabularyFactory = CategoryVocabulary()
 ObjectNameVocabularyFactory = ObjectNameVocabulary()
+RoleVocabularyFactory = RoleVocabulary()
+PlaceVocabularyFactory = PlaceVocabulary()
+SchoolStyleVocabularyFactory = SchoolStyleVocabulary()
+
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
