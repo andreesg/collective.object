@@ -26,7 +26,7 @@ def identification_objectName_objectname(object, **kw):
 
 @indexer(IObject)
 def productionDating_production_productionRole(object, **kw):
-    if hasattr(object, 'productionDating_production_productionRole'):
+    if hasattr(object, 'productionDating_productionDating'):
         roles = []
         items = object.productionDating_productionDating
         if items != None:
@@ -40,7 +40,7 @@ def productionDating_production_productionRole(object, **kw):
 
 @indexer(IObject)
 def productionDating_production_productionPlace(object, **kw):
-    if hasattr(object, 'productionDating_production_productionPlace'):
+    if hasattr(object, 'productionDating_productionDating'):
         places = []
         items = object.productionDating_productionDating
         if items != None:
