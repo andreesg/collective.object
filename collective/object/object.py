@@ -119,10 +119,32 @@ class IObject(form.Schema):
         required=False)
     form.widget(physicalCharacteristics_dimension=DataGridFieldFactory)
 
+    # Iconography
+    # General search criteria
+    iconography_generalSearchCriteria_generalThemes = ListField(title=_(u'General theme'),
+        value_type=DictRow(title=_(u'General theme'), schema=IIconographyGeneralThemes),
+        required=False)
+    form.widget(iconography_generalSearchCriteria_generalThemes=DataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_generalSearchCriteria_generalTheme')
+
+    iconography_generalSearchCriteria_specificThemes = ListField(title=_(u'Specific theme'),
+        value_type=DictRow(title=_(u'Specific theme'), schema=IIconographySpecificThemes),
+        required=False)
+    form.widget(iconography_generalSearchCriteria_specificThemes=DataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_generalSearchCriteria_specificThemes')
+
+    # Content subject
+    iconography_contentSubjects = ListField(title=_(u'Content subject'),
+        value_type=DictRow(title=_(u'Content subject'), schema=IIconographyContentSubjects),
+        required=False)
+    form.widget(iconography_contentSubjects=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_contentSubjects')
+
     text = RichText(
         title=_(u"Body"),
         required=False
     )
+
     
     # # # # # # # # # # # # # # 
     # Identification fieldset #
@@ -1351,10 +1373,15 @@ class AddForm(add.DefaultAddForm):
                     widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
 
+        for widget in self.widgets.values():
+            if IDataGridField.providedBy(widget):
+                widget.auto_append = False
+                widget.allow_reorder = True
+                alsoProvides(widget, IFormWidget)
+
 class AddView(add.DefaultAddView):
     form = AddForm
     
-
 class EditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('object_templates/edit.pt')
 
@@ -1371,6 +1398,7 @@ class EditForm(edit.DefaultEditForm):
             if IDataGridField.providedBy(widget):
                 widget.auto_append = False
                 widget.allow_reorder = True
+                alsoProvides(widget, IFormWidget)
 
     def get_page_title(self):
         context = self.context

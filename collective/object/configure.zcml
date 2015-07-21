@@ -95,6 +95,10 @@
   <adapter name="physicalCharacteristics_material" factory=".indexers.physicalCharacteristics_material" />
   <adapter name="physicalCharacteristics_dimension" factory=".indexers.physicalCharacteristics_dimension" />
 
+  <adapter name="iconography_generalSearchCriteria_generalThemes" factory=".indexers.iconography_generalSearchCriteria_generalThemes" />
+  <adapter name="iconography_generalSearchCriteria_specificThemes" factory=".indexers.iconography_generalSearchCriteria_specificThemes" />
+  <adapter name="iconography_contentSubjects" factory=".indexers.iconography_contentSubjects" />
+
 
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
@@ -134,6 +138,21 @@
   <utility
     component=".utils.vocabularies.DimensionVocabularyFactory"
     name="collective.object.dimensions"
+    />
+
+  <utility
+    component=".utils.vocabularies.GeneralThemesVocabularyFactory"
+    name="collective.object.generalthemes"
+    />
+
+  <utility
+    component=".utils.vocabularies.SpecificThemesVocabularyFactory"
+    name="collective.object.specificthemes"
+    />
+
+  <utility
+    component=".utils.vocabularies.ContentSubjectsVocabularyFactory"
+    name="collective.object.contentsubjects"
     />
   <!-- -*- extra stuff goes here -*- -->
 

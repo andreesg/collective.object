@@ -114,3 +114,50 @@ def physicalCharacteristics_dimension(object, **kw):
     else:
         return []
 
+@indexer(IObject)
+def iconography_generalSearchCriteria_generalThemes(object, **kw):
+    if hasattr(object, 'iconography_generalSearchCriteria_generalThemes'):
+        terms = []
+        items = object.iconography_generalSearchCriteria_generalThemes
+        if items != None:
+            for item in items:
+                if item['term'] != None:
+                    for term in item['term']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+
+@indexer(IObject)
+def iconography_generalSearchCriteria_specificThemes(object, **kw):
+    if hasattr(object, 'iconography_generalSearchCriteria_specificThemes'):
+        terms = []
+        items = object.iconography_generalSearchCriteria_specificThemes
+        if items != None:
+            for item in items:
+                if item['term'] != None:
+                    for term in item['term']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+
+@indexer(IObject)
+def iconography_contentSubjects(object, **kw):
+    if hasattr(object, 'iconography_contentSubjects'):
+        terms = []
+        items = object.iconography_contentSubjects
+        if items != None:
+            for item in items:
+                if item['subject'] != None:
+                    for term in item['subject']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+

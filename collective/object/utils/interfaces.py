@@ -4,7 +4,8 @@
 from zope import schema
 from zope.interface import Interface
 from collective.object import MessageFactory as _
-from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceTypeVocabulary
+from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceTypeVocabulary, \
+                                _createNameTypeVocabulary, _createSubjectTypeVocabulary, _createTaxonomyRankVocabulary
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
 from plone.app.widgets.dx import AjaxSelectFieldWidget
@@ -13,6 +14,9 @@ from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
+nametype_vocabulary = SimpleVocabulary(list(_createNameTypeVocabulary()))
+subjecttype_vocabulary = SimpleVocabulary(list(_createSubjectTypeVocabulary()))
+taxonomyrank_vocabulary = SimpleVocabulary(list(_createTaxonomyRankVocabulary()))
 
 class ListField(schema.List):
     """We need to have a unique class for the field list so that we
@@ -121,6 +125,44 @@ class IDimensions(Interface):
     unit = schema.TextLine(title=_(u'Unit'), required=False)
     precision = schema.TextLine(title=_(u'Precision'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+# Iconography
+class IIconographyGeneralThemes(Interface):
+    form.widget('term', AjaxSelectFieldWidget, vocabulary="collective.object.generalthemes")
+    term = schema.List(
+        title=_(u'General theme'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+class IIconographySpecificThemes(Interface):
+    form.widget('term', AjaxSelectFieldWidget, vocabulary="collective.object.specificthemes")
+    term = schema.List(
+        title=_(u'Specific theme'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+class IIconographyContentSubjects(Interface):
+    position = schema.TextLine(title=_(u'Position'), required=False)    
+    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
+    
+    form.widget('subject', AjaxSelectFieldWidget, vocabulary="collective.object.contentsubjects")
+    subject = schema.List(
+        title=_(u'Subject'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    #taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
+    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary=taxonomyrank_vocabulary)
+    
+    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
 
 
 ##
@@ -412,18 +454,23 @@ class IIconographyContentDescription(Interface):
 
 class IIconographyContentPersonInstitution(Interface):
     position = schema.TextLine(title=_(u'Position'), required=False)
-    nameType = schema.TextLine(title=_(u'Name type'), required=False)
+    #nameType = schema.TextLine(title=_(u'Name type'), required=False)
+    nameType = schema.Choice(title=_(u'Name type'), required=False, vocabulary=nametype_vocabulary)
+
     name = schema.TextLine(title=_(u'Name'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IIconographyContentSubject(Interface):
     position = schema.TextLine(title=_(u'Position'), required=False)
-    subjectType = schema.TextLine(title=_(u'Subject type'), required=False)
+    
+    #subjectType = schema.TextLine(title=_(u'Subject type'), required=False)
+    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
+
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
-    properName = schema.TextLine(title=_(u'Proper name'), required=False)
-    identifier = schema.TextLine(title=_(u'Identifier'), required=False)
+    #properName = schema.TextLine(title=_(u'Proper name'), required=False)
+    #identifier = schema.TextLine(title=_(u'Identifier'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IIconographyContentPeriodDate(Interface):

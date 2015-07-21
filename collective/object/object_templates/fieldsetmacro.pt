@@ -182,12 +182,22 @@
     <div class="row no-padding">
         <h2 class="page-header" i18n:translate="">General search criteria</h2>
 
-        <div class="form-horizontal gridfield show-label hide-th">
+        <!--<div class="form-horizontal gridfield show-label hide-th">
           <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_generalTheme/@@ploneform-render-widget"/>
-        </div>
+        </div>-->
+
         <div class="form-horizontal gridfield show-label hide-th">
-          <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_specificTheme/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure view/widgets/iconography_generalSearchCriteria_generalThemes/@@ploneform-render-widget"/>
         </div>
+
+        <!--<div class="form-horizontal gridfield show-label hide-th">
+          <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_specificTheme/@@ploneform-render-widget"/>
+        </div>-->
+
+        <div class="form-horizontal gridfield show-label hide-th">
+          <tal:widget tal:replace="structure view/widgets/iconography_generalSearchCriteria_specificThemes/@@ploneform-render-widget"/>
+        </div>
+
         <div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_classificationTheme/@@ploneform-render-widget"/>
         </div>
@@ -204,8 +214,12 @@
         </div>
 
         <h2 class="page-header" i18n:translate="">Content subject</h2>
-        <div class="form-horizontal gridfield">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/iconography_contentSubject/@@ploneform-render-widget"/>
+        </div>-->
+        
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/iconography_contentSubjects/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Content period/date</h2>

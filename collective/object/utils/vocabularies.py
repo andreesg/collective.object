@@ -57,7 +57,48 @@ def _createPriorityVocabulary():
         term = SimpleTerm(value=key, token=str(key), title=name)
         yield term
 
+def _createNameTypeVocabulary():
+    # [person, family, institution, regiment/service]
+    names = {
+        "person": _(u"person"),
+        "family": _(u"family"),
+        "institution": _(u"institution"),
+        "regiment/service": _(u"regiment/service")
+    }
+    for key, name in names.items():
+        term = SimpleTerm(value=key, token=str(key), title=name)
+        yield term
 
+def _createSubjectTypeVocabulary():
+    # [object name, animal, plant, activity, event, subject, geography, concept, people, cultural affinity]
+    names = {
+        "object name": _(u"object name"),
+        "animal": _(u"animal"),
+        "plant": _(u"plant"),
+        "activity": _(u"activity"),
+        "event": _(u"event"),
+        "subject": _(u"subject"),
+        "geography": _(u"geography"),
+        "concept": _(u"concept"),
+        "people": _(u"people"),
+        "geography": _(u"geography"),
+        "cultural affinity": _(u"cultural affinity"),
+    }
+
+    for key, name in names.items():
+        term = SimpleTerm(value=key, token=str(key), title=name)
+        yield term
+
+def _createTaxonomyRankVocabulary():
+    taxonomies = ["kingdom", "subkingdom", "phylum/division", "subphylum/subdivision", "superclass", "class", "subclass", "infraclass", "superorder", "order", "suborder", "infraorder", "superfamily", "family", "subfamily", "tribe", "subtribe", "genus", "subgenus", "section", "subsection", "species", "subspecies", "variety", "subvariety", "form", "subform"]
+    names = {}
+
+    for tax in taxonomies:
+        names[tax] = _(u'%s'%(tax))
+
+    for key, name in names.items():
+        term = SimpleTerm(value=key, token=str(key), title=name)
+        yield term
 
 class CategoryVocabulary(object):
     """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
@@ -158,19 +199,26 @@ class ObjectVocabulary(object):
         return SimpleVocabulary(items)
 
 
+# TODO: Update vocabularies to use general ObjectVocabulary
 CategoryVocabularyFactory = CategoryVocabulary()
 ObjectNameVocabularyFactory = ObjectNameVocabulary()
 RoleVocabularyFactory = RoleVocabulary()
 PlaceVocabularyFactory = PlaceVocabulary()
 SchoolStyleVocabularyFactory = SchoolStyleVocabulary()
 
+
+# Updated vocabularies
 TechniqueVocabularyFactory = ObjectVocabulary('physicalCharacteristics_technique')
 MaterialVocabularyFactory = ObjectVocabulary('physicalCharacteristics_material')
 DimensionVocabularyFactory = ObjectVocabulary('physicalCharacteristics_dimension')
+GeneralThemesVocabularyFactory = ObjectVocabulary('iconography_generalSearchCriteria_generalThemes')
+SpecificThemesVocabularyFactory = ObjectVocabulary('iconography_generalSearchCriteria_specificThemes')
+ContentSubjectsVocabularyFactory = ObjectVocabulary('iconography_contentSubjects')
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
 objectstatus_vocabulary = SimpleVocabulary(list(_createObjectStatusVocabulary()))
-
-
+nametype_vocabulary = SimpleVocabulary(list(_createNameTypeVocabulary()))
+subjecttype_vocabulary = SimpleVocabulary(list(_createSubjectTypeVocabulary()))
+taxonomyrank_vocabulary = SimpleVocabulary(list(_createTaxonomyRankVocabulary()))

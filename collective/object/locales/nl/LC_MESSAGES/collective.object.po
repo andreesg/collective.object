@@ -1179,19 +1179,186 @@ msgstr "Contractperiode"
 msgid "Contact"
 msgstr "Contactpersoon"
 
-
-
 #: ../object.py
 msgid "Books"
 msgstr "Boeken"
 
 
+# persoon, familie, instelling, dienstonderdeel
+
+#: ../object.py
+msgid "person"
+msgstr "persoon"
+
+#: ../object.py
+msgid "regiment/service"
+msgstr "dienstonderdeel"
+
+#: ../object.py
+msgid "institution"
+msgstr "instelling"
+
+#: ../object.py
+msgid "family"
+msgstr "familie"
+
+# object name, animal, plant, activity, event, subject, geography, concept, people, cultural affinity
+# objectnaam, dier, plant, activiteit, gebeurtenis, onderwerp, geographie, concept, volk, culturele affiniteit
+
+#: ../object.py
+msgid "object name"
+msgstr "objectnaam"
+
+#: ../object.py
+msgid "animal"
+msgstr "dier"
 
 
+#: ../object.py
+msgid "plant"
+msgstr "plant"
 
 
+#: ../object.py
+msgid "activity"
+msgstr "activiteit"
 
 
+#: ../object.py
+msgid "event"
+msgstr "gebeurtenis"
+
+
+#: ../object.py
+msgid "subject"
+msgstr "onderwerp"
+
+
+#: ../object.py
+msgid "geography"
+msgstr "geographie"
+
+
+#: ../object.py
+msgid "concept"
+msgstr "concept"
+
+
+#: ../object.py
+msgid "people"
+msgstr "volk"
+
+#: ../object.py
+msgid "cultural affinity"
+msgstr "culturele affiniteit"
+
+#: ../object.py
+msgid 'kingdom'
+msgstr 'rijk'
+
+#: ../object.py
+msgid 'subkingdom'
+msgstr 'subrijk'
+
+#: ../object.py
+msgid 'phylum/division'
+msgstr 'fylum/divisie'
+
+#: ../object.py
+msgid 'subphylum/subdivision'
+msgstr 'subfylum/subdivisie'
+
+#: ../object.py
+msgid 'superclass'
+msgstr 'superklasse'
+
+#: ../object.py
+msgid 'class'
+msgstr 'klasse'
+
+#: ../object.py
+msgid 'subclass'
+msgstr 'subklasse'
+
+#: ../object.py
+msgid 'infraclass'
+msgstr 'infraklasse'
+
+#: ../object.py
+msgid 'superorder'
+msgstr 'superorde'
+
+#: ../object.py
+msgid 'order'
+msgstr 'orde'
+
+#: ../object.py
+msgid 'suborder'
+msgstr 'suborde'
+
+#: ../object.py
+msgid 'infraorder'
+msgstr 'infraorde'
+
+#: ../object.py
+msgid 'superfamily'
+msgstr 'superfamilie'
+
+#: ../object.py
+msgid 'family'
+msgstr 'familie'
+
+#: ../object.py
+msgid 'subfamily'
+msgstr 'subfamilie'
+
+#: ../object.py
+msgid 'tribe'
+msgstr 'stam'
+
+#: ../object.py
+msgid 'subtribe'
+msgstr 'substam'
+
+#: ../object.py
+msgid 'genus'
+msgstr 'geslacht'
+
+#: ../object.py
+msgid 'subgenus'
+msgstr 'subgeslacht'
+
+#: ../object.py
+msgid 'section'
+msgstr 'sectie'
+
+#: ../object.py
+msgid 'subsection'
+msgstr 'subsectie'
+
+#: ../object.py
+msgid 'species'
+msgstr 'soort'
+
+#: ../object.py
+msgid 'subspecies'
+msgstr 'ondersoort'
+
+#: ../object.py
+msgid 'variety'
+msgstr 'variëteit'
+
+#: ../object.py
+msgid 'subvariety'
+msgstr 'subvariëteit'
+
+#: ../object.py
+msgid 'form'
+msgstr 'vorm'
+
+#: ../object.py
+msgid 'subform'
+msgstr 'subvorm'
 
 
 
