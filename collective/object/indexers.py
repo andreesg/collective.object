@@ -16,9 +16,9 @@ def identification_objectName_objectname(object, **kw):
         items = object.identification_objectName_objectname
         if items != None:
             for item in items:
-                name = item['name']
-                if name:
-                    object_names.append(name)
+                for name in item['name']:
+                    if name:
+                        object_names.append(name)
         return object_names
     else:
         return []
