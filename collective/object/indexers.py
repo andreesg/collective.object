@@ -67,3 +67,50 @@ def productionDating_production_schoolStyle(object, **kw):
         return styles
     else:
         return []
+
+
+@indexer(IObject)
+def physicalCharacteristics_technique(object, **kw):
+    if hasattr(object, 'physicalCharacteristics_technique'):
+        techniques = []
+        items = object.physicalCharacteristics_technique
+        if items != None:
+            for item in items:
+                if item['technique'] != None:
+                    for term in item['technique']:
+                        if term:
+                            techniques.append(term)
+        return techniques
+    else:
+        return []
+
+@indexer(IObject)
+def physicalCharacteristics_material(object, **kw):
+    if hasattr(object, 'physicalCharacteristics_material'):
+        materials = []
+        items = object.physicalCharacteristics_material
+        if items != None:
+            for item in items:
+                if item['material'] != None:
+                    for term in item['material']:
+                        if term:
+                            materials.append(term)
+        return materials
+    else:
+        return []
+
+@indexer(IObject)
+def physicalCharacteristics_dimension(object, **kw):
+    if hasattr(object, 'physicalCharacteristics_dimension'):
+        dimensions = []
+        items = object.physicalCharacteristics_dimension
+        if items != None:
+            for item in items:
+                if item['dimension'] != None:
+                    for term in item['dimension']:
+                        if term:
+                            dimensions.append(term)
+        return dimensions
+    else:
+        return []
+

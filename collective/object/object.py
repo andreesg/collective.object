@@ -103,6 +103,21 @@ class IObject(form.Schema):
     form.widget(productionDating_production_schoolstyle=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('productionDating_production_schoolStyle')
 
+    # Physical characteristics
+    physicalCharacteristics_technique = ListField(title=_(u'Techniques'),
+        value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
+        required=False)
+    form.widget(physicalCharacteristics_technique=DataGridFieldFactory)
+
+    physicalCharacteristics_material = ListField(title=_(u'Materials'),
+        value_type=DictRow(title=_(u'Materials'), schema=IMaterials),
+        required=False)
+    form.widget(physicalCharacteristics_material=DataGridFieldFactory)
+
+    physicalCharacteristics_dimension = ListField(title=_(u'Dimensions'),
+        value_type=DictRow(title=_(u'Dimensions'), schema=IDimensions),
+        required=False)
+    form.widget(physicalCharacteristics_dimension=DataGridFieldFactory)
 
     text = RichText(
         title=_(u"Body"),
@@ -334,7 +349,7 @@ class IObject(form.Schema):
     )
 
     # Physical Description
-    physicalCharacteristics_physicalDescription_description = schema.TextLine(
+    physicalCharacteristics_physicalDescription_description = schema.Text(
         title=_(u'Description'),
         required=False
     )
@@ -1355,7 +1370,7 @@ class EditForm(edit.DefaultEditForm):
         for widget in self.widgets.values():
             if IDataGridField.providedBy(widget):
                 widget.auto_append = False
-                #widget.allow_reorder = True
+                widget.allow_reorder = True
 
     def get_page_title(self):
         context = self.context

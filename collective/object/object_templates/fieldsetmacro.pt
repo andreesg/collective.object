@@ -134,24 +134,39 @@
         <tal:widget tal:replace="structure widgets/physicalCharacteristics_physicalDescription_description/@@ploneform-render-widget"/>
       </div>
 
-      <h2 class="page-header" i18n:translate="">Keywords</h2>
+      <!--<h2 class="page-header" i18n:translate="">Keywords</h2>
       <div class="form-horizontal gridfield table-responsive">
         <tal:widget tal:replace="structure widgets/physicalCharacteristics_keywords/@@ploneform-render-widget"/>
-      </div>
+      </div>-->
+
+      <!--<h2 class="page-header" i18n:translate="">Techniques</h2>
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure widgets/physicalCharacteristics_techniques/@@ploneform-render-widget"/>
+      </div>-->
 
       <h2 class="page-header" i18n:translate="">Techniques</h2>
       <div class="form-horizontal gridfield table-responsive">
-        <tal:widget tal:replace="structure widgets/physicalCharacteristics_techniques/@@ploneform-render-widget"/>
+        <tal:widget tal:replace="structure view/widgets/physicalCharacteristics_technique/@@ploneform-render-widget"/>
       </div>
+
+      <!--<h2 class="page-header" i18n:translate="">Materials</h2>
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure widgets/physicalCharacteristics_materials/@@ploneform-render-widget"/>
+      </div>-->
 
       <h2 class="page-header" i18n:translate="">Materials</h2>
       <div class="form-horizontal gridfield table-responsive">
-        <tal:widget tal:replace="structure widgets/physicalCharacteristics_materials/@@ploneform-render-widget"/>
+        <tal:widget tal:replace="structure view/widgets/physicalCharacteristics_material/@@ploneform-render-widget"/>
       </div>
+
+      <!--<h2 class="page-header" i18n:translate="">Dimensions</h2>
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure widgets/physicalCharacteristics_dimensions/@@ploneform-render-widget"/>
+      </div>-->
 
       <h2 class="page-header" i18n:translate="">Dimensions</h2>
       <div class="form-horizontal gridfield table-responsive">
-        <tal:widget tal:replace="structure widgets/physicalCharacteristics_dimensions/@@ploneform-render-widget"/>
+        <tal:widget tal:replace="structure view/widgets/physicalCharacteristics_dimension/@@ploneform-render-widget"/>
       </div>
 
       <h2 class="page-header" i18n:translate="">Frame</h2>

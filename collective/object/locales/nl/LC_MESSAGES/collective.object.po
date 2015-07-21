@@ -138,6 +138,11 @@ msgstr "Materiaal"
 msgid "Dimensions"
 msgstr "Afmetingen"
 
+
+#: ../object.py
+msgid "Dimension"
+msgstr "Afmeting"
+
 #: ../object.py
 msgid "Dimention"
 msgstr "Afmeting"

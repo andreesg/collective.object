@@ -81,6 +81,48 @@ class ISchoolStyle(Interface):
         missing_value=[]
     )
 
+## Physical Characteristics
+class ITechniques(Interface):
+    part = schema.TextLine(title=_(u'Part'), required=False)
+    form.widget('technique', AjaxSelectFieldWidget, vocabulary="collective.object.techniques")
+    technique = schema.List(
+        title=_(u'Technique'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IMaterials(Interface):
+    part = schema.TextLine(title=_(u'Part'), required=False)
+
+    form.widget('material', AjaxSelectFieldWidget, vocabulary="collective.object.materials")
+    material = schema.List(
+        title=_(u'Material'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    notes = schema.Text(title=_(u'Notes'), required=False)
+
+class IDimensions(Interface):
+    part = schema.TextLine(title=_(u'Part'), required=False)
+    
+    form.widget('dimension', AjaxSelectFieldWidget, vocabulary="collective.object.dimensions")
+    dimension = schema.List(
+        title=_(u'Dimension'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    value = schema.TextLine(title=_(u'Value'), required=False)
+    unit = schema.TextLine(title=_(u'Unit'), required=False)
+    precision = schema.TextLine(title=_(u'Precision'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+
 ##
 ## Fields
 ##

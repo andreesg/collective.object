@@ -1,12 +1,22 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+#atvm = getToolByName(context, 'portal_vocabularies')
+#categories = atvm.getVocabularyByName('object-categories-vocabulary')
+#terms = []
+#for term in categories:
+#    terms.append(SimpleVocabulary.createTerm(
+#        term, term.encode('utf-8'), categories[term].title))
+#return SimpleVocabulary(terms)
+
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from collective.object import MessageFactory as _
 from zope.schema.interfaces import ISource, IContextSourceBinder, IVocabularyFactory
 from zope.interface import implements, classProvides
 from Products.CMFCore.utils import getToolByName
 from plone import api
+
+
 # # # # # # # # # # # # # #
 # Vocabularies            #
 # # # # # # # # # # # # # #
@@ -47,13 +57,7 @@ def _createPriorityVocabulary():
         term = SimpleTerm(value=key, token=str(key), title=name)
         yield term
 
-#atvm = getToolByName(context, 'portal_vocabularies')
-#categories = atvm.getVocabularyByName('object-categories-vocabulary')
-#terms = []
-#for term in categories:
-#    terms.append(SimpleVocabulary.createTerm(
-#        term, term.encode('utf-8'), categories[term].title))
-#return SimpleVocabulary(terms)
+
 
 class CategoryVocabulary(object):
     """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
@@ -88,7 +92,7 @@ class ObjectNameVocabulary(object):
 
 
 class RoleVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
+    """Vocabulary factory listing all catalog keywords from the "productionDating_production_productionRole" index
     """
     implements(IVocabularyFactory)
 
@@ -104,7 +108,7 @@ class RoleVocabulary(object):
         return SimpleVocabulary(items)
 
 class PlaceVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
+    """Vocabulary factory listing all catalog keywords from the "productionDating_production_productionPlace" index
     """
     implements(IVocabularyFactory)
 
@@ -120,7 +124,7 @@ class PlaceVocabulary(object):
         return SimpleVocabulary(items)
 
 class SchoolStyleVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
+    """Vocabulary factory listing all catalog keywords from the "productionDating_production_schoolStyle" index
     """
     implements(IVocabularyFactory)
 
@@ -135,11 +139,34 @@ class SchoolStyleVocabulary(object):
 
         return SimpleVocabulary(items)
 
+class ObjectVocabulary(object):
+
+    implements(IVocabularyFactory)
+
+    def __init__(self, index):
+        self.index = index
+
+    def __call__(self, context):
+        self.context = context
+        portal = api.portal.get()
+        self.catalog = getToolByName(portal, "portal_catalog")
+        if self.catalog is None:
+            return SimpleVocabulary([])
+        index = self.catalog._catalog.getIndex(self.index)
+        items = [SimpleTerm(i, i, i) for i in index._index]
+
+        return SimpleVocabulary(items)
+
+
 CategoryVocabularyFactory = CategoryVocabulary()
 ObjectNameVocabularyFactory = ObjectNameVocabulary()
 RoleVocabularyFactory = RoleVocabulary()
 PlaceVocabularyFactory = PlaceVocabulary()
 SchoolStyleVocabularyFactory = SchoolStyleVocabulary()
+
+TechniqueVocabularyFactory = ObjectVocabulary('physicalCharacteristics_technique')
+MaterialVocabularyFactory = ObjectVocabulary('physicalCharacteristics_material')
+DimensionVocabularyFactory = ObjectVocabulary('physicalCharacteristics_dimension')
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
