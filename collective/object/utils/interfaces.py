@@ -6,10 +6,15 @@ from zope.interface import Interface
 from collective.object import MessageFactory as _
 from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceTypeVocabulary, \
                                 _createNameTypeVocabulary, _createSubjectTypeVocabulary, _createTaxonomyRankVocabulary
+
+from ..utils.source import ObjPathSourceBinder
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
 from plone.app.widgets.dx import AjaxSelectFieldWidget, DatetimeFieldWidget
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
+
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList, Relation
 
 import datetime
 
@@ -384,13 +389,34 @@ class INumbers(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
 
 class IParts(Interface):
-    parts = schema.TextLine(title=_(u'Parts'), required=False)
+    parts = RelationList(
+        title=_(u'Parts'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Object')
+        ),
+        required=False
+    )
+
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IRelatedObject(Interface):
-    relatedObject = schema.TextLine(title=_(u'Related object'), required=False)
+    relatedObject = RelationList(
+        title=_(u'Related object'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Object')
+        ),
+        required=False
+    )
+    
+    #relatedObject = schema.TextLine(title=_(u'Related object'), required=False)
     association = schema.TextLine(title=_(u'Association'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+    
 
 class IDigitalReferences(Interface):
     type = schema.TextLine(title=_(u'Type'), required=False)

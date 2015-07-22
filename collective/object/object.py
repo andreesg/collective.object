@@ -697,12 +697,16 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('numbersRelationships_numbers')
 
     # Relationships with other objects
-    numbersRelationships_relationshipsWithOtherObjects_partOf = schema.TextLine(
+    numbersRelationships_relationshipsWithOtherObjects_partOf = RelationList(
         title=_(u'Part of'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Object')
+        ),
         required=False
     )
-    dexteritytextindexer.searchable('numbersRelationships_relationshipsWithOtherObjects_partOf')
-
+    
     numbersRelationships_relationshipsWithOtherObjects_notes = schema.TextLine(
         title=_(u'Notes'),
         required=False
