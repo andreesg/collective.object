@@ -217,6 +217,8 @@ ContentSubjectsVocabularyFactory = ObjectVocabulary('iconography_contentSubjects
 InscriptionsTypeVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_type')
 InscriptionsRoleVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_role')
 InscriptionsScriptVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_script')
+AssociatedSubjectVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_subject')
+AssociatedPeriodVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_period')
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))

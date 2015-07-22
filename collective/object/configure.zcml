@@ -103,6 +103,9 @@
   <adapter name="inscriptionsMarkings_inscriptionsAndMarkings_role" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_role" />
   <adapter name="inscriptionsMarkings_inscriptionsAndMarkings_script" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_script" />
 
+  <adapter name="associations_associatedSubjects_subject" factory=".indexers.associations_associatedSubjects_subject" />
+  <adapter name="associations_associatedSubjects_period" factory=".indexers.associations_associatedSubjects_period" />
+
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
     name="collective.object.objectCategory"
@@ -171,6 +174,16 @@
   <utility
     component=".utils.vocabularies.InscriptionsScriptVocabularyFactory"
     name="collective.object.inscriptionsScript"
+    />
+
+  <utility
+    component=".utils.vocabularies.AssociatedSubjectVocabularyFactory"
+    name="collective.object.associatedsubjects"
+    />
+
+  <utility
+    component=".utils.vocabularies.AssociatedPeriodVocabularyFactory"
+    name="collective.object.associatedperiods"
     />
 
 

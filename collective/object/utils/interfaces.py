@@ -8,9 +8,10 @@ from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceType
                                 _createNameTypeVocabulary, _createSubjectTypeVocabulary, _createTaxonomyRankVocabulary
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
-from plone.app.widgets.dx import AjaxSelectFieldWidget
+from plone.app.widgets.dx import AjaxSelectFieldWidget, DatetimeFieldWidget
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
+import datetime
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
@@ -206,6 +207,37 @@ class IInscriptions(Interface):
     transliteration = schema.TextLine(title=_(u'Transliteration'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+# Associations
+class IAssociatedSubjects(Interface):
+    association = schema.TextLine(title=_(u'Association'), required=False)
+    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
+        
+    form.widget('subject', AjaxSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
+    subject = schema.List(
+        title=_(u'Subject'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary=taxonomyrank_vocabulary)
+    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+class IAssociatedPeriods(Interface):
+    association = schema.TextLine(title=_(u'Association'), required=False)
+    
+    form.widget('period', AjaxSelectFieldWidget, vocabulary="collective.object.associatedperiods")
+    period = schema.List(
+        title=_(u'Period'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 
 ##
@@ -392,21 +424,21 @@ class IReproduction(Interface):
 ## Associations
 class IAssociatedPersonInstitution(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
-    nameType = schema.TextLine(title=_(u'Name Type'), required=False)
+    nameType = schema.Choice(title=_(u'Name type'), required=False, vocabulary=nametype_vocabulary)
     name = schema.TextLine(title=_(u'Name'), required=False)
-    startDate = schema.TextLine(title=_(u'Start date'), required=False)
-    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    #startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    #endDate = schema.TextLine(title=_(u'End date'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
     
 class IAssociatedSubject(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
-    subjectType = schema.TextLine(title=_(u'Subject type'), required=False)
+    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
     subject = schema.TextLine(title=_(u'Subject'), required=False)
-    taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
+    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary=taxonomyrank_vocabulary)
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
-    properName = schema.TextLine(title=_(u'Proper name'), required=False)
-    startDate = schema.TextLine(title=_(u'Start date'), required=False)
-    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    #properName = schema.TextLine(title=_(u'Proper name'), required=False)
+    #startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    #endDate = schema.TextLine(title=_(u'End date'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IAssociatedPeriod(Interface):

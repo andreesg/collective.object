@@ -386,17 +386,28 @@
           <tal:widget tal:replace="structure widgets/associations_associatedPersonInstitution/@@ploneform-render-widget"/>
         </div>
 
-        <h2 class="page-header" i18n:translate="">Associated subject</h2>
+        <!--<h2 class="page-header" i18n:translate="">Associated subject</h2>
 
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/associations_associatedSubject/@@ploneform-render-widget"/>
+        </div>-->
+
+        <h2 class="page-header" i18n:translate="">Associated subject</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/associations_associatedSubjects/@@ploneform-render-widget"/>
         </div>
+        
 
-        <h2 class="page-header" i18n:translate="">Associated period</h2>
-
+        <!--<h2 class="page-header" i18n:translate="">Associated period</h2>
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/associations_associatedPeriod/@@ploneform-render-widget"/>
+        </div>-->
+
+        <h2 class="page-header" i18n:translate="">Associated period</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/associations_associatedPeriods/@@ploneform-render-widget"/>
         </div>
+
 
     </div>
   </tal:associations>

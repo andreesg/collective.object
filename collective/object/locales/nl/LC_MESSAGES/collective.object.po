@@ -27,6 +27,10 @@ msgid "Body"
 msgstr "Tekst"
 
 #: ../object.py
+msgid "Name"
+msgstr "Naam"
+
+#: ../object.py
 msgid "Description"
 msgstr "Beschrijving"
 

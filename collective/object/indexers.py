@@ -205,3 +205,33 @@ def inscriptionsMarkings_inscriptionsAndMarkings_script(object, **kw):
         return terms
     else:
         return []
+
+@indexer(IObject)
+def associations_associatedSubjects_subject(object, **kw):
+    if hasattr(object, 'associations_associatedSubjects'):
+        terms = []
+        items = object.associations_associatedSubjects
+        if items != None:
+            for item in items:
+                if item['subject'] != None:
+                    for term in item['subject']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
+def associations_associatedSubjects_period(object, **kw):
+    if hasattr(object, 'associations_associatedPeriods'):
+        terms = []
+        items = object.associations_associatedPeriods
+        if items != None:
+            for item in items:
+                if item['period'] != None:
+                    for term in item['period']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []

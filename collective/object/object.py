@@ -147,6 +147,19 @@ class IObject(form.Schema):
     form.widget(inscriptionsMarkings_inscriptionsAndMarkings=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('inscriptionsMarkings_inscriptionsAndMarkings')
 
+    # Associations
+    associations_associatedSubjects = ListField(title=_(u'Associated subject'),
+        value_type=DictRow(title=_(u'Associated subject'), schema=IAssociatedSubjects),
+        required=False)
+    form.widget(associations_associatedSubjects=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('associations_associatedSubjects')
+
+    associations_associatedPeriods = ListField(title=_(u'Associated period'),
+        value_type=DictRow(title=_(u'Associated period'), schema=IAssociatedPeriods),
+        required=False)
+    form.widget(associations_associatedPeriods=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('associations_associatedPeriods')
+
     text = RichText(
         title=_(u"Body"),
         required=False
@@ -507,6 +520,33 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('inscriptionsMarkings_inscriptionsMarkings')
 
 
+    # # # # # # # # #
+    # Associations  #      
+    # # # # # # # # # 
+    model.fieldset('associations', label=_(u'Associations'), 
+        fields=['associations_associatedPersonInstitution', 'associations_associatedSubject',
+                'associations_associatedPeriod']
+    )
+
+    associations_associatedPersonInstitution = ListField(title=_(u'Associated person/institution'),
+        value_type=DictRow(title=_(u'Associated person/institution'), schema=IAssociatedPersonInstitution),
+        required=False)
+    form.widget(associations_associatedPersonInstitution=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('associations_associatedPersonInstitution')
+
+    associations_associatedSubject = ListField(title=_(u'Associated subject'),
+        value_type=DictRow(title=_(u'Associated subject'), schema=IAssociatedSubject),
+        required=False)
+    form.widget(associations_associatedSubject=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('associations_associatedSubject')
+
+    associations_associatedPeriod = ListField(title=_(u'Associated period'),
+        value_type=DictRow(title=_(u'Associated period'), schema=IAssociatedPeriod),
+        required=False)
+    form.widget(associations_associatedPeriod=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('associations_associatedPeriod')
+
+
     # # # # # # # # # # # # # # #
     # Condition & Conservation  #
     # # # # # # # # # # # # # # #
@@ -636,33 +676,6 @@ class IObject(form.Schema):
     form.widget(recommendationsRequirements_legalLicenceRequirements_requirementsHeld=DataGridFieldFactory)
     dexteritytextindexer.searchable('recommendationsRequirements_legalLicenceRequirements_requirementsHeld')
 
-
-
-    # # # # # # # # #
-    # Associations  #      
-    # # # # # # # # # 
-    model.fieldset('associations', label=_(u'Associations'), 
-        fields=['associations_associatedPersonInstitution', 'associations_associatedSubject',
-                'associations_associatedPeriod']
-    )
-
-    associations_associatedPersonInstitution = ListField(title=_(u'Associated person/institution'),
-        value_type=DictRow(title=_(u'Associated person/institution'), schema=IAssociatedPersonInstitution),
-        required=False)
-    form.widget(associations_associatedPersonInstitution=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('associations_associatedPersonInstitution')
-
-    associations_associatedSubject = ListField(title=_(u'Associated subject'),
-        value_type=DictRow(title=_(u'Associated subject'), schema=IAssociatedSubject),
-        required=False)
-    form.widget(associations_associatedSubject=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('associations_associatedSubject')
-
-    associations_associatedPeriod = ListField(title=_(u'Associated period'),
-        value_type=DictRow(title=_(u'Associated period'), schema=IAssociatedPeriod),
-        required=False)
-    form.widget(associations_associatedPeriod=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('associations_associatedPeriod')
 
 
 
