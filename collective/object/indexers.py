@@ -161,3 +161,47 @@ def iconography_contentSubjects(object, **kw):
     else:
         return []
 
+@indexer(IObject)
+def inscriptionsMarkings_inscriptionsAndMarkings_role(object, **kw):
+    if hasattr(object, 'inscriptionsMarkings_inscriptionsAndMarkings'):
+        terms = []
+        items = object.inscriptionsMarkings_inscriptionsAndMarkings
+        if items != None:
+            for item in items:
+                if item['role'] != None:
+                    for term in item['role']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
+def inscriptionsMarkings_inscriptionsAndMarkings_type(object, **kw):
+    if hasattr(object, 'inscriptionsMarkings_inscriptionsAndMarkings'):
+        terms = []
+        items = object.inscriptionsMarkings_inscriptionsAndMarkings
+        if items != None:
+            for item in items:
+                if item['type'] != None:
+                    for term in item['type']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
+def inscriptionsMarkings_inscriptionsAndMarkings_script(object, **kw):
+    if hasattr(object, 'inscriptionsMarkings_inscriptionsAndMarkings'):
+        terms = []
+        items = object.inscriptionsMarkings_inscriptionsAndMarkings
+        if items != None:
+            for item in items:
+                if item['script'] != None:
+                    for term in item['script']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []

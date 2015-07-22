@@ -140,6 +140,13 @@ class IObject(form.Schema):
     form.widget(iconography_contentSubjects=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('iconography_contentSubjects')
 
+    # Inscriptions and markings
+    inscriptionsMarkings_inscriptionsAndMarkings = ListField(title=_(u'Inscriptions and markings'),
+        value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscriptions),
+        required=False)
+    form.widget(inscriptionsMarkings_inscriptionsAndMarkings=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('inscriptionsMarkings_inscriptionsAndMarkings')
+
     text = RichText(
         title=_(u"Body"),
         required=False
@@ -485,6 +492,20 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('iconography_iconographySource_sourceObjectNumber')
 
+    # # # # # # # # # # # # # # #
+    # Inscriptions & Markings   #
+    # # # # # # # # # # # # # # #
+
+    model.fieldset('inscriptions_markings', label=_(u'Inscriptions and markings'), 
+        fields=['inscriptionsMarkings_inscriptionsMarkings']
+    )
+
+    inscriptionsMarkings_inscriptionsMarkings = ListField(title=_(u'Inscriptions and markings'),
+        value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscription),
+        required=False)
+    form.widget(inscriptionsMarkings_inscriptionsMarkings=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('inscriptionsMarkings_inscriptionsMarkings')
+
 
     # # # # # # # # # # # # # # #
     # Condition & Conservation  #
@@ -615,20 +636,6 @@ class IObject(form.Schema):
     form.widget(recommendationsRequirements_legalLicenceRequirements_requirementsHeld=DataGridFieldFactory)
     dexteritytextindexer.searchable('recommendationsRequirements_legalLicenceRequirements_requirementsHeld')
 
-
-    # # # # # # # # # # # # # # #
-    # Inscriptions & Markings   #
-    # # # # # # # # # # # # # # #
-
-    model.fieldset('inscriptions_markings', label=_(u'Inscriptions and markings'), 
-        fields=['inscriptionsMarkings_inscriptionsMarkings']
-    )
-
-    inscriptionsMarkings_inscriptionsMarkings = ListField(title=_(u'Inscriptions and markings'),
-        value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscription),
-        required=False)
-    form.widget(inscriptionsMarkings_inscriptionsMarkings=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('inscriptionsMarkings_inscriptionsMarkings')
 
 
     # # # # # # # # #

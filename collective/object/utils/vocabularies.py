@@ -214,6 +214,9 @@ DimensionVocabularyFactory = ObjectVocabulary('physicalCharacteristics_dimension
 GeneralThemesVocabularyFactory = ObjectVocabulary('iconography_generalSearchCriteria_generalThemes')
 SpecificThemesVocabularyFactory = ObjectVocabulary('iconography_generalSearchCriteria_specificThemes')
 ContentSubjectsVocabularyFactory = ObjectVocabulary('iconography_contentSubjects')
+InscriptionsTypeVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_type')
+InscriptionsRoleVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_role')
+InscriptionsScriptVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_script')
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))

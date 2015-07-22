@@ -217,7 +217,7 @@
         <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/iconography_contentSubject/@@ploneform-render-widget"/>
         </div>-->
-        
+
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure view/widgets/iconography_contentSubjects/@@ploneform-render-widget"/>
         </div>
@@ -236,6 +236,26 @@
 
     </div>
   </tal:iconography>
+
+  <tal:inscriptions_markings tal:condition='python: fieldset_text == "inscriptions_markings"'
+    tal:define='widgets group/widgets'>
+    <!-- Inscriptions and markings -->
+    <div class="row no-padding">
+        <!--<h2 class="page-header" i18n:translate="">Inscriptions and markings</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/inscriptionsMarkings_inscriptionsMarkings/@@ploneform-render-widget"/>
+        </div>-->
+
+
+        <h2 class="page-header" i18n:translate="">Inscriptions and markings</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/inscriptionsMarkings_inscriptionsAndMarkings/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:inscriptions_markings>
   
   <tal:production_dating tal:condition='python: fieldset_text == "production_dating"'
     tal:define='widgets group/widgets'>
@@ -354,18 +374,7 @@
     </div>
   </tal:recommendations_requirements>
 
-  <tal:inscriptions_markings tal:condition='python: fieldset_text == "inscriptions_markings"'
-    tal:define='widgets group/widgets'>
-    <!-- Inscriptions and markings -->
-    <div class="row no-padding">
-      <h2 class="page-header" i18n:translate="">Inscriptions and markings</h2>
-
-        <div class="form-horizontal gridfield">
-          <tal:widget tal:replace="structure widgets/inscriptionsMarkings_inscriptionsMarkings/@@ploneform-render-widget"/>
-        </div>
-
-    </div>
-  </tal:inscriptions_markings>
+  
 
   <tal:associations tal:condition='python: fieldset_text == "associations"'
     tal:define='widgets group/widgets'>

@@ -1360,7 +1360,9 @@ msgstr 'vorm'
 msgid 'subform'
 msgstr 'subvorm'
 
-
+#: ../object.py
+msgid 'Translation'
+msgstr 'Vertaling'
 
 
 

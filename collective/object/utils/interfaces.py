@@ -163,6 +163,49 @@ class IIconographyContentSubjects(Interface):
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+# Inscriptions and Markings
+## Inscriptions and Markings
+class IInscriptions(Interface):
+    form.widget('type', AjaxSelectFieldWidget, vocabulary="collective.object.inscriptionsType")
+    type = schema.List(
+        title=_(u'Type'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    
+    position = schema.TextLine(title=_(u'Position'),required=False)
+    method = schema.TextLine(title=_(u'Method'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    creator = schema.TextLine(title=_(u'Creator'), required=False)
+    
+    form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.inscriptionsRole")
+    role = schema.List(
+        title=_(u'Role'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    content = schema.TextLine(title=_(u'Content'), required=False)
+    description = schema.TextLine(title=_(u'Description'), required=False)
+    interpretation = schema.TextLine(title=_(u'Interpretation'), required=False)
+    language = schema.TextLine(title=_(u'Language'), required=False)
+    
+    #New field
+    translation = schema.TextLine(title=_(u'Translation'), required=False, missing_value="")
+    
+    form.widget('script', AjaxSelectFieldWidget, vocabulary="collective.object.inscriptionsScript")
+    script = schema.List(
+        title=_(u'Script'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    transliteration = schema.TextLine(title=_(u'Transliteration'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
 
 
 ##
@@ -293,6 +336,10 @@ class IInscription(Interface):
     description = schema.TextLine(title=_(u'Description'), required=False)
     interpretation = schema.TextLine(title=_(u'Interpretation'), required=False)
     language = schema.TextLine(title=_(u'Language'), required=False)
+    
+    #New field
+    translation = schema.TextLine(title=_(u'Translation'), required=False, missing_value="")
+    
     script = schema.TextLine(title=_(u'Script'), required=False)
     transliteration = schema.TextLine(title=_(u'Transliteration'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)

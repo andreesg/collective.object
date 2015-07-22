@@ -99,6 +99,9 @@
   <adapter name="iconography_generalSearchCriteria_specificThemes" factory=".indexers.iconography_generalSearchCriteria_specificThemes" />
   <adapter name="iconography_contentSubjects" factory=".indexers.iconography_contentSubjects" />
 
+  <adapter name="inscriptionsMarkings_inscriptionsAndMarkings_type" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_type" />
+  <adapter name="inscriptionsMarkings_inscriptionsAndMarkings_role" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_role" />
+  <adapter name="inscriptionsMarkings_inscriptionsAndMarkings_script" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_script" />
 
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
@@ -154,6 +157,23 @@
     component=".utils.vocabularies.ContentSubjectsVocabularyFactory"
     name="collective.object.contentsubjects"
     />
+
+  <utility
+    component=".utils.vocabularies.InscriptionsTypeVocabularyFactory"
+    name="collective.object.inscriptionsType"
+    />
+
+  <utility
+    component=".utils.vocabularies.InscriptionsRoleVocabularyFactory"
+    name="collective.object.inscriptionsRole"
+    />
+
+  <utility
+    component=".utils.vocabularies.InscriptionsScriptVocabularyFactory"
+    name="collective.object.inscriptionsScript"
+    />
+
+
   <!-- -*- extra stuff goes here -*- -->
 
 </configure>
