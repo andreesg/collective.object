@@ -10,6 +10,13 @@ from zope.schema.vocabulary import SimpleTerm
 class ObjPathSource(PathSource):
 
     def _getBrainByValue(self, value):
+        if not value.absolute_url():
+            portal_catalog = self.context.portal_catalog
+            brains = portal_catalog(UID=value.UID())
+            if len(brains) > 0:
+                brain = brains[0]
+                return brain
+
         return self._getBrainByToken('/'.join(value.getPhysicalPath()))
 
     def getTermByBrain(self, brain, real_value=True):

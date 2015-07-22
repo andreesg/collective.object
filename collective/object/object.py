@@ -600,6 +600,39 @@ class IObject(form.Schema):
     form.widget(numbersRelationships_digitalReferences=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('numbersRelationships_digitalReferences')
 
+    # # # # # # # # # #
+    # Documentation   #
+    # # # # # # # # # #
+    model.fieldset('documentation', label=_(u'Documentation'), 
+        fields=['documentation_documentation']
+    )
+
+    documentation_documentation = ListField(title=_(u'Documentation'),
+        value_type=DictRow(title=_(u'Documentation'), schema=IDocumentationDocumentation),
+        required=False)
+    form.widget(documentation_documentation=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('documentation_documentation')
+
+    # # # # # # # # # # # # # # # # # # #
+    # Documentation (free) / archive    #
+    # # # # # # # # # # # # # # # # # # #
+
+    model.fieldset('documentation_free_archive', label=_(u'Documentation (free) / archive'), 
+        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive']
+    )
+
+    documentationFreeArchive_documentationFreeText = ListField(title=_(u'Documentation (free text)'),
+        value_type=DictRow(title=_(u'Documentation (free text)'), schema=IDocumentationFreeText),
+        required=False)
+    form.widget(documentationFreeArchive_documentationFreeText=DataGridFieldFactory)
+    dexteritytextindexer.searchable('documentationFreeArchive_documentationFreeText')
+
+    documentationFreeArchive_archive = ListField(title=_(u'Archive'),
+        value_type=DictRow(title=_(u'Archive'), schema=IArchive),
+        required=False)
+    form.widget(documentationFreeArchive_archive=DataGridFieldFactory)
+    dexteritytextindexer.searchable('documentationFreeArchive_archive')
+
     # # # # # # # # # # # # # # #
     # Condition & Conservation  #
     # # # # # # # # # # # # # # #
@@ -728,40 +761,6 @@ class IObject(form.Schema):
         required=False)
     form.widget(recommendationsRequirements_legalLicenceRequirements_requirementsHeld=DataGridFieldFactory)
     dexteritytextindexer.searchable('recommendationsRequirements_legalLicenceRequirements_requirementsHeld')
-
-
-    # # # # # # # # # #
-    # Documentation   #
-    # # # # # # # # # #
-    model.fieldset('documentation', label=_(u'Documentation'), 
-        fields=['documentation_documentation']
-    )
-
-    documentation_documentation = ListField(title=_(u'Documentation'),
-        value_type=DictRow(title=_(u'Documentation'), schema=IDocumentationDocumentation),
-        required=False)
-    form.widget(documentation_documentation=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('documentation_documentation')
-
-    # # # # # # # # # # # # # # # # # # #
-    # Documentation (free) / archive    #
-    # # # # # # # # # # # # # # # # # # #
-
-    model.fieldset('documentation_free_archive', label=_(u'Documentation (free) / archive'), 
-        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive']
-    )
-
-    documentationFreeArchive_documentationFreeText = ListField(title=_(u'Documentation (free text)'),
-        value_type=DictRow(title=_(u'Documentation (free text)'), schema=IDocumentationFreeText),
-        required=False)
-    form.widget(documentationFreeArchive_documentationFreeText=DataGridFieldFactory)
-    dexteritytextindexer.searchable('documentationFreeArchive_documentationFreeText')
-
-    documentationFreeArchive_archive = ListField(title=_(u'Archive'),
-        value_type=DictRow(title=_(u'Archive'), schema=IArchive),
-        required=False)
-    form.widget(documentationFreeArchive_archive=DataGridFieldFactory)
-    dexteritytextindexer.searchable('documentationFreeArchive_archive')
 
 
     # # # # # # # # # #
