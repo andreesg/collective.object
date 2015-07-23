@@ -258,7 +258,7 @@ class IValuations(Interface):
 
     valuer = schema.TextLine(title=_(u'Valuer'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
-    reference = schema.TextLine(title=_(u'Reference'), required=False)
+    #reference = schema.TextLine(title=_(u'Reference'), required=False)
 
 
 ##
