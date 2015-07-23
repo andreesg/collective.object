@@ -180,12 +180,42 @@ class IObject(form.Schema):
     form.widget(conditionConservation_preservationForm=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('conditionConservation_preservationForm')
 
+
+    # Aquisition
+    acquisition_methods = schema.List(
+        title=_(u'Method'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('acquisition_methods', AjaxSelectFieldWidget,  vocabulary="collective.object.aquisitionmethod")
+
+    acquisition_places = schema.List(
+        title=_(u'label_acquisition_place', default=u"Place"),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('acquisition_places', AjaxSelectFieldWidget,  vocabulary="collective.object.aquisitionplace")
+
+    acquisition_costs_offer_price_currency = schema.List(
+        title=_(u'Curr.'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('acquisition_costs_offer_price_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
+
+    acquisition_costs_purchase_price_currency = schema.List(
+        title=_(u'Curr.'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('acquisition_costs_purchase_price_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
+
+
     text = RichText(
         title=_(u"Body"),
         required=False
     )
 
-    
     # # # # # # # # # # # # # # 
     # Identification fieldset #
     # # # # # # # # # # # # # # 
@@ -892,7 +922,7 @@ class IObject(form.Schema):
 
 
     acquisition_from = schema.TextLine(
-        title=_(u'From'),
+        title=_(u'label_from', default=u'From'),
         required=False
     )
     dexteritytextindexer.searchable('acquisition_from')

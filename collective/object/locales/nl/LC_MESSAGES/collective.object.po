@@ -1380,8 +1380,13 @@ msgstr 'Vertaling'
 msgid 'Special requirements'
 msgstr 'Speciale eisen'
 
+#: ../object.py
+msgid 'label_from'
+msgstr 'Van'
 
-
+#: ../object.py
+msgid 'label_acquisition_place'
+msgstr 'Plaats'
 
 
 

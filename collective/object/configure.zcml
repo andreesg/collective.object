@@ -111,8 +111,10 @@
   <adapter name="conditionConservation_conditions_condition" factory=".indexers.conditionConservation_conditions_condition" />
   <adapter name="conditionConservation_preservationForm" factory=".indexers.conditionConservation_preservationForm" />
     
-
-
+  <adapter name="acquisition_methods" factory=".indexers.acquisition_methods" />
+  <adapter name="acquisition_places" factory=".indexers.acquisition_places" />
+  
+  
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
     name="collective.object.objectCategory"
@@ -206,6 +208,16 @@
   <utility
     component=".utils.vocabularies.PreservationFormVocabularyFactory"
     name="collective.object.preservationform"
+    />
+
+  <utility
+    component=".utils.vocabularies.AquisitionMethodVocabularyFactory"
+    name="collective.object.aquisitionmethod"
+    />
+
+  <utility
+    component=".utils.vocabularies.AquisitionPlaceVocabularyFactory"
+    name="collective.object.aquisitionplace"
     />
 
 

@@ -281,6 +281,19 @@ def conditionConservation_preservationForm(object, **kw):
     else:
         return []
 
+@indexer(IObject)
+def acquisition_methods(object, **kw):
+    if hasattr(object, 'acquisition_methods'):
+        return object.acquisition_methods
+    else:
+        return []
+
+@indexer(IObject)
+def acquisition_places(object, **kw):
+    if hasattr(object, 'acquisition_places'):
+        return object.acquisition_places
+    else:
+        return []
 
 
 

@@ -222,6 +222,8 @@ AssociatedPeriodVocabularyFactory = ObjectVocabulary('associations_associatedSub
 CurrencyVocabularyFactory = ObjectVocabulary('valueInsurance_valuations_currency')
 ConditionVocabularyFactory = ObjectVocabulary('conditionConservation_conditions_condition')
 PreservationFormVocabularyFactory = ObjectVocabulary('conditionConservation_preservationForm')
+AquisitionMethodVocabularyFactory = ObjectVocabulary('acquisition_methods')
+AquisitionPlaceVocabularyFactory = ObjectVocabulary('acquisition_places')
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
