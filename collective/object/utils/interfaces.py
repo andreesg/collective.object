@@ -286,6 +286,20 @@ class IEnvConditions(Interface):
     )
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+
+# Aquisition
+class IFundings(Interface):
+    amount = schema.TextLine(title=_(u'Amount'), required=False)
+    
+    form.widget('curr', AjaxSelectFieldWidget, vocabulary="collective.object.currency")
+    curr = schema.TextLine(
+        title=_(u'Curr.'), 
+        required=False
+    )
+    
+    source = schema.TextLine(title=_(u'Source'), required=False)
+    provisos = schema.TextLine(title=_(u'Provisos'), required=False)
+
 ##
 ## Fields
 ##

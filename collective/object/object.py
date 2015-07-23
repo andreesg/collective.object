@@ -210,6 +210,12 @@ class IObject(form.Schema):
     )
     form.widget('acquisition_costs_purchase_price_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
 
+    # Funding *
+    acquisition_fundings = ListField(title=_(u'Funding'),
+        value_type=DictRow(title=_(u'Funding'), schema=IFundings),
+        required=False)
+    form.widget(acquisition_fundings=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('acquisition_fundings')
 
     text = RichText(
         title=_(u"Body"),

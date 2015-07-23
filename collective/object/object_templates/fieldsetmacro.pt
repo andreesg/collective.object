@@ -596,7 +596,7 @@
         <h2 class="page-header" i18n:translate="">Funding</h2>
 
         <div class="form-horizontal gridfield">
-        	<tal:widget tal:replace="structure widgets/acquisition_funding/@@ploneform-render-widget"/>
+        	<tal:widget tal:replace="structure view/widgets/acquisition_fundings/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Documentation</h2>
