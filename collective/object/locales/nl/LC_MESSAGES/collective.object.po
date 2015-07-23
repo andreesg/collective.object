@@ -532,6 +532,11 @@ msgid "Provisos"
 msgstr "Bepalingen"
 
 #: ../object.py
+msgid "label_provisos"
+msgstr "Bepalingen"
+
+
+#: ../object.py
 msgid "Documentation"
 msgstr "Documentatie"
 

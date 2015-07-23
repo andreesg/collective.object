@@ -298,7 +298,7 @@ class IFundings(Interface):
     )
     
     source = schema.TextLine(title=_(u'Source'), required=False)
-    provisos = schema.TextLine(title=_(u'Provisos'), required=False)
+    provisos = schema.TextLine(title=_(u'label_provisos', default=u"Provisos"), required=False)
 
 ##
 ## Fields
