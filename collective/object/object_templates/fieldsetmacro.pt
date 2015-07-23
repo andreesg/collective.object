@@ -343,11 +343,11 @@
         <tal:widget tal:replace="structure widgets/conditionConservation_conservationTreatment/@@ploneform-render-widget"/>
       </div>
 
-      <h2 class="page-header" i18n:translate="">Preservation form</h2>
+      <!--<h2 class="page-header" i18n:translate="">Preservation form</h2>
 
       <div class="form-horizontal gridfield">
         <tal:widget tal:replace="structure widgets/conditionConservation_enviromental_condition/@@ploneform-render-widget"/>
-      </div>
+      </div>-->
 
       <h2 class="page-header" i18n:translate="">Preservation form</h2>
       <div class="form-horizontal gridfield">
