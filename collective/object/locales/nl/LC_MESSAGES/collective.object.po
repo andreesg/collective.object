@@ -405,7 +405,7 @@ msgstr "Polisnummer"
 
 #: ../object.py
 msgid "Insurance company"
-msgstr "Verzekeringsmaatschappij"
+msgstr "Verzekeringsmij."
 
 #: ../object.py
 msgid "Confirmation date"
@@ -413,7 +413,7 @@ msgstr "Bevestigingsdatum"
 
 #: ../object.py
 msgid "Renewal date"
-msgstr "Verloopdatum"
+msgstr "Verl.datum"
 
 #: ../object.py
 msgid "Reference"

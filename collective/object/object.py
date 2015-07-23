@@ -160,6 +160,13 @@ class IObject(form.Schema):
     form.widget(associations_associatedPeriods=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('associations_associatedPeriods')
 
+    # Value & Insurance
+    valueInsurance_valuations = ListField(title=_(u'Valuation'),
+        value_type=DictRow(title=_(u'Valuation'), schema=IValuations),
+        required=False)
+    form.widget(valueInsurance_valuations=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('valueInsurance_valuations')
+
     text = RichText(
         title=_(u"Body"),
         required=False

@@ -194,7 +194,8 @@ class ObjectVocabulary(object):
         if self.catalog is None:
             return SimpleVocabulary([])
         index = self.catalog._catalog.getIndex(self.index)
-        items = [SimpleTerm(i, i, i) for i in index._index]
+
+        items = [SimpleTerm(value=i, token=i.encode('ascii', 'ignore'), title=i) for i in index._index]
 
         return SimpleVocabulary(items)
 
@@ -205,7 +206,6 @@ ObjectNameVocabularyFactory = ObjectNameVocabulary()
 RoleVocabularyFactory = RoleVocabulary()
 PlaceVocabularyFactory = PlaceVocabulary()
 SchoolStyleVocabularyFactory = SchoolStyleVocabulary()
-
 
 # Updated vocabularies
 TechniqueVocabularyFactory = ObjectVocabulary('physicalCharacteristics_technique')
@@ -219,6 +219,7 @@ InscriptionsRoleVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscr
 InscriptionsScriptVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_script')
 AssociatedSubjectVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_subject')
 AssociatedPeriodVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_period')
+CurrencyVocabularyFactory = ObjectVocabulary('valueInsurance_valuations_currency')
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))

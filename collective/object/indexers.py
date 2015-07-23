@@ -235,3 +235,18 @@ def associations_associatedSubjects_period(object, **kw):
         return terms
     else:
         return []
+
+@indexer(IObject)
+def valueInsurance_valuations_currency(object, **kw):
+    if hasattr(object, 'valueInsurance_valuations'):
+        terms = []
+        items = object.valueInsurance_valuations
+        if items != None:
+            for item in items:
+                if item['curr'] != None:
+                    for term in item['curr']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []

@@ -106,6 +106,8 @@
   <adapter name="associations_associatedSubjects_subject" factory=".indexers.associations_associatedSubjects_subject" />
   <adapter name="associations_associatedSubjects_period" factory=".indexers.associations_associatedSubjects_period" />
 
+  <adapter name="valueInsurance_valuations_currency" factory=".indexers.valueInsurance_valuations_currency" />
+
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
     name="collective.object.objectCategory"
@@ -184,6 +186,11 @@
   <utility
     component=".utils.vocabularies.AssociatedPeriodVocabularyFactory"
     name="collective.object.associatedperiods"
+    />
+
+  <utility
+    component=".utils.vocabularies.CurrencyVocabularyFactory"
+    name="collective.object.currency"
     />
 
 

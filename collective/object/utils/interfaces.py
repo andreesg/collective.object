@@ -244,6 +244,22 @@ class IAssociatedPeriods(Interface):
     endDate = schema.TextLine(title=_(u'End date'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+# Value & Insurance
+class IValuations(Interface):
+    value = schema.TextLine(title=_(u'Value'), required=False)
+
+    form.widget('curr', AjaxSelectFieldWidget, vocabulary="collective.object.currency")
+    curr = schema.List(
+        title=_(u'Curr.'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    valuer = schema.TextLine(title=_(u'Valuer'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    reference = schema.TextLine(title=_(u'Reference'), required=False)
+
 
 ##
 ## Fields
@@ -481,18 +497,18 @@ class IValuation(Interface):
     valuer = schema.TextLine(title=_(u'Valuer'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
     reference = schema.TextLine(title=_(u'Reference'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    #notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IInsurance(Interface):
-    type = schema.Choice(
-        vocabulary=insurance_type_vocabulary,
-        title=_(u'Type'),
-        required=False
-    )
-    value = schema.TextLine(title=_(u'Value'), required=False)
-    curr = schema.TextLine(title=_(u'Curr.'), required=False)
-    valuer = schema.TextLine(title=_(u'Valuer'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
+    #type = schema.Choice(
+    #    vocabulary=insurance_type_vocabulary,
+    #    title=_(u'Type'),
+    #    required=False
+    #)
+    #value = schema.TextLine(title=_(u'Value'), required=False)
+    #curr = schema.TextLine(title=_(u'Curr.'), required=False)
+    #valuer = schema.TextLine(title=_(u'Valuer'), required=False)
+    #date = schema.TextLine(title=_(u'Date'), required=False)
     policy_number = schema.TextLine(title=_(u'Policy number'), required=False)
     insurance_company = schema.TextLine(title=_(u'Insurance company'), required=False)
     confirmation_date = schema.TextLine(title=_(u'Confirmation date'), required=False)
