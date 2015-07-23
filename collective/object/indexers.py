@@ -250,3 +250,37 @@ def valueInsurance_valuations_currency(object, **kw):
         return terms
     else:
         return []
+
+@indexer(IObject)
+def conditionConservation_conditions_condition(object, **kw):
+    if hasattr(object, 'conditionConservation_conditions'):
+        terms = []
+        items = object.conditionConservation_conditions
+        if items != None:
+            for item in items:
+                if item['condition'] != None:
+                    for term in item['condition']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
+def conditionConservation_preservationForm(object, **kw):
+    if hasattr(object, 'conditionConservation_preservationForm'):
+        terms = []
+        items = object.conditionConservation_preservationForm
+        if items != None:
+            for item in items:
+                if item['preservation_form'] != None:
+                    for term in item['preservation_form']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+
+
+

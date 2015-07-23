@@ -220,7 +220,8 @@ InscriptionsScriptVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_ins
 AssociatedSubjectVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_subject')
 AssociatedPeriodVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_period')
 CurrencyVocabularyFactory = ObjectVocabulary('valueInsurance_valuations_currency')
-
+ConditionVocabularyFactory = ObjectVocabulary('conditionConservation_conditions_condition')
+PreservationFormVocabularyFactory = ObjectVocabulary('conditionConservation_preservationForm')
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))

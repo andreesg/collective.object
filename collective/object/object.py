@@ -167,6 +167,19 @@ class IObject(form.Schema):
     form.widget(valueInsurance_valuations=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('valueInsurance_valuations')
 
+    # Condition & Conservation 
+    conditionConservation_conditions = ListField(title=_(u'Condition'),
+        value_type=DictRow(title=_(u'Condition'), schema=IConditions),
+        required=False)
+    form.widget(conditionConservation_conditions=DataGridFieldFactory)
+    dexteritytextindexer.searchable('conditionConservation_conditions')
+
+    conditionConservation_preservationForm = ListField(title=_(u'Preservation form'),
+        value_type=DictRow(title=_(u'Preservation form'), schema=IEnvConditions),
+        required=False)
+    form.widget(conditionConservation_preservationForm=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('conditionConservation_preservationForm')
+
     text = RichText(
         title=_(u"Body"),
         required=False
@@ -647,7 +660,7 @@ class IObject(form.Schema):
     model.fieldset('condition_conservation', label=_(u'Condition & Conservation'), 
         fields=['conditionConservation_priority', 'conditionConservation_next_condition_check', 'conditionConservation_date',
                 'conditionConservation_completeness', 'conditionConservation_condition', 'conditionConservation_enviromental_condition', 'conditionConservation_conservation_request', 
-                'conditionConservation_recommendations_display',
+                'conditionConservation_recommendations_display', 'conditionConservation_conservationTreatment',
                 'conditionConservation_recommendations_environment', 'conditionConservation_recommendations_handling',
                 'conditionConservation_recommendations_packing', 'conditionConservation_recommendations_security',
                 'conditionConservation_recommendations_specialRequirements',
@@ -677,13 +690,6 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('conditionConservation_date')
 
-    # Completeness*
-    conditionConservation_completeness = ListField(title=_(u'Completeness'),
-        value_type=DictRow(title=_(u'Completeness'), schema=ICompleteness),
-        required=False)
-    form.widget(conditionConservation_completeness=DataGridFieldFactory)
-    dexteritytextindexer.searchable('conditionConservation_completeness')
-
     # Condition*
     conditionConservation_condition = ListField(title=_(u'Condition'),
         value_type=DictRow(title=_(u'Condition'), schema=ICondition),
@@ -691,11 +697,18 @@ class IObject(form.Schema):
     form.widget(conditionConservation_condition=DataGridFieldFactory)
     dexteritytextindexer.searchable('conditionConservation_condition')
 
+    # Completeness*
+    conditionConservation_completeness = ListField(title=_(u'Completeness'),
+        value_type=DictRow(title=_(u'Completeness'), schema=ICompleteness),
+        required=False)
+    form.widget(conditionConservation_completeness=DataGridFieldFactory)
+    dexteritytextindexer.searchable('conditionConservation_completeness')
+
     # Enviromental condition*
     conditionConservation_enviromental_condition = ListField(title=_(u'Enviromental condition'),
         value_type=DictRow(title=_(u'Enviromental condition'), schema=IEnvCondition),
         required=False)
-    form.widget(conditionConservation_enviromental_condition=DataGridFieldFactory)
+    form.widget(conditionConservation_enviromental_condition=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('conditionConservation_enviromental_condition')
 
     # Conservation request*
@@ -705,6 +718,12 @@ class IObject(form.Schema):
     form.widget(conditionConservation_conservation_request=DataGridFieldFactory)
     dexteritytextindexer.searchable('conditionConservation_conservation_request')
 
+    #Conservation treatment
+    conditionConservation_conservationTreatment = ListField(title=_(u'Conservation treatment'),
+        value_type=DictRow(title=_(u'Conservation treatment'), schema=IConsTreatment),
+        required=False)
+    form.widget(conditionConservation_conservationTreatment=DataGridFieldFactory)
+    dexteritytextindexer.searchable('conditionConservation_conservationTreatment')
 
     # Recommendations
     conditionConservation_recommendations_display = schema.TextLine(

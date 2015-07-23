@@ -241,7 +241,15 @@ msgstr "Toestand & Conservering"
 
 #: ../object.py
 msgid "Conservation treatment"
-msgstr "Conserveringsprioriteit"
+msgstr "Conserveringsbehandeling"
+
+#: ../object.py
+msgid "Treatment number"
+msgstr "Behandelingsnummer"
+
+#: ../object.py
+msgid "Treatment method"
+msgstr "Behandelmethode"
 
 #: ../object.py
 msgid "Priority"

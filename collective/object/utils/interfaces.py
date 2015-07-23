@@ -260,6 +260,31 @@ class IValuations(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
     #reference = schema.TextLine(title=_(u'Reference'), required=False)
 
+class IConditions(Interface):
+    part = schema.TextLine(title=_(u'Part'), required=False)
+
+    form.widget('condition', AjaxSelectFieldWidget, vocabulary="collective.object.condition")
+    condition = schema.List(
+        title=_(u'Condition'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    checked_by = schema.TextLine(title=_(u'Checked by'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+
+
+class IEnvConditions(Interface):    
+    form.widget('preservation_form', AjaxSelectFieldWidget, vocabulary="collective.object.preservationform")
+    preservation_form = schema.List(
+        title=_(u'Preservation form'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 ##
 ## Fields
@@ -368,7 +393,7 @@ class ICondition(Interface):
 class IEnvCondition(Interface):
     preservation_form = schema.TextLine(title=_(u'Preservation form'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
+    #date = schema.TextLine(title=_(u'Date'), required=False)
 
 class IConsRequest(Interface):
     treatment = schema.TextLine(title=_(u'Treatment'), required=False)
@@ -376,6 +401,12 @@ class IConsRequest(Interface):
     reason = schema.TextLine(title=_(u'Reason'), required=False)
     status = schema.TextLine(title=_(u'Status'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
+
+class IConsTreatment(Interface):
+    treatmentNumber = schema.TextLine(title=_(u'Treatment number'), required=False)
+    treatmentMethod = schema.TextLine(title=_(u'Treatment method'), required=False)
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
 
 ## Inscriptions and Markings
 class IInscription(Interface):

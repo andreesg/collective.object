@@ -104,7 +104,8 @@
                                           <metal:field define-macro="field">
                                               <tal:notcategory tal:condition="python: widget.__name__ not in ['identification_objectName_category', 'identification_objectName_objectname', 'productionDating_productionDating', 'productionDating_production_schoolstyle', 'physicalCharacteristics_technique',
                                                 'physicalCharacteristics_material', 'physicalCharacteristics_dimension', 'iconography_generalSearchCriteria_generalThemes', 'iconography_generalSearchCriteria_specificThemes',
-                                                'iconography_contentSubjects', 'inscriptionsMarkings_inscriptionsAndMarkings', 'associations_associatedSubjects', 'associations_associatedPeriods', 'valueInsurance_valuations']">
+                                                'iconography_contentSubjects', 'inscriptionsMarkings_inscriptionsAndMarkings', 'associations_associatedSubjects', 'associations_associatedPeriods', 'valueInsurance_valuations',
+                                                'conditionConservation_conditions', 'conditionConservation_preservationForm']">
                                                   <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
                                               </tal:notcategory>
                                           </metal:field>
