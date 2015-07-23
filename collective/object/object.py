@@ -639,7 +639,12 @@ class IObject(form.Schema):
 
     model.fieldset('condition_conservation', label=_(u'Condition & Conservation'), 
         fields=['conditionConservation_priority', 'conditionConservation_next_condition_check', 'conditionConservation_date',
-                'conditionConservation_completeness', 'conditionConservation_condition', 'conditionConservation_enviromental_condition', 'conditionConservation_conservation_request']
+                'conditionConservation_completeness', 'conditionConservation_condition', 'conditionConservation_enviromental_condition', 'conditionConservation_conservation_request', 
+                'conditionConservation_recommendations_display',
+                'conditionConservation_recommendations_environment', 'conditionConservation_recommendations_handling',
+                'conditionConservation_recommendations_packing', 'conditionConservation_recommendations_security',
+                'conditionConservation_recommendations_specialRequirements',
+                'conditionConservation_recommendations_storage', ]
     )
 
 
@@ -694,14 +699,54 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('conditionConservation_conservation_request')
 
 
+    # Recommendations
+    conditionConservation_recommendations_display = schema.TextLine(
+        title=_(u'Display'),
+        required=False
+    )
+    dexteritytextindexer.searchable('conditionConservation_recommendations_display')
+    
+    conditionConservation_recommendations_environment = schema.TextLine(
+        title=_(u'Environment'),
+        required=False
+    )
+    dexteritytextindexer.searchable('conditionConservation_recommendations_environment')
+
+    conditionConservation_recommendations_handling = schema.TextLine(
+        title=_(u'Handling'),
+        required=False
+    )
+    dexteritytextindexer.searchable('conditionConservation_recommendations_handling')
+
+    conditionConservation_recommendations_packing = schema.TextLine(
+        title=_(u'Packing'),
+        required=False
+    )
+    dexteritytextindexer.searchable('conditionConservation_recommendations_packing')
+
+    conditionConservation_recommendations_security = schema.TextLine(
+        title=_(u'Security'),
+        required=False
+    )
+    dexteritytextindexer.searchable('conditionConservation_recommendations_security')
+
+    conditionConservation_recommendations_storage = schema.TextLine(
+        title=_(u'Storage'),
+        required=False
+    )
+    dexteritytextindexer.searchable('conditionConservation_recommendations_storage')
+
+    conditionConservation_recommendations_specialRequirements = schema.TextLine(
+        title=_(u'Special requirements'),
+        required=False
+    )
+    dexteritytextindexer.searchable('conditionConservation_recommendations_specialRequirements')
+
     # # # # # # # # # # # # # # # # # 
     # Recommendations/requirements  #
     # # # # # # # # # # # # # # # # # 
     model.fieldset('recommendations_requirements', label=_(u'Recommendations/requirements'), 
-        fields=['recommendationsRequirements_creditLine_creditLine', 'recommendationsRequirements_recommendations_display',
-                'recommendationsRequirements_recommendations_environment', 'recommendationsRequirements_recommmendations_handling',
-                'recommendationsRequirements_recommendations_packing', 'recommendationsRequirements_recommendations_security',
-                'recommendationsRequirements_recommendations_storage', 'recommendationsRequirements_legalLicenceRequirements_requirements',
+        fields=['recommendationsRequirements_creditLine_creditLine', 'recommendationsRequirements_legalLicenceRequirements_requirements',
                 'recommendationsRequirements_legalLicenceRequirements_requirementsHeld']
     )
 
@@ -711,43 +756,6 @@ class IObject(form.Schema):
         required=False
     )
     dexteritytextindexer.searchable('recommendationsRequirements_creditLine_creditLine')
-
-    # Recommendations
-    recommendationsRequirements_recommendations_display = schema.TextLine(
-        title=_(u'Display'),
-        required=False
-    )
-    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_display')
-    
-    recommendationsRequirements_recommendations_environment = schema.TextLine(
-        title=_(u'Environment'),
-        required=False
-    )
-    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_environment')
-
-    recommendationsRequirements_recommmendations_handling = schema.TextLine(
-        title=_(u'Handling'),
-        required=False
-    )
-    dexteritytextindexer.searchable('recommendationsRequirements_recommmendations_handling')
-
-    recommendationsRequirements_recommendations_packing = schema.TextLine(
-        title=_(u'Packing'),
-        required=False
-    )
-    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_packing')
-
-    recommendationsRequirements_recommendations_security = schema.TextLine(
-        title=_(u'Security'),
-        required=False
-    )
-    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_security')
-
-    recommendationsRequirements_recommendations_storage = schema.TextLine(
-        title=_(u'Storage'),
-        required=False
-    )
-    dexteritytextindexer.searchable('recommendationsRequirements_recommendations_storage')
 
     # Legal / license requirements
     recommendationsRequirements_legalLicenceRequirements_requirements = schema.TextLine(

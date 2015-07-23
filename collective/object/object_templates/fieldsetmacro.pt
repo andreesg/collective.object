@@ -338,6 +338,17 @@
         <tal:widget tal:replace="structure widgets/conditionConservation_conservation_request/@@ploneform-render-widget"/>
       </div>
 
+      <h2 class="page-header" i18n:translate="">Recommendations</h2>
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_display/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_environment/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_handling/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_packing/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_security/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_storage/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_specialRequirements/@@ploneform-render-widget"/>
+      </div>
+
     </div>
   </tal:condition_conservation>
 
@@ -349,16 +360,6 @@
 
         <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/recommendationsRequirements_creditLine_creditLine/@@ploneform-render-widget"/>
-        </div>
-
-        <h2 class="page-header" i18n:translate="">Recommendations</h2>
-        <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/recommendationsRequirements_recommendations_display/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/recommendationsRequirements_recommendations_environment/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/recommendationsRequirements_recommmendations_handling/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/recommendationsRequirements_recommendations_packing/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/recommendationsRequirements_recommendations_security/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/recommendationsRequirements_recommendations_storage/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Legal / license requirements</h2>

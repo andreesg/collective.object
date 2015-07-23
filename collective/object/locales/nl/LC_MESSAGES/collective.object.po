@@ -1368,6 +1368,9 @@ msgstr 'subvorm'
 msgid 'Translation'
 msgstr 'Vertaling'
 
+#: ../object.py
+msgid 'Special requirements'
+msgstr 'Speciale eisen'
 
 
 
