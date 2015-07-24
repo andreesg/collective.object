@@ -1393,7 +1393,6 @@ msgstr 'Van'
 msgid 'label_acquisition_place'
 msgstr 'Plaats'
 
-
 #: ../object.py
 msgid 'label_plaats'
 msgstr 'Plaats'
@@ -1402,7 +1401,9 @@ msgstr 'Plaats'
 msgid 'label_description'
 msgstr 'Omschrijving'
 
-
+#: ../object.py
+msgid 'label_field_collection'
+msgstr 'Vondst en vindplaats'
 
 
 

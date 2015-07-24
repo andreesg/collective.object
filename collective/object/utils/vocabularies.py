@@ -228,6 +228,12 @@ ExchangeMethodVocabularyFactory = ObjectVocabulary('ownershipHistory_history_exc
 HistoryPlaceVocabularyFactory = ObjectVocabulary("ownershipHistory_history_place")
 LocationVocabularyFactory = ObjectVocabulary('location_normalLocation_normalLocation')
 CurrentLocationVocabularyFactory = ObjectVocabulary('location_currentLocation')
+CollectorRoleVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_collector_role')
+FieldCollectionMethodVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_method')
+FieldCollectionPlaceVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_place')
+PlaceFeatureVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_placeFeature')
+StratigraphyVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_stratigraphy')
+
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))

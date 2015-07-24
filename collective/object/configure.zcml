@@ -122,7 +122,12 @@
   <adapter name="location_normalLocation_normalLocation" factory=".indexers.location_normalLocation_normalLocation" />
   <adapter name="location_currentLocation" factory=".indexers.location_currentLocation" />
 
-  
+  <adapter name="fieldCollection_fieldCollection_collector_role" factory=".indexers.fieldCollection_fieldCollection_collector_role" />
+  <adapter name="fieldCollection_fieldCollection_method" factory=".indexers.fieldCollection_fieldCollection_method" />
+  <adapter name="fieldCollection_fieldCollection_place" factory=".indexers.fieldCollection_fieldCollection_place" />
+  <adapter name="fieldCollection_fieldCollection_placeFeature" factory=".indexers.fieldCollection_fieldCollection_placeFeature" />
+  <adapter name="fieldCollection_habitatStratigraphy_stratigraphy" factory=".indexers.fieldCollection_habitatStratigraphy_stratigraphy" />
+
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
     name="collective.object.objectCategory"
@@ -246,6 +251,31 @@
   <utility
     component=".utils.vocabularies.CurrentLocationVocabularyFactory"
     name="collective.object.currentlocation"
+    />
+
+  <utility
+    component=".utils.vocabularies.CollectorRoleVocabularyFactory"
+    name="collective.object.fieldCollection_collector_role"
+    />
+
+  <utility
+    component=".utils.vocabularies.FieldCollectionMethodVocabularyFactory"
+    name="collective.object.fieldCollection_method"
+    />
+
+  <utility
+    component=".utils.vocabularies.FieldCollectionPlaceVocabularyFactory"
+    name="collective.object.fieldCollection_place"
+    />
+
+  <utility
+    component=".utils.vocabularies.PlaceFeatureVocabularyFactory"
+    name="collective.object.fieldCollection_placeFeature"
+    />
+
+  <utility
+    component=".utils.vocabularies.StratigraphyVocabularyFactory"
+    name="collective.object.fieldCollection_stratigraphy"
     />
 
   <!-- -*- extra stuff goes here -*- -->

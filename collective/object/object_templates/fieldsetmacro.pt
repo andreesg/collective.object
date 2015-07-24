@@ -786,14 +786,18 @@
     tal:define='widgets group/widgets'>
     <!-- field_collection -->
     <div class="row no-padding">
-        <h2 class="page-header" i18n:translate="">Field Collection</h2>
+        <h2 class="page-header" i18n:translate="label_field_collection">Field Collection</h2>
 
         <div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_fieldCollNumber/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield table-responsive">
+        <!--<div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_collector/@@ploneform-render-widget"/>
+        </div>-->
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_collectors/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal gridfield table-responsive">
@@ -817,20 +821,32 @@
 
         </div>
 
-        <div class="form-horizontal gridfield table-responsive">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_method/@@ploneform-render-widget"/>
+        </div>-->
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_methods/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield table-responsive">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_place/@@ploneform-render-widget"/>
+        </div>-->
+        
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_places/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield table-responsive">
+        <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_placeCode/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield table-responsive">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_placeFeature/@@ploneform-render-widget"/>
+        </div>-->
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_placeFeatures/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Co-ordinates field collection place</h2>
@@ -845,12 +861,12 @@
           <tal:widget tal:replace="structure widgets/fieldCollection_habitatStratigraphy_habitat/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield table-responsive">
-          <tal:widget tal:replace="structure widgets/fieldCollection_habitatStratigraphy_stratigraphy/@@ploneform-render-widget"/>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_habitatStratigraphy_stratigrafie/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Notes</h2>
-        <div class="form-horizontal">
+        <div class="form-horizontal gridfield hide-th">
           <tal:widget tal:replace="structure widgets/fieldCollection_notes/@@ploneform-render-widget"/>
         </div>
     </div>

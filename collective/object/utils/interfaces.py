@@ -318,6 +318,28 @@ class ICurrentLocations(Interface):
     fitness = schema.TextLine(title=_(u'Fitness'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+class ICollectors(Interface):
+    name = schema.TextLine(title=_(u'Collector'), required=False)
+
+    form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
+    role = schema.List(
+        title=_(u'Role'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+class IStratigrafie(Interface):
+
+    form.widget('unit', AjaxSelectFieldWidget, vocabulary="collective.object.fieldCollection_stratigraphy")
+    unit = schema.List(
+        title=_(u'Stratigraphy'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    type = schema.TextLine(title=_(u'Strat. type'), required=False)
+
 ##
 ## Fields
 ##

@@ -341,3 +341,57 @@ def location_currentLocation(object, **kw):
         return []
 
 
+@indexer(IObject)
+def fieldCollection_fieldCollection_collector_role(object, **kw):
+    if hasattr(object, 'fieldCollection_fieldCollection_collectors'):
+        terms = []
+        items = object.fieldCollection_fieldCollection_collectors
+        if items != None:
+            for item in items:
+                if item['role'] != None:
+                    for term in item['role']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
+def fieldCollection_fieldCollection_method(object, **kw):
+    if hasattr(object, 'fieldCollection_fieldCollection_methods'):
+        return object.fieldCollection_fieldCollection_methods
+    else:
+        return []
+
+
+@indexer(IObject)
+def fieldCollection_fieldCollection_place(object, **kw):
+    if hasattr(object, 'fieldCollection_fieldCollection_places'):
+        return object.fieldCollection_fieldCollection_places
+    else:
+        return []
+
+@indexer(IObject)
+def fieldCollection_fieldCollection_placeFeature(object, **kw):
+    if hasattr(object, 'fieldCollection_fieldCollection_placeFeatures'):
+        return object.fieldCollection_fieldCollection_placeFeatures
+    else:
+        return []
+
+@indexer(IObject)
+def fieldCollection_habitatStratigraphy_stratigraphy(object, **kw):
+    if hasattr(object, 'fieldCollection_habitatStratigraphy_stratigrafie'):
+        terms = []
+        items = object.fieldCollection_habitatStratigraphy_stratigrafie
+        if items != None:
+            for item in items:
+                if item['unit'] != None:
+                    for term in item['unit']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+
+
