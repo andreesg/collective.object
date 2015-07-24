@@ -732,13 +732,16 @@
         <h2 class="page-header" i18n:translate="">Normal location</h2>
 
         <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/location_normal_location/@@ploneform-render-widget"/>
+          <!--<tal:widget tal:replace="structure widgets/location_normal_location/@@ploneform-render-widget"/>-->
+          <tal:widget tal:replace="structure view/widgets/location_normalLocation_normalLocation/@@ploneform-render-widget"/>
+          
         </div>
 
         <h2 class="page-header" i18n:translate="">Current location</h2>
 
         <div class="form-horizontal gridfield table-responsive">
-          <tal:widget tal:replace="structure widgets/location_current_location/@@ploneform-render-widget"/>
+          <!--<tal:widget tal:replace="structure widgets/location_current_location/@@ploneform-render-widget"/>-->
+          <tal:widget tal:replace="structure view/widgets/location_currentLocation/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Location checks</h2>

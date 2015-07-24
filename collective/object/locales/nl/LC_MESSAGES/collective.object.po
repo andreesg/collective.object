@@ -666,7 +666,7 @@ msgstr "Vaste standplaats"
 
 #: ../object.py
 msgid "Current location"
-msgstr "Huidige locatie"
+msgstr "Huidige standplaats"
 
 #: ../object.py
 msgid "Start date"

@@ -317,5 +317,27 @@ def ownershipHistory_history_place(object, **kw):
     else:
         return []
 
+@indexer(IObject)
+def location_normalLocation_normalLocation(object, **kw):
+    if hasattr(object, 'location_normalLocation_normalLocation'):
+        return object.location_normalLocation_normalLocation
+    else:
+        return []
+
+
+@indexer(IObject)
+def location_currentLocation(object, **kw):
+    if hasattr(object, 'location_currentLocation'):
+        terms = []
+        items = object.location_currentLocation
+        if items != None:
+            for item in items:
+                if item['location'] != None:
+                    for term in item['location']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
 
 

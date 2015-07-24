@@ -300,6 +300,24 @@ class IFundings(Interface):
     source = schema.TextLine(title=_(u'Source'), required=False)
     provisos = schema.TextLine(title=_(u'label_provisos', default=u"Provisos"), required=False)
 
+
+# Location
+class ICurrentLocations(Interface):
+    start_date = schema.TextLine(title=_(u'Start date'), required=False)
+    end_date = schema.TextLine(title=_(u'End date'), required=False)
+    location_type = schema.TextLine(title=_(u'Location type'), required=False)
+    
+    form.widget('location', AjaxSelectFieldWidget, vocabulary="collective.object.currentlocation")
+    location = schema.List(
+        title=_(u'Location'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    fitness = schema.TextLine(title=_(u'Fitness'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
 ##
 ## Fields
 ##

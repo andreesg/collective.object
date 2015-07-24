@@ -119,6 +119,9 @@
   <adapter name="ownershipHistory_history_exchangeMethod" factory=".indexers.ownershipHistory_history_exchangeMethod" />
   <adapter name="ownershipHistory_history_place" factory=".indexers.ownershipHistory_history_place" />
   
+  <adapter name="location_normalLocation_normalLocation" factory=".indexers.location_normalLocation_normalLocation" />
+  <adapter name="location_currentLocation" factory=".indexers.location_currentLocation" />
+
   
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
@@ -235,6 +238,15 @@
     name="collective.object.historyplace"
     />
 
+  <utility
+    component=".utils.vocabularies.LocationVocabularyFactory"
+    name="collective.object.location"
+    />
+
+  <utility
+    component=".utils.vocabularies.CurrentLocationVocabularyFactory"
+    name="collective.object.currentlocation"
+    />
 
   <!-- -*- extra stuff goes here -*- -->
 

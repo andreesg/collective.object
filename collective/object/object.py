@@ -88,7 +88,8 @@ class IObject(form.Schema):
     identification_objectName_category = schema.List(
         title=_(u'Object Category'),
         required=False,
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
     form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
 
@@ -187,28 +188,32 @@ class IObject(form.Schema):
     acquisition_methods = schema.List(
         title=_(u'Method'),
         required=False,
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
     form.widget('acquisition_methods', AjaxSelectFieldWidget,  vocabulary="collective.object.aquisitionmethod")
 
     acquisition_places = schema.List(
         title=_(u'label_acquisition_place', default=u"Place"),
         required=False,
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
     form.widget('acquisition_places', AjaxSelectFieldWidget,  vocabulary="collective.object.aquisitionplace")
 
     acquisition_costs_offer_price_currency = schema.List(
         title=_(u'Curr.'),
         required=False,
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
     form.widget('acquisition_costs_offer_price_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
 
     acquisition_costs_purchase_price_currency = schema.List(
         title=_(u'Curr.'),
         required=False,
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
     form.widget('acquisition_costs_purchase_price_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
 
@@ -231,16 +236,35 @@ class IObject(form.Schema):
     ownershipHistory_history_exchangeMethod = schema.List(
         title=_(u'Exchange method'),
         required=False,
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
     form.widget('ownershipHistory_history_exchangeMethod', AjaxSelectFieldWidget,  vocabulary="collective.object.exchangemethod")
 
     ownershipHistory_history_place = schema.List(
         title=_(u'label_plaats', default=u'Place'),
         required=False,
-        value_type=schema.TextLine()
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
     form.widget('ownershipHistory_history_place', AjaxSelectFieldWidget,  vocabulary="collective.object.historyplace")
+
+
+    # Location
+    location_normalLocation_normalLocation = schema.List(
+        title=_(u'Normal location'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('location_normalLocation_normalLocation', AjaxSelectFieldWidget,  vocabulary="collective.object.location")
+
+    # Current location
+    location_currentLocation = ListField(title=_(u'Current location'),
+        value_type=DictRow(title=_(u'Current location'), schema=ICurrentLocations),
+        required=False)
+    form.widget(location_currentLocation=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('location_currentLocation')
 
     text = RichText(
         title=_(u"Body"),
