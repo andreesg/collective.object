@@ -570,7 +570,7 @@ class IFunding(Interface):
     provisos = schema.TextLine(title=_(u'Provisos'), required=False)
 
 class IDocumentation(Interface):
-    description = schema.TextLine(title=_(u'Description'), required=False)
+    description = schema.TextLine(title=_(u'label_description', default=u'Description'), required=False)
     reference = schema.TextLine(title=_(u'Reference'), required=False)
 
 # Location

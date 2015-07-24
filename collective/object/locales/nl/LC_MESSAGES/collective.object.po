@@ -1393,10 +1393,9 @@ msgstr 'Van'
 msgid 'label_acquisition_place'
 msgstr 'Plaats'
 
-
-
-
-
+#: ../object.py
+msgid 'label_description'
+msgstr 'Omschrijving'
 
 
 

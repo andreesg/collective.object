@@ -641,8 +641,8 @@
       	  </div>
           
           <tal:widget tal:replace="structure widgets/disposal_method/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/disposal_proposed_recipient/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/disposal_recipient/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/disposal_disposal_proposedRecipient/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/disposal_disposal_recipient/@@ploneform-render-widget"/>
           <tal:widget tal:replace="structure widgets/disposal_reason/@@ploneform-render-widget"/>
           <tal:widget tal:replace="structure widgets/disposal_provisos/@@ploneform-render-widget"/>
         </div>
@@ -653,11 +653,11 @@
         		<tal:widget tal:replace="structure widgets/disposal_finance_disposal_price/@@ploneform-render-widget"/>
         	</div>
         	<div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
-         		<tal:widget tal:replace="structure widgets/disposal_finance_currency/@@ploneform-render-widget"/>
+         		<tal:widget tal:replace="structure view/widgets/disposal_finance_currency/@@ploneform-render-widget"/>
          	</div>
         </div>
 
-        <h2 class="page-header" i18n:translate="">Documentation</h2>
+        <h2 class="page-header" i18n:translate="" style="clear:both;">Documentation</h2>
 
         <div class="form-horizontal gridfield">
         	<tal:widget tal:replace="structure widgets/disposal_documentation/@@ploneform-render-widget"/>

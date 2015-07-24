@@ -217,6 +217,15 @@ class IObject(form.Schema):
     form.widget(acquisition_fundings=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('acquisition_fundings')
 
+    # Disposal
+    disposal_finance_currency = schema.List(
+        title=_(u'Curr.'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('disposal_finance_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
+
+
     text = RichText(
         title=_(u"Body"),
         required=False
@@ -1035,8 +1044,8 @@ class IObject(form.Schema):
 
     model.fieldset('disposal', label=_(u'Disposal'), 
         fields=['disposal_deaccession', 'disposal_new_object_number', 'disposal_number',
-                'disposal_date', 'disposal_method', 'disposal_proposed_recipient', 'disposal_recipient',
-                'disposal_reason', 'disposal_provisos', 'disposal_finance_disposal_price', 'disposal_finance_currency',
+                'disposal_date', 'disposal_method', 'disposal_proposed_recipient', 'disposal_disposal_proposedRecipient',
+                'disposal_disposal_recipient', 'disposal_recipient', 'disposal_reason', 'disposal_provisos', 'disposal_finance_disposal_price',
                 'disposal_documentation', 'disposal_notes'
         ]
     )
@@ -1079,6 +1088,26 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('disposal_proposed_recipient')
 
+    disposal_disposal_recipient = RelationList(
+        title=_(u'Recipient'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
+
+    disposal_disposal_proposedRecipient = RelationList(
+        title=_(u'Proposed recipient'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
+
     disposal_recipient = schema.TextLine(
         title=_(u'Recipient'),
         required=False
@@ -1103,12 +1132,6 @@ class IObject(form.Schema):
         required=False
     )
     dexteritytextindexer.searchable('disposal_finance_disposal_price')
-
-    disposal_finance_currency = schema.TextLine(
-        title=_(u'Curr.'),
-        required=False
-    )
-    dexteritytextindexer.searchable('disposal_finance_currency')
 
     # Documentation
     disposal_documentation = ListField(title=_(u'Documentation'),

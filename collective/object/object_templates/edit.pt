@@ -106,7 +106,7 @@
                                                 'physicalCharacteristics_material', 'physicalCharacteristics_dimension', 'iconography_generalSearchCriteria_generalThemes', 'iconography_generalSearchCriteria_specificThemes',
                                                 'iconography_contentSubjects', 'inscriptionsMarkings_inscriptionsAndMarkings', 'associations_associatedSubjects', 'associations_associatedPeriods', 'valueInsurance_valuations',
                                                 'conditionConservation_conditions', 'conditionConservation_preservationForm', 'acquisition_methods',
-                                                'acquisition_places', 'acquisition_costs_offer_price_currency', 'acquisition_costs_purchase_price_currency', 'acquisition_fundings']">
+                                                'acquisition_places', 'acquisition_costs_offer_price_currency', 'acquisition_costs_purchase_price_currency', 'acquisition_fundings', 'disposal_finance_currency']">
                                                   <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
                                               </tal:notcategory>
                                           </metal:field>
