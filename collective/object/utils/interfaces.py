@@ -727,12 +727,22 @@ class IStratigraphy(Interface):
 
 ## Exhibitions
 class IExhibition(Interface):
-    name = schema.TextLine(title=_(u'Exhibition name'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-    to = schema.TextLine(title=_(u'to'), required=False)
-    organiser = schema.TextLine(title=_(u'Organiser'), required=False)
-    venue = schema.TextLine(title=_(u'Venue'), required=False)
-    place = schema.TextLine(title=_(u'Place'), required=False)
+    exhibitionName = RelationList(
+        title=_(u'Exhibition name'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Exhibition')
+        ),
+        required=False
+    )
+
+    #name = schema.TextLine(title=_(u'Exhibition name'), required=False
+    #date = schema.TextLine(title=_(u'Date'), required=False)
+    #to = schema.TextLine(title=_(u'to'), required=False)
+    #organiser = schema.TextLine(title=_(u'Organiser'), required=False)
+    #venue = schema.TextLine(title=_(u'Venue'), required=False)
+    #place = schema.TextLine(title=_(u'Place'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
     catObject = schema.TextLine(title=_(u'Cat. no. object'), required=False)
 

@@ -303,7 +303,7 @@ class IObject(form.Schema):
         required=False)
     form.widget(fieldCollection_habitatStratigraphy_stratigrafie=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('fieldCollection_habitatStratigraphy_stratigrafie')
-
+    
     text = RichText(
         title=_(u"Body"),
         required=False

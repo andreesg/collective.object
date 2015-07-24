@@ -876,10 +876,11 @@
     tal:define='widgets group/widgets'>
     <!-- Exhibition -->
     <div class="row no-padding">
-      <h2 class="page-header" i18n:translate="">Exhibition</h2>
+        
+        <!--<h2 class="page-header" i18n:translate="">Exhibition</h2>
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/exhibitions_relatedExhibitions/@@ploneform-render-widget"/>
-        </div>
+        </div>-->
         
         <h2 class="page-header" i18n:translate="">Exhibition</h2>
         <div class="form-horizontal gridfield">
