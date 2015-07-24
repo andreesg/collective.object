@@ -678,13 +678,16 @@
         <h2 class="page-header" i18n:translate="">Ownership</h2>
 
         <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/ownershipHistory_current_owner/@@ploneform-render-widget"/>
+          <!--<tal:widget tal:replace="structure widgets/ownershipHistory_current_owner/@@ploneform-render-widget"/>-->
+          <tal:widget tal:replace="structure widgets/ownershipHistory_ownership_currentOwner/@@ploneform-render-widget"/>
+          
         </div>
 
         <h2 class="page-header" i18n:translate="">History</h2>
 
         <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/ownershipHistory_owner/@@ploneform-render-widget"/>
+          <!--<tal:widget tal:replace="structure widgets/ownershipHistory_owner/@@ploneform-render-widget"/>-->
+          <tal:widget tal:replace="structure widgets/ownershipHistory_history_owner/@@ploneform-render-widget"/>
           
           <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
         	<tal:widget tal:replace="structure widgets/ownershipHistory_from/@@ploneform-render-widget"/>
@@ -694,8 +697,11 @@
           	<tal:widget tal:replace="structure widgets/ownershipHistory_until/@@ploneform-render-widget"/>
       	  </div>
           
-          <tal:widget tal:replace="structure widgets/ownershipHistory_exchange_method/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/ownershipHistory_acquired_from/@@ploneform-render-widget"/>
+          <!--<tal:widget tal:replace="structure widgets/ownershipHistory_exchange_method/@@ploneform-render-widget"/>-->
+          <tal:widget tal:replace="structure view/widgets/ownershipHistory_history_exchangeMethod/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/ownershipHistory_history_acquiredFrom/@@ploneform-render-widget"/>
+          
+          <!--<tal:widget tal:replace="structure widgets/ownershipHistory_acquired_from/@@ploneform-render-widget"/>-->
           
           <div class="col-sm-12 col-md-6 col-lg-6 div-50-triple">
           	<tal:widget tal:replace="structure widgets/ownershipHistory_auction/@@ploneform-render-widget"/>
@@ -707,7 +713,9 @@
           	<tal:widget tal:replace="structure widgets/ownershipHistory_lot_no/@@ploneform-render-widget"/>
       	  </div>
           
-          <tal:widget tal:replace="structure widgets/ownershipHistory_place/@@ploneform-render-widget"/>
+          <!--<tal:widget tal:replace="structure widgets/ownershipHistory_place/@@ploneform-render-widget"/>-->
+          <tal:widget tal:replace="structure view/widgets/ownershipHistory_history_place/@@ploneform-render-widget"/>
+
           <tal:widget tal:replace="structure widgets/ownershipHistory_price/@@ploneform-render-widget"/>
           <tal:widget tal:replace="structure widgets/ownershipHistory_category/@@ploneform-render-widget"/>
           <tal:widget tal:replace="structure widgets/ownershipHistory_access/@@ploneform-render-widget"/>

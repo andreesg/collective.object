@@ -84,6 +84,8 @@
       permission="zope.Public"
     />
 
+  <adapter name="identification_identification_objectNumber" factory=".indexers.identification_identification_objectNumber" />
+  
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
   <adapter name="identification_objectName_objectname" factory=".indexers.identification_objectName_objectname" />
 
@@ -113,6 +115,9 @@
     
   <adapter name="acquisition_methods" factory=".indexers.acquisition_methods" />
   <adapter name="acquisition_places" factory=".indexers.acquisition_places" />
+  
+  <adapter name="ownershipHistory_history_exchangeMethod" factory=".indexers.ownershipHistory_history_exchangeMethod" />
+  <adapter name="ownershipHistory_history_place" factory=".indexers.ownershipHistory_history_place" />
   
   
   <utility
@@ -218,6 +223,16 @@
   <utility
     component=".utils.vocabularies.AquisitionPlaceVocabularyFactory"
     name="collective.object.aquisitionplace"
+    />
+
+  <utility
+    component=".utils.vocabularies.ExchangeMethodVocabularyFactory"
+    name="collective.object.exchangemethod"
+    />
+
+  <utility
+    component=".utils.vocabularies.HistoryPlaceVocabularyFactory"
+    name="collective.object.historyplace"
     />
 
 

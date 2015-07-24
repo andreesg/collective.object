@@ -288,10 +288,32 @@ def acquisition_methods(object, **kw):
     else:
         return []
 
+
 @indexer(IObject)
 def acquisition_places(object, **kw):
     if hasattr(object, 'acquisition_places'):
         return object.acquisition_places
+    else:
+        return []
+
+@indexer(IObject)
+def ownershipHistory_history_exchangeMethod(object, **kw):
+    if hasattr(object, 'ownershipHistory_history_exchangeMethod'):
+        return object.ownershipHistory_history_exchangeMethod
+    else:
+        return []
+
+@indexer(IObject)
+def identification_identification_objectNumber(object, **kw):
+    if hasattr(object, 'identification_identification_objectNumber'):
+        return object.identification_identification_objectNumber
+    else:
+        return ""
+
+@indexer(IObject)
+def ownershipHistory_history_place(object, **kw):
+    if hasattr(object, 'ownershipHistory_history_place'):
+        return object.ownershipHistory_history_place
     else:
         return []
 

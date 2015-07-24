@@ -224,6 +224,9 @@ ConditionVocabularyFactory = ObjectVocabulary('conditionConservation_conditions_
 PreservationFormVocabularyFactory = ObjectVocabulary('conditionConservation_preservationForm')
 AquisitionMethodVocabularyFactory = ObjectVocabulary('acquisition_methods')
 AquisitionPlaceVocabularyFactory = ObjectVocabulary('acquisition_places')
+ExchangeMethodVocabularyFactory = ObjectVocabulary('ownershipHistory_history_exchangeMethod')
+HistoryPlaceVocabularyFactory = ObjectVocabulary("ownershipHistory_history_place")
+
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))

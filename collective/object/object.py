@@ -28,6 +28,8 @@ from z3c.form.form import extends
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
+from z3c.relationfield.interfaces import IRelationList
+
 try:
     from z3c.form.browser.textlines import TextLinesFieldWidget
 except ImportError:
@@ -38,7 +40,7 @@ from collective.z3cform.datagridfield.interfaces import IDataGridField
 #
 # Plone app widget dependencies
 #
-from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget
+from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget, IAjaxSelectWidget
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 #
@@ -225,6 +227,20 @@ class IObject(form.Schema):
     )
     form.widget('disposal_finance_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
 
+    # Ownership history
+    ownershipHistory_history_exchangeMethod = schema.List(
+        title=_(u'Exchange method'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('ownershipHistory_history_exchangeMethod', AjaxSelectFieldWidget,  vocabulary="collective.object.exchangemethod")
+
+    ownershipHistory_history_place = schema.List(
+        title=_(u'label_plaats', default=u'Place'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('ownershipHistory_history_place', AjaxSelectFieldWidget,  vocabulary="collective.object.historyplace")
 
     text = RichText(
         title=_(u"Body"),
@@ -1152,8 +1168,10 @@ class IObject(form.Schema):
     # # # # # # # # # # # # #
 
     model.fieldset('ownership_history', label=_(u'Ownership history'), 
-        fields=['ownershipHistory_current_owner', 'ownershipHistory_owner', 'ownershipHistory_from',
+        fields=['ownershipHistory_current_owner', 'ownershipHistory_ownership_currentOwner', 
+                'ownershipHistory_owner', 'ownershipHistory_history_owner', 'ownershipHistory_from',
                 'ownershipHistory_until', 'ownershipHistory_exchange_method', 'ownershipHistory_acquired_from',
+                'ownershipHistory_history_acquiredFrom',
                 'ownershipHistory_auction', 'ownershipHistory_rec_no', 'ownershipHistory_lot_no', 'ownershipHistory_place',
                 'ownershipHistory_price', 'ownershipHistory_category', 'ownershipHistory_access', 'ownershipHistory_notes']
     )
@@ -1165,12 +1183,32 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('ownershipHistory_current_owner')
 
+    ownershipHistory_ownership_currentOwner = RelationList(
+        title=_(u'Current Owner'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
+
     # History
     ownershipHistory_owner = schema.TextLine(
         title=_(u'Owner'),
         required=False
     )
     dexteritytextindexer.searchable('ownershipHistory_owner')
+
+    ownershipHistory_history_owner = RelationList(
+        title=_(u'Owner'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
 
     ownershipHistory_from = schema.TextLine(
         title=_(u'From'),
@@ -1196,6 +1234,16 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('ownershipHistory_acquired_from')
 
+    ownershipHistory_history_acquiredFrom = RelationList(
+        title=_(u'Acquired from'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
+
     ownershipHistory_auction = schema.TextLine(
         title=_(u'Auction'),
         required=False
@@ -1215,7 +1263,7 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('ownershipHistory_lot_no')
 
     ownershipHistory_place = schema.TextLine(
-        title=_(u'Place'),
+        title=_(u'label_plaats', default=u'Place'),
         required=False
     )
     dexteritytextindexer.searchable('ownershipHistory_place')
@@ -1487,7 +1535,7 @@ class AddForm(add.DefaultAddForm):
                 alsoProvides(widget, IFormWidget)
 
         for widget in self.widgets.values():
-            if IDataGridField.providedBy(widget):
+            if IDataGridField.providedBy(widget) or IAjaxSelectWidget.providedBy(widget):
                 widget.auto_append = False
                 widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
@@ -1508,7 +1556,7 @@ class EditForm(edit.DefaultEditForm):
                 alsoProvides(widget, IFormWidget)
 
         for widget in self.widgets.values():
-            if IDataGridField.providedBy(widget):
+            if IDataGridField.providedBy(widget) or IAjaxSelectWidget.providedBy(widget):
                 widget.auto_append = False
                 widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
