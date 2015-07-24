@@ -1383,40 +1383,6 @@ class IObject(form.Schema):
     form.widget(location_checks=DataGridFieldFactory)
     dexteritytextindexer.searchable('location_checks')
 
-    # # # # # #
-    # Notes   #
-    # # # # # #
-    model.fieldset('notes', label=_(u'Notes'), 
-        fields=['notes', 'notes_free_fields']
-    )
-
-    notes = ListField(title=_(u'Notes'),
-        value_type=DictRow(title=_(u'Notes'), schema=INotes),
-        required=False)
-    form.widget(notes=DataGridFieldFactory)
-    dexteritytextindexer.searchable('notes')
-
-    # Free fields
-    notes_free_fields = ListField(title=_(u'Free Fields'),
-        value_type=DictRow(title=_(u'Free Fields'), schema=IFreeFields),
-        required=False)
-    form.widget(notes_free_fields=DataGridFieldFactory)
-    dexteritytextindexer.searchable('notes_free_fields')
-
-    # # # # # # #
-    # Labels    #
-    # # # # # # #
-
-    model.fieldset('labels', label=_(u'Labels'), 
-        fields=['labels']
-    )
-
-    labels = ListField(title=_(u'Labels'),
-        value_type=DictRow(title=_(u'Labels'), schema=ILabel),
-        required=False)
-    form.widget(labels=DataGridFieldFactory)
-    dexteritytextindexer.searchable('labels')
-
     # # # # # # # # # # # 
     # Field Collection  #
     # # # # # # # # # # #
@@ -1591,6 +1557,40 @@ class IObject(form.Schema):
         ),
         required=False
     )
+
+    # # # # # # #
+    # Labels    #
+    # # # # # # #
+
+    model.fieldset('labels', label=_(u'Labels'), 
+        fields=['labels']
+    )
+
+    labels = ListField(title=_(u'Labels'),
+        value_type=DictRow(title=_(u'Labels'), schema=ILabel),
+        required=False)
+    form.widget(labels=DataGridFieldFactory)
+    dexteritytextindexer.searchable('labels')
+
+    # # # # # #
+    # Notes   #
+    # # # # # #
+    model.fieldset('notes', label=_(u'Notes'), 
+        fields=['notes', 'notes_free_fields']
+    )
+
+    notes = ListField(title=_(u'Notes'),
+        value_type=DictRow(title=_(u'Notes'), schema=INotes),
+        required=False)
+    form.widget(notes=DataGridFieldFactory)
+    dexteritytextindexer.searchable('notes')
+
+    # Free fields
+    notes_free_fields = ListField(title=_(u'Free Fields'),
+        value_type=DictRow(title=_(u'Free Fields'), schema=IFreeFields),
+        required=False)
+    form.widget(notes_free_fields=DataGridFieldFactory)
+    dexteritytextindexer.searchable('notes_free_fields')
     
 
 
