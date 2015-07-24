@@ -303,7 +303,7 @@ class IObject(form.Schema):
         required=False)
     form.widget(fieldCollection_habitatStratigraphy_stratigrafie=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('fieldCollection_habitatStratigraphy_stratigrafie')
-    
+
     text = RichText(
         title=_(u"Body"),
         required=False
@@ -1556,7 +1556,8 @@ class IObject(form.Schema):
     # # # # # # # #
 
     model.fieldset('loans', label=_(u'Loans'), 
-        fields=['loans_incomingLoans', 'loans_outgoingLoans']
+        fields=['loans_incomingLoans', 'loans_outgoingLoans',
+                'loans_incomingLoan', 'loans_outgoingLoan']
     )
 
     loans_incomingLoans = ListField(title=_(u'Incoming loans'),
@@ -1570,6 +1571,26 @@ class IObject(form.Schema):
         required=False)
     form.widget(loans_outgoingLoans=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('loans_outgoingLoans')
+
+    loans_incomingLoan = RelationList(
+        title=_(u'Incoming loans'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='IncomingLoan')
+        ),
+        required=False
+    )
+
+    loans_outgoingLoan = RelationList(
+        title=_(u'Outgoing loans'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='OutgoingLoan')
+        ),
+        required=False
+    )
     
 
 
