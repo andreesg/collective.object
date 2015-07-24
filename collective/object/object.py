@@ -1569,18 +1569,18 @@ class IObject(form.Schema):
     labels = ListField(title=_(u'Labels'),
         value_type=DictRow(title=_(u'Labels'), schema=ILabel),
         required=False)
-    form.widget(labels=DataGridFieldFactory)
+    form.widget(labels=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('labels')
 
     # # # # # #
     # Notes   #
     # # # # # #
-    model.fieldset('notes', label=_(u'Notes'), 
+    model.fieldset('notes', label=_(u"label_opmerkingen", default=u'Notes'), 
         fields=['notes', 'notes_free_fields']
     )
 
-    notes = ListField(title=_(u'Notes'),
-        value_type=DictRow(title=_(u'Notes'), schema=INotes),
+    notes = ListField(title=_(u"label_opmerkingen", default=u'Notes'),
+        value_type=DictRow(title=_(u"label_opmerkingen", default=u'Notes'), schema=INotes),
         required=False)
     form.widget(notes=DataGridFieldFactory)
     dexteritytextindexer.searchable('notes')

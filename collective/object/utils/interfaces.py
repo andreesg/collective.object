@@ -629,19 +629,21 @@ class ILocationChecks(Interface):
 
 # Notes
 class INotes(Interface):
-	notes = schema.Text(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IFreeFields(Interface):
-	date = schema.TextLine(title=_(u'Date'), required=False)
-	type = schema.TextLine(title=_(u'Type'), required=False)
-	confidential = schema.TextLine(title=_(u'Confidential'), required=False)
-	content = schema.TextLine(title=_(u'Content'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    type = schema.TextLine(title=_(u'Type'), required=False)
+    #confidential = schema.TextLine(title=_(u'Confidential'), required=False)
+
+    notesConfidential = schema.Bool(title=_(u'Confidential'), required=False)
+    content = schema.TextLine(title=_(u'Content'), required=False)
 
 # Labels
 class ILabel(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
     text = schema.TextLine(title=_(u'Text'), required=False)
-
+    type = schema.TextLine(title=_(u"label_soort_doel", default=u'Type'), required=False, missing_value=" ")
 
 # Iconography
 class IIconographyGeneralTheme(Interface):

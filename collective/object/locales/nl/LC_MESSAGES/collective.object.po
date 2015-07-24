@@ -1405,6 +1405,19 @@ msgstr 'Omschrijving'
 msgid 'label_field_collection'
 msgstr 'Vondst en vindplaats'
 
+#: ../object.py
+msgid 'label_opmerkingen'
+msgstr 'Opmerkingen'
+
+#: ../object.py
+msgid 'Text'
+msgstr 'Tekst'
+
+#: ../object.py
+msgid 'label_soort_doel'
+msgstr 'Soort / doel'
+
+
 
 
 

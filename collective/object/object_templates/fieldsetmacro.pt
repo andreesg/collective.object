@@ -756,7 +756,7 @@
     tal:define='widgets group/widgets'>
     <!-- Location -->
     <div class="row no-padding">
-        <h2 class="page-header" i18n:translate="">Notes</h2>
+        <h2 class="page-header" i18n:translate="label_opmerkingen">Notes</h2>
 
         <div class="form-horizontal gridfield hide-thead table-responsive">
           <tal:widget tal:replace="structure widgets/notes/@@ploneform-render-widget"/>
@@ -776,7 +776,7 @@
     <div class="row no-padding">
         <h2 class="page-header" i18n:translate="">Labels</h2>
 
-        <div class="form-horizontal gridfield table-responsive">
+        <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/labels/@@ploneform-render-widget"/>
         </div>
     </div>
