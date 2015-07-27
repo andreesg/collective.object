@@ -61,7 +61,16 @@ class IObjectname(form.Schema):
 
 ## Production & Dating
 class IProductiondating(Interface):
-    maker = schema.TextLine(title=_(u'Maker'), required=False)
+    makers = RelationList(
+        title=_(u'Maker'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Object')
+        ),
+        required=False
+    )
+
     qualifier = schema.TextLine(title=_(u'Qualifier'), required=False)
     
     form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.productionRole")
