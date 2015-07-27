@@ -66,7 +66,7 @@ class IProductiondating(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
