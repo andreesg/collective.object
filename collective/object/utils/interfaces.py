@@ -487,7 +487,7 @@ class IConsTreatments(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Treatment')
+            source=ObjPathSourceBinder()
         ),
         required=False
     )
