@@ -89,6 +89,10 @@
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
   <adapter name="identification_objectName_objectname" factory=".indexers.identification_objectName_objectname" />
 
+  
+  identification_identification_collections
+  
+  
   <adapter name="productionDating_production_productionRole" factory=".indexers.productionDating_production_productionRole" />
   <adapter name="productionDating_production_productionPlace" factory=".indexers.productionDating_production_productionPlace" />
   <adapter name="productionDating_production_schoolStyle" factory=".indexers.productionDating_production_schoolStyle" />
@@ -276,6 +280,11 @@
   <utility
     component=".utils.vocabularies.StratigraphyVocabularyFactory"
     name="collective.object.fieldCollection_stratigraphy"
+    />
+
+  <utility
+    component=".utils.vocabularies.CollectionVocabularyFactory"
+    name="collective.object.collection"
     />
 
   <!-- -*- extra stuff goes here -*- -->

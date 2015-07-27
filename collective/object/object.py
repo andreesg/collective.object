@@ -93,6 +93,14 @@ class IObject(form.Schema):
     )
     form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
 
+    identification_identification_collections = schema.List(
+        title=_(u'Collection'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
+
     # Production
     productionDating_productionDating = ListField(title=_(u'Production & Dating'),
         value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
@@ -314,7 +322,7 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # 
     
     model.fieldset('identification', label=_(u'Identification'), 
-        fields=['identification_identification_institutionName', 'identification_identification_institutionCode', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
+        fields=['identification_identification_institutionName', 'identification_identification_institutionNames', 'identification_identification_institutionCode', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
                 'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
                 'identification_identification_edition', 'identification_identification_distinguishFeatures',
                 'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_notes',
@@ -329,6 +337,16 @@ class IObject(form.Schema):
         description=_(u"Institution name<br><br>The name of the institution responsible for managing the object.<br><br>Enter the common name of your institution, possibly shortened and with a place name. This field is especially relevant if object descriptions are used by third parties.<br><br> Examples:<br>National Museums of Scotland<br>NMS<br>REME<br>Met")
     )
     dexteritytextindexer.searchable('identification_identification_institutionName')
+
+    identification_identification_institutionNames = RelationList(
+        title=_(u'Institution name'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
 
     identification_identification_institutionCode = schema.TextLine(
         title=_(u'Institution code'), 
@@ -348,6 +366,8 @@ class IObject(form.Schema):
         required=False,
         description=_(u"Collection<br><br>If this object is part of a specific collection within the overall museum collection, use this field to enter its name.<br><br>Examples:<br>manuscripts<br>Muller"))
     form.widget(identification_identification_collection=DataGridFieldFactory)
+
+
 
     identification_identification_objectNumber = schema.TextLine(
         title=_(u'Object number'),
