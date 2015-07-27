@@ -684,7 +684,17 @@ class IIconographyContentPersonInstitution(Interface):
     #nameType = schema.TextLine(title=_(u'Name type'), required=False)
     nameType = schema.Choice(title=_(u'Name type'), required=False, vocabulary=nametype_vocabulary)
 
-    name = schema.TextLine(title=_(u'Name'), required=False)
+    #name = schema.TextLine(title=_(u'Name'), required=False)
+    names = RelationList(
+        title=_(u'Name'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
+
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IIconographyContentSubject(Interface):

@@ -632,7 +632,7 @@ class IObject(form.Schema):
     iconography_contentPersonInstitution = ListField(title=_(u'Content person/institution'),
         value_type=DictRow(title=_(u'Content person/institution'), schema=IIconographyContentPersonInstitution),
         required=False)
-    form.widget(iconography_contentPersonInstitution=DataGridFieldFactory)
+    form.widget(iconography_contentPersonInstitution=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('iconography_contentPersonInstitution')
 
     # Content subject
@@ -1668,7 +1668,8 @@ class EditForm(edit.DefaultEditForm):
         context = self.context
         heading = self.label
         if hasattr(context, 'identification_identification_objectNumber'):
-            heading = str(context.identification_identification_objectNumber)
+            if context.identification_identification_objectNumber:
+                heading = str(context.identification_identification_objectNumber)
 
         return heading
 
