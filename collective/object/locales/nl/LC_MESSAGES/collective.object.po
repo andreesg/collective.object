@@ -1417,7 +1417,9 @@ msgstr 'Tekst'
 msgid 'label_soort_doel'
 msgstr 'Soort / doel'
 
-
+#: ../object.py
+msgid 'Search'
+msgstr 'Zoeken'
 
 
 
