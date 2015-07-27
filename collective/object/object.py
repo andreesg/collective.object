@@ -717,7 +717,7 @@ class IObject(form.Schema):
         fields=['numbersRelationships_numbers', 'numbersRelationships_relationshipsWithOtherObjects_partOf',
                 'numbersRelationships_relationshipsWithOtherObjects_notes', 'numbersRelationships_relationshipsWithOtherObjects_parts',
                 'numbersRelationships_relationshipsWithOtherObjects_relatedObject',
-                'numbersRelationships_digitalReferences']
+                'numbersRelationships_digitalReferences', 'documentationFreeArchive_archives']
     )
 
     # Numbers
@@ -781,7 +781,7 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # # # # # #
 
     model.fieldset('documentation_free_archive', label=_(u'Documentation (free) / archive'), 
-        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive']
+        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive', 'documentationFreeArchive_archives']
     )
 
     documentationFreeArchive_documentationFreeText = ListField(title=_(u'Documentation (free text)'),
@@ -795,6 +795,12 @@ class IObject(form.Schema):
         required=False)
     form.widget(documentationFreeArchive_archive=DataGridFieldFactory)
     dexteritytextindexer.searchable('documentationFreeArchive_archive')
+
+    documentationFreeArchive_archives = ListField(title=_(u'Archive'),
+        value_type=DictRow(title=_(u'Archive'), schema=IArchives),
+        required=False)
+    form.widget(documentationFreeArchive_archives=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('documentationFreeArchive_archives')
 
     # # # # # # # # # # # # # # #
     # Condition & Conservation  #

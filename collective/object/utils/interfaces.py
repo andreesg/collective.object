@@ -558,6 +558,17 @@ class IDocumentationFreeText(Interface):
 class IArchive(Interface):
     archiveNumber = schema.TextLine(title=_(u'Archive number'), required=False)
 
+class IArchives(Interface):
+    archiveNumber = RelationList(
+        title=_(u'Archive number'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Archive')
+        ),
+        required=False
+    )
+
 ## Reproductions
 class IReproduction(Interface):
     reference = schema.TextLine(title=_(u'Reference'), required=False)
