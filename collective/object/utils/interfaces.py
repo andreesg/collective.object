@@ -192,8 +192,18 @@ class IInscriptions(Interface):
     position = schema.TextLine(title=_(u'Position'),required=False)
     method = schema.TextLine(title=_(u'Method'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
-    creator = schema.TextLine(title=_(u'Creator'), required=False)
+    #creator = schema.TextLine(title=_(u'Creator'), required=False)
     
+    creators = RelationList(
+        title=_(u'Creator'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
+
     form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.inscriptionsRole")
     role = schema.List(
         title=_(u'Role'),
