@@ -796,11 +796,15 @@ class IObject(form.Schema):
     form.widget(documentationFreeArchive_archive=DataGridFieldFactory)
     dexteritytextindexer.searchable('documentationFreeArchive_archive')
 
-    documentationFreeArchive_archives = ListField(title=_(u'Archive'),
-        value_type=DictRow(title=_(u'Archive'), schema=IArchives),
-        required=False)
-    form.widget(documentationFreeArchive_archives=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('documentationFreeArchive_archives')
+    documentationFreeArchive_archives = RelationList(
+        title=_(u'Archive number'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Archive')
+        ),
+        required=False
+    )
 
     # # # # # # # # # # # # # # #
     # Condition & Conservation  #
