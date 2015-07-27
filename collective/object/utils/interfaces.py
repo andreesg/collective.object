@@ -481,6 +481,21 @@ class IConsTreatment(Interface):
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
     endDate = schema.TextLine(title=_(u'End date'), required=False)
 
+class IConsTreatments(Interface):
+    treatmentNumber = RelationList(
+        title=_(u'Treatment number'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='treatment')
+        ),
+        required=False
+    )
+
+    treatmentMethod = schema.TextLine(title=_(u'Treatment method'), required=False)
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
+
 ## Inscriptions and Markings
 class IInscription(Interface):
     type = schema.TextLine(title=_(u'Type'), required=False)

@@ -816,7 +816,7 @@ class IObject(form.Schema):
                 'conditionConservation_recommendations_display', 'conditionConservation_conservationTreatment',
                 'conditionConservation_recommendations_environment', 'conditionConservation_recommendations_handling',
                 'conditionConservation_recommendations_packing', 'conditionConservation_recommendations_security',
-                'conditionConservation_recommendations_specialRequirements',
+                'conditionConservation_recommendations_specialRequirements', 'conditionConservation_conservationTreatments',
                 'conditionConservation_recommendations_storage', ]
     )
 
@@ -877,6 +877,13 @@ class IObject(form.Schema):
         required=False)
     form.widget(conditionConservation_conservationTreatment=DataGridFieldFactory)
     dexteritytextindexer.searchable('conditionConservation_conservationTreatment')
+
+    conditionConservation_conservationTreatments = ListField(title=_(u'Conservation treatment'),
+        value_type=DictRow(title=_(u'Conservation treatment'), schema=IConsTreatments),
+        required=False)
+    form.widget(conditionConservation_conservationTreatments=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('conditionConservation_conservationTreatments')
+
 
     # Recommendations
     conditionConservation_recommendations_display = schema.TextLine(
