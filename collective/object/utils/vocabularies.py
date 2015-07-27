@@ -248,7 +248,7 @@ FieldCollectionPlaceVocabularyFactory = ObjectVocabulary('fieldCollection__field
 PlaceFeatureVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeFeature')
 StratigraphyVocabularyFactory = ObjectVocabulary('fieldCollection__habitatStratigraphy_stratigraphy')
 UnitVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimensions_unit')
-DimensionsUnitVocabularyFactory = DimensionsUnitVocabulary()
+#DimensionsUnitVocabularyFactory = DimensionsUnitVocabulary()
 
 #CollectionVocabularyFactory = ObjectVocabulary('identification_identification_collections')
 

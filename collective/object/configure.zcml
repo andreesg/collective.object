@@ -286,7 +286,7 @@
     />
 
   <utility
-    component=".utils.vocabularies.DimensionsUnitVocabularyFactory"
+    component=".utils.vocabularies.UnitVocabularyFactory"
     name="collective.object.units"
     />
   <!--<utility
