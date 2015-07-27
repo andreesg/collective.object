@@ -93,13 +93,13 @@ class IObject(form.Schema):
     )
     form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
 
-    identification_identification_collections = schema.List(
-        title=_(u'Collection'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
+    #identification_identification_collections = schema.List(
+    #    title=_(u'Collection'),
+    #    required=False,
+    #    value_type=schema.TextLine(),
+    #    missing_value=[]
+    #)
+    #form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
 
     # Production
     productionDating_productionDating = ListField(title=_(u'Production & Dating'),

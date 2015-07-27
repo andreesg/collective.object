@@ -233,7 +233,7 @@ FieldCollectionMethodVocabularyFactory = ObjectVocabulary('fieldCollection_field
 FieldCollectionPlaceVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_place')
 PlaceFeatureVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_placeFeature')
 StratigraphyVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_stratigraphy')
-CollectionVocabularyFactory = ObjectVocabulary('identification_identification_collections')
+#CollectionVocabularyFactory = ObjectVocabulary('identification_identification_collections')
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
