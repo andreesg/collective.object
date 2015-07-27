@@ -104,8 +104,9 @@
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal table-responsive gridfield">
-           <tal:widget tal:replace="structure widgets/identification_taxonomy_determiner/@@ploneform-render-widget"/>
+        <div class="form-horizontal gridfield">
+           <!--<tal:widget tal:replace="structure widgets/identification_taxonomy_determiner/@@ploneform-render-widget"/>-->
+           <tal:widget tal:replace="structure widgets/identification_taxonomy_determiners/@@ploneform-render-widget"/>
         </div>
 
         <!--<div class="form-horizontal">

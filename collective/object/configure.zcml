@@ -89,44 +89,46 @@
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
   <adapter name="identification_objectName_objectname" factory=".indexers.identification_objectName_objectname" />
 
-  <adapter name="productionDating_production_productionRole" factory=".indexers.productionDating_production_productionRole" />
-  <adapter name="productionDating_production_productionPlace" factory=".indexers.productionDating_production_productionPlace" />
-  <adapter name="productionDating_production_schoolStyle" factory=".indexers.productionDating_production_schoolStyle" />
+  <adapter name="productionDating__production_productionRole" factory=".indexers.productionDating_production_productionRole" />
+  <adapter name="productionDating__production_productionPlace" factory=".indexers.productionDating_production_productionPlace" />
+  <adapter name="productionDating__production_schoolStyle" factory=".indexers.productionDating_production_schoolStyle" />
 
-  <adapter name="physicalCharacteristics_technique" factory=".indexers.physicalCharacteristics_technique" />
-  <adapter name="physicalCharacteristics_material" factory=".indexers.physicalCharacteristics_material" />
-  <adapter name="physicalCharacteristics_dimension" factory=".indexers.physicalCharacteristics_dimension" />
+  <adapter name="physicalCharacteristics__technique" factory=".indexers.physicalCharacteristics_technique" />
+  <adapter name="physicalCharacteristics__material" factory=".indexers.physicalCharacteristics_material" />
+  <adapter name="physicalCharacteristics__dimension" factory=".indexers.physicalCharacteristics_dimension" />
+  <adapter name="physicalCharacteristics__dimensions_unit" factory=".indexers.physicalCharacteristics_dimensions_unit" />
 
-  <adapter name="iconography_generalSearchCriteria_generalThemes" factory=".indexers.iconography_generalSearchCriteria_generalThemes" />
-  <adapter name="iconography_generalSearchCriteria_specificThemes" factory=".indexers.iconography_generalSearchCriteria_specificThemes" />
-  <adapter name="iconography_contentSubjects" factory=".indexers.iconography_contentSubjects" />
 
-  <adapter name="inscriptionsMarkings_inscriptionsAndMarkings_type" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_type" />
-  <adapter name="inscriptionsMarkings_inscriptionsAndMarkings_role" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_role" />
-  <adapter name="inscriptionsMarkings_inscriptionsAndMarkings_script" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_script" />
+  <adapter name="iconography__generalSearchCriteria_generalThemes" factory=".indexers.iconography_generalSearchCriteria_generalThemes" />
+  <adapter name="iconography__generalSearchCriteria_specificThemes" factory=".indexers.iconography_generalSearchCriteria_specificThemes" />
+  <adapter name="iconography__contentSubjects" factory=".indexers.iconography_contentSubjects" />
 
-  <adapter name="associations_associatedSubjects_subject" factory=".indexers.associations_associatedSubjects_subject" />
-  <adapter name="associations_associatedSubjects_period" factory=".indexers.associations_associatedSubjects_period" />
+  <adapter name="inscriptionsMarkings__inscriptionsAndMarkings_type" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_type" />
+  <adapter name="inscriptionsMarkings__inscriptionsAndMarkings_role" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_role" />
+  <adapter name="inscriptionsMarkings__inscriptionsAndMarkings_script" factory=".indexers.inscriptionsMarkings_inscriptionsAndMarkings_script" />
 
-  <adapter name="valueInsurance_valuations_currency" factory=".indexers.valueInsurance_valuations_currency" />
+  <adapter name="associations__associatedSubjects_subject" factory=".indexers.associations_associatedSubjects_subject" />
+  <adapter name="associations__associatedSubjects_period" factory=".indexers.associations_associatedSubjects_period" />
+
+  <adapter name="valueInsurance__valuations_currency" factory=".indexers.valueInsurance_valuations_currency" />
   
-  <adapter name="conditionConservation_conditions_condition" factory=".indexers.conditionConservation_conditions_condition" />
-  <adapter name="conditionConservation_preservationForm" factory=".indexers.conditionConservation_preservationForm" />
+  <adapter name="conditionConservation__conditions_condition" factory=".indexers.conditionConservation_conditions_condition" />
+  <adapter name="conditionConservation__preservationForm" factory=".indexers.conditionConservation_preservationForm" />
     
-  <adapter name="acquisition_methods" factory=".indexers.acquisition_methods" />
-  <adapter name="acquisition_places" factory=".indexers.acquisition_places" />
+  <adapter name="acquisition__methods" factory=".indexers.acquisition_methods" />
+  <adapter name="acquisition__places" factory=".indexers.acquisition_places" />
   
-  <adapter name="ownershipHistory_history_exchangeMethod" factory=".indexers.ownershipHistory_history_exchangeMethod" />
-  <adapter name="ownershipHistory_history_place" factory=".indexers.ownershipHistory_history_place" />
+  <adapter name="ownershipHistory__history_exchangeMethod" factory=".indexers.ownershipHistory_history_exchangeMethod" />
+  <adapter name="ownershipHistory__history_place" factory=".indexers.ownershipHistory_history_place" />
   
-  <adapter name="location_normalLocation_normalLocation" factory=".indexers.location_normalLocation_normalLocation" />
-  <adapter name="location_currentLocation" factory=".indexers.location_currentLocation" />
+  <adapter name="location__normalLocation_normalLocation" factory=".indexers.location_normalLocation_normalLocation" />
+  <adapter name="location__currentLocation" factory=".indexers.location_currentLocation" />
 
-  <adapter name="fieldCollection_fieldCollection_collector_role" factory=".indexers.fieldCollection_fieldCollection_collector_role" />
-  <adapter name="fieldCollection_fieldCollection_method" factory=".indexers.fieldCollection_fieldCollection_method" />
-  <adapter name="fieldCollection_fieldCollection_place" factory=".indexers.fieldCollection_fieldCollection_place" />
-  <adapter name="fieldCollection_fieldCollection_placeFeature" factory=".indexers.fieldCollection_fieldCollection_placeFeature" />
-  <adapter name="fieldCollection_habitatStratigraphy_stratigraphy" factory=".indexers.fieldCollection_habitatStratigraphy_stratigraphy" />
+  <adapter name="fieldCollection__fieldCollection_collector_role" factory=".indexers.fieldCollection_fieldCollection_collector_role" />
+  <adapter name="fieldCollection__fieldCollection_method" factory=".indexers.fieldCollection_fieldCollection_method" />
+  <adapter name="fieldCollection__fieldCollection_place" factory=".indexers.fieldCollection_fieldCollection_place" />
+  <adapter name="fieldCollection__fieldCollection_placeFeature" factory=".indexers.fieldCollection_fieldCollection_placeFeature" />
+  <adapter name="fieldCollection__habitatStratigraphy_stratigraphy" factory=".indexers.fieldCollection_habitatStratigraphy_stratigraphy" />
 
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
@@ -278,6 +280,15 @@
     name="collective.object.fieldCollection_stratigraphy"
     />
 
+  <utility
+    component=".utils.vocabularies.UnitVocabularyFactory"
+    name="collective.object.unit"
+    />
+
+  <utility
+    component=".utils.vocabularies.DimensionsUnitVocabularyFactory"
+    name="collective.object.units"
+    />
   <!--<utility
     component=".utils.vocabularies.CollectionVocabularyFactory"
     name="collective.object.collection"

@@ -137,7 +137,14 @@ class IDimensions(Interface):
     )
 
     value = schema.TextLine(title=_(u'Value'), required=False)
-    unit = schema.TextLine(title=_(u'Unit'), required=False)
+
+    #form.widget('unit', AjaxSelectFieldWidget, vocabulary="collective.object.units")
+    units = schema.Choice(
+        title=_(u'Unit'),
+        required=False,
+        vocabulary="collective.object.units"
+    )
+
     precision = schema.TextLine(title=_(u'Precision'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
@@ -389,6 +396,21 @@ class ITaxonomy(Interface):
 
 class IDeterminer(form.Schema):
     name = schema.TextLine(title=_(u'Determiner'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    #form.widget(determinerDate=DatetimeFieldWidget)
+    #determinerDate = schema.Datetime(title=_(u'Date'), required=False)
+
+
+class IDeterminers(form.Schema):
+    name = RelationList(
+        title=_(u'Determiner'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type="PersonOrInstitution")
+        ),
+        required=False
+    )
     date = schema.TextLine(title=_(u'Date'), required=False)
     #form.widget(determinerDate=DatetimeFieldWidget)
     #determinerDate = schema.Datetime(title=_(u'Date'), required=False)

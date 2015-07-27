@@ -114,6 +114,23 @@ def physicalCharacteristics_dimension(object, **kw):
     else:
         return []
 
+
+@indexer(IObject)
+def physicalCharacteristics_dimensions_unit(object, **kw):
+    return []
+    if hasattr(object, 'physicalCharacteristics_dimension'):
+        terms = []
+        items = object.physicalCharacteristics_dimension
+        if items != None:
+            for item in items:
+                if item['unit'] != None:
+                    for term in item['unit']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
 @indexer(IObject)
 def iconography_generalSearchCriteria_generalThemes(object, **kw):
     if hasattr(object, 'iconography_generalSearchCriteria_generalThemes'):

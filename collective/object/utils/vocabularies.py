@@ -143,7 +143,7 @@ class RoleVocabulary(object):
         self.catalog = getToolByName(portal, "portal_catalog")
         if self.catalog is None:
             return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('productionDating_production_productionRole')
+        index = self.catalog._catalog.getIndex('productionDating__production_productionRole')
         items = [SimpleTerm(i, i, i) for i in index._index]
 
         return SimpleVocabulary(items)
@@ -159,7 +159,7 @@ class PlaceVocabulary(object):
         self.catalog = getToolByName(portal, "portal_catalog")
         if self.catalog is None:
             return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('productionDating_production_productionPlace')
+        index = self.catalog._catalog.getIndex('productionDating__production_productionPlace')
         items = [SimpleTerm(i, i, i) for i in index._index]
 
         return SimpleVocabulary(items)
@@ -175,7 +175,7 @@ class SchoolStyleVocabulary(object):
         self.catalog = getToolByName(portal, "portal_catalog")
         if self.catalog is None:
             return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('productionDating_production_schoolStyle')
+        index = self.catalog._catalog.getIndex('productionDating__production_schoolStyle')
         items = [SimpleTerm(i, i, i) for i in index._index]
 
         return SimpleVocabulary(items)
@@ -194,10 +194,24 @@ class ObjectVocabulary(object):
         if self.catalog is None:
             return SimpleVocabulary([])
         index = self.catalog._catalog.getIndex(self.index)
-
+        
         items = [SimpleTerm(value=i, token=i.encode('ascii', 'ignore'), title=i) for i in index._index]
 
         return SimpleVocabulary(items)
+
+class DimensionsUnitVocabulary(object):
+
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        portal = api.portal.get()
+        atvm = getToolByName(portal, 'portal_vocabularies')
+        units = atvm.getVocabularyByName('physicalCharacteristics_dimensions_unit')
+        terms = []
+        for term in units:
+            terms.append(SimpleVocabulary.createTerm(
+                term, term.encode('utf-8'), units[term].title))
+        return SimpleVocabulary(terms)
 
 
 # TODO: Update vocabularies to use general ObjectVocabulary
@@ -208,32 +222,36 @@ PlaceVocabularyFactory = PlaceVocabulary()
 SchoolStyleVocabularyFactory = SchoolStyleVocabulary()
 
 # Updated vocabularies
-TechniqueVocabularyFactory = ObjectVocabulary('physicalCharacteristics_technique')
-MaterialVocabularyFactory = ObjectVocabulary('physicalCharacteristics_material')
-DimensionVocabularyFactory = ObjectVocabulary('physicalCharacteristics_dimension')
-GeneralThemesVocabularyFactory = ObjectVocabulary('iconography_generalSearchCriteria_generalThemes')
-SpecificThemesVocabularyFactory = ObjectVocabulary('iconography_generalSearchCriteria_specificThemes')
-ContentSubjectsVocabularyFactory = ObjectVocabulary('iconography_contentSubjects')
-InscriptionsTypeVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_type')
-InscriptionsRoleVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_role')
-InscriptionsScriptVocabularyFactory = ObjectVocabulary('inscriptionsMarkings_inscriptionsAndMarkings_script')
-AssociatedSubjectVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_subject')
-AssociatedPeriodVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_period')
-CurrencyVocabularyFactory = ObjectVocabulary('valueInsurance_valuations_currency')
-ConditionVocabularyFactory = ObjectVocabulary('conditionConservation_conditions_condition')
-PreservationFormVocabularyFactory = ObjectVocabulary('conditionConservation_preservationForm')
-AquisitionMethodVocabularyFactory = ObjectVocabulary('acquisition_methods')
-AquisitionPlaceVocabularyFactory = ObjectVocabulary('acquisition_places')
-ExchangeMethodVocabularyFactory = ObjectVocabulary('ownershipHistory_history_exchangeMethod')
-HistoryPlaceVocabularyFactory = ObjectVocabulary("ownershipHistory_history_place")
-LocationVocabularyFactory = ObjectVocabulary('location_normalLocation_normalLocation')
-CurrentLocationVocabularyFactory = ObjectVocabulary('location_currentLocation')
-CollectorRoleVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_collector_role')
-FieldCollectionMethodVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_method')
-FieldCollectionPlaceVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_place')
-PlaceFeatureVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_placeFeature')
-StratigraphyVocabularyFactory = ObjectVocabulary('fieldCollection_fieldCollection_stratigraphy')
+TechniqueVocabularyFactory = ObjectVocabulary('physicalCharacteristics__technique')
+MaterialVocabularyFactory = ObjectVocabulary('physicalCharacteristics__material')
+DimensionVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimension')
+GeneralThemesVocabularyFactory = ObjectVocabulary('iconography__generalSearchCriteria_generalThemes')
+SpecificThemesVocabularyFactory = ObjectVocabulary('iconography__generalSearchCriteria_specificThemes')
+ContentSubjectsVocabularyFactory = ObjectVocabulary('iconography__contentSubjects')
+InscriptionsTypeVocabularyFactory = ObjectVocabulary('inscriptionsMarkings__inscriptionsAndMarkings_type')
+InscriptionsRoleVocabularyFactory = ObjectVocabulary('inscriptionsMarkings__inscriptionsAndMarkings_role')
+InscriptionsScriptVocabularyFactory = ObjectVocabulary('inscriptionsMarkings__inscriptionsAndMarkings_script')
+AssociatedSubjectVocabularyFactory = ObjectVocabulary('associations__associatedSubjects_subject')
+AssociatedPeriodVocabularyFactory = ObjectVocabulary('associations__associatedSubjects_period')
+CurrencyVocabularyFactory = ObjectVocabulary('valueInsurance__valuations_currency')
+ConditionVocabularyFactory = ObjectVocabulary('conditionConservation__conditions_condition')
+PreservationFormVocabularyFactory = ObjectVocabulary('conditionConservation__preservationForm')
+AquisitionMethodVocabularyFactory = ObjectVocabulary('acquisition__methods')
+AquisitionPlaceVocabularyFactory = ObjectVocabulary('acquisition__places')
+ExchangeMethodVocabularyFactory = ObjectVocabulary('ownershipHistory__history_exchangeMethod')
+HistoryPlaceVocabularyFactory = ObjectVocabulary("ownershipHistory__history_place")
+LocationVocabularyFactory = ObjectVocabulary('location__normalLocation_normalLocation')
+CurrentLocationVocabularyFactory = ObjectVocabulary('location__currentLocation')
+CollectorRoleVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_collector_role')
+FieldCollectionMethodVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_method')
+FieldCollectionPlaceVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_place')
+PlaceFeatureVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeFeature')
+StratigraphyVocabularyFactory = ObjectVocabulary('fieldCollection__habitatStratigraphy_stratigraphy')
+UnitVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimensions_unit')
+DimensionsUnitVocabularyFactory = DimensionsUnitVocabulary()
+
 #CollectionVocabularyFactory = ObjectVocabulary('identification_identification_collections')
+
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))

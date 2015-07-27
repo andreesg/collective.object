@@ -324,7 +324,7 @@ class IObject(form.Schema):
     model.fieldset('identification', label=_(u'Identification'), 
         fields=['identification_identification_institutionName', 'identification_identification_institutionNames', 'identification_identification_institutionCode', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
                 'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
-                'identification_identification_edition', 'identification_identification_distinguishFeatures',
+                'identification_identification_edition', 'identification_identification_distinguishFeatures', 'identification_taxonomy_determiners',
                 'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_notes',
                 'identification_titleDescription_translatedTitle', 'identification_titleDescription_language', 'identification_titleDescription_describer', 'identification_titleDescription_date',
                 'identification_titleDescription_titleDate', 'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_objectstatus', 'identification_taxonomy_notes']
@@ -425,8 +425,6 @@ class IObject(form.Schema):
     form.widget(identification_objectName_objectName=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_objectName_objectName')
 
-    
-
     identification_objectName_otherName = ListField(title=_(u'Other name'),
         value_type=DictRow(title=_(u'Other name'), schema=IOtherName),
         required=False)
@@ -483,6 +481,12 @@ class IObject(form.Schema):
         required=False)
     form.widget(identification_taxonomy_determiner=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_taxonomy_determiner')
+
+    identification_taxonomy_determiners = ListField(title=_(u'Determiner'),
+        value_type=DictRow(title=_(u'Determiner'), schema=IDeterminers),
+        required=False)
+    form.widget(identification_taxonomy_determiners=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_taxonomy_determiners')
 
     identification_taxonomy_objectStatus = schema.TextLine(
         title=_(u'Object status'),
