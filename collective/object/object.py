@@ -519,8 +519,9 @@ class IObject(form.Schema):
 
     identification_taxonomy_objectstatus = schema.Choice(
         title=_(u'Object status'),
-        required=False,
-        vocabulary="collective.object.objectstatus"
+        required=True,
+        vocabulary="collective.object.objectstatus",
+        default="No value"
     )
     dexteritytextindexer.searchable('identification_taxonomy_objectstatus')
 
