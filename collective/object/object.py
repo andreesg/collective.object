@@ -276,10 +276,18 @@ class IObject(form.Schema):
 
     # Field collection
     fieldCollection_fieldCollection_collectors = ListField(title=_(u'Collector'),
-        value_type=DictRow(title=_(u'Collector'), schema=ICollectors),
+        value_type=DictRow(title=_(u'Collector'), schema=ICollectionCollectors),
         required=False)
     form.widget(fieldCollection_fieldCollection_collectors=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('fieldCollection_fieldCollection_collectors')
+
+    fieldCollection_fieldCollection_events = schema.List(
+        title=_(u'Event'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('fieldCollection_fieldCollection_events', AjaxSelectFieldWidget,  vocabulary="collective.object.events")
 
 
     fieldCollection_fieldCollection_methods = schema.List(
@@ -305,6 +313,12 @@ class IObject(form.Schema):
         missing_value=[]
     )
     form.widget('fieldCollection_fieldCollection_placeFeatures', AjaxSelectFieldWidget,  vocabulary="collective.object.fieldCollection_placeFeature")
+
+    fieldCollection_fieldCollection_placeCodes = ListField(title=_(u'Place code'),
+        value_type=DictRow(title=_(u'Place code'), schema=IPlaceCodes),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_placeCodes=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('fieldCollection_fieldCollection_placeCodes')
 
     fieldCollection_habitatStratigraphy_stratigrafie = ListField(title=_(u'Stratigraphy'),
         value_type=DictRow(title=_(u'Stratigraphy'), schema=IStratigrafie),

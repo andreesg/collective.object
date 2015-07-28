@@ -395,11 +395,17 @@ def fieldCollection_fieldCollection_method(object, **kw):
     else:
         return []
 
-
 @indexer(IObject)
 def fieldCollection_fieldCollection_place(object, **kw):
     if hasattr(object, 'fieldCollection_fieldCollection_places'):
         return object.fieldCollection_fieldCollection_places
+    else:
+        return []
+
+@indexer(IObject)
+def fieldCollection_fieldCollection_event(object, **kw):
+    if hasattr(object, 'fieldCollection_fieldCollection_events'):
+        return object.fieldCollection_fieldCollection_events
     else:
         return []
 
@@ -419,6 +425,36 @@ def fieldCollection_habitatStratigraphy_stratigraphy(object, **kw):
             for item in items:
                 if item['unit'] != None:
                     for term in item['unit']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
+def fieldCollection__fieldCollection_placeCodeType(object, **kw):
+    if hasattr(object, 'fieldCollection_fieldCollection_placeCodes'):
+        terms = []
+        items = object.fieldCollection_fieldCollection_placeCodes
+        if items != None:
+            for item in items:
+                if item['codeType'] != None:
+                    for term in item['codeType']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
+def fieldCollection__fieldCollection_placeCode(object, **kw):
+    if hasattr(object, 'fieldCollection_fieldCollection_placeCodes'):
+        terms = []
+        items = object.fieldCollection_fieldCollection_placeCodes
+        if items != None:
+            for item in items:
+                if item['code'] != None:
+                    for term in item['code']:
                         if term:
                             terms.append(term)
         return terms

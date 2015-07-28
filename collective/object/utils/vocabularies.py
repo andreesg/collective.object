@@ -248,14 +248,20 @@ HistoryPlaceVocabularyFactory = ObjectVocabulary("ownershipHistory__history_plac
 LocationVocabularyFactory = ObjectVocabulary('location__normalLocation_normalLocation')
 CurrentLocationVocabularyFactory = ObjectVocabulary('location__currentLocation')
 CollectorRoleVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_collector_role')
+CollectorNameVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_collector_name')
 FieldCollectionMethodVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_method')
 FieldCollectionPlaceVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_place')
 PlaceFeatureVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeFeature')
 StratigraphyVocabularyFactory = ObjectVocabulary('fieldCollection__habitatStratigraphy_stratigraphy')
 UnitVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimensions_unit')
+EventsVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_event')
+PlaceCodeVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeCode')
+PlaceCodeTypeVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeCodeType')
+
 #DimensionsUnitVocabularyFactory = DimensionsUnitVocabulary()
 CollectionVocabularyFactory = ObjectVocabulary('identification__identification_collections')
 AssociationVocabularyFactory = ObjectVocabulary('associations__associatedSubjects_association')
+
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))

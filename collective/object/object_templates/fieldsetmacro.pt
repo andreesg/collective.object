@@ -814,8 +814,12 @@
           <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_collectors/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield table-responsive">
+        <!--<div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_event/@@ploneform-render-widget"/>
+        </div>-->
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_events/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal">
@@ -851,10 +855,13 @@
           <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_places/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_placeCode/@@ploneform-render-widget"/>
-        </div>
+        </div>-->
 
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_placeCodes/@@ploneform-render-widget"/>
+        </div>
         <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_placeFeature/@@ploneform-render-widget"/>
         </div>-->

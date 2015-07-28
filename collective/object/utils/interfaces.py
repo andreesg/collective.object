@@ -357,8 +357,38 @@ class ICurrentLocations(Interface):
     fitness = schema.TextLine(title=_(u'Fitness'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+class ICollectionCollectors(Interface):
+    #name = schema.TextLine(title=_(u'Collector'), required=False)
+    name = RelationList(
+        title=_(u'Collector'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type="PersonOrInstitution")
+        ),
+        required=False
+    )
+
+    form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
+    role = schema.List(
+        title=_(u'Role'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
 class ICollectors(Interface):
-    name = schema.TextLine(title=_(u'Collector'), required=False)
+    #name = schema.TextLine(title=_(u'Collector'), required=False)
+    
+    name = RelationList(
+        title=_(u'Determiner'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type="PersonOrInstitution")
+        ),
+        required=False
+    )
 
     form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
     role = schema.List(
@@ -369,7 +399,7 @@ class ICollectors(Interface):
     )
 
 class IStratigrafie(Interface):
-
+    
     form.widget('unit', AjaxSelectFieldWidget, vocabulary="collective.object.fieldCollection_stratigraphy")
     unit = schema.List(
         title=_(u'Stratigraphy'), 
@@ -378,6 +408,24 @@ class IStratigrafie(Interface):
         missing_value=[]
     )
     type = schema.TextLine(title=_(u'Strat. type'), required=False)
+
+
+class IPlaceCodes(Interface):
+    form.widget('code', AjaxSelectFieldWidget, vocabulary="collective.object.placecode")
+    code = schema.List(
+        title=_(u'Place code'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    form.widget('codeType', AjaxSelectFieldWidget, vocabulary="collective.object.placecodetype")
+    codeType = schema.List(
+        title=_(u'Code type'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
 
 ##
 ## Fields
