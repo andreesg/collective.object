@@ -390,7 +390,12 @@ class ITaxonomyRank(Interface):
     text = schema.TextLine(title=_(u'Taxonomy rank'), required=False)
 
 class ITaxonomy(Interface):
-    rank = schema.TextLine(title=_(u'Taxonomy rank'), required=False)
+    rank = schema.Choice(
+        title=_(u'Taxonomy rank'), 
+        required=False,
+        vocabulary=taxonomyrank_vocabulary
+    )
+    
     scientific_name = schema.TextLine(title=_(u'Scient. name'), required=False)
     common_name = schema.TextLine(title=_(u'Common name'), required=False)
 

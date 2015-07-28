@@ -25,6 +25,7 @@ def _createInsuranceTypeVocabulary():
     insurance_types = {
         "commercial": _(u"Commercial"),
         "indemnity": _(u"Indemnity"),
+        "": ""
     }
 
     for key, name in insurance_types.items():
@@ -39,6 +40,7 @@ def _createObjectStatusVocabulary():
         "paralectotype": _(u"paralectotype"),
         "paratype": _(u"paratype"),
         "syntype": _(u"syntype"),
+        "":""
     }
 
     for key, name in status_types.items():
@@ -50,7 +52,8 @@ def _createPriorityVocabulary():
         "low": _(u"low"),
         "medium": _(u"medium"),
         "high": _(u"high"),
-        "urgent": _(u"urgent")
+        "urgent": _(u"urgent"),
+        "":""
     }
 
     for key, name in priorities.items():
@@ -63,7 +66,8 @@ def _createNameTypeVocabulary():
         "person": _(u"person"),
         "family": _(u"family"),
         "institution": _(u"institution"),
-        "regiment/service": _(u"regiment/service")
+        "regiment/service": _(u"regiment/service"),
+        "":""
     }
     for key, name in names.items():
         term = SimpleTerm(value=key, token=str(key), title=name)
@@ -83,6 +87,7 @@ def _createSubjectTypeVocabulary():
         "people": _(u"people"),
         "geography": _(u"geography"),
         "cultural affinity": _(u"cultural affinity"),
+        "":""
     }
 
     for key, name in names.items():
@@ -90,7 +95,7 @@ def _createSubjectTypeVocabulary():
         yield term
 
 def _createTaxonomyRankVocabulary():
-    taxonomies = ["kingdom", "subkingdom", "phylum/division", "subphylum/subdivision", "superclass", "class", "subclass", "infraclass", "superorder", "order", "suborder", "infraorder", "superfamily", "family", "subfamily", "tribe", "subtribe", "genus", "subgenus", "section", "subsection", "species", "subspecies", "variety", "subvariety", "form", "subform"]
+    taxonomies = ["kingdom", "subkingdom", "phylum/division", "subphylum/subdivision", "superclass", "class", "subclass", "infraclass", "superorder", "order", "suborder", "infraorder", "superfamily", "family", "subfamily", "tribe", "subtribe", "genus", "subgenus", "section", "subsection", "species", "subspecies", "variety", "subvariety", "form", "subform", ""]
     names = {}
 
     for tax in taxonomies:
@@ -249,8 +254,7 @@ PlaceFeatureVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollecti
 StratigraphyVocabularyFactory = ObjectVocabulary('fieldCollection__habitatStratigraphy_stratigraphy')
 UnitVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimensions_unit')
 #DimensionsUnitVocabularyFactory = DimensionsUnitVocabulary()
-
-#CollectionVocabularyFactory = ObjectVocabulary('identification_identification_collections')
+CollectionVocabularyFactory = ObjectVocabulary('identification__identification_collections')
 
 
 

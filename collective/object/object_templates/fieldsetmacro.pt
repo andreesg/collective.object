@@ -14,15 +14,19 @@
           <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionName/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/>
 
-          <tal:widget tal:replace="structure widgets/identification_identification_institutionCode/@@ploneform-render-widget"/>
+          <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionCode/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure widgets/identification_identification_administrativeName/@@ploneform-render-widget"/>
 
         </div>
 
-        <div class="form-horizontal table-responsive gridfield show-label hide-th">
-          <tal:widget tal:replace="structure widgets/identification_identification_collection/@@ploneform-render-widget"/>
+        <!--<div class="form-horizontal table-responsive gridfield show-label hide-th">
+         <tal:widget tal:replace="structure widgets/identification_identification_collection/@@ploneform-render-widget"/>
+        </div>-->
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/identification_identification_collections/@@ploneform-render-widget"/>
         </div>
-          
+
         <div class="form-horizontal">
         
           <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">

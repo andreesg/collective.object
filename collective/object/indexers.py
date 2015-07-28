@@ -410,5 +410,12 @@ def fieldCollection_habitatStratigraphy_stratigraphy(object, **kw):
     else:
         return []
 
+@indexer(IObject)
+def identification__identification_collections(object, **kw):
+    if hasattr(object, 'identification_identification_collections'):
+        return object.identification_identification_collections
+    else:
+        return []
+
 
 
