@@ -15,6 +15,7 @@ from zope.schema.interfaces import ISource, IContextSourceBinder, IVocabularyFac
 from zope.interface import implements, classProvides
 from Products.CMFCore.utils import getToolByName
 from plone import api
+from zope.component.hooks import getSite
 
 
 # # # # # # # # # # # # # #
@@ -85,7 +86,6 @@ def _createSubjectTypeVocabulary():
         "geography": _(u"geography"),
         "concept": _(u"concept"),
         "people": _(u"people"),
-        "geography": _(u"geography"),
         "cultural affinity": _(u"cultural affinity"),
         "":""
     }
@@ -194,7 +194,7 @@ class ObjectVocabulary(object):
 
     def __call__(self, context):
         self.context = context
-        portal = api.portal.get()
+        portal = getSite()
         self.catalog = getToolByName(portal, "portal_catalog")
         if self.catalog is None:
             return SimpleVocabulary([])
@@ -204,18 +204,28 @@ class ObjectVocabulary(object):
 
         return SimpleVocabulary(items)
 
-class DimensionsUnitVocabulary(object):
 
+class ATVMVocabulary(object):
     implements(IVocabularyFactory)
+    def __init__(self, name):
+        self.name = name
 
     def __call__(self, context):
-        portal = api.portal.get()
+        portal = getSite()
         atvm = getToolByName(portal, 'portal_vocabularies')
-        units = atvm.getVocabularyByName('physicalCharacteristics_dimensions_unit')
+        units = atvm.getVocabularyByName(self.name)
         terms = []
+
+        if self.name == "TaxonomyRank":
+            taxonomies = ["kingdom", "subkingdom", "phylum or division", "subphylum or subdivision", "superclass", "class", "subclass", "infraclass", "superorder", "order", "suborder", "infraorder", "superfamily", "family", "subfamily", "tribe", "subtribe", "genus", "subgenus", "section", "subsection", "species", "subspecies", "variety", "subvariety", "form", "subform"]
+            for taxonomy in taxonomies:
+                if taxonomy not in units:
+                    atvm.TaxonomyRank.addTerm(taxonomy.encode('ascii', 'ignore'), str(taxonomy))
+
         for term in units:
-            terms.append(SimpleVocabulary.createTerm(
-                term, term.encode('utf-8'), units[term].title))
+            if units[term]:
+                terms.append(SimpleVocabulary.createTerm(
+                    term, term.encode('utf-8'), _(units[term].title)))
         return SimpleVocabulary(terms)
 
 
@@ -258,12 +268,23 @@ EventsVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_eve
 PlaceCodeVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeCode')
 PlaceCodeTypeVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeCodeType')
 RelatedAssociationsVocabularyFactory = ObjectVocabulary('numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association')
-#DimensionsUnitVocabularyFactory = DimensionsUnitVocabulary()
 CollectionVocabularyFactory = ObjectVocabulary('identification__identification_collections')
 AssociationVocabularyFactory = ObjectVocabulary('associations__associatedSubjects_association')
 
 
+#
+# ATVM vocabularies
+#
+ObjectStatusVocabularyFactory = ATVMVocabulary('ObjectStatus')
+NameTypeVocabularyFactory = ATVMVocabulary('NameType')
+SubjectTypeVocabularyFactory = ATVMVocabulary('SubjectType')
+DimensionsUnitVocabularyFactory = ATVMVocabulary('Unit')
+TaxonomyRankVocabularyFactory = ATVMVocabulary('TaxonomyRank')
 
+
+#
+# Static vocabula
+#
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
 objectstatus_vocabulary = SimpleVocabulary(list(_createObjectStatusVocabulary()))

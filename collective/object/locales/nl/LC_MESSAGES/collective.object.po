@@ -1286,6 +1286,10 @@ msgid 'subphylum/subdivision'
 msgstr 'subfylum/subdivisie'
 
 #: ../object.py
+msgid 'subphylum or subdivision'
+msgstr 'subfylum/subdivisie'
+
+#: ../object.py
 msgid 'superclass'
 msgstr 'superklasse'
 
@@ -1422,7 +1426,9 @@ msgid 'Search'
 msgstr 'Zoeken'
 
 
-
+#: ../object.py
+msgid "regiment or service"
+msgstr "dienstonderdeel"
 
 
 

@@ -301,7 +301,7 @@
     />
 
   <utility
-    component=".utils.vocabularies.UnitVocabularyFactory"
+    component=".utils.vocabularies.DimensionsUnitVocabularyFactory"
     name="collective.object.units"
     />
   
@@ -330,10 +330,32 @@
     name="collective.object.placecodetype"
     />
 
-   <utility
+  <utility
     component=".utils.vocabularies.RelatedAssociationsVocabularyFactory"
     name="collective.object.relatedassociations"
     />
+
+  <utility
+    component=".utils.vocabularies.ObjectStatusVocabularyFactory"
+    name="collective.object.objectstatus"
+    />
+
+  <utility
+    component=".utils.vocabularies.NameTypeVocabularyFactory"
+    name="collective.object.nametype"
+    />
+
+  <utility
+    component=".utils.vocabularies.SubjectTypeVocabularyFactory"
+    name="collective.object.subjecttype"
+    />
+
+  <utility
+    component=".utils.vocabularies.TaxonomyRankVocabularyFactory"
+    name="collective.object.taxonomyrank"
+    />
+
+
 
   <!-- -*- extra stuff goes here -*- -->
 

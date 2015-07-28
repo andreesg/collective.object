@@ -169,7 +169,7 @@ class IIconographySpecificThemes(Interface):
 
 class IIconographyContentSubjects(Interface):
     position = schema.TextLine(title=_(u'Position'), required=False)    
-    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
+    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary="collective.object.subjecttype")
     
     form.widget('subject', AjaxSelectFieldWidget, vocabulary="collective.object.contentsubjects")
     subject = schema.List(
@@ -180,7 +180,7 @@ class IIconographyContentSubjects(Interface):
     )
 
     #taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
-    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary=taxonomyrank_vocabulary)
+    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary="collective.object.taxonomyrank")
     
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
@@ -248,7 +248,7 @@ class IAssociatedSubjects(Interface):
         missing_value=[]
     )
 
-    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
+    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary="collective.object.subjecttype")
         
     form.widget('subject', AjaxSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
     subject = schema.List(
@@ -258,7 +258,7 @@ class IAssociatedSubjects(Interface):
         missing_value=[]
     )
 
-    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary=taxonomyrank_vocabulary)
+    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary="collective.object.taxonomyrank")
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
@@ -482,7 +482,7 @@ class ITaxonomy(Interface):
     rank = schema.Choice(
         title=_(u'Taxonomy rank'), 
         required=False,
-        vocabulary=taxonomyrank_vocabulary
+        vocabulary="collective.object.taxonomyrank"
     )
 
     scientific_name = schema.TextLine(title=_(u'Scient. name'), required=False)
@@ -712,7 +712,7 @@ class IReproduction(Interface):
 ## Associations
 class IAssociatedPersonInstitution(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
-    nameType = schema.Choice(title=_(u'Name type'), required=False, vocabulary=nametype_vocabulary)
+    nameType = schema.Choice(title=_(u'Name type'), required=False, vocabulary="collective.object.nametype")
     
     names = RelationList(
         title=_(u'Name'),
@@ -732,9 +732,9 @@ class IAssociatedSubject(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
     
 
-    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
+    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary="collective.object.subjecttype")
     subject = schema.TextLine(title=_(u'Subject'), required=False)
-    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary=taxonomyrank_vocabulary)
+    taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary="collective.object.taxonomyrank")
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
     #properName = schema.TextLine(title=_(u'Proper name'), required=False)
     #startDate = schema.TextLine(title=_(u'Start date'), required=False)
@@ -836,7 +836,7 @@ class IIconographyContentDescription(Interface):
 class IIconographyContentPersonInstitution(Interface):
     position = schema.TextLine(title=_(u'Position'), required=False)
     #nameType = schema.TextLine(title=_(u'Name type'), required=False)
-    nameType = schema.Choice(title=_(u'Name type'), required=False, vocabulary=nametype_vocabulary)
+    nameType = schema.Choice(title=_(u'Name type'), required=False, vocabulary="collective.object.nametype")
 
     #name = schema.TextLine(title=_(u'Name'), required=False)
     names = RelationList(
@@ -855,7 +855,7 @@ class IIconographyContentSubject(Interface):
     position = schema.TextLine(title=_(u'Position'), required=False)
     
     #subjectType = schema.TextLine(title=_(u'Subject type'), required=False)
-    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
+    subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary="collective.object.subjecttype")
 
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
