@@ -111,6 +111,7 @@
 
   <adapter name="associations__associatedSubjects_subject" factory=".indexers.associations_associatedSubjects_subject" />
   <adapter name="associations__associatedSubjects_period" factory=".indexers.associations_associatedSubjects_period" />
+  <adapter name="associations__associatedSubjects_association" factory=".indexers.associations__associatedSubjects_association" />
 
   <adapter name="valueInsurance__valuations_currency" factory=".indexers.valueInsurance_valuations_currency" />
   
@@ -295,6 +296,11 @@
   <utility
     component=".utils.vocabularies.CollectionVocabularyFactory"
     name="collective.object.collection"
+    />
+
+  <utility
+    component=".utils.vocabularies.AssociationVocabularyFactory"
+    name="collective.object.associatedSubjects_association"
     />
 
   <!-- -*- extra stuff goes here -*- -->

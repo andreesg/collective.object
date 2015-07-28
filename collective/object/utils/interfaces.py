@@ -240,7 +240,14 @@ class IInscriptions(Interface):
 
 # Associations
 class IAssociatedSubjects(Interface):
-    association = schema.TextLine(title=_(u'Association'), required=False)
+    form.widget('associations', AjaxSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
+    associations = schema.List(
+        title=_(u'Association'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
     subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
         
     form.widget('subject', AjaxSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
@@ -256,7 +263,13 @@ class IAssociatedSubjects(Interface):
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IAssociatedPeriods(Interface):
-    association = schema.TextLine(title=_(u'Association'), required=False)
+    form.widget('associations', AjaxSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
+    associations = schema.List(
+        title=_(u'Association'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
     
     form.widget('period', AjaxSelectFieldWidget, vocabulary="collective.object.associatedperiods")
     period = schema.List(
@@ -395,7 +408,7 @@ class ITaxonomy(Interface):
         required=False,
         vocabulary=taxonomyrank_vocabulary
     )
-    
+
     scientific_name = schema.TextLine(title=_(u'Scient. name'), required=False)
     common_name = schema.TextLine(title=_(u'Common name'), required=False)
 
@@ -624,13 +637,25 @@ class IReproduction(Interface):
 class IAssociatedPersonInstitution(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
     nameType = schema.Choice(title=_(u'Name type'), required=False, vocabulary=nametype_vocabulary)
-    name = schema.TextLine(title=_(u'Name'), required=False)
+    
+    names = RelationList(
+        title=_(u'Name'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+        ),
+        required=False
+    )
+    
     #startDate = schema.TextLine(title=_(u'Start date'), required=False)
     #endDate = schema.TextLine(title=_(u'End date'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
     
 class IAssociatedSubject(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
+    
+
     subjectType = schema.Choice(title=_(u'Subject type'), required=False, vocabulary=subjecttype_vocabulary)
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=False, vocabulary=taxonomyrank_vocabulary)

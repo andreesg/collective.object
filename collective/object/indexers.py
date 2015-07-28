@@ -239,6 +239,21 @@ def associations_associatedSubjects_subject(object, **kw):
         return []
 
 @indexer(IObject)
+def associations__associatedSubjects_association(object, **kw):
+    if hasattr(object, 'associations_associatedSubjects'):
+        terms = []
+        items = object.associations_associatedSubjects
+        if items != None:
+            for item in items:
+                if item['associations'] != None:
+                    for term in item['associations']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
 def associations_associatedSubjects_period(object, **kw):
     if hasattr(object, 'associations_associatedPeriods'):
         terms = []
@@ -416,6 +431,8 @@ def identification__identification_collections(object, **kw):
         return object.identification_identification_collections
     else:
         return []
+
+
 
 
 

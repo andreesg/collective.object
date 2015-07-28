@@ -255,7 +255,7 @@ StratigraphyVocabularyFactory = ObjectVocabulary('fieldCollection__habitatStrati
 UnitVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimensions_unit')
 #DimensionsUnitVocabularyFactory = DimensionsUnitVocabulary()
 CollectionVocabularyFactory = ObjectVocabulary('identification__identification_collections')
-
+AssociationVocabularyFactory = ObjectVocabulary('associations__associatedSubjects_association')
 
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
