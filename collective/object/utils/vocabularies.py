@@ -257,7 +257,7 @@ UnitVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimensions_un
 EventsVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_event')
 PlaceCodeVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeCode')
 PlaceCodeTypeVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollection_placeCodeType')
-
+RelatedAssociationsVocabularyFactory = ObjectVocabulary('numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association')
 #DimensionsUnitVocabularyFactory = DimensionsUnitVocabulary()
 CollectionVocabularyFactory = ObjectVocabulary('identification__identification_collections')
 AssociationVocabularyFactory = ObjectVocabulary('associations__associatedSubjects_association')

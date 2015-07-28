@@ -399,7 +399,7 @@ class ICollectors(Interface):
     )
 
 class IStratigrafie(Interface):
-    
+
     form.widget('unit', AjaxSelectFieldWidget, vocabulary="collective.object.fieldCollection_stratigraphy")
     unit = schema.List(
         title=_(u'Stratigraphy'), 
@@ -426,6 +426,34 @@ class IPlaceCodes(Interface):
         value_type=schema.TextLine(),
         missing_value=[]
     )
+
+##
+## Numbers / relations
+##
+class IRelatedObjects(Interface):
+    relatedObject = RelationList(
+        title=_(u'Related object'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Object')
+        ),
+        required=False
+    )
+    
+    #relatedObject = schema.TextLine(title=_(u'Related object'), required=False)
+    form.widget('associations', AjaxSelectFieldWidget, vocabulary="collective.object.relatedassociations")
+    associations = schema.List(
+        title=_(u'Association'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
+
+
 
 ##
 ## Fields

@@ -135,6 +135,10 @@
   <adapter name="fieldCollection__fieldCollection_event" factory=".indexers.fieldCollection_fieldCollection_event" />
   <adapter name="fieldCollection__fieldCollection_placeCode" factory=".indexers.fieldCollection__fieldCollection_placeCode" />
   <adapter name="fieldCollection__fieldCollection_placeCodeType" factory=".indexers.fieldCollection__fieldCollection_placeCodeType" />
+  
+
+  <adapter name="numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association" factory=".indexers.numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association" />
+
 
   <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
@@ -324,6 +328,11 @@
   <utility
     component=".utils.vocabularies.PlaceCodeTypeVocabularyFactory"
     name="collective.object.placecodetype"
+    />
+
+   <utility
+    component=".utils.vocabularies.RelatedAssociationsVocabularyFactory"
+    name="collective.object.relatedassociations"
     />
 
   <!-- -*- extra stuff goes here -*- -->

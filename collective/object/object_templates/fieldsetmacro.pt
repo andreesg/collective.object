@@ -461,7 +461,7 @@
         </div>
 
         <div class="form-horizontal gridfield">
-          <tal:widget tal:replace="structure widgets/numbersRelationships_relationshipsWithOtherObjects_relatedObject/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure view/widgets/numbersRelationships_relationshipsWithOtherObjects_relatedObjects/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Digital references</h2>

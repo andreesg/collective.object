@@ -326,6 +326,15 @@ class IObject(form.Schema):
     form.widget(fieldCollection_habitatStratigraphy_stratigrafie=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('fieldCollection_habitatStratigraphy_stratigrafie')
 
+
+    # Numbers / relations
+    numbersRelationships_relationshipsWithOtherObjects_relatedObjects = ListField(title=_(u'Related object'),
+        value_type=DictRow(title=_(u'Related object'), schema=IRelatedObjects),
+        required=False)
+    form.widget(numbersRelationships_relationshipsWithOtherObjects_relatedObjects=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('numbersRelationships_relationshipsWithOtherObjects_relatedObjects')
+
+
     text = RichText(
         title=_(u"Body"),
         required=False
