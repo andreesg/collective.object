@@ -10,7 +10,7 @@ from zope.schema.vocabulary import SimpleTerm
 class ObjPathSource(PathSource):
 
     def _getBrainByValue(self, value):
-        if type(value) != str:
+        if type(value) != str and type(value) != unicode:
             if not value.absolute_url():
                 portal_catalog = self.context.portal_catalog
                 brains = portal_catalog(UID=value.UID())
