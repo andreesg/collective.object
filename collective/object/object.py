@@ -1688,13 +1688,13 @@ class AddForm(add.DefaultAddForm):
         for group in self.groups:
             for widget in group.widgets.values():
                 if IDataGridField.providedBy(widget):
-                    widget.auto_append = False
+                    widget.auto_append = True
                     widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
 
         for widget in self.widgets.values():
             if IDataGridField.providedBy(widget) or IAjaxSelectWidget.providedBy(widget):
-                widget.auto_append = False
+                widget.auto_append = True
                 widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
 
