@@ -242,13 +242,16 @@ def associations_associatedSubjects_subject(object, **kw):
 def associations__associatedSubjects_association(object, **kw):
     if hasattr(object, 'associations_associatedSubjects'):
         terms = []
-        items = object.associations_associatedSubjects
-        if items != None:
-            for item in items:
-                if item['associations'] != None:
-                    for term in item['associations']:
-                        if term:
-                            terms.append(term)
+        try:
+            items = object.associations_associatedSubjects
+            if items != None:
+                for item in items:
+                    if item['associations'] != None:
+                        for term in item['associations']:
+                            if term:
+                                terms.append(term)
+        except:
+            return []
         return terms
     else:
         return []
