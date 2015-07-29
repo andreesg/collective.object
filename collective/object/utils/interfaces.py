@@ -263,6 +263,8 @@ class IAssociatedSubjects(Interface):
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
+
+
 class IAssociatedPeriods(Interface):
     form.widget('associations', AjaxSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
     associations = schema.List(

@@ -450,18 +450,21 @@ def fieldCollection__fieldCollection_placeCodeType(object, **kw):
 @indexer(IObject)
 def numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association(object, **kw):
     if hasattr(object, 'numbersRelationships_relationshipsWithOtherObjects_relatedObjects'):
-        terms = []
-        items = object.numbersRelationships_relationshipsWithOtherObjects_relatedObjects
-        if items != None:
-            for item in items:
-                if item['associations'] != None:
-                    for term in item['associations']:
-                        if term:
-                            terms.append(term)
-        return terms
+        try:
+            terms = []
+            items = object.numbersRelationships_relationshipsWithOtherObjects_relatedObjects
+            if items != None:
+                for item in items:
+                    if item['associations'] != None:
+                        for term in item['associations']:
+                            if term:
+                                terms.append(term)
+            return terms
+        except:
+            return []
     else:
         return []
-        
+
 
 @indexer(IObject)
 def fieldCollection__fieldCollection_placeCode(object, **kw):
