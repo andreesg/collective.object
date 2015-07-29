@@ -16,7 +16,8 @@ from zope.interface import implements, classProvides
 from Products.CMFCore.utils import getToolByName
 from plone import api
 from zope.component.hooks import getSite
-
+from binascii import b2a_qp
+from Products.CMFPlone.utils import safe_unicode
 
 # # # # # # # # # # # # # #
 # Vocabularies            #
@@ -105,89 +106,6 @@ def _createTaxonomyRankVocabulary():
         term = SimpleTerm(value=key, token=str(key), title=name)
         yield term
 
-class CategoryVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
-    """
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        self.context = context
-        portal = api.portal.get()
-        self.catalog = getToolByName(portal, "portal_catalog")
-        if self.catalog is None:
-            return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('identification_objectName_category')
-        items = [SimpleTerm(i, i, i) for i in index._index]
-        return SimpleVocabulary(items)
-
-class ObjectNameVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the "identification_objectName_category" index
-    """
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        self.context = context
-        portal = api.portal.get()
-        self.catalog = getToolByName(portal, "portal_catalog")
-        if self.catalog is None:
-            return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('identification_objectName_objectname')
-        items = []
-
-        for i in index._index:
-            if type(i) != list:
-                items.append(SimpleTerm(i, i, i))
-
-        return SimpleVocabulary(items)
-
-
-class RoleVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the "productionDating_production_productionRole" index
-    """
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        self.context = context
-        portal = api.portal.get()
-        self.catalog = getToolByName(portal, "portal_catalog")
-        if self.catalog is None:
-            return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('productionDating__production_productionRole')
-        items = [SimpleTerm(i, i, i) for i in index._index]
-
-        return SimpleVocabulary(items)
-
-class PlaceVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the "productionDating_production_productionPlace" index
-    """
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        self.context = context
-        portal = api.portal.get()
-        self.catalog = getToolByName(portal, "portal_catalog")
-        if self.catalog is None:
-            return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('productionDating__production_productionPlace')
-        items = [SimpleTerm(i, i, i) for i in index._index]
-
-        return SimpleVocabulary(items)
-
-class SchoolStyleVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the "productionDating_production_schoolStyle" index
-    """
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        self.context = context
-        portal = api.portal.get()
-        self.catalog = getToolByName(portal, "portal_catalog")
-        if self.catalog is None:
-            return SimpleVocabulary([])
-        index = self.catalog._catalog.getIndex('productionDating__production_schoolStyle')
-        items = [SimpleTerm(i, i, i) for i in index._index]
-
-        return SimpleVocabulary(items)
 
 class ObjectVocabulary(object):
 
@@ -196,15 +114,27 @@ class ObjectVocabulary(object):
     def __init__(self, index):
         self.index = index
 
-    def __call__(self, context):
+    def __call__(self, context, query=None):
         self.context = context
-        portal = getSite()
-        self.catalog = getToolByName(portal, "portal_catalog")
+        
+        site = getSite()
+        self.catalog = getToolByName(site, "portal_catalog")
         if self.catalog is None:
             return SimpleVocabulary([])
         index = self.catalog._catalog.getIndex(self.index)
         
-        items = [SimpleTerm(value=i, token=i.encode('ascii', 'ignore'), title=i) for i in index._index]
+        def safe_encode(term):
+            if isinstance(term, unicode):
+                # no need to use portal encoding for transitional encoding from
+                # unicode to ascii. utf-8 should be fine.
+                term = term.encode('utf-8')
+            return term
+
+        items = [
+            SimpleTerm(i, b2a_qp(safe_encode(i)), safe_unicode(i))
+            for i in index._index
+            if type(i) != list and (query is None or safe_encode(query) in safe_encode(i))
+        ]
 
         return SimpleVocabulary(items)
 
@@ -233,14 +163,14 @@ class ATVMVocabulary(object):
         return SimpleVocabulary(terms)
 
 
-# TODO: Update vocabularies to use general ObjectVocabulary
-CategoryVocabularyFactory = CategoryVocabulary()
-ObjectNameVocabularyFactory = ObjectNameVocabulary()
-RoleVocabularyFactory = RoleVocabulary()
-PlaceVocabularyFactory = PlaceVocabulary()
-SchoolStyleVocabularyFactory = SchoolStyleVocabulary()
 
 # Updated vocabularies
+CategoryVocabularyFactory = ObjectVocabulary('identification_objectName_category')
+ObjectNameVocabularyFactory = ObjectVocabulary('identification_objectName_objectname')
+RoleVocabularyFactory = ObjectVocabulary('productionDating__production_productionRole')
+PlaceVocabularyFactory = ObjectVocabulary('productionDating__production_productionPlace')
+SchoolStyleVocabularyFactory = ObjectVocabulary('productionDating__production_schoolStyle')
+
 TechniqueVocabularyFactory = ObjectVocabulary('physicalCharacteristics__technique')
 MaterialVocabularyFactory = ObjectVocabulary('physicalCharacteristics__material')
 DimensionVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimension')
