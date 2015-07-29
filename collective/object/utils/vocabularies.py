@@ -132,7 +132,11 @@ class ObjectNameVocabulary(object):
         if self.catalog is None:
             return SimpleVocabulary([])
         index = self.catalog._catalog.getIndex('identification_objectName_objectname')
-        items = [SimpleTerm(i, i, i) for i in index._index]
+        items = []
+
+        for i in index._index:
+            if type(i) != list:
+                items.append(SimpleTerm(i, i, i))
 
         return SimpleVocabulary(items)
 
