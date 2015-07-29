@@ -11,7 +11,7 @@
     
         <div class="form-horizontal">
         
-          <tal:widget tal:replace="structure widgets/identification_identification_institutionName/@@ploneform-render-widget"/>
+          <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionName/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/>
 
           <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionCode/@@ploneform-render-widget"/>-->
@@ -109,7 +109,7 @@
         </div>
 
         <div class="form-horizontal gridfield">
-           <tal:widget tal:replace="structure widgets/identification_taxonomy_determiner/@@ploneform-render-widget"/>
+           <!--<tal:widget tal:replace="structure widgets/identification_taxonomy_determiner/@@ploneform-render-widget"/>-->
            <tal:widget tal:replace="structure widgets/identification_taxonomy_determiners/@@ploneform-render-widget"/>
         </div>
 
