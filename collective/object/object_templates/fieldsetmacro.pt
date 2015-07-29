@@ -19,13 +19,13 @@
 
         </div>
 
-        <!--<div class="form-horizontal table-responsive gridfield show-label hide-th">
+        <div class="form-horizontal table-responsive gridfield show-label hide-th">
          <tal:widget tal:replace="structure widgets/identification_identification_collection/@@ploneform-render-widget"/>
-        </div>-->
-
-        <div class="form-horizontal">
-          <tal:widget tal:replace="structure view/widgets/identification_identification_collections/@@ploneform-render-widget"/>
         </div>
+
+        <!--<div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/identification_identification_collections/@@ploneform-render-widget"/>
+        </div>-->
 
         <div class="form-horizontal">
         
