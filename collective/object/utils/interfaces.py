@@ -152,7 +152,7 @@ class IDimensions(Interface):
         default="No value"
     )
 
-    precision = schema.TextLine(title=_(u'Precision'), required=False, default=u'ca')
+    precision = schema.TextLine(title=_(u'Precision'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 # Iconography
