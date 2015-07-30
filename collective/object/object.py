@@ -68,7 +68,9 @@ from .utils.vocabularies import *
 from .utils.interfaces import *
 from .utils.views import *
 from .utils.source import ObjPathSourceBinder
+from .utils.variables import *
 
+from plone.formwidget.contenttree import ObjPathSourceBinder as sb
 
 # # # # # # # # # #
 # # # # # # # # # #
@@ -76,9 +78,11 @@ from .utils.source import ObjPathSourceBinder
 # # # # # # # # # #
 # # # # # # # # # #
 
-class IObject(form.Schema):
-    # Vocabularies
 
+
+class IObject(form.Schema):
+
+    # Vocabularies
     identification_objectName_objectname = ListField(title=_(u'Object name'),
         value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
         required=False)
@@ -366,14 +370,14 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
 
     identification_identification_institutionCode = schema.TextLine(
         title=_(u'Institution code'), 
-        required=False,
+        required=False
     )
     dexteritytextindexer.searchable('identification_identification_institutionCode')
 
@@ -389,8 +393,6 @@ class IObject(form.Schema):
         required=False,
         description=_(u"Collection<br><br>If this object is part of a specific collection within the overall museum collection, use this field to enter its name.<br><br>Examples:<br>manuscripts<br>Muller"))
     form.widget(identification_identification_collection=DataGridFieldFactory)
-
-
 
     identification_identification_objectNumber = schema.TextLine(
         title=_(u'Object number'),
@@ -761,7 +763,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object')
+            source=ObjPathSourceBinder(portal_type='Object', navigation_tree_query={'path':{'query':OBJECT_FOLDER}})
         ),
         required=False
     )
@@ -829,7 +831,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Archive')
+            source=ObjPathSourceBinder(portal_type='Archive', navigation_tree_query={'path':{'query':ARCHIVE_FOLDER}})
         ),
         required=False
     )
@@ -1090,7 +1092,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -1246,7 +1248,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -1256,7 +1258,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -1325,7 +1327,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -1342,7 +1344,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -1376,7 +1378,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -1587,7 +1589,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Exhibition')
+            source=ObjPathSourceBinder(portal_type='Exhibition', navigation_tree_query={'path':{'query':EXHIBITION_FOLDER}})
         ),
         required=False
     )
@@ -1618,7 +1620,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='IncomingLoan')
+            source=ObjPathSourceBinder(portal_type='IncomingLoan', navigation_tree_query={'path':{'query':INCOMINGLOAN_FOLDER}})
         ),
         required=False
     )
@@ -1628,7 +1630,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='OutgoingLoan')
+            source=ObjPathSourceBinder(portal_type='OutgoingLoan', navigation_tree_query={'path':{'query':OUTGOINGLOAN_FOLDER}})
         ),
         required=False
     )

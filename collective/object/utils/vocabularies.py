@@ -19,6 +19,7 @@ from zope.component.hooks import getSite
 from binascii import b2a_qp
 from Products.CMFPlone.utils import safe_unicode
 
+
 # # # # # # # # # # # # # #
 # Vocabularies            #
 # # # # # # # # # # # # # #

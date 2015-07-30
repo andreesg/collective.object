@@ -4,10 +4,16 @@
 from zope import schema
 from zope.interface import Interface
 from collective.object import MessageFactory as _
+
+## 
+## Utils
+##
 from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceTypeVocabulary, \
                                 _createNameTypeVocabulary, _createSubjectTypeVocabulary, _createTaxonomyRankVocabulary
 
 from ..utils.source import ObjPathSourceBinder
+from ..utils.variables import *
+
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
 from plone.app.widgets.dx import AjaxSelectFieldWidget, DatetimeFieldWidget
@@ -66,7 +72,7 @@ class IProductiondating(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -207,7 +213,7 @@ class IInscriptions(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -439,7 +445,7 @@ class IRelatedObjects(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object')
+            source=ObjPathSourceBinder(portal_type='Object', navigation_tree_query={'path':{'query':OBJECT_FOLDER}})
         ),
         required=False
     )
@@ -649,7 +655,7 @@ class IParts(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object')
+            source=ObjPathSourceBinder(portal_type='Object', navigation_tree_query={'path':{'query':OBJECT_FOLDER}})
         ),
         required=False
     )
@@ -662,7 +668,7 @@ class IRelatedObject(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object')
+            source=ObjPathSourceBinder(portal_type='Object', navigation_tree_query={'path':{'query':OBJECT_FOLDER}})
         ),
         required=False
     )
@@ -699,7 +705,7 @@ class IArchives(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Archive')
+            source=ObjPathSourceBinder(portal_type='Archive', navigation_tree_query={'path':{'query':ARCHIVE_FOLDER}})
         ),
         required=False
     )
@@ -723,7 +729,7 @@ class IAssociatedPersonInstitution(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -848,7 +854,7 @@ class IIconographyContentPersonInstitution(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
         ),
         required=False
     )
@@ -921,7 +927,7 @@ class IExhibition(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Exhibition')
+            source=ObjPathSourceBinder(portal_type='Exhibition', navigation_tree_query={'path':{'query':EXHIBITION_FOLDER}})
         ),
         required=False
     )

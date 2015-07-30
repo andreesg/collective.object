@@ -12,10 +12,11 @@
         <div class="form-horizontal">
         
           <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionName/@@ploneform-render-widget"/>-->
-          <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/>
-
+          <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/> 
           <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionCode/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure widgets/identification_identification_administrativeName/@@ploneform-render-widget"/>
+
+
 
         </div>
 
