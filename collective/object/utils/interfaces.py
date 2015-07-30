@@ -84,7 +84,8 @@ class IProductiondating(Interface):
         title=_(u'Role'),
         required=False,
         value_type=schema.TextLine(),
-        missing_value=[]
+        missing_value=[],
+        max_length=1
     )
 
     form.widget('place', AjaxSelectFieldWidget, vocabulary="collective.object.productionPlace")
@@ -92,10 +93,11 @@ class IProductiondating(Interface):
         title=_(u'Place'),
         required=False,
         value_type=schema.TextLine(),
-        missing_value=[]
+        missing_value=[],
+        max_length=1
     )
 
-    production_notes = schema.TextLine(title=_(u'Production notes'), required=False)
+    production_notes = schema.Text(title=_(u'Production notes'), required=False)
 
 class ISchoolStyle(Interface):
     form.widget('term', AjaxSelectFieldWidget, vocabulary="collective.object.productionSchoolStyle")
@@ -546,11 +548,11 @@ class IDimension(Interface):
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IPeriod(Interface):
-    period = schema.TextLine(title=_(u'Period'), required=False)
     date_early = schema.TextLine(title=_(u'Date (early)'), required=False)
     date_early_precision = schema.TextLine(title=_(u'Precision'), required=False)
     date_late = schema.TextLine(title=_(u'Date (late)'), required=False)
     date_late_precision = schema.TextLine(title=_(u'Precision'), required=False)
+    period = schema.TextLine(title=_(u'Period'), required=False)
 
 ## Production & Dating
 class IProduction(Interface):

@@ -111,7 +111,7 @@
                                                 'fieldCollection_fieldCollection_places', 'fieldCollection_fieldCollection_placeFeatures',
                                                 'fieldCollection_habitatStratigraphy_stratigrafie', 'identification_identification_collections',
                                                 'fieldCollection_fieldCollection_events', 'fieldCollection_fieldCollection_placeCodes',
-                                                'numbersRelationships_relationshipsWithOtherObjects_relatedObjects']">
+                                                'numbersRelationships_relationshipsWithOtherObjects_relatedObjects', 'productionDating_production_schoolStyles']">
                                                   <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
                                               </tal:notcategory>
                                           </metal:field>

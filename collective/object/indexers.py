@@ -55,16 +55,8 @@ def productionDating_production_productionPlace(object, **kw):
 
 @indexer(IObject)
 def productionDating_production_schoolStyle(object, **kw):
-    if hasattr(object, 'productionDating_production_schoolstyle'):
-        styles = []
-        items = object.productionDating_production_schoolstyle
-        if items != None:
-            for item in items:
-                if item['term'] != None:
-                    for term in item['term']:
-                        if term:
-                            styles.append(term)
-        return styles
+    if hasattr(object, 'productionDating_production_schoolStyles'):
+        return object.productionDating_production_schoolStyles
     else:
         return []
 

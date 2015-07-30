@@ -180,6 +180,10 @@ msgid "Production & Dating"
 msgstr "Vervaardiging & Datering"
 
 #: ../object.py
+msgid "Production"
+msgstr "Vervaardiging"
+
+#: ../object.py
 msgid "Creator"
 msgstr "Vervaardiger"
 

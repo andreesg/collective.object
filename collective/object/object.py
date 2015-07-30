@@ -118,6 +118,14 @@ class IObject(form.Schema):
     form.widget(productionDating_production_schoolstyle=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('productionDating_production_schoolStyle')
 
+    productionDating_production_schoolStyles = schema.List(
+        title=_(u'School / style'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('productionDating_production_schoolStyles', AjaxSelectFieldWidget,  vocabulary="collective.object.productionSchoolStyle")
+
     # Physical characteristics
     physicalCharacteristics_technique = ListField(title=_(u'Techniques'),
         value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
@@ -547,7 +555,7 @@ class IObject(form.Schema):
     form.widget(productionDating_production=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('productionDating_production')
 
-    productionDating_production_productionReason = schema.TextLine(
+    productionDating_production_productionReason = schema.Text(
         title=_(u'Production reason'),
         required=False
     )
