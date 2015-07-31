@@ -155,7 +155,7 @@ class IDimensions(Interface):
     )
 
     precision = schema.TextLine(title=_(u'Precision'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Iconography
 class IIconographyGeneralThemes(Interface):
@@ -567,7 +567,7 @@ class ISchool(Interface):
 
 class IFrame(Interface):
     frame = schema.TextLine(title=_(u'Frame'), required=False)
-    detail = schema.TextLine(title=_(u'Detail'), required=False)
+    detail = schema.Text(title=_(u'Detail'), required=False)
 
 ## Recommendations/requirements
 class IRequirements(Interface):
