@@ -118,7 +118,7 @@ class ITechniques(Interface):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IMaterials(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
