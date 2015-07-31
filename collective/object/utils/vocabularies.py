@@ -205,7 +205,7 @@ PlaceCodeTypeVocabularyFactory = ObjectVocabulary('fieldCollection__fieldCollect
 RelatedAssociationsVocabularyFactory = ObjectVocabulary('numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association')
 CollectionVocabularyFactory = ObjectVocabulary('identification__identification_collections')
 AssociationVocabularyFactory = ObjectVocabulary('associations__associatedSubjects_association')
-
+PeriodVocabularyFactory = ObjectVocabulary('productionDating__production_periods')
 
 #
 # ATVM vocabularies

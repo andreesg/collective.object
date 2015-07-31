@@ -94,6 +94,7 @@
   <adapter name="productionDating__production_productionRole" factory=".indexers.productionDating_production_productionRole" />
   <adapter name="productionDating__production_productionPlace" factory=".indexers.productionDating_production_productionPlace" />
   <adapter name="productionDating__production_schoolStyle" factory=".indexers.productionDating_production_schoolStyle" />
+  <adapter name="productionDating__production_periods" factory=".indexers.productionDating__production_periods" />
 
   <adapter name="physicalCharacteristics__technique" factory=".indexers.physicalCharacteristics_technique" />
   <adapter name="physicalCharacteristics__material" factory=".indexers.physicalCharacteristics_material" />
@@ -353,6 +354,11 @@
   <utility
     component=".utils.vocabularies.TaxonomyRankVocabularyFactory"
     name="collective.object.taxonomyrank"
+    />
+
+  <utility
+    component=".utils.vocabularies.PeriodVocabularyFactory"
+    name="collective.object.periods"
     />
 
 

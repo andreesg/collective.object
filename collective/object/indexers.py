@@ -62,6 +62,13 @@ def productionDating_production_schoolStyle(object, **kw):
 
 
 @indexer(IObject)
+def productionDating__production_periods(object, **kw):
+    if hasattr(object, 'productionDating_production_periods'):
+        return object.productionDating_production_periods
+    else:
+        return []
+
+@indexer(IObject)
 def physicalCharacteristics_technique(object, **kw):
     if hasattr(object, 'physicalCharacteristics_technique'):
         techniques = []

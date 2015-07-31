@@ -126,6 +126,14 @@ class IObject(form.Schema):
     )
     form.widget('productionDating_production_schoolStyles', AjaxSelectFieldWidget,  vocabulary="collective.object.productionSchoolStyle")
 
+    productionDating_production_periods = schema.List(
+        title=_(u'Period'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('productionDating_production_periods', AjaxSelectFieldWidget,  vocabulary="collective.object.periods")
+
     # Physical characteristics
     physicalCharacteristics_technique = ListField(title=_(u'Techniques'),
         value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
@@ -573,6 +581,8 @@ class IObject(form.Schema):
         required=False)
     form.widget(productionDating_dating_period=DataGridFieldFactory)
     dexteritytextindexer.searchable('productionDating_dating_period')
+
+
 
     productionDating_dating_notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
