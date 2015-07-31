@@ -358,7 +358,7 @@ class ICurrentLocations(Interface):
     end_date = schema.TextLine(title=_(u'End date'), required=False)
     location_type = schema.TextLine(title=_(u'Location type'), required=False)
     
-    form.widget('location', AjaxSelectFieldWidget, vocabulary="collective.object.currentlocation")
+    form.widget('location', AjaxSingleSelectFieldWidget, vocabulary="collective.object.currentlocation")
     location = schema.List(
         title=_(u'Location'), 
         required=False,
@@ -367,7 +367,7 @@ class ICurrentLocations(Interface):
     )
 
     fitness = schema.TextLine(title=_(u'Fitness'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class ICollectionCollectors(Interface):
     #name = schema.TextLine(title=_(u'Collector'), required=False)
@@ -811,7 +811,7 @@ class ICurrentLocation(Interface):
 class ILocationChecks(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
     checked_by = schema.TextLine(title=_(u'Checked by'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Notes
 class INotes(Interface):

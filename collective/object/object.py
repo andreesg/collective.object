@@ -286,7 +286,7 @@ class IObject(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    form.widget('location_normalLocation_normalLocation', AjaxSelectFieldWidget,  vocabulary="collective.object.location")
+    form.widget('location_normalLocation_normalLocation', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.location")
 
     # Current location
     location_currentLocation = ListField(title=_(u'Current location'),
