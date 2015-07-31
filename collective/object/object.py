@@ -43,6 +43,7 @@ from collective.z3cform.datagridfield.interfaces import IDataGridField
 from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget, IAjaxSelectWidget
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
+
 #
 # DataGridFields dependencies
 #
@@ -69,6 +70,7 @@ from .utils.interfaces import *
 from .utils.views import *
 from .utils.source import ObjPathSourceBinder
 from .utils.variables import *
+from .utils.widgets import AjaxSingleSelectFieldWidget
 
 from plone.formwidget.contenttree import ObjPathSourceBinder as sb
 
@@ -81,7 +83,6 @@ from plone.formwidget.contenttree import ObjPathSourceBinder as sb
 
 
 class IObject(form.Schema):
-
     # Vocabularies
     identification_objectName_objectname = ListField(title=_(u'Object name'),
         value_type=DictRow(title=_(u'Object name'), schema=IObjectname),

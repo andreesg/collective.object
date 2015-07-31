@@ -1435,7 +1435,13 @@ msgid "regiment or service"
 msgstr "dienstonderdeel"
 
 
+#: ../object.py
+msgid 'label_datering_van'
+msgstr 'Datering van'
 
+#: ../object.py
+msgid 'label_date_tot'
+msgstr 'Tot'
 
 
 

@@ -13,6 +13,7 @@ from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceType
 
 from ..utils.source import ObjPathSourceBinder
 from ..utils.variables import *
+from ..utils.widgets import AjaxSingleSelectFieldWidget
 
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
@@ -79,7 +80,7 @@ class IProductiondating(Interface):
 
     qualifier = schema.TextLine(title=_(u'Qualifier'), required=False)
     
-    form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.productionRole")
+    form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionRole")
     role = schema.List(
         title=_(u'Role'),
         required=False,
@@ -88,7 +89,7 @@ class IProductiondating(Interface):
         max_length=1
     )
 
-    form.widget('place', AjaxSelectFieldWidget, vocabulary="collective.object.productionPlace")
+    form.widget('place', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionPlace")
     place = schema.List(
         title=_(u'Place'),
         required=False,
@@ -111,7 +112,7 @@ class ISchoolStyle(Interface):
 ## Physical Characteristics
 class ITechniques(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
-    form.widget('technique', AjaxSelectFieldWidget, vocabulary="collective.object.techniques")
+    form.widget('technique', AjaxSingleSelectFieldWidget, vocabulary="collective.object.techniques")
     technique = schema.List(
         title=_(u'Technique'),
         required=False,
@@ -123,7 +124,7 @@ class ITechniques(Interface):
 class IMaterials(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
 
-    form.widget('material', AjaxSelectFieldWidget, vocabulary="collective.object.materials")
+    form.widget('material', AjaxSingleSelectFieldWidget, vocabulary="collective.object.materials")
     material = schema.List(
         title=_(u'Material'),
         required=False,
@@ -136,7 +137,7 @@ class IMaterials(Interface):
 class IDimensions(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
     
-    form.widget('dimension', AjaxSelectFieldWidget, vocabulary="collective.object.dimensions")
+    form.widget('dimension', AjaxSingleSelectFieldWidget, vocabulary="collective.object.dimensions")
     dimension = schema.List(
         title=_(u'Dimension'),
         required=False,
@@ -548,9 +549,9 @@ class IDimension(Interface):
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IPeriod(Interface):
-    date_early = schema.TextLine(title=_(u'Date (early)'), required=False)
+    date_early = schema.TextLine(title=_(u'label_datering_van', default=u'Date (early)'), required=False)
     date_early_precision = schema.TextLine(title=_(u'Precision'), required=False)
-    date_late = schema.TextLine(title=_(u'Date (late)'), required=False)
+    date_late = schema.TextLine(title=_(u'label_date_tot', default=u'Date (late)'), required=False)
     date_late_precision = schema.TextLine(title=_(u'Precision'), required=False)
     period = schema.TextLine(title=_(u'Period'), required=False)
 
