@@ -4,6 +4,7 @@
 from zope import schema
 from zope.interface import Interface
 from collective.object import MessageFactory as _
+from zope.component import adapts
 
 ## 
 ## Utils
@@ -31,10 +32,18 @@ nametype_vocabulary = SimpleVocabulary(list(_createNameTypeVocabulary()))
 subjecttype_vocabulary = SimpleVocabulary(list(_createSubjectTypeVocabulary()))
 taxonomyrank_vocabulary = SimpleVocabulary(list(_createTaxonomyRankVocabulary()))
 
+
+class IListField(Interface):
+    pass
+
 class ListField(schema.List):
+    
     """We need to have a unique class for the field list so that we
     can apply a custom adapter."""
     pass
+
+
+
 
 # # # # # # # # # # # # #
 # Widget interface      #
@@ -64,7 +73,7 @@ class IObjectname(form.Schema):
     )
 
     #type = schema.TextLine(title=_(u'Type'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False, default=u"", missing_value=u"")
 
 ## Production & Dating
 class IProductiondating(Interface):

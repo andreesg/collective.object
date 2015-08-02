@@ -10,7 +10,7 @@
         <h2 class="page-header" i18n:translate="">Identification</h2>
     
         <div class="form-horizontal">
-           
+
           <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionName/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/> 
           <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionCode/@@ploneform-render-widget"/>-->

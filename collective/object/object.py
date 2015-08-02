@@ -401,6 +401,8 @@ class IObject(form.Schema):
     identification_identification_administrativeName = schema.TextLine(
         title=_(u'Administrative name'), 
         required=False,
+        default=u"",
+        missing_value=u"",
         description=_(u"Administration name<br><br>The name of the department responsible for the object itself and for the documentation about the object.<br><br>Examples:<br>Textiles<br>Geology<br>Glass and ceramics")
     )
     dexteritytextindexer.searchable('identification_identification_administrativeName')
@@ -504,12 +506,12 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('identification_titleDescription_date')
 
-    identification_titleDescription_titleDate = schema.Datetime(
+    identification_titleDescription_titleDate = schema.TextLine(
         title=_(u'Date'),
         required=False
     )
     dexteritytextindexer.searchable('identification_titleDescription_titleDate')
-    form.widget(identification_titleDescription_titleDate=DatetimeFieldWidget)
+    #form.widget(identification_titleDescription_titleDate=DatetimeFieldWidget)
 
     # Taxonomy
     identification_taxonomy = ListField(title=_(u'Taxonomy'),
