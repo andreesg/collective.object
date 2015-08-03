@@ -83,6 +83,12 @@ from plone.formwidget.contenttree import ObjPathSourceBinder as sb
 
 
 class IObject(form.Schema):
+
+    priref = schema.TextLine(
+        title=_(u'priref'), 
+        required=False
+    )
+
     # Vocabularies
     identification_objectName_objectname = ListField(title=_(u'Object name'),
         value_type=DictRow(title=_(u'Object name'), schema=IObjectname),

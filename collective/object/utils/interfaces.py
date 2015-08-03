@@ -87,7 +87,7 @@ class IProductiondating(Interface):
         required=False
     )
 
-    qualifier = schema.TextLine(title=_(u'Qualifier'), required=False)
+    qualifier = schema.TextLine(title=_(u'Qualifier'), required=False, default=u" ", missing_value=u" ")
     
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionRole")
     role = schema.List(
@@ -107,7 +107,7 @@ class IProductiondating(Interface):
         max_length=1
     )
 
-    production_notes = schema.Text(title=_(u'Production notes'), required=False)
+    production_notes = schema.Text(title=_(u'Production notes'), required=False, default=u" ", missing_value=u" ")
 
 class ISchoolStyle(Interface):
     form.widget('term', AjaxSelectFieldWidget, vocabulary="collective.object.productionSchoolStyle")
@@ -318,6 +318,7 @@ class IValuations(Interface):
 
     valuer = schema.TextLine(title=_(u'Valuer'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
     #reference = schema.TextLine(title=_(u'Reference'), required=False)
 
 class IConditions(Interface):
@@ -558,10 +559,10 @@ class IDimension(Interface):
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IPeriod(Interface):
-    date_early = schema.TextLine(title=_(u'label_datering_van', default=u'Date (early)'), required=False)
-    date_early_precision = schema.TextLine(title=_(u'Precision'), required=False)
-    date_late = schema.TextLine(title=_(u'label_date_tot', default=u'Date (late)'), required=False)
-    date_late_precision = schema.TextLine(title=_(u'Precision'), required=False)
+    date_early = schema.TextLine(title=_(u'label_datering_van', default=u'Date (early)'), required=False, default=u" ", missing_value=u" ")
+    date_early_precision = schema.TextLine(title=_(u'Precision'), required=False, default=u" ", missing_value=u" ")
+    date_late = schema.TextLine(title=_(u'label_date_tot', default=u'Date (late)'), required=False, default=u" ", missing_value=u" ")
+    date_late_precision = schema.TextLine(title=_(u'Precision'), required=False, default=u" ", missing_value=u" ")
     period = schema.TextLine(title=_(u'Period'), required=False)
 
 ## Production & Dating
@@ -776,8 +777,8 @@ class IValuation(Interface):
     curr = schema.TextLine(title=_(u'Curr.'), required=False)
     valuer = schema.TextLine(title=_(u'Valuer'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
-    reference = schema.TextLine(title=_(u'Reference'), required=False)
-    #notes = schema.TextLine(title=_(u'Notes'), required=False)
+    #reference = schema.TextLine(title=_(u'Reference'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IInsurance(Interface):
     #type = schema.Choice(
@@ -785,13 +786,13 @@ class IInsurance(Interface):
     #    title=_(u'Type'),
     #    required=False
     #)
-    #value = schema.TextLine(title=_(u'Value'), required=False)
-    #curr = schema.TextLine(title=_(u'Curr.'), required=False)
-    #valuer = schema.TextLine(title=_(u'Valuer'), required=False)
-    #date = schema.TextLine(title=_(u'Date'), required=False)
+    value = schema.TextLine(title=_(u'Value'), required=False)
+    curr = schema.TextLine(title=_(u'Curr.'), required=False)
+    valuer = schema.TextLine(title=_(u'Valuer'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
     policy_number = schema.TextLine(title=_(u'Policy number'), required=False)
     insurance_company = schema.TextLine(title=_(u'Insurance company'), required=False)
-    confirmation_date = schema.TextLine(title=_(u'Confirmation date'), required=False)
+    #confirmation_date = schema.TextLine(title=_(u'Confirmation date'), required=False)
     renewal_date = schema.TextLine(title=_(u'Renewal date'), required=False)
     reference = schema.TextLine(title=_(u'Reference'), required=False)
     conditions = schema.TextLine(title=_(u'Conditions'), required=False)
