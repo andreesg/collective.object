@@ -1186,7 +1186,7 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('acquisition_costs_purchase_price_curr')
 
-    acquisition_costs_notes = schema.TextLine(
+    acquisition_costs_notes = schema.Text(
         title=_(u'Notes'),
         required=False
     )
@@ -1695,7 +1695,26 @@ class IObject(form.Schema):
         required=False)
     form.widget(notes_free_fields=DataGridFieldFactory)
     dexteritytextindexer.searchable('notes_free_fields')
-    
+
+    #
+    # management details
+    #
+
+    model.fieldset('management_details', label=_(u'Management details'), 
+        fields=["managementDetails_edit", "input_date",
+                "input_time","input_source", "input_name"]
+    )
+
+    managementDetails_edit = ListField(title=_(u'Management details'),
+        value_type=DictRow(title=_(u'Management details'), schema=IManagementDetails),
+        required=False)
+    form.widget(managementDetails_edit=DataGridFieldFactory)
+    dexteritytextindexer.searchable('managementDetails_edit')
+
+    input_date = schema.TextLine(title=_(u'Date'), required=False)
+    input_time = schema.TextLine(title=_(u'Time'), required=False)
+    input_source = schema.TextLine(title=_(u'Source'), required=False)
+    input_name = schema.TextLine(title=_(u'Name'), required=False)
 
 
 # # # # # # # # # # # # #

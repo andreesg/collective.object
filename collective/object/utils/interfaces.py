@@ -279,7 +279,7 @@ class IAssociatedSubjects(Interface):
 
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 
 
@@ -352,7 +352,7 @@ class IEnvConditions(Interface):
 class IFundings(Interface):
     amount = schema.TextLine(title=_(u'Amount'), required=False)
     
-    form.widget('curr', AjaxSelectFieldWidget, vocabulary="collective.object.currency")
+    #form.widget('curr', AjaxSelectFieldWidget, vocabulary="collective.object.currency")
     curr = schema.TextLine(
         title=_(u'Curr.'), 
         required=False
@@ -749,7 +749,7 @@ class IAssociatedPersonInstitution(Interface):
     
     #startDate = schema.TextLine(title=_(u'Start date'), required=False)
     #endDate = schema.TextLine(title=_(u'End date'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
     
 class IAssociatedSubject(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
@@ -804,6 +804,13 @@ class IFunding(Interface):
     curr = schema.TextLine(title=_(u'Curr.'), required=False)
     source = schema.TextLine(title=_(u'Source'), required=False)
     provisos = schema.TextLine(title=_(u'Provisos'), required=False)
+
+class IManagementDetails(Interface):
+    editDate = schema.TextLine(title=_(u'Date'), required=False)
+    editNotes = schema.TextLine(title=_(u'Notes'), required=False)
+    editName = schema.TextLine(title=_(u'Name'), required=False)
+    editTime = schema.TextLine(title=_(u'Time'), required=False)
+    editSource = schema.TextLine(title=_(u'Source'), required=False)
 
 class IDocumentation(Interface):
     description = schema.TextLine(title=_(u'label_description', default=u'Description'), required=False)
@@ -951,7 +958,7 @@ class IExhibition(Interface):
     #organiser = schema.TextLine(title=_(u'Organiser'), required=False)
     #venue = schema.TextLine(title=_(u'Venue'), required=False)
     #place = schema.TextLine(title=_(u'Place'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
     catObject = schema.TextLine(title=_(u'Cat. no. object'), required=False)
 
 
