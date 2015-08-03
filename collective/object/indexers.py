@@ -1,6 +1,9 @@
 
 from plone.indexer.decorator import indexer
 from .object import IObject
+from collective.personOrInstitution.personOrInstitution import IPersonOrInstitution
+from collective.archive.archive import IArchive
+from collective.treatment.treatment import ITreatment
 
 @indexer(IObject)
 def identification_objectName_category(object, **kw):
@@ -489,6 +492,20 @@ def identification__identification_collections(object, **kw):
         return object.identification_identification_collections
     else:
         return []
+
+@indexer(IPersonOrInstitution)
+def person_priref(object, **kw):
+    if hasattr(object, 'priref'):
+        return object.priref
+    else:
+        return ""
+
+@indexer(IArchive)
+def archive_priref(object, **kw):
+    if hasattr(object, 'priref'):
+        return object.priref
+    else:
+        return ""
 
 
 

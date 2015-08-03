@@ -1323,7 +1323,7 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('disposal_documentation')
 
     # Notes 
-    disposal_notes = schema.TextLine(
+    disposal_notes = schema.Text(
         title=_(u'Notes'),
         required=False
     )
