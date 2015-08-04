@@ -943,8 +943,8 @@
           <tal:widget tal:replace="structure widgets/loans_outgoingLoan/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/loans_outgoingLoan/@@ploneform-render-widget"/>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/loans_outgoingLoans/@@ploneform-render-widget"/>
         </div>
 
     </div>
