@@ -372,11 +372,11 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # 
     
     model.fieldset('identification', label=_(u'Identification'), 
-        fields=['identification_identification_institutionName', 'identification_identification_institutionNames', 'identification_identification_institutionCode', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
+        fields=['identification_identification_institutionName', 'identification_identification_institutionNames', 'identification_identification_institutionCode', 'identification_identification_institutionPlace', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
                 'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
                 'identification_identification_edition', 'identification_identification_distinguishFeatures', 'identification_taxonomy_determiners',
                 'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_notes',
-                'identification_titleDescription_translatedTitle', 'identification_titleDescription_language', 'identification_titleDescription_describer', 'identification_titleDescription_date',
+                'identification_titleDescription_translatedTitle', 'identification_titleDescription_language','identification_titleDescription_titleType', 'identification_titleDescription_describer', 'identification_titleDescription_date',
                 'identification_titleDescription_titleDate', 'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_objectstatus', 'identification_taxonomy_notes']
     )
 
@@ -403,6 +403,12 @@ class IObject(form.Schema):
         required=False
     )
     dexteritytextindexer.searchable('identification_identification_institutionCode')
+
+    identification_identification_institutionPlace = schema.TextLine(
+        title=_(u'Institution place'), 
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_identification_institutionPlace')
 
     identification_identification_administrativeName = schema.TextLine(
         title=_(u'Administrative name'), 
@@ -487,6 +493,12 @@ class IObject(form.Schema):
         required=False
     )
     dexteritytextindexer.searchable('identification_titleDescription_notes')
+
+    identification_titleDescription_titleType = schema.TextLine(
+        title=_(u'Title type'),
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_titleDescription_translatedTitle')
 
     identification_titleDescription_translatedTitle = schema.TextLine(
         title=_(u'Translated title'),
@@ -1696,6 +1708,33 @@ class IObject(form.Schema):
     form.widget(notes_free_fields=DataGridFieldFactory)
     dexteritytextindexer.searchable('notes_free_fields')
 
+
+    #
+    # Transport tab
+    #
+    model.fieldset('transport', label=_(u'Transport'), 
+        fields=["transport_despatch", "transport_despatchNumber", "transport_entry_number"]
+    )
+
+    transport_despatch = ListField(title=_(u'Despatch'),
+        value_type=DictRow(title=_(u'Despatch'), schema=IDespatch),
+        required=False)
+    form.widget(transport_despatch=DataGridFieldFactory)
+    dexteritytextindexer.searchable('transport_despatch')
+
+    transport_despatchNumber = ListField(title=_(u'Despatch number'),
+        value_type=DictRow(title=_(u'Despatch number'), schema=IDespatchNumber),
+        required=False)
+    form.widget(transport_despatchNumber=DataGridFieldFactory)
+    dexteritytextindexer.searchable('transport_despatchNumber')
+
+    transport_entry_number = ListField(title=_(u'Entry number'),
+        value_type=DictRow(title=_(u'Entry number'), schema=IEntryNumber),
+        required=False)
+    form.widget(transport_entry_number=DataGridFieldFactory)
+    dexteritytextindexer.searchable('transport_entry_number')
+
+
     #
     # management details
     #
@@ -1715,6 +1754,8 @@ class IObject(form.Schema):
     input_time = schema.TextLine(title=_(u'Time'), required=False)
     input_source = schema.TextLine(title=_(u'Source'), required=False)
     input_name = schema.TextLine(title=_(u'Name'), required=False)
+
+
 
 
 # # # # # # # # # # # # #

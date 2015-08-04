@@ -72,7 +72,7 @@ class IObjectname(form.Schema):
         missing_value=[]
     )
 
-    #type = schema.TextLine(title=_(u'Type'), required=False)
+    type = schema.TextLine(title=_(u'Type'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False, default=u"", missing_value=u"")
 
 ## Production & Dating
@@ -87,7 +87,7 @@ class IProductiondating(Interface):
         required=False
     )
 
-    qualifier = schema.TextLine(title=_(u'Qualifier'), required=False, default=u" ", missing_value=u" ")
+    qualifier = schema.TextLine(title=_(u'Qualifier'), required=False)
     
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionRole")
     role = schema.List(
@@ -106,6 +106,9 @@ class IProductiondating(Interface):
         missing_value=[],
         max_length=1
     )
+
+    dateBirth = schema.TextLine(title=_(u'Date birth'), required=False)
+    dateDeath = schema.TextLine(title=_(u'Date death'), required=False)
 
     production_notes = schema.Text(title=_(u'Production notes'), required=False, default=u" ", missing_value=u" ")
 
@@ -538,7 +541,7 @@ class IKeyword(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
     aspect = schema.TextLine(title=_(u'Aspect'), required=False)
     keyword = schema.TextLine(title=_(u'Keyword'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class ITechnique(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
@@ -711,6 +714,7 @@ class IDocumentationFreeText(Interface):
 
 class IArchive(Interface):
     archiveNumber = schema.TextLine(title=_(u'Archive number'), required=False)
+    content = schema.TextLine(title=_(u'Content'), required=False)
 
 class IArchives(Interface):
     archiveNumber = RelationList(
@@ -722,6 +726,27 @@ class IArchives(Interface):
         ),
         required=False
     )
+
+## Transport
+class IDespatch(Interface):
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    arrival_date = schema.TextLine(title=_(u'Arrival date'), required=False)
+    destination = schema.TextLine(title=_(u'Destination'), required=False)
+
+class IDespatchNumber(Interface):
+    despatch_date = schema.TextLine(title=_(u'Despatch date'), required=False)
+    delivery_date = schema.TextLine(title=_(u'Delivery date'), required=False)
+    destination = schema.TextLine(title=_(u'Destination'), required=False)
+    transport_number = schema.TextLine(title=_(u'Transport number'), required=False)
+
+class IEntryNumber(Interface):
+    depositor = schema.TextLine(title=_(u'Depositor'), required=False)
+    entry_reason = schema.TextLine(title=_(u'Entry reason'), required=False)
+    transport_number = schema.TextLine(title=_(u'Transport number'), required=False)
+    entry_date = schema.TextLine(title=_(u'Entry date'), required=False)
+    return_date = schema.TextLine(title=_(u'Return date'), required=False)
+    depositor = schema.TextLine(title=_(u'Depositor'), required=False)
+    owner = schema.TextLine(title=_(u'Owner'), required=False)
 
 ## Reproductions
 class IReproduction(Interface):
@@ -952,12 +977,12 @@ class IExhibition(Interface):
         required=False
     )
 
-    #name = schema.TextLine(title=_(u'Exhibition name'), required=False
-    #date = schema.TextLine(title=_(u'Date'), required=False)
-    #to = schema.TextLine(title=_(u'to'), required=False)
-    #organiser = schema.TextLine(title=_(u'Organiser'), required=False)
-    #venue = schema.TextLine(title=_(u'Venue'), required=False)
-    #place = schema.TextLine(title=_(u'Place'), required=False)
+    name = schema.TextLine(title=_(u'Exhibition name'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    to = schema.TextLine(title=_(u'to'), required=False)
+    organiser = schema.TextLine(title=_(u'Organiser'), required=False)
+    venue = schema.TextLine(title=_(u'Venue'), required=False)
+    place = schema.TextLine(title=_(u'Place'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
     catObject = schema.TextLine(title=_(u'Cat. no. object'), required=False)
 

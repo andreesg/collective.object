@@ -922,9 +922,7 @@
     <!-- Loans -->
     <div class="row no-padding">
         <!--<h2 class="page-header" i18n:translate="">Incoming loans</h2>
-        <div class="form-horizontal gridfield">
-          <tal:widget tal:replace="structure widgets/loans_incomingLoans/@@ploneform-render-widget"/>
-        </div>
+        
 
         <h2 class="page-header" i18n:translate="">Outgoing loans</h2>
         <div class="form-horizontal">
@@ -936,12 +934,42 @@
           <tal:widget tal:replace="structure widgets/loans_incomingLoan/@@ploneform-render-widget"/>
         </div>
 
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/loans_incomingLoans/@@ploneform-render-widget"/>
+        </div>
+
         <h2 class="page-header" i18n:translate="">Outgoing loans</h2>
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/loans_outgoingLoan/@@ploneform-render-widget"/>
         </div>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/loans_outgoingLoan/@@ploneform-render-widget"/>
+        </div>
+
     </div>
   </tal:loans>
+
+  <tal:transport tal:condition='python: fieldset_text == "transport"'
+    tal:define='widgets group/widgets'>
+    <!-- Loans -->
+    <div class="row no-padding">
+
+        <h2 class="page-header" i18n:translate="">Transport</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/transport_despatch/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/transport_despatchNumber/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/transport_entry_number/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:transport>
 
   <tal:management_details tal:condition='python: fieldset_text == "management_details"'
     tal:define='widgets group/widgets'>
