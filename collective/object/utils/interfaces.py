@@ -77,6 +77,8 @@ class IObjectname(form.Schema):
 
 class ITitle(Interface):
     title = schema.TextLine(title=_(u'Title'), required=False)
+    type = schema.TextLine(title=_(u'Type'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class ITranslatedTitle(Interface):
     title = schema.TextLine(title=_(u'Translated title'), required=False)
@@ -890,10 +892,10 @@ class IFunding(Interface):
 
 class IManagementDetails(Interface):
     editDate = schema.TextLine(title=_(u'Date'), required=False)
-    editNotes = schema.Text(title=_(u'Notes'), required=False)
     editName = schema.TextLine(title=_(u'Name'), required=False)
     editTime = schema.TextLine(title=_(u'Time'), required=False)
     editSource = schema.TextLine(title=_(u'Source'), required=False)
+    editNotes = schema.Text(title=_(u'Notes'), required=False)
 
 class IDocumentation(Interface):
     description = schema.TextLine(title=_(u'label_description', default=u'Description'), required=False)

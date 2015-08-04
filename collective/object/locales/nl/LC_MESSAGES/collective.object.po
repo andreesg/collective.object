@@ -1443,13 +1443,6 @@ msgstr 'Datering van'
 msgid 'label_date_tot'
 msgstr 'Tot'
 
-
-
-
-#: ../object.py
-msgid "Translated title"
-msgstr "Taal"
-
 #: ../object.py
 msgid "Article"
 msgstr "Lidwoord"

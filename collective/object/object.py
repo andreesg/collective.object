@@ -396,7 +396,7 @@ class IObject(form.Schema):
         fields=['identification_identification_institutionName', 'identification_identification_institutionNames', 'identification_identification_institutionCode', 'identification_identification_institutionPlace', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
                 'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
                 'identification_identification_edition', 'identification_identification_distinguishFeatures', 'identification_taxonomy_determiners',
-                'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_notes',
+                'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName',
                 'identification_titleDescription_translatedTitle', 'identification_titleDescription_language','identification_titleDescription_title', 'identification_titleDescription_describer', 'identification_titleDescription_date',
                 'identification_titleDescription_titleDate', 'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_objectstatus', 'identification_taxonomy_notes']
     )
@@ -509,22 +509,22 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('identification_objectName_otherName')
 
     # Title and description
-    identification_titleDescription_notes = ListField(title=_(u'Notes'),
+    """identification_titleDescription_notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
         required=False)
     form.widget(identification_titleDescription_notes=DataGridFieldFactory)
-    dexteritytextindexer.searchable('identification_titleDescription_notes')
+    dexteritytextindexer.searchable('identification_titleDescription_notes')"""
 
     identification_titleDescription_title = ListField(title=_(u'Title'),
         value_type=DictRow(title=_(u'Title'), schema=ITitle),
         required=False)
-    form.widget(identification_titleDescription_title=DataGridFieldFactory)
+    form.widget(identification_titleDescription_title=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('identification_titleDescription_title')
 
     identification_titleDescription_translatedTitle = ListField(title=_(u'Translated title'),
         value_type=DictRow(title=_(u'Translated title'), schema=ITranslatedTitle),
         required=False)
-    form.widget(identification_titleDescription_translatedTitle=DataGridFieldFactory)
+    form.widget(identification_titleDescription_translatedTitle=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('identification_titleDescription_translatedTitle')
 
     identification_titleDescription_language = schema.TextLine(
@@ -896,6 +896,21 @@ class IObject(form.Schema):
         required=False
     )
 
+    # # # # # # # # # #
+    # Reproductions   #
+    # # # # # # # # # #
+    model.fieldset('reproductions', label=_(u'Reproductions'), 
+        fields=['reproductions_reproduction']
+    )
+
+    # Reproduction
+    reproductions_reproduction = ListField(title=_(u'Reproduction'),
+        value_type=DictRow(title=_(u'Reproduction'), schema=IReproduction),
+        required=False)
+    form.widget(reproductions_reproduction=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('reproductions_reproduction')
+
+
     # # # # # # # # # # # # # # #
     # Condition & Conservation  #
     # # # # # # # # # # # # # # #
@@ -1045,21 +1060,6 @@ class IObject(form.Schema):
         required=False)
     form.widget(recommendationsRequirements_legalLicenceRequirements_requirementsHeld=DataGridFieldFactory)
     dexteritytextindexer.searchable('recommendationsRequirements_legalLicenceRequirements_requirementsHeld')
-
-
-    # # # # # # # # # #
-    # Reproductions   #
-    # # # # # # # # # #
-    model.fieldset('reproductions', label=_(u'Reproductions'), 
-        fields=['reproductions_reproduction']
-    )
-
-    # Reproduction
-    reproductions_reproduction = ListField(title=_(u'Reproduction'),
-        value_type=DictRow(title=_(u'Reproduction'), schema=IReproduction),
-        required=False)
-    form.widget(reproductions_reproduction=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('reproductions_reproduction')
 
 
     # # # # # # # # # # #
@@ -1695,6 +1695,31 @@ class IObject(form.Schema):
         required=False
     )
 
+    #
+    # Transport tab
+    #
+    model.fieldset('transport', label=_(u'Transport'), 
+        fields=["transport_despatch", "transport_despatchNumber", "transport_entry_number"]
+    )
+
+    transport_despatch = ListField(title=_(u'Despatch'),
+        value_type=DictRow(title=_(u'Despatch'), schema=IDespatch),
+        required=False)
+    form.widget(transport_despatch=DataGridFieldFactory)
+    dexteritytextindexer.searchable('transport_despatch')
+
+    transport_despatchNumber = ListField(title=_(u'Despatch number'),
+        value_type=DictRow(title=_(u'Despatch number'), schema=IDespatchNumber),
+        required=False)
+    form.widget(transport_despatchNumber=DataGridFieldFactory)
+    dexteritytextindexer.searchable('transport_despatchNumber')
+
+    transport_entry_number = ListField(title=_(u'Entry number'),
+        value_type=DictRow(title=_(u'Entry number'), schema=IEntryNumber),
+        required=False)
+    form.widget(transport_entry_number=DataGridFieldFactory)
+    dexteritytextindexer.searchable('transport_entry_number')
+
     # # # # # # #
     # Labels    #
     # # # # # # #
@@ -1729,38 +1754,11 @@ class IObject(form.Schema):
     form.widget(notes_free_fields=DataGridFieldFactory)
     dexteritytextindexer.searchable('notes_free_fields')
 
-
-    #
-    # Transport tab
-    #
-    model.fieldset('transport', label=_(u'Transport'), 
-        fields=["transport_despatch", "transport_despatchNumber", "transport_entry_number"]
-    )
-
-    transport_despatch = ListField(title=_(u'Despatch'),
-        value_type=DictRow(title=_(u'Despatch'), schema=IDespatch),
-        required=False)
-    form.widget(transport_despatch=DataGridFieldFactory)
-    dexteritytextindexer.searchable('transport_despatch')
-
-    transport_despatchNumber = ListField(title=_(u'Despatch number'),
-        value_type=DictRow(title=_(u'Despatch number'), schema=IDespatchNumber),
-        required=False)
-    form.widget(transport_despatchNumber=DataGridFieldFactory)
-    dexteritytextindexer.searchable('transport_despatchNumber')
-
-    transport_entry_number = ListField(title=_(u'Entry number'),
-        value_type=DictRow(title=_(u'Entry number'), schema=IEntryNumber),
-        required=False)
-    form.widget(transport_entry_number=DataGridFieldFactory)
-    dexteritytextindexer.searchable('transport_entry_number')
-
-
     #
     # management details
     #
 
-    model.fieldset('management_details', label=_(u'Management details'), 
+    model.fieldset('management_details', label=_(u'Beheergegevens'), 
         fields=["managementDetails_edit", "input_date",
                 "input_time","input_source", "input_name"]
     )

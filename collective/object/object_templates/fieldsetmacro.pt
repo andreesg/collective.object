@@ -81,10 +81,6 @@
             <tal:widget tal:replace="structure widgets/identification_titleDescription_translatedTitle/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield">
-            <tal:widget tal:replace="structure widgets/identification_titleDescription_notes/@@ploneform-render-widget"/>
-        </div>
-
         <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/identification_titleDescription_language/@@ploneform-render-widget"/>
           
@@ -569,20 +565,31 @@
 
         <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/acquisition_number/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/acquisition_date/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/acquisition_precision/@@ploneform-render-widget"/>
-
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/acquisition_date/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/acquisition_precision/@@ploneform-render-widget"/>
+          </div>
+          
           <!--<tal:widget tal:replace="structure widgets/acquisition_method/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure view/widgets/acquisition_methods/@@ploneform-render-widget"/>
 
-          <tal:widget tal:replace="structure widgets/acquisition_rec_no/@@ploneform-render-widget"/>
-          <tal:widget tal:replace="structure widgets/acquisition_lot_no/@@ploneform-render-widget"/>
-
+          
           <!--<tal:widget tal:replace="structure widgets/acquisition_from/@@ploneform-render-widget"/>-->
 
           <tal:widget tal:replace="structure widgets/acquisition_acquisition_from/@@ploneform-render-widget"/>
 
           <tal:widget tal:replace="structure widgets/acquisition_auction/@@ploneform-render-widget"/>
+
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/acquisition_rec_no/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/acquisition_lot_no/@@ploneform-render-widget"/>
+          </div>
+
+
           <!--<tal:widget tal:replace="structure widgets/acquisition_place/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure view/widgets/acquisition_places/@@ploneform-render-widget"/>
           <tal:widget tal:replace="structure widgets/acquisition_reason/@@ploneform-render-widget"/>
