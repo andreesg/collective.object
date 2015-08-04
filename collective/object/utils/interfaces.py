@@ -262,6 +262,8 @@ class IInscriptions(Interface):
 
 # Associations
 class IAssociatedSubjects(Interface):
+    # Caroline feedback: Remove properName, startData, endDate
+
     form.widget('associations', AjaxSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
     associations = schema.List(
         title=_(u'Association'),
@@ -282,6 +284,20 @@ class IAssociatedSubjects(Interface):
 
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+
+    # These fields are going to be removed in the future
+    form.widget('properName', AjaxSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
+    properName = schema.List(
+        title=_(u'Proper name'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    identifier = schema.TextLine(title=_(u'Identifier'), required=False)
+
     notes = schema.Text(title=_(u'Notes'), required=False)
 
 
@@ -756,6 +772,7 @@ class IReproduction(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
     identifierURL = schema.TextLine(title=_(u'Identifier (URL)'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
+    creator = schema.TextLine(title=_(u'Creator'), required=False)
 
 ## Associations
 class IAssociatedPersonInstitution(Interface):
@@ -777,6 +794,7 @@ class IAssociatedPersonInstitution(Interface):
     notes = schema.Text(title=_(u'Notes'), required=False)
     
 class IAssociatedSubject(Interface):
+    # Caroline feedback: Remove properNmae, startData, endDate
     association = schema.TextLine(title=_(u'Association'), required=False)
     
 
@@ -784,9 +802,12 @@ class IAssociatedSubject(Interface):
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+
+    
     #properName = schema.TextLine(title=_(u'Proper name'), required=False)
     #startDate = schema.TextLine(title=_(u'Start date'), required=False)
     #endDate = schema.TextLine(title=_(u'End date'), required=False)
+    #identifier = schema.TextLine(title=_(u'Identifier'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
 
 class IAssociatedPeriod(Interface):

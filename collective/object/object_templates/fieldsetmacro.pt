@@ -539,7 +539,7 @@
           <tal:widget tal:replace="structure view/widgets/valueInsurance_valuations/@@ploneform-render-widget"/>
         </div>
 
-        <!--<h2 class="page-header" i18n:translate="">Insurance</h2>-->
+        <h2 class="page-header" i18n:translate="">Insurance</h2>
 
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/valueInsurance_insurance/@@ploneform-render-widget"/>
