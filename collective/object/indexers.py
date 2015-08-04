@@ -507,6 +507,13 @@ def archive_priref(object, **kw):
     else:
         return ""
 
+@indexer(ITreatment)
+def treatment_priref(object, **kw):
+    if hasattr(object, 'priref'):
+        return object.priref
+    else:
+        return ""
+
 
 
 

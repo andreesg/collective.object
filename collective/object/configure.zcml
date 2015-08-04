@@ -91,6 +91,8 @@
   <adapter name="identification__identification_collections" factory=".indexers.identification__identification_collections" />
   <adapter name="person_priref" factory=".indexers.person_priref" />
   <adapter name="archive_priref" factory=".indexers.archive_priref" />
+  <adapter name="treatment_priref" factory=".indexers.treatment_priref" />
+
 
   <adapter name="productionDating__production_productionRole" factory=".indexers.productionDating_production_productionRole" />
   <adapter name="productionDating__production_productionPlace" factory=".indexers.productionDating_production_productionPlace" />

@@ -956,9 +956,9 @@
     <div class="row no-padding">
 
         <h2 class="page-header" i18n:translate="">Transport</h2>
-        <div class="form-horizontal gridfield">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/transport_despatch/@@ploneform-render-widget"/>
-        </div>
+        </div>-->
 
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/transport_despatchNumber/@@ploneform-render-widget"/>
