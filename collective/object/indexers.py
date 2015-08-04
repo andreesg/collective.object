@@ -487,6 +487,38 @@ def fieldCollection__fieldCollection_placeCode(object, **kw):
         return []
 
 @indexer(IObject)
+def physicalCharacteristics__keyword_aspect(object, **kw):
+    if hasattr(object, 'physicalCharacteristics_keyword'):
+        terms = []
+        items = object.physicalCharacteristics_keyword
+        if items != None:
+            for item in items:
+                if item['aspect'] != None:
+                    for term in item['aspect']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+@indexer(IObject)
+def physicalCharacteristics__keyword_keyword(object, **kw):
+    if hasattr(object, 'physicalCharacteristics_keyword'):
+        terms = []
+        items = object.physicalCharacteristics_keyword
+        if items != None:
+            for item in items:
+                if item['keyword'] != None:
+                    for term in item['keyword']:
+                        if term:
+                            terms.append(term)
+        return terms
+    else:
+        return []
+
+
+
+@indexer(IObject)
 def identification__identification_collections(object, **kw):
     if hasattr(object, 'identification_identification_collections'):
         return object.identification_identification_collections

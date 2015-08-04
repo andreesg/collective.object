@@ -64,7 +64,7 @@ class IFormWidget(Interface):
 
 ## Identification
 class IObjectname(form.Schema):
-    form.widget('name', AjaxSelectFieldWidget, vocabulary="collective.object.objectname")
+    form.widget('name', AjaxSingleSelectFieldWidget, vocabulary="collective.object.objectname")
     name = schema.List(
         title=_(u'Object name'),
         required=False,
@@ -73,7 +73,13 @@ class IObjectname(form.Schema):
     )
 
     type = schema.TextLine(title=_(u'Type'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False, default=u"", missing_value=u"")
+    notes = schema.Text(title=_(u'Notes'), required=False, default=u"", missing_value=u"")
+
+class ITitle(Interface):
+    title = schema.TextLine(title=_(u'Title'), required=False)
+
+class ITranslatedTitle(Interface):
+    title = schema.TextLine(title=_(u'Translated title'), required=False)
 
 ## Production & Dating
 class IProductiondating(Interface):
@@ -170,6 +176,26 @@ class IDimensions(Interface):
     precision = schema.TextLine(title=_(u'Precision'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
 
+class IKeywords(Interface):
+    part = schema.TextLine(title=_(u'Part'), required=False)
+    
+    form.widget('aspect', AjaxSingleSelectFieldWidget, vocabulary="collective.object.aspects")
+    aspect = schema.List(
+        title=_(u'Aspect'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    form.widget('keyword', AjaxSingleSelectFieldWidget, vocabulary="collective.object.keywords")
+    keyword = schema.List(
+        title=_(u'Keyword'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    notes = schema.Text(title=_(u'Notes'), required=False)
+
 # Iconography
 class IIconographyGeneralThemes(Interface):
     form.widget('term', AjaxSelectFieldWidget, vocabulary="collective.object.generalthemes")
@@ -205,7 +231,7 @@ class IIconographyContentSubjects(Interface):
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
     
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Inscriptions and Markings
 ## Inscriptions and Markings
@@ -258,7 +284,7 @@ class IInscriptions(Interface):
     )
 
     transliteration = schema.TextLine(title=_(u'Transliteration'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Associations
 class IAssociatedSubjects(Interface):
@@ -321,7 +347,7 @@ class IAssociatedPeriods(Interface):
 
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
     endDate = schema.TextLine(title=_(u'End date'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Value & Insurance
 class IValuations(Interface):
@@ -351,7 +377,7 @@ class IConditions(Interface):
         missing_value=[]
     )
     
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
     checked_by = schema.TextLine(title=_(u'Checked by'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
 
@@ -364,17 +390,19 @@ class IEnvConditions(Interface):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 
 # Aquisition
 class IFundings(Interface):
     amount = schema.TextLine(title=_(u'Amount'), required=False)
     
-    #form.widget('curr', AjaxSelectFieldWidget, vocabulary="collective.object.currency")
-    curr = schema.TextLine(
-        title=_(u'Curr.'), 
-        required=False
+    form.widget('curr', AjaxSelectFieldWidget, vocabulary="collective.object.currency")
+    curr = schema.List(
+        title=_(u'Curr.'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
     )
     
     source = schema.TextLine(title=_(u'Source'), required=False)
@@ -491,7 +519,7 @@ class IRelatedObjects(Interface):
         missing_value=[]
     )
 
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 
 
@@ -507,7 +535,7 @@ class ICollection(Interface):
 class IObjectName(form.Schema):
     name = schema.TextLine(title=_(u'Object name'), required=False)
     type = schema.TextLine(title=_(u'Type'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IObjectCategory(Interface):
     term = schema.TextLine(title=_(u'Object Category'), required=False)
@@ -562,12 +590,12 @@ class IKeyword(Interface):
 class ITechnique(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
     technique = schema.TextLine(title=_(u'Technique'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IMaterial(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
     material = schema.TextLine(title=_(u'Material'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IDimension(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
@@ -575,7 +603,7 @@ class IDimension(Interface):
     value = schema.TextLine(title=_(u'Value'), required=False)
     unit = schema.TextLine(title=_(u'Unit'), required=False)
     precision = schema.TextLine(title=_(u'Precision'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IPeriod(Interface):
     date_early = schema.TextLine(title=_(u'label_datering_van', default=u'Date (early)'), required=False, default=u" ", missing_value=u" ")
@@ -590,7 +618,7 @@ class IProduction(Interface):
     qualifier = schema.TextLine(title=_(u'Qualifier'), required=False)
     role = schema.TextLine(title=_(u'Role'), required=False)
     place = schema.TextLine(title=_(u'Place'), required=False)
-    production_notes = schema.TextLine(title=_(u'Production notes'), required=False)
+    production_notes = schema.Text(title=_(u'Production notes'), required=False)
 
 class ISchool(Interface):
     term = schema.TextLine(title=_(u'School / style'), required=False)
@@ -610,20 +638,20 @@ class IRequirements(Interface):
 ## Condition & Conservation Interfaces
 class ICompleteness(Interface):
     completeness = schema.TextLine(title=_(u'Completeness'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
     checked_by = schema.TextLine(title=_(u'Checked by'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
 
 class ICondition(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
     condition = schema.TextLine(title=_(u'Condition'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
     checked_by = schema.TextLine(title=_(u'Checked by'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
 
 class IEnvCondition(Interface):
     preservation_form = schema.TextLine(title=_(u'Preservation form'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
     #date = schema.TextLine(title=_(u'Date'), required=False)
 
 class IConsRequest(Interface):
@@ -672,7 +700,7 @@ class IInscription(Interface):
     
     script = schema.TextLine(title=_(u'Script'), required=False)
     transliteration = schema.TextLine(title=_(u'Transliteration'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 ## Numbers/relationships
 class INumbers(Interface):
@@ -692,7 +720,7 @@ class IParts(Interface):
         required=False
     )
 
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IRelatedObject(Interface):
     relatedObject = RelationList(
@@ -707,7 +735,7 @@ class IRelatedObject(Interface):
     
     #relatedObject = schema.TextLine(title=_(u'Related object'), required=False)
     association = schema.TextLine(title=_(u'Association'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
     
 
@@ -718,11 +746,20 @@ class IDigitalReferences(Interface):
 ## Documentation
 class IDocumentationDocumentation(Interface):
     article = schema.TextLine(title=_(u'Article'), required=False)
-    title = schema.TextLine(title=_(u'Title'), required=False)
-    author = schema.TextLine(title=_(u'Author'), required=False)
+    #title = schema.TextLine(title=_(u'Title'), required=False)
+    titles = RelationList(
+        title=_(u'Title'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Article', navigation_tree_query={'path':{'query':ARTICLE_FOLDER}})
+        ),
+        required=False
+    )
+    #author = schema.TextLine(title=_(u'Author'), required=False)
     pageMark = schema.TextLine(title=_(u'Page mark'), required=False)
-    shelfMark = schema.TextLine(title=_(u'Shelf mark'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    #shelfMark = schema.TextLine(title=_(u'Shelf mark'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 ## Documentation (free) / archive
 class IDocumentationFreeText(Interface):
@@ -771,7 +808,7 @@ class IReproduction(Interface):
     format = schema.TextLine(title=_(u'Format'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
     identifierURL = schema.TextLine(title=_(u'Identifier (URL)'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
     creator = schema.TextLine(title=_(u'Creator'), required=False)
 
 ## Associations
@@ -789,8 +826,8 @@ class IAssociatedPersonInstitution(Interface):
         required=False
     )
     
-    #startDate = schema.TextLine(title=_(u'Start date'), required=False)
-    #endDate = schema.TextLine(title=_(u'End date'), required=False)
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
     
 class IAssociatedSubject(Interface):
@@ -808,14 +845,14 @@ class IAssociatedSubject(Interface):
     #startDate = schema.TextLine(title=_(u'Start date'), required=False)
     #endDate = schema.TextLine(title=_(u'End date'), required=False)
     #identifier = schema.TextLine(title=_(u'Identifier'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IAssociatedPeriod(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
     period = schema.TextLine(title=_(u'Period'), required=False)
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
     endDate = schema.TextLine(title=_(u'End date'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Value & Insurance
 class IValuation(Interface):
@@ -824,7 +861,7 @@ class IValuation(Interface):
     valuer = schema.TextLine(title=_(u'Valuer'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
     #reference = schema.TextLine(title=_(u'Reference'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IInsurance(Interface):
     #type = schema.Choice(
@@ -842,7 +879,7 @@ class IInsurance(Interface):
     renewal_date = schema.TextLine(title=_(u'Renewal date'), required=False)
     reference = schema.TextLine(title=_(u'Reference'), required=False)
     conditions = schema.TextLine(title=_(u'Conditions'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Aquisition
 class IFunding(Interface):
@@ -853,7 +890,7 @@ class IFunding(Interface):
 
 class IManagementDetails(Interface):
     editDate = schema.TextLine(title=_(u'Date'), required=False)
-    editNotes = schema.TextLine(title=_(u'Notes'), required=False)
+    editNotes = schema.Text(title=_(u'Notes'), required=False)
     editName = schema.TextLine(title=_(u'Name'), required=False)
     editTime = schema.TextLine(title=_(u'Time'), required=False)
     editSource = schema.TextLine(title=_(u'Source'), required=False)
@@ -869,7 +906,7 @@ class ICurrentLocation(Interface):
     location_type = schema.TextLine(title=_(u'Location type'), required=False)
     location = schema.TextLine(title=_(u'Location'), required=False)
     fitness = schema.TextLine(title=_(u'Fitness'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class ILocationChecks(Interface):
     date = schema.TextLine(title=_(u'Date'), required=False)
@@ -925,7 +962,7 @@ class IIconographyContentPersonInstitution(Interface):
         required=False
     )
 
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IIconographyContentSubject(Interface):
     position = schema.TextLine(title=_(u'Position'), required=False)
@@ -936,16 +973,16 @@ class IIconographyContentSubject(Interface):
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
-    #properName = schema.TextLine(title=_(u'Proper name'), required=False)
-    #identifier = schema.TextLine(title=_(u'Identifier'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    properName = schema.TextLine(title=_(u'Proper name'), required=False)
+    identifier = schema.TextLine(title=_(u'Identifier'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 class IIconographyContentPeriodDate(Interface):
     position = schema.TextLine(title=_(u'Position'), required=False)
     period = schema.TextLine(title=_(u'Period'), required=False)
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
     endDate = schema.TextLine(title=_(u'End date'), required=False)
-    notes = schema.TextLine(title=_(u'Notes'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Field Collection
 class IFieldCollNumber(Interface):

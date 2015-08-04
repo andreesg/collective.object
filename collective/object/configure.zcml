@@ -102,7 +102,8 @@
   <adapter name="physicalCharacteristics__technique" factory=".indexers.physicalCharacteristics_technique" />
   <adapter name="physicalCharacteristics__material" factory=".indexers.physicalCharacteristics_material" />
   <adapter name="physicalCharacteristics__dimension" factory=".indexers.physicalCharacteristics_dimension" />
-  <adapter name="physicalCharacteristics__dimensions_unit" factory=".indexers.physicalCharacteristics_dimensions_unit" />
+  <adapter name="physicalCharacteristics__keyword_aspect" factory=".indexers.physicalCharacteristics__keyword_aspect" />
+  <adapter name="physicalCharacteristics__keyword_keyword" factory=".indexers.physicalCharacteristics__keyword_keyword" />
 
 
   <adapter name="iconography__generalSearchCriteria_generalThemes" factory=".indexers.iconography_generalSearchCriteria_generalThemes" />
@@ -364,6 +365,15 @@
     name="collective.object.periods"
     />
 
+  <utility
+    component=".utils.vocabularies.KeywordVocabularyFactory"
+    name="collective.object.keywords"
+    />
+
+  <utility
+    component=".utils.vocabularies.AspectVocabularyFactory"
+    name="collective.object.aspects"
+    />
 
 
   <!-- -*- extra stuff goes here -*- -->

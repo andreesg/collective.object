@@ -206,6 +206,8 @@ RelatedAssociationsVocabularyFactory = ObjectVocabulary('numbersRelationships__r
 CollectionVocabularyFactory = ObjectVocabulary('identification__identification_collections')
 AssociationVocabularyFactory = ObjectVocabulary('associations__associatedSubjects_association')
 PeriodVocabularyFactory = ObjectVocabulary('productionDating__production_periods')
+AspectVocabularyFactory = ObjectVocabulary('physicalCharacteristics__keyword_aspect')
+KeywordVocabularyFactory = ObjectVocabulary('physicalCharacteristics__keyword_keyword')
 
 #
 # ATVM vocabularies

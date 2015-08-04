@@ -157,6 +157,11 @@ class IObject(form.Schema):
         required=False)
     form.widget(physicalCharacteristics_dimension=DataGridFieldFactory)
 
+    physicalCharacteristics_keyword = ListField(title=_(u'Keywords'),
+        value_type=DictRow(title=_(u'Keywords'), schema=IKeywords),
+        required=False)
+    form.widget(physicalCharacteristics_keyword=DataGridFieldFactory)
+
     # Iconography
     # General search criteria
     iconography_generalSearchCriteria_generalThemes = ListField(title=_(u'General theme'),
@@ -164,6 +169,22 @@ class IObject(form.Schema):
         required=False)
     form.widget(iconography_generalSearchCriteria_generalThemes=DataGridFieldFactory)
     dexteritytextindexer.searchable('iconography_generalSearchCriteria_generalTheme')
+
+    iconography_generalSearchCriteria_generalthemes = schema.List(
+        title=_(u'General theme'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('iconography_generalSearchCriteria_generalthemes', AjaxSelectFieldWidget,  vocabulary="collective.object.generalthemes")
+
+    iconography_generalSearchCriteria_specificthemes = schema.List(
+        title=_(u'Specific theme'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('iconography_generalSearchCriteria_specificthemes', AjaxSelectFieldWidget,  vocabulary="collective.object.specificthemes")
 
     iconography_generalSearchCriteria_specificThemes = ListField(title=_(u'Specific theme'),
         value_type=DictRow(title=_(u'Specific theme'), schema=IIconographySpecificThemes),
@@ -376,7 +397,7 @@ class IObject(form.Schema):
                 'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
                 'identification_identification_edition', 'identification_identification_distinguishFeatures', 'identification_taxonomy_determiners',
                 'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_notes',
-                'identification_titleDescription_translatedTitle', 'identification_titleDescription_language','identification_titleDescription_titleType', 'identification_titleDescription_describer', 'identification_titleDescription_date',
+                'identification_titleDescription_translatedTitle', 'identification_titleDescription_language','identification_titleDescription_title', 'identification_titleDescription_describer', 'identification_titleDescription_date',
                 'identification_titleDescription_titleDate', 'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_objectstatus', 'identification_taxonomy_notes']
     )
 
@@ -488,22 +509,22 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('identification_objectName_otherName')
 
     # Title and description
-    identification_titleDescription_notes = schema.TextLine(
-        title=_(u'Notes'),
-        required=False
-    )
+    identification_titleDescription_notes = ListField(title=_(u'Notes'),
+        value_type=DictRow(title=_(u'Notes'), schema=INotes),
+        required=False)
+    form.widget(identification_titleDescription_notes=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_titleDescription_notes')
 
-    identification_titleDescription_titleType = schema.TextLine(
-        title=_(u'Title type'),
-        required=False
-    )
-    dexteritytextindexer.searchable('identification_titleDescription_translatedTitle')
+    identification_titleDescription_title = ListField(title=_(u'Title'),
+        value_type=DictRow(title=_(u'Title'), schema=ITitle),
+        required=False)
+    form.widget(identification_titleDescription_title=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_titleDescription_title')
 
-    identification_titleDescription_translatedTitle = schema.TextLine(
-        title=_(u'Translated title'),
-        required=False
-    )
+    identification_titleDescription_translatedTitle = ListField(title=_(u'Translated title'),
+        value_type=DictRow(title=_(u'Translated title'), schema=ITranslatedTitle),
+        required=False)
+    form.widget(identification_titleDescription_translatedTitle=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_titleDescription_translatedTitle')
 
     identification_titleDescription_language = schema.TextLine(

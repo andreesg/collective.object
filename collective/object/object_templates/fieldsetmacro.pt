@@ -27,13 +27,11 @@
 
         <div class="form-horizontal">
         
-          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
-            <tal:widget tal:replace="structure widgets/identification_identification_objectNumber/@@ploneform-render-widget"/>
-          </div>
+          <tal:widget tal:replace="structure widgets/identification_identification_objectNumber/@@ploneform-render-widget"/>
 
-          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+          <!--<div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
             <tal:widget tal:replace="structure widgets/identification_identification_recType/@@ploneform-render-widget"/>
-          </div>
+          </div>-->
           
           <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
             <tal:widget tal:replace="structure widgets/identification_identification_part/@@ploneform-render-widget"/>
@@ -75,17 +73,21 @@
 
         <h2 class="page-header" i18n:translate="">Title and description</h2>
 
-        <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/identification_titleDescription_notes/@@ploneform-render-widget"/>
-          
-          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/identification_titleDescription_title/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
             <tal:widget tal:replace="structure widgets/identification_titleDescription_translatedTitle/@@ploneform-render-widget"/>
-          </div>
+        </div>
 
-          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
-            <tal:widget tal:replace="structure widgets/identification_titleDescription_language/@@ploneform-render-widget"/>
-          </div>
+        <div class="form-horizontal gridfield">
+            <tal:widget tal:replace="structure widgets/identification_titleDescription_notes/@@ploneform-render-widget"/>
+        </div>
 
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/identification_titleDescription_language/@@ploneform-render-widget"/>
+          
           <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
             <tal:widget tal:replace="structure widgets/identification_titleDescription_describer/@@ploneform-render-widget"/>
           </div>
@@ -139,10 +141,10 @@
         <tal:widget tal:replace="structure widgets/physicalCharacteristics_physicalDescription_description/@@ploneform-render-widget"/>
       </div>
 
-      <!--<h2 class="page-header" i18n:translate="">Keywords</h2>
+      <h2 class="page-header" i18n:translate="">Keywords</h2>
       <div class="form-horizontal gridfield table-responsive">
-        <tal:widget tal:replace="structure widgets/physicalCharacteristics_keywords/@@ploneform-render-widget"/>
-      </div>-->
+        <tal:widget tal:replace="structure view/widgets/physicalCharacteristics_keyword/@@ploneform-render-widget"/>
+      </div>
 
       <!--<h2 class="page-header" i18n:translate="">Techniques</h2>
       <div class="form-horizontal gridfield table-responsive">
@@ -191,17 +193,22 @@
           <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_generalTheme/@@ploneform-render-widget"/>
         </div>-->
 
-        <div class="form-horizontal gridfield show-label hide-th">
+        <!--<div class="form-horizontal gridfield show-label hide-th">
           <tal:widget tal:replace="structure view/widgets/iconography_generalSearchCriteria_generalThemes/@@ploneform-render-widget"/>
+        </div>-->
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/iconography_generalSearchCriteria_generalthemes/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure view/widgets/iconography_generalSearchCriteria_specificthemes/@@ploneform-render-widget"/>
         </div>
 
         <!--<div class="form-horizontal gridfield show-label hide-th">
           <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_specificTheme/@@ploneform-render-widget"/>
         </div>-->
 
-        <div class="form-horizontal gridfield show-label hide-th">
+        <!--<div class="form-horizontal gridfield show-label hide-th">
           <tal:widget tal:replace="structure view/widgets/iconography_generalSearchCriteria_specificThemes/@@ploneform-render-widget"/>
-        </div>
+        </div>-->
 
         <div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_classificationTheme/@@ploneform-render-widget"/>
@@ -934,18 +941,18 @@
           <tal:widget tal:replace="structure widgets/loans_incomingLoan/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/loans_incomingLoans/@@ploneform-render-widget"/>
-        </div>
+        </div>-->
 
         <h2 class="page-header" i18n:translate="">Outgoing loans</h2>
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/loans_outgoingLoan/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield">
+        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/loans_outgoingLoans/@@ploneform-render-widget"/>
-        </div>
+        </div>-->
 
     </div>
   </tal:loans>
