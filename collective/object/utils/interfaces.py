@@ -1076,6 +1076,7 @@ class IIncomingLoan(Interface):
     loannumber = RelationList(
         title=_(u'Loan number'),
         default=[],
+        missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
             source=ObjPathSourceBinder(portal_type='IncomingLoan', navigation_tree_query={'path':{'query':INCOMINGLOAN_FOLDER}})
@@ -1098,6 +1099,7 @@ class IOutgoingLoan(Interface):
     loannumber = RelationList(
         title=_(u'Loan number'),
         default=[],
+        missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
             source=ObjPathSourceBinder(portal_type='OutgoingLoan', navigation_tree_query={'path':{'query':OUTGOINGLOAN_FOLDER}})
@@ -1114,4 +1116,4 @@ class IOutgoingLoan(Interface):
     contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)
 
 
-    
+
