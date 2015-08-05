@@ -702,7 +702,7 @@ msgstr "Standplaatscontroles"
 
 #: ../object.py
 msgid "Free Fields"
-msgstr "Vrij Velden"
+msgstr "Vrij velden"
 
 #: ../object.py
 msgid "Confidential"
