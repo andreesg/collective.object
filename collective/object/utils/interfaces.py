@@ -789,7 +789,15 @@ class IDespatch(Interface):
     destination = schema.TextLine(title=_(u'Destination'), required=False)
 
 class IDespatchNumber(Interface):
-    transport_number = schema.TextLine(title=_(u'Despatch number'), required=False)
+    transport_number = RelationList(
+        title=_(u'Despatch number'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='ObjectDespatch')
+        ),
+        required=False
+    )
     despatch_date = schema.TextLine(title=_(u'Despatch date'), required=False)
     delivery_date = schema.TextLine(title=_(u'Delivery date'), required=False)
     destination = schema.TextLine(title=_(u'Destination'), required=False)
