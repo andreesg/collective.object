@@ -935,32 +935,15 @@
     tal:define='widgets group/widgets'>
     <!-- Loans -->
     <div class="row no-padding">
-        <!--<h2 class="page-header" i18n:translate="">Incoming loans</h2>
-        
-
-        <h2 class="page-header" i18n:translate="">Outgoing loans</h2>
-        <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/loans_outgoingLoan/@@ploneform-render-widget"/>
-        </div>-->
-
         <h2 class="page-header" i18n:translate="">Incoming loans</h2>
         <div class="form-horizontal gridfield">
-          <tal:widget tal:replace="structure widgets/loans_incomingLoan/@@ploneform-render-widget"/>
-        </div>
-
-        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/loans_incomingLoans/@@ploneform-render-widget"/>
-        </div>-->
+        </div>
 
         <h2 class="page-header" i18n:translate="">Outgoing loans</h2>
         <div class="form-horizontal gridfield">
-          <tal:widget tal:replace="structure widgets/loans_outgoingLoan/@@ploneform-render-widget"/>
-        </div>
-
-        <!--<div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/loans_outgoingLoans/@@ploneform-render-widget"/>
-        </div>-->
-
+        </div>
     </div>
   </tal:loans>
 

@@ -1073,6 +1073,16 @@ class IExhibition(Interface):
 
 ## Loans
 class IIncomingLoan(Interface):
+    loannumber = RelationList(
+        title=_(u'Loan number'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='IncomingLoan', navigation_tree_query={'path':{'query':INCOMINGLOAN_FOLDER}})
+        ),
+        required=False
+    )
+
     loanNumber = schema.TextLine(title=_(u'Loan number'), required=False)
     status = schema.TextLine(title=_(u'Status'), required=False)
     lender = schema.TextLine(title=_(u'Lender'), required=False)
@@ -1085,7 +1095,15 @@ class IIncomingLoan(Interface):
 
 
 class IOutgoingLoan(Interface):
-    loanNumber = schema.TextLine(title=_(u'Loan number'), required=False)
+    loannumber = RelationList(
+        title=_(u'Loan number'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='OutgoingLoan', navigation_tree_query={'path':{'query':OUTGOINGLOAN_FOLDER}})
+        ),
+        required=False
+    )
     status = schema.TextLine(title=_(u'Status'), required=False)
     requester = schema.TextLine(title=_(u'Requester'), required=False)
     contact = schema.TextLine(title=_(u'Contact'), required=False)
@@ -1094,3 +1112,6 @@ class IOutgoingLoan(Interface):
     requestPeriodTo = schema.TextLine(title=_(u'to'), required=False)
     contractPeriod = schema.TextLine(title=_(u'Contract period'), required=False)
     contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)
+
+
+    
