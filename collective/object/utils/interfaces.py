@@ -890,11 +890,18 @@ class IFunding(Interface):
     source = schema.TextLine(title=_(u'Source'), required=False)
     provisos = schema.TextLine(title=_(u'Provisos'), required=False)
 
+class IInvoer(Interface):
+    name = schema.TextLine(title=_(u'Name'), required=False)
+    date = schema.TextLine(title=_(u'Date'), required=False)
+    time = schema.TextLine(title=_(u'management_time', default=u"Time"), required=False)
+    source = schema.TextLine(title=_(u'Dataset'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
+
 class IManagementDetails(Interface):
-    editDate = schema.TextLine(title=_(u'Date'), required=False)
     editName = schema.TextLine(title=_(u'Name'), required=False)
-    editTime = schema.TextLine(title=_(u'Time'), required=False)
-    editSource = schema.TextLine(title=_(u'Source'), required=False)
+    editDate = schema.TextLine(title=_(u'Date'), required=False)
+    editTime = schema.TextLine(title=_(u'management_time', default=u"Time"), required=False)
+    editSource = schema.TextLine(title=_(u'Dataset'), required=False)
     editNotes = schema.Text(title=_(u'Notes'), required=False)
 
 class IDocumentation(Interface):

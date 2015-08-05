@@ -9,7 +9,7 @@
         
         <h2 class="page-header" i18n:translate="">Identification</h2>
     
-        <div class="form-horizontal">
+        <div class="form-horizontal hide-relation">
 
           <!--<tal:widget tal:replace="structure widgets/identification_identification_institutionName/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/> 
@@ -104,7 +104,7 @@
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield">
+        <div class="form-horizontal gridfield hide-relation">
            <!--<tal:widget tal:replace="structure widgets/identification_taxonomy_determiner/@@ploneform-render-widget"/>-->
            <tal:widget tal:replace="structure widgets/identification_taxonomy_determiners/@@ploneform-render-widget"/>
         </div>
@@ -987,10 +987,15 @@
 
   <tal:management_details tal:condition='python: fieldset_text == "management_details"'
     tal:define='widgets group/widgets'>
-    <!-- Loans -->
+    <!-- Management details -->
     <div class="row no-padding">
 
-        <h2 class="page-header" i18n:translate="">Management details</h2>
+        <h2 class="page-header" i18n:translate="">Invoer</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/managementDetails_input/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Wijziging</h2>
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/managementDetails_edit/@@ploneform-render-widget"/>
         </div>

@@ -1447,6 +1447,9 @@ msgstr 'Tot'
 msgid "Article"
 msgstr "Lidwoord"
 
+#: ../object.py
+msgid "management_time"
+msgstr "Tijd"
 
 
 

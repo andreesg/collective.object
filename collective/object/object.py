@@ -1759,20 +1759,22 @@ class IObject(form.Schema):
     #
 
     model.fieldset('management_details', label=_(u'Beheergegevens'), 
-        fields=["managementDetails_edit", "input_date",
-                "input_time","input_source", "input_name"]
+        fields=["managementDetails_edit", "managementDetails_input"]
     )
 
-    managementDetails_edit = ListField(title=_(u'Management details'),
-        value_type=DictRow(title=_(u'Management details'), schema=IManagementDetails),
+    managementDetails_edit = ListField(title=_(u'Wijziging'),
+        value_type=DictRow(title=_(u'Wijziging'), schema=IManagementDetails),
         required=False)
     form.widget(managementDetails_edit=DataGridFieldFactory)
     dexteritytextindexer.searchable('managementDetails_edit')
 
-    input_date = schema.TextLine(title=_(u'Date'), required=False)
-    input_time = schema.TextLine(title=_(u'Time'), required=False)
-    input_source = schema.TextLine(title=_(u'Source'), required=False)
-    input_name = schema.TextLine(title=_(u'Name'), required=False)
+    managementDetails_input = ListField(title=_(u'Invoer'),
+        value_type=DictRow(title=_(u'Invoer'), schema=IInvoer),
+        required=False)
+    form.widget(managementDetails_input=DataGridFieldFactory)
+    dexteritytextindexer.searchable('managementDetails_input')
+
+
 
 
 
