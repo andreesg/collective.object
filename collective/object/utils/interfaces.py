@@ -789,15 +789,24 @@ class IDespatch(Interface):
     destination = schema.TextLine(title=_(u'Destination'), required=False)
 
 class IDespatchNumber(Interface):
+    transport_number = schema.TextLine(title=_(u'Despatch number'), required=False)
     despatch_date = schema.TextLine(title=_(u'Despatch date'), required=False)
     delivery_date = schema.TextLine(title=_(u'Delivery date'), required=False)
     destination = schema.TextLine(title=_(u'Destination'), required=False)
-    transport_number = schema.TextLine(title=_(u'Transport number'), required=False)
-
+    
 class IEntryNumber(Interface):
+    transport_number = RelationList(
+        title=_(u'Transport number'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='ObjectEntry', navigation_tree_query={'path':{'query':OBJECTENTRY_FOLDER}})
+        ),
+        required=False
+    )
+
     depositor = schema.TextLine(title=_(u'Depositor'), required=False)
     entry_reason = schema.TextLine(title=_(u'Entry reason'), required=False)
-    transport_number = schema.TextLine(title=_(u'Transport number'), required=False)
     entry_date = schema.TextLine(title=_(u'Entry date'), required=False)
     return_date = schema.TextLine(title=_(u'Return date'), required=False)
     depositor = schema.TextLine(title=_(u'Depositor'), required=False)

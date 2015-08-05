@@ -1448,9 +1448,36 @@ msgid "Article"
 msgstr "Lidwoord"
 
 #: ../object.py
-msgid "management_time"
+msgid "Depositor"
 msgstr "Tijd"
 
+#: ../object.py
+msgid "Entry reason"
+msgstr "Afzender"
+
+#: ../object.py
+msgid "Transport number"
+msgstr "Ingangsnummer"
+
+#: ../object.py
+msgid "Despatch number"
+msgstr "Verzendingsnummer"
+
+#: ../object.py
+msgid "Despatch date"
+msgstr "Verzendingsdatum"
+
+#: ../object.py
+msgid "Entry date"
+msgstr "Datum binnenkomst"
+
+#: ../object.py
+msgid "Destination"
+msgstr "Bestemming"
+
+#: ../object.py
+msgid "Delivery date"
+msgstr "Aankomstdatum"
 
 
 

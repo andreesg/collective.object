@@ -1711,13 +1711,13 @@ class IObject(form.Schema):
     transport_despatchNumber = ListField(title=_(u'Despatch number'),
         value_type=DictRow(title=_(u'Despatch number'), schema=IDespatchNumber),
         required=False)
-    form.widget(transport_despatchNumber=DataGridFieldFactory)
+    form.widget(transport_despatchNumber=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('transport_despatchNumber')
 
     transport_entry_number = ListField(title=_(u'Entry number'),
         value_type=DictRow(title=_(u'Entry number'), schema=IEntryNumber),
         required=False)
-    form.widget(transport_entry_number=DataGridFieldFactory)
+    form.widget(transport_entry_number=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('transport_entry_number')
 
     # # # # # # #
