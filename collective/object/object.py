@@ -1731,7 +1731,7 @@ class IObject(form.Schema):
     labels = ListField(title=_(u'Labels'),
         value_type=DictRow(title=_(u'Labels'), schema=ILabel),
         required=False)
-    form.widget(labels=BlockDataGridFieldFactory)
+    form.widget(labels=DataGridFieldFactory)
     dexteritytextindexer.searchable('labels')
 
     # # # # # #
