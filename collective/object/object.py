@@ -409,7 +409,7 @@ class IObject(form.Schema):
         fields=['identification_identification_institutionName', 'identification_identification_institutionNames', 'identification_identification_institutionCode', 'identification_identification_institutionPlace', 'identification_identification_administrativeName', 'identification_identification_collection', 'identification_identification_objectNumber',
                 'identification_identification_recType', 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
                 'identification_identification_edition', 'identification_identification_distinguishFeatures', 'identification_taxonomy_determiners',
-                'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName',
+                'identification_objectName_objectCategory', 'identification_objectName_objectName', 'identification_objectName_otherName', 'identification_titleDescription_description',
                 'identification_titleDescription_translatedTitle', 'identification_titleDescription_language','identification_titleDescription_title', 'identification_titleDescription_describer', 'identification_titleDescription_date',
                 'identification_titleDescription_titleDate', 'identification_taxonomy', 'identification_taxonomy_determiner', 'identification_taxonomy_objectStatus', 'identification_taxonomy_objectstatus', 'identification_taxonomy_notes']
     )
@@ -534,6 +534,12 @@ class IObject(form.Schema):
     form.widget(identification_titleDescription_title=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('identification_titleDescription_title')
 
+    identification_titleDescription_description = schema.TextLine(
+        title=_(u'Description'),
+        required=False
+    )
+    dexteritytextindexer.searchable('identification_titleDescription_description')
+
     identification_titleDescription_translatedTitle = ListField(title=_(u'Translated title'),
         value_type=DictRow(title=_(u'Translated title'), schema=ITranslatedTitle),
         required=False)
@@ -601,7 +607,7 @@ class IObject(form.Schema):
     identification_taxonomy_notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
         required=False)
-    form.widget(identification_taxonomy_notes=DataGridFieldFactory)
+    form.widget(identification_taxonomy_notes=BlockDataGridFieldFactory)
 
     # # # # # # # # # # # # # # # # #
     # Production & Dating           #
