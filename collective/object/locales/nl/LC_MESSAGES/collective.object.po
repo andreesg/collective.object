@@ -1418,6 +1418,11 @@ msgid 'label_opmerkingen'
 msgstr 'Opmerkingen'
 
 #: ../object.py
+msgid 'label_kwal'
+msgstr 'Kwal.'
+
+
+#: ../object.py
 msgid 'Text'
 msgstr 'Tekst'
 

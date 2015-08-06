@@ -95,7 +95,7 @@ class IProductiondating(Interface):
         required=False
     )
 
-    qualifier = schema.TextLine(title=_(u'Qualifier'), required=False)
+    qualifier = schema.TextLine(title=_(u'label_kwal'), required=False)
     
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionRole")
     role = schema.List(
@@ -108,7 +108,7 @@ class IProductiondating(Interface):
 
     form.widget('place', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionPlace")
     place = schema.List(
-        title=_(u'Place'),
+        title=_(u'label_plaats'),
         required=False,
         value_type=schema.TextLine(),
         missing_value=[],
