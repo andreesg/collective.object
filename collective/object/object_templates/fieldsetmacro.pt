@@ -232,7 +232,7 @@
 
         <h2 class="page-header" i18n:translate="">Content period/date</h2>
         <div class="form-horizontal gridfield">
-          <tal:widget tal:replace="structure widgets/iconography_contentPeriodDate/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure view/widgets/iconography_contentPeriodDates/@@ploneform-render-widget"/>
         </div>
 
         <h2 class="page-header" i18n:translate="">Iconography source</h2>

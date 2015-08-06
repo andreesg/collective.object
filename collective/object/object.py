@@ -199,6 +199,13 @@ class IObject(form.Schema):
     form.widget(iconography_contentSubjects=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('iconography_contentSubjects')
 
+    # Content period/date
+    iconography_contentPeriodDates = ListField(title=_(u'Content period/date'),
+        value_type=DictRow(title=_(u'Content period/date'), schema=IIconographyContentPeriodDates),
+        required=False)
+    form.widget(iconography_contentPeriodDates=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('iconography_contentPeriodDates')
+
     # Inscriptions and markings
     inscriptionsMarkings_inscriptionsAndMarkings = ListField(title=_(u'Inscriptions and markings'),
         value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscriptions),
