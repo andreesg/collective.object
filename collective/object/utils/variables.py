@@ -12,3 +12,5 @@ INCOMINGLOAN_FOLDER = '/zm/nl/binnenkomende-bruiklenen'
 OUTGOINGLOAN_FOLDER = '/zm/nl/uitgaande-bruiklenen'
 ARTICLE_FOLDER = "/zm/nl/bibliotheek/artikelen"
 OBJECTENTRY_FOLDER = "/zm/nl/collectie/binnenkomst-objecten"
+BIBLIOTHEEK_FOLDER = "/zm/nl/bibliotheek"
+

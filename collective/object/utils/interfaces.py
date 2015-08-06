@@ -754,7 +754,7 @@ class IDocumentationDocumentation(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Article', navigation_tree_query={'path':{'query':ARTICLE_FOLDER}})
+            source=ObjPathSourceBinder(navigation_tree_query={'path':{'query':BIBLIOTHEEK_FOLDER}})
         ),
         required=False
     )
