@@ -165,6 +165,17 @@ class IMaterials(Interface):
 
     notes = schema.Text(title=_(u'Notes'), required=False)
 
+class IAuction(Interface):
+    auction = RelationList(
+        title=_(u'Auction'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Auction')
+        ),
+        required=False
+    )
+
 class IDimensions(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
     

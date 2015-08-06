@@ -756,12 +756,14 @@
       	  <div class="col-sm-12 col-md-3 col-lg-3 div-50 label-right">
           	<tal:widget tal:replace="structure widgets/ownershipHistory_lot_no/@@ploneform-render-widget"/>
       	  </div>-->
-          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
-            <tal:widget tal:replace="structure widgets/ownershipHistory_auction/@@ploneform-render-widget"/>
+
+        </div>
+          <div class="form-horizontal gridfield">
+            <tal:widget tal:replace="structure widgets/ownershipHistory_auctions/@@ploneform-render-widget"/>
           </div>
-          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+
+          <div class="form-horizontal">
             <tal:widget tal:replace="structure widgets/ownershipHistory_lot_no/@@ploneform-render-widget"/>
-          </div>
           
           <!--<tal:widget tal:replace="structure widgets/ownershipHistory_place/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure view/widgets/ownershipHistory_history_place/@@ploneform-render-widget"/>

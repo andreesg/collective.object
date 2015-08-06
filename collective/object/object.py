@@ -308,7 +308,7 @@ class IObject(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    form.widget('ownershipHistory_history_exchangeMethod', AjaxSelectFieldWidget,  vocabulary="collective.object.exchangemethod")
+    form.widget('ownershipHistory_history_exchangeMethod', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.exchangemethod")
 
     ownershipHistory_history_place = schema.List(
         title=_(u'label_plaats', default=u'Place'),
@@ -316,7 +316,7 @@ class IObject(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    form.widget('ownershipHistory_history_place', AjaxSelectFieldWidget,  vocabulary="collective.object.historyplace")
+    form.widget('ownershipHistory_history_place', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.historyplace")
 
 
     # Location
@@ -1155,7 +1155,6 @@ class IObject(form.Schema):
     )
     dexteritytextindexer.searchable('acquisition_lot_no')
 
-
     acquisition_from = schema.TextLine(
         title=_(u'label_from', default=u'From'),
         required=False
@@ -1391,7 +1390,7 @@ class IObject(form.Schema):
         fields=['ownershipHistory_current_owner', 'ownershipHistory_ownership_currentOwner', 
                 'ownershipHistory_owner', 'ownershipHistory_history_owner', 'ownershipHistory_from',
                 'ownershipHistory_until', 'ownershipHistory_exchange_method', 'ownershipHistory_acquired_from',
-                'ownershipHistory_history_acquiredFrom',
+                'ownershipHistory_history_acquiredFrom', 'ownershipHistory_auctions',
                 'ownershipHistory_auction', 'ownershipHistory_rec_no', 'ownershipHistory_lot_no', 'ownershipHistory_place',
                 'ownershipHistory_price', 'ownershipHistory_category', 'ownershipHistory_access', 'ownershipHistory_notes']
     )
@@ -1469,6 +1468,12 @@ class IObject(form.Schema):
         required=False
     )
     dexteritytextindexer.searchable('ownershipHistory_auction')
+
+    ownershipHistory_auctions = ListField(title=_(u'Auction'),
+        value_type=DictRow(title=_(u'Auction'), schema=IAuction),
+        required=False)
+    form.widget(ownershipHistory_auctions=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('ownershipHistory_auctions')
 
     ownershipHistory_rec_no = schema.TextLine(
         title=_(u'Rec.no.'),
