@@ -832,7 +832,15 @@ class IReproduction(Interface):
 
 ## Associations
 class IAssociatedPersonInstitution(Interface):
-    association = schema.TextLine(title=_(u'Association'), required=False)
+    association = RelationList(
+        title=_(u'Association'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+        ),
+        required=False
+    )
     nameType = schema.Choice(title=_(u'Name type'), required=True, vocabulary="collective.object.nametype", default="No value")
     
     names = RelationList(
