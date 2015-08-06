@@ -447,7 +447,7 @@ class ICollectionCollectors(Interface):
         required=False
     )
 
-    form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
+    form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
     role = schema.List(
         title=_(u'Role'), 
         required=False,
@@ -489,7 +489,7 @@ class IStratigrafie(Interface):
 
 
 class IPlaceCodes(Interface):
-    form.widget('code', AjaxSelectFieldWidget, vocabulary="collective.object.placecode")
+    form.widget('code', AjaxSingleSelectFieldWidget, vocabulary="collective.object.placecode")
     code = schema.List(
         title=_(u'Place code'), 
         required=False,
@@ -497,7 +497,7 @@ class IPlaceCodes(Interface):
         missing_value=[]
     )
 
-    form.widget('codeType', AjaxSelectFieldWidget, vocabulary="collective.object.placecodetype")
+    form.widget('codeType', AjaxSingleSelectFieldWidget, vocabulary="collective.object.placecodetype")
     codeType = schema.List(
         title=_(u'Code type'), 
         required=False,

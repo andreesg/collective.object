@@ -1087,6 +1087,10 @@ msgid "Place code"
 msgstr "Code vindplaats"
 
 #: ../object.py
+msgid "Code type"
+msgstr "Soort code"
+
+#: ../object.py
 msgid "Place feature"
 msgstr "Kenmerk vindplaats"
 
@@ -1100,7 +1104,7 @@ msgstr "Coördinatenstelsel"
 
 #: ../object.py
 msgid "X co-ordinate"
-msgstr "X-coördnaat"
+msgstr "X-coördinaat"
 
 #: ../object.py
 msgid "Addition"
@@ -1108,7 +1112,7 @@ msgstr "Toevoeging"
 
 #: ../object.py
 msgid "Y co-ordinate"
-msgstr "Y-coördnaat"
+msgstr "Y-coördinaat"
 
 #: ../object.py
 msgid "Habitat and stratigraphy"
