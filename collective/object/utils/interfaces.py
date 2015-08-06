@@ -232,7 +232,7 @@ class IIconographyContentSubjects(Interface):
     #taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
     
-    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Inscriptions and Markings
@@ -311,7 +311,7 @@ class IAssociatedSubjects(Interface):
     )
 
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
-    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
 
     # These fields are going to be removed in the future
     form.widget('properName', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
@@ -832,7 +832,34 @@ class IReproduction(Interface):
 
 ## Associations
 class IAssociatedPersonInstitution(Interface):
-    association = schema.TextLine(title=_(u'Association'), required=False)
+    associations = schema.TextLine(title=_(u'Association'), required=False)
+
+    nameType = schema.Choice(title=_(u'Name type'), required=True, vocabulary="collective.object.nametype", default="No value")
+    
+    names = RelationList(
+        title=_(u'Name'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+        ),
+        required=False
+    )
+    
+    startDate = schema.TextLine(title=_(u'Start date'), required=False)
+    endDate = schema.TextLine(title=_(u'End date'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
+
+## Associations
+class IAssociatedPersonInstitutions(Interface):
+    form.widget('associations', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
+    associations = schema.List(
+        title=_(u'Association'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
     nameType = schema.Choice(title=_(u'Name type'), required=True, vocabulary="collective.object.nametype", default="No value")
     
     names = RelationList(
@@ -857,7 +884,7 @@ class IAssociatedSubject(Interface):
     subjectType = schema.Choice(title=_(u'Subject type'), required=True, vocabulary="collective.object.subjecttype", default="No value")
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
-    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
 
     
     #properName = schema.TextLine(title=_(u'Proper name'), required=False)
@@ -998,7 +1025,7 @@ class IIconographyContentSubject(Interface):
 
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
-    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
     properName = schema.TextLine(title=_(u'Proper name'), required=False)
     identifier = schema.TextLine(title=_(u'Identifier'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)

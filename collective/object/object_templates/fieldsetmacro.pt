@@ -420,7 +420,7 @@
         <h2 class="page-header" i18n:translate="">Associated person/institution</h2>
 
         <div class="form-horizontal gridfield">
-          <tal:widget tal:replace="structure widgets/associations_associatedPersonInstitution/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure view/widgets/associations_associatedPersonInstitutions/@@ploneform-render-widget"/>
         </div>
 
         <!--<h2 class="page-header" i18n:translate="">Associated subject</h2>
