@@ -850,7 +850,7 @@ class IObject(form.Schema):
     numbersRelationships_digitalReferences = ListField(title=_(u'Digital references'),
         value_type=DictRow(title=_(u'Digital references'), schema=IDigitalReferences),
         required=False)
-    form.widget(numbersRelationships_digitalReferences=BlockDataGridFieldFactory)
+    form.widget(numbersRelationships_digitalReferences=DataGridFieldFactory)
     dexteritytextindexer.searchable('numbersRelationships_digitalReferences')
 
     # # # # # # # # # #

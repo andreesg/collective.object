@@ -506,7 +506,7 @@
 
         <h2 class="page-header" i18n:translate="">Archive</h2>
 
-        <div class="form-horizontal">
+        <div class="form-horizontal gridfield">
           <!--<tal:widget tal:replace="structure widgets/documentationFreeArchive_archive/@@ploneform-render-widget"/>-->
           <tal:widget tal:replace="structure widgets/documentationFreeArchive_archiveNumber/@@ploneform-render-widget"/>
         </div>
