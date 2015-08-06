@@ -581,9 +581,14 @@
 
           
           <!--<tal:widget tal:replace="structure widgets/acquisition_from/@@ploneform-render-widget"/>-->
+        </div>
 
-          <tal:widget tal:replace="structure widgets/acquisition_acquisition_from/@@ploneform-render-widget"/>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/acquisition_acquisition_acquisitionFrom/@@ploneform-render-widget"/>
+        </div>
 
+        <div class="form-horizontal">
+   
           <tal:widget tal:replace="structure widgets/acquisition_auction/@@ploneform-render-widget"/>
 
           <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">

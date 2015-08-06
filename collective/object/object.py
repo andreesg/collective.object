@@ -1103,7 +1103,7 @@ class IObject(form.Schema):
 
     model.fieldset('acquisition', label=_(u'Acquisition'), 
         fields=['acquisition_accession_date', 'acquisition_number', 'acquisition_date', 'acquisition_precision',
-                'acquisition_method', 'acquisition_rec_no', 'acquisition_lot_no',
+                'acquisition_method', 'acquisition_rec_no', 'acquisition_lot_no', 'acquisition_acquisition_acquisitionFrom',
                 'acquisition_from', 'acquisition_auction', 'acquisition_place', 'acquisition_reason',
                 'acquisition_conditions', 'acquisition_authorization_authorizer', 'acquisition_authorization_date',
                 'acquisition_costs_offer_price', 'acquisition_costs_offer_price_curr', 'acquisition_costs_purchase_price',
@@ -1161,6 +1161,12 @@ class IObject(form.Schema):
         required=False
     )
     dexteritytextindexer.searchable('acquisition_from')
+
+    acquisition_acquisition_acquisitionFrom = ListField(title=_(u'From'),
+        value_type=DictRow(title=_(u'From'), schema=IFrom),
+        required=False)
+    form.widget(acquisition_acquisition_acquisitionFrom=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('acquisition_acquisition_acquisitionFrom')
 
     acquisition_acquisition_from = RelationList(
         title=_(u'label_from', default=u'From'),

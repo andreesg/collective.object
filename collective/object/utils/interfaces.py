@@ -83,6 +83,17 @@ class ITitle(Interface):
 class ITranslatedTitle(Interface):
     title = schema.TextLine(title=_(u'Translated title'), required=False)
 
+class IFrom(Interface):
+    aquisitionFrom = RelationList(
+        title=_(u'label_from', default=u'From'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+        ),
+        required=False
+    )
+
 ## Production & Dating
 class IProductiondating(Interface):
     makers = RelationList(
@@ -478,7 +489,7 @@ class ICollectors(Interface):
 
 class IStratigrafie(Interface):
 
-    form.widget('unit', AjaxSelectFieldWidget, vocabulary="collective.object.fieldCollection_stratigraphy")
+    form.widget('unit', AjaxSingleSelectFieldWidget, vocabulary="collective.object.fieldCollection_stratigraphy")
     unit = schema.List(
         title=_(u'Stratigraphy'), 
         required=False,
