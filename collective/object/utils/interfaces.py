@@ -200,7 +200,7 @@ class IKeywords(Interface):
 
 # Iconography
 class IIconographyGeneralThemes(Interface):
-    form.widget('term', AjaxSelectFieldWidget, vocabulary="collective.object.generalthemes")
+    form.widget('term', AjaxSingleSelectFieldWidget, vocabulary="collective.object.generalthemes")
     term = schema.List(
         title=_(u'General theme'),
         required=False,
@@ -209,7 +209,7 @@ class IIconographyGeneralThemes(Interface):
     )
 
 class IIconographySpecificThemes(Interface):
-    form.widget('term', AjaxSelectFieldWidget, vocabulary="collective.object.specificthemes")
+    form.widget('term', AjaxSingleSelectFieldWidget, vocabulary="collective.object.specificthemes")
     term = schema.List(
         title=_(u'Specific theme'),
         required=False,
@@ -221,7 +221,7 @@ class IIconographyContentSubjects(Interface):
     position = schema.TextLine(title=_(u'Position'), required=False)    
     subjectType = schema.Choice(title=_(u'Subject type'), required=True, vocabulary="collective.object.subjecttype", default="No value")
     
-    form.widget('subject', AjaxSelectFieldWidget, vocabulary="collective.object.contentsubjects")
+    form.widget('subject', AjaxSingleSelectFieldWidget, vocabulary="collective.object.contentsubjects")
     subject = schema.List(
         title=_(u'Subject'),
         required=False,
@@ -238,7 +238,7 @@ class IIconographyContentSubjects(Interface):
 # Inscriptions and Markings
 ## Inscriptions and Markings
 class IInscriptions(Interface):
-    form.widget('type', AjaxSelectFieldWidget, vocabulary="collective.object.inscriptionsType")
+    form.widget('type', AjaxSingleSelectFieldWidget, vocabulary="collective.object.inscriptionsType")
     type = schema.List(
         title=_(u'Type'),
         required=False,
@@ -261,7 +261,7 @@ class IInscriptions(Interface):
         required=False
     )
 
-    form.widget('role', AjaxSelectFieldWidget, vocabulary="collective.object.inscriptionsRole")
+    form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.inscriptionsRole")
     role = schema.List(
         title=_(u'Role'),
         required=False,
@@ -277,7 +277,7 @@ class IInscriptions(Interface):
     #New field
     translation = schema.TextLine(title=_(u'Translation'), required=False, missing_value="")
     
-    form.widget('script', AjaxSelectFieldWidget, vocabulary="collective.object.inscriptionsScript")
+    form.widget('script', AjaxSingleSelectFieldWidget, vocabulary="collective.object.inscriptionsScript")
     script = schema.List(
         title=_(u'Script'),
         required=False,
@@ -292,7 +292,7 @@ class IInscriptions(Interface):
 class IAssociatedSubjects(Interface):
     # Caroline feedback: Remove properName, startData, endDate
 
-    form.widget('associations', AjaxSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
+    form.widget('associations', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
     associations = schema.List(
         title=_(u'Association'),
         required=False,
@@ -302,7 +302,7 @@ class IAssociatedSubjects(Interface):
 
     subjectType = schema.Choice(title=_(u'Subject type'), required=True, vocabulary="collective.object.subjecttype", default="No value")
         
-    form.widget('subject', AjaxSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
+    form.widget('subject', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
     subject = schema.List(
         title=_(u'Subject'),
         required=False,
@@ -314,7 +314,7 @@ class IAssociatedSubjects(Interface):
     scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
 
     # These fields are going to be removed in the future
-    form.widget('properName', AjaxSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
+    form.widget('properName', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
     properName = schema.List(
         title=_(u'Proper name'),
         required=False,
@@ -331,7 +331,7 @@ class IAssociatedSubjects(Interface):
 
 
 class IAssociatedPeriods(Interface):
-    form.widget('associations', AjaxSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
+    form.widget('associations', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedSubjects_association")
     associations = schema.List(
         title=_(u'Association'),
         required=False,
@@ -339,7 +339,7 @@ class IAssociatedPeriods(Interface):
         missing_value=[]
     )
     
-    form.widget('period', AjaxSelectFieldWidget, vocabulary="collective.object.associatedperiods")
+    form.widget('period', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedperiods")
     period = schema.List(
         title=_(u'Period'),
         required=False,
@@ -355,7 +355,7 @@ class IAssociatedPeriods(Interface):
 class IValuations(Interface):
     value = schema.TextLine(title=_(u'Value'), required=False)
 
-    form.widget('curr', AjaxSelectFieldWidget, vocabulary="collective.object.currency")
+    form.widget('curr', AjaxSingleSelectFieldWidget, vocabulary="collective.object.currency")
     curr = schema.List(
         title=_(u'Curr.'),
         required=False,
@@ -371,7 +371,7 @@ class IValuations(Interface):
 class IConditions(Interface):
     part = schema.TextLine(title=_(u'Part'), required=False)
 
-    form.widget('condition', AjaxSelectFieldWidget, vocabulary="collective.object.condition")
+    form.widget('condition', AjaxSingleSelectFieldWidget, vocabulary="collective.object.condition")
     condition = schema.List(
         title=_(u'Condition'),
         required=False,
@@ -385,7 +385,7 @@ class IConditions(Interface):
 
 
 class IEnvConditions(Interface):    
-    form.widget('preservation_form', AjaxSelectFieldWidget, vocabulary="collective.object.preservationform")
+    form.widget('preservation_form', AjaxSingleSelectFieldWidget, vocabulary="collective.object.preservationform")
     preservation_form = schema.List(
         title=_(u'Preservation form'),
         required=False,
@@ -399,7 +399,7 @@ class IEnvConditions(Interface):
 class IFundings(Interface):
     amount = schema.TextLine(title=_(u'Amount'), required=False)
     
-    form.widget('curr', AjaxSelectFieldWidget, vocabulary="collective.object.currency")
+    form.widget('curr', AjaxSingleSelectFieldWidget, vocabulary="collective.object.currency")
     curr = schema.List(
         title=_(u'Curr.'),
         required=False,
