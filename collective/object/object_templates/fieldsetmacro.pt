@@ -584,7 +584,7 @@
         </div>
 
         <div class="form-horizontal gridfield">
-            <tal:widget tal:replace="structure widgets/acquisition_acquisition_aquisitionFrom/@@ploneform-render-widget"/>
+            <tal:widget tal:replace="structure widgets/acquisition_acquisition_acquisitionFrom/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal">
