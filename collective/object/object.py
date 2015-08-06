@@ -260,7 +260,7 @@ class IObject(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    form.widget('acquisition_methods', AjaxSelectFieldWidget,  vocabulary="collective.object.aquisitionmethod")
+    form.widget('acquisition_methods', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.aquisitionmethod")
 
     acquisition_places = schema.List(
         title=_(u'label_acquisition_place', default=u"Place"),
@@ -276,7 +276,7 @@ class IObject(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    form.widget('acquisition_costs_offer_price_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
+    form.widget('acquisition_costs_offer_price_currency', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.currency")
 
     acquisition_costs_purchase_price_currency = schema.List(
         title=_(u'Curr.'),
@@ -284,7 +284,7 @@ class IObject(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    form.widget('acquisition_costs_purchase_price_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
+    form.widget('acquisition_costs_purchase_price_currency', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.currency")
 
     # Funding *
     acquisition_fundings = ListField(title=_(u'Funding'),
