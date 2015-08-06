@@ -1093,6 +1093,16 @@ class IIncomingLoan(Interface):
     contractPeriod = schema.TextLine(title=_(u'Contract period'), required=False)
     contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)
 
+class IArchiveNumber(Interface):
+    number = RelationList(
+        title=_(u'Archive number'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='Archive', navigation_tree_query={'path':{'query':ARCHIVE_FOLDER}})
+        ),
+        required=False
+    )
 
 class IOutgoingLoan(Interface):
     loannumber = RelationList(

@@ -12,6 +12,8 @@ from z3c.form.widget import FieldWidget
 from plone.app.widgets.base import dict_merge
 
 class AjaxSingleSelectWidget(AjaxSelectWidget):
+    separator = '_'
+
     def _base_args(self):
         """Method which will calculate _base class arguments.
         Returns (as python dictionary):

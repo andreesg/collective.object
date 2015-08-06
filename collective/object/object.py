@@ -807,7 +807,7 @@ class IObject(form.Schema):
         fields=['numbersRelationships_numbers', 'numbersRelationships_relationshipsWithOtherObjects_partOf',
                 'numbersRelationships_relationshipsWithOtherObjects_notes', 'numbersRelationships_relationshipsWithOtherObjects_parts',
                 'numbersRelationships_relationshipsWithOtherObjects_relatedObject',
-                'numbersRelationships_digitalReferences', 'documentationFreeArchive_archives']
+                'numbersRelationships_digitalReferences']
     )
 
     # Numbers
@@ -871,7 +871,7 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # # # # # #
 
     model.fieldset('documentation_free_archive', label=_(u'Documentation (free) / archive'), 
-        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive', 'documentationFreeArchive_archives']
+        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive', 'documentationFreeArchive_archiveNumber']
     )
 
     documentationFreeArchive_documentationFreeText = ListField(title=_(u'Documentation (free text)'),
@@ -886,15 +886,11 @@ class IObject(form.Schema):
     form.widget(documentationFreeArchive_archive=DataGridFieldFactory)
     dexteritytextindexer.searchable('documentationFreeArchive_archive')
 
-    documentationFreeArchive_archives = RelationList(
-        title=_(u'Archive number'),
-        default=[],
-        value_type=RelationChoice(
-            title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Archive', navigation_tree_query={'path':{'query':ARCHIVE_FOLDER}})
-        ),
-        required=False
-    )
+    documentationFreeArchive_archiveNumber = ListField(title=_(u'Archive number'),
+        value_type=DictRow(title=_(u'Archive number'), schema=IArchiveNumber),
+        required=False)
+    form.widget(documentationFreeArchive_archiveNumber=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('documentationFreeArchive_archiveNumber')
 
     # # # # # # # # # #
     # Reproductions   #
