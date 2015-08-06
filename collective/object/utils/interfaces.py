@@ -231,7 +231,14 @@ class IIconographyContentSubjects(Interface):
 
     #taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
-    properName = schema.TextLine(title=_(u'Proper name'), required=False)
+    
+    form.widget('properName', AjaxSingleSelectFieldWidget, vocabulary="collective.object.contentsubjects")
+    properName = schema.List(
+        title=_(u'Proper name'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
     scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
 
@@ -1041,7 +1048,7 @@ class IIconographyContentPeriodDates(Interface):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    
+
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
     endDate = schema.TextLine(title=_(u'End date'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
