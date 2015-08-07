@@ -113,7 +113,7 @@
                                                 'fieldCollection_fieldCollection_events', 'fieldCollection_fieldCollection_placeCodes',
                                                 'numbersRelationships_relationshipsWithOtherObjects_relatedObjects', 'productionDating_production_schoolStyles', 'productionDating_production_periods',
                                                 'iconography_generalSearchCriteria_generalthemes', 'iconography_generalSearchCriteria_specificthemes',
-                                                'physicalCharacteristics_keyword','associations_associatedPersonInstitutions', 'iconography_contentPeriodDates']">
+                                                'physicalCharacteristics_keyword','associations_associatedPersonInstitutions', 'iconography_contentPeriodDates', 'ownershipHistory_historyOwner']">
                                                   <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
                                               </tal:notcategory>
                                           </metal:field>

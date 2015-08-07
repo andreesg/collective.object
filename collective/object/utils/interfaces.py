@@ -477,6 +477,59 @@ class ICollectionCollectors(Interface):
         missing_value=[]
     )
 
+class IHistoryOwner(Interface):
+    owner = RelationList(
+        title=_(u'Owner'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+        ),
+        required=False
+    )
+
+    startDate = schema.TextLine(title=_(u'From'), required=False)
+    endDate = schema.TextLine(title=_(u'Until'), required=False)
+
+    form.widget('method', AjaxSingleSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
+    method = schema.List(
+        title=_(u'Exchange method'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    acquiredFrom = RelationList(
+        title=_(u'Acquired from'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+        ),
+        required=False
+    )
+
+    lotnr =  schema.TextLine(title=_(u'Lot no.'), required=False)
+    auction = schema.TextLine(title=_(u'Auction'), required=False)
+
+    form.widget('place', AjaxSingleSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
+    place = schema.List(
+        title=_(u'label_plaats', default=u'Place'), 
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
+    price = schema.TextLine(title=_(u'Price'), required=False)
+    category = schema.TextLine(title=_(u'Ownership category'), required=False)
+    access = schema.TextLine(title=_(u'Access'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
+
+
+
+
+
+
 class ICollectors(Interface):
     #name = schema.TextLine(title=_(u'Collector'), required=False)
     
@@ -794,7 +847,7 @@ class IDocumentationDocumentation(Interface):
 
 ## Documentation (free) / archive
 class IDocumentationFreeText(Interface):
-    title = schema.TextLine(title=_(u'Title'), required=False)
+    title = schema.Text(title=_(u'Title'), required=False)
 
 class IArchive(Interface):
     archiveNumber = schema.TextLine(title=_(u'Archive number'), required=False)
