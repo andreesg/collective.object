@@ -1058,7 +1058,7 @@ class IFreeFields(Interface):
     type = schema.TextLine(title=_(u'Type'), required=False)
     #confidential = schema.TextLine(title=_(u'Confidential'), required=False)
 
-    notesConfidential = schema.Bool(title=_(u'Confidential'), required=False)
+    notesConfidential = schema.Bool(title=_(u'Confidential'), required=False, default=False)
     content = schema.TextLine(title=_(u'Content'), required=False)
 
 # Labels

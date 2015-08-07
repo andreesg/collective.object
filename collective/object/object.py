@@ -318,8 +318,8 @@ class IObject(form.Schema):
     )
     form.widget('ownershipHistory_history_place', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.historyplace")
 
-    ownershipHistory_historyOwner = ListField(title=_(u'Auction'),
-        value_type=DictRow(title=_(u'Auction'), schema=IHistoryOwner),
+    ownershipHistory_historyOwner = ListField(title=_(u'Owner'),
+        value_type=DictRow(title=_(u'Owner'), schema=IHistoryOwner),
         required=False)
     form.widget(ownershipHistory_historyOwner=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('ownershipHistory_historyOwner')
