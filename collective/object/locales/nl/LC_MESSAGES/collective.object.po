@@ -92,7 +92,7 @@ msgstr "Objectnaam"
 
 #: ../object.py
 msgid "Other name"
-msgstr "Ander benaming"
+msgstr "Andere benaming"
 
 #: ../object.py
 msgid "Physical Characteristics"
@@ -333,7 +333,7 @@ msgstr "urgent"
 
 #: ../object.py
 msgid "Inscriptions and markings"
-msgstr "Opschrijven en merken"
+msgstr "Opschriften / merken"
 
 #: ../object.py
 msgid "Type"
@@ -736,7 +736,7 @@ msgstr "Taxonomische rang"
 
 #: ../object.py
 msgid "Scient. name"
-msgstr "Wet. naam"
+msgstr "Wetenschappelijke naam"
 
 #: ../object.py
 msgid "Common name"
@@ -813,7 +813,7 @@ msgstr "Taxonomische rang"
 
 #: ../object.py
 msgid "Scientific name"
-msgstr "Wet. naam"
+msgstr "Wetenschappelijke naam"
 
 #: ../object.py
 msgid "Proper name"
@@ -857,7 +857,7 @@ msgstr "Afgebeelde periode/datum"
 
 #: ../object.py
 msgid "Script"
-msgstr "Schrijt"
+msgstr "Schrift"
 
 #: ../object.py
 msgid "Transliteration"
@@ -1261,7 +1261,7 @@ msgstr "onderwerp"
 
 #: ../object.py
 msgid "geography"
-msgstr "geographie"
+msgstr "geografie"
 
 
 #: ../object.py
