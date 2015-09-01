@@ -497,7 +497,7 @@ msgstr "Voorwaarden"
 
 #: ../object.py
 msgid "Authorization"
-msgstr "Autorisatie"
+msgstr "Authorisatie"
 
 #: ../object.py
 msgid "Authorizer"
@@ -1006,7 +1006,7 @@ msgid "Display"
 msgstr "Tentoonstelling"
 
 #: ../object.py
-msgid "Enviroment"
+msgid "Environment"
 msgstr "Omgeving"
 
 #: ../object.py

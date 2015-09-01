@@ -261,7 +261,7 @@ class IIconographyContentSubjects(Interface):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
+    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Inscriptions and Markings
@@ -340,7 +340,7 @@ class IAssociatedSubjects(Interface):
     )
 
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
-    scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
+    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
 
     # These fields are going to be removed in the future
     form.widget('properName', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
@@ -967,7 +967,7 @@ class IAssociatedSubject(Interface):
     subjectType = schema.Choice(title=_(u'Subject type'), required=True, vocabulary="collective.object.subjecttype", default="No value")
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
-    scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
+    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
 
     
     #properName = schema.TextLine(title=_(u'Proper name'), required=False)
@@ -1108,7 +1108,7 @@ class IIconographyContentSubject(Interface):
 
     subject = schema.TextLine(title=_(u'Subject'), required=False)
     taxonomicRank = schema.TextLine(title=_(u'Taxonomic rank'), required=False)
-    scientificName = schema.TextLine(title=_(u'Wet. naam'), required=False)
+    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
     properName = schema.TextLine(title=_(u'Proper name'), required=False)
     identifier = schema.TextLine(title=_(u'Identifier'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)

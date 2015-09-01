@@ -938,12 +938,8 @@ class IObject(form.Schema):
 
     model.fieldset('condition_conservation', label=_(u'Condition & Conservation'), 
         fields=['conditionConservation_priority', 'conditionConservation_next_condition_check', 'conditionConservation_date',
-                'conditionConservation_completeness', 'conditionConservation_condition', 'conditionConservation_enviromental_condition', 'conditionConservation_conservation_request', 
-                'conditionConservation_recommendations_display', 'conditionConservation_conservationTreatment',
-                'conditionConservation_recommendations_environment', 'conditionConservation_recommendations_handling',
-                'conditionConservation_recommendations_packing', 'conditionConservation_recommendations_security',
-                'conditionConservation_recommendations_specialRequirements', 'conditionConservation_conservationTreatments',
-                'conditionConservation_recommendations_storage', ]
+                'conditionConservation_completeness', 'conditionConservation_condition', 'conditionConservation_enviromental_condition', 'conditionConservation_conservation_request',
+                'conditionConservation_conservationTreatments']
     )
 
 
@@ -1059,7 +1055,12 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # # # # 
     model.fieldset('recommendations_requirements', label=_(u'Recommendations/requirements'), 
         fields=['recommendationsRequirements_creditLine_creditLine', 'recommendationsRequirements_legalLicenceRequirements_requirements',
-                'recommendationsRequirements_legalLicenceRequirements_requirementsHeld']
+                'recommendationsRequirements_legalLicenceRequirements_requirementsHeld',
+                'conditionConservation_recommendations_display', 'conditionConservation_conservationTreatment',
+                'conditionConservation_recommendations_environment', 'conditionConservation_recommendations_handling',
+                'conditionConservation_recommendations_packing', 'conditionConservation_recommendations_security',
+                'conditionConservation_recommendations_specialRequirements',
+                'conditionConservation_recommendations_storage']
     )
 
     # Credit line
