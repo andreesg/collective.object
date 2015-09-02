@@ -712,7 +712,7 @@ class IObject(form.Schema):
     model.fieldset('iconography', label=_(u'Iconography'), 
         fields=['iconography_generalSearchCriteria_generalTheme', 'iconography_generalSearchCriteria_specificTheme',
                 'iconography_generalSearchCriteria_classificationTheme', 'iconography_contentDescription',
-                'iconography_contentPersonInstitution', 'iconography_contentSubject', 'iconography_contentPeriodDate',
+                'iconography_contentPersonInstitution',
                 'iconography_iconographySource_sourceGeneral', 'iconography_iconographySource_sourceSpecific',
                 'iconography_iconographySource_sourceObjectNumber']
     )
@@ -751,18 +751,18 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('iconography_contentPersonInstitution')
 
     # Content subject
-    iconography_contentSubject = ListField(title=_(u'Content subject'),
-        value_type=DictRow(title=_(u'Content subject'), schema=IIconographyContentSubject),
-        required=False)
-    form.widget(iconography_contentSubject=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('iconography_contentSubject')
+    #iconography_contentSubject = ListField(title=_(u'Content subject'),
+    #    value_type=DictRow(title=_(u'Content subject'), schema=IIconographyContentSubject),
+    #    required=False)
+    #form.widget(iconography_contentSubject=BlockDataGridFieldFactory)
+    #dexteritytextindexer.searchable('iconography_contentSubject')
 
     # Content period/date
-    iconography_contentPeriodDate = ListField(title=_(u'Content period/date'),
-        value_type=DictRow(title=_(u'Content period/date'), schema=IIconographyContentPeriodDate),
-        required=False)
-    form.widget(iconography_contentPeriodDate=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('iconography_contentPeriodDate')
+    #iconography_contentPeriodDate = ListField(title=_(u'Content period/date'),
+    #    value_type=DictRow(title=_(u'Content period/date'), schema=IIconographyContentPeriodDate),
+    #    required=False)
+    #form.widget(iconography_contentPeriodDate=BlockDataGridFieldFactory)
+    #dexteritytextindexer.searchable('iconography_contentPeriodDate')
 
     # Iconography source
     iconography_iconographySource_sourceGeneral = schema.TextLine(
@@ -1088,14 +1088,14 @@ class IObject(form.Schema):
     # # # # # # # # # # #
 
     model.fieldset('value_insurance', label=_(u'Value & Insurance'), 
-        fields=['valueInsurance_valuation', 'valueInsurance_insurance']
+        fields=['valueInsurance_insurance']
     )
 
-    valueInsurance_valuation = ListField(title=_(u'Valuation'),
-        value_type=DictRow(title=_(u'Valuation'), schema=IValuation),
-        required=False)
-    form.widget(valueInsurance_valuation=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('valueInsurance_valuation')
+    #valueInsurance_valuation = ListField(title=_(u'Valuation'),
+    #    value_type=DictRow(title=_(u'Valuation'), schema=IValuation),
+    #    required=False)
+    #form.widget(valueInsurance_valuation=BlockDataGridFieldFactory)
+    #dexteritytextindexer.searchable('valueInsurance_valuation')
 
     valueInsurance_insurance = ListField(title=_(u'Insurance'),
         value_type=DictRow(title=_(u'Insurance'), schema=IInsurance),
