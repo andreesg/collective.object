@@ -29,51 +29,82 @@
     </tal:definitions>
 </tal:facebook-opengraph>
 
-<!--  <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/> -->
+<!--<tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>-->
 
-<metal:main fill-slot="content-core">
+<metal:main fill-slot="content-core" >
   <metal:content-core define-macro="content-core">
     
-    <div id="parent-fieldname-text">
-      <div id="body-text">
-        <p tal:condition="context/text" tal:content="structure python:context.text.output_relative_to(context.view)" ></p>
+    <tal:permissions
+      tal:define="user_admin view/checkUserPermission;"
+    >
+
+    <tal:notadmin tal:condition="not:user_admin">
+      <div id="parent-fieldname-text">
+        <div id="body-text">
+          <p tal:condition="context/text" tal:content="structure python:context.text.output_relative_to(context.view)" ></p>
+        </div>
+
+        <div class="container object-container">
+          <div class="object-fieldset">
+            <fieldset tal:repeat="group view/groups"
+                      tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
+                
+                <tal:block tal:repeat="widget group/widgets/values">
+                </tal:block>
+            </fieldset>
+          </div>
+        </div>
       </div>
+  </tal:notadmin>
 
-    <div class="container object-container">
-      <div class="object-fieldset">
-        <fieldset tal:repeat="group view/groups"
-                  tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
-            
-            <tal:block tal:repeat="widget group/widgets/values">
+  <tal:admin tal:condition="user_admin">
+    <!-- ADMIN -->
+    <tal:fields>
+      <div id="parent-fieldname-text">
+          <div class="container object-container" style="display:block;">
+            <div class="object-fieldsets" style="display:block;">
+              
+              
+              <tal:fieldset tal:repeat="group view/groups">
 
-                <!--<tal:contentfield tal:condition="widget/value">
-                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 object-label" style="padding-left:0px;" tal:condition="python:widget.__name__ not in ('object_tags')">
-                    <span tal:content="widget/label"></span>
-                  </div>
+                  <tal:showfieldset tal:condition="python: view.show_fieldset(group)">
+                  
+                    <h3 class="fieldset-header" tal:content="group/label"></h3>
 
-                  <tal:notdimension tal:condition="python:widget.__name__ not in ['dimensions', 'techniques', 'materials', 'keywords']">
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 object-value" tal:condition="python:widget.__name__ not in ('object_tags')">
-                      
-                      <!--<p tal:condition="python:widget.__name__ in ['technique', 'artist', 'material', 'object_type', 'object_category', 'publisher', 'author']"><a tal:replace="structure python:view.getSearchableValue(widget.__name__, widget.value)"></a></p>
+                    <tal:block tal:repeat="widget group/widgets/values">
+                        <tal:norelated tal:condition="python: '_relatedObjects' not in widget.__name__">
 
-                      <p tal:content="widget/value"></p>
-                      
-                    </div>
-                  </tal:notdimension>
+                          <tal:contentfield
+                            tal:define="widget_value widget/value;
+                                        widget_label widget/label;
+                                        widget_converted_value python: view.get_field_value(widget_value, widget)">
 
-                  <tal:isdimension tal:condition="python:widget.__name__ in ['dimensions', 'techniques', 'materials', 'keywords']">
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 object-value">
-                      <p><tal:widget tal:replace="structure widget/@@ploneform-render-widget"/></p>
-                  </div>
-                  </tal:isdimension>
+                              <tal:contents tal:condition="widget_converted_value">
+                              
+                              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 object-label" style="padding-left:0px;">
+                                <span tal:content="widget_label"></span>
+                              </div>
+                              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 object-value"
+                                >
+                                <p tal:content="structure widget_converted_value"></p>
+                              </div>
 
-                </tal:contentfield>-->
-            </tal:block>
-        </fieldset>
-      </div>
-    </div>
-    </div>
+                              </tal:contents>
+                          
+                          </tal:contentfield>
+                        </tal:norelated>
+                      </tal:block>
+
+                  </tal:showfieldset>
+              </tal:fieldset>
+            </div>
+          </div>
+        </div>
+    </tal:fields>
+  </tal:admin>
+  </tal:permissions>
   </metal:content-core>
 </metal:main>
+
 </body>
 </html>
