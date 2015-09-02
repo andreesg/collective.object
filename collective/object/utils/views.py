@@ -13,6 +13,9 @@ from collective.z3cform.datagridfield.interfaces import IDataGridField
 from plone.app.textfield.interfaces import IRichText
 from collective.object.utils.interfaces import IListField
 from z3c.relationfield.interfaces import IRelationList
+from zope.i18nmessageid import MessageFactory
+
+_ = MessageFactory('collective.object')
 
 # # # # # # # # # # # # #
 # View specific methods #
@@ -58,6 +61,21 @@ class ObjectView(DefaultView):
         return False
 
     def transform_value(self, value):
+
+        if 'collective.exhibition.exhibition.Exhibition' in str(type(value)):
+            uid = value.UID()
+
+            url = self.get_url_by_uid(uid)
+            value = "<a href='%s'>%s</a>" %(url, value.title)
+            return value
+
+        elif 'collective.' in str(type(value)):
+            uid = value.UID()
+
+            url = self.get_url_by_uid(uid)
+            value = "<a href='%s'>%s</a>" %(url, value.title)
+            return value
+
         if value == "selected":
             value = "Ja"
 
@@ -84,7 +102,7 @@ class ObjectView(DefaultView):
 
         return ""
 
-    def append_value(self, _list, value):
+    def append_value(self, _list, value, subfield=False):
       
         if 'collective.exhibition.exhibition.Exhibition' in str(type(value)):
             uid = value.UID()
@@ -93,6 +111,7 @@ class ObjectView(DefaultView):
             value = "<a href='%s'>%s</a>" %(url, value.title)
             _list.append(value)
             return
+
         elif 'collective.' in str(type(value)):
             uid = value.UID()
 
@@ -102,7 +121,11 @@ class ObjectView(DefaultView):
             return
 
         if value != "" and value != None and value != " " and value != []:
-            _list.append(value)
+            if subfield:
+                subfield_translation = _(subfield)
+                value = "%s: %s" %(self.context.translate(subfield_translation), self.transform_value(value))
+
+            _list.append(self.transform_value(value))
 
     def generate_value_from_item(self, item, line):
         if type(item) is str:
@@ -114,24 +137,29 @@ class ObjectView(DefaultView):
                     for key in elem.keys():
                         #val = "%s: %s<p>" %(key, elem[key])
                         val = elem[key]
-                        self.append_value(line, self.transform_value(val))
+                        self.append_value(line, val, key)
                 
                 elif type(elem) is list:
                     for e in elem:
-                        self.append_value(line, self.transform_value(e))
+                        self.append_value(line, e)
                 else:
-                    self.append_value(line, self.transform_value(elem))
+                    self.append_value(line, elem)
                 
                 self.append_value(line, '<p>')
         else:
             for key in item.keys():
                 if type(item[key]) is list:
                     for val in item[key]:
-                        self.append_value(line, self.transform_value(val))
+                        vals = []
+                        if val:
+                            vals.append(self.transform_value(val))
+                        vals = ', '.join(vals)
+
+                        self.append_value(line, vals, key)
                 else:
                     #val = "%s: %s<p>" %(key, item[key])
                     val = item[key]
-                    self.append_value(line, self.transform_value(val))
+                    self.append_value(line, val, key)
 
     def get_field_value(self, value, widget):
         _type = self.get_fieldtype_by_schema(widget)
@@ -146,7 +174,7 @@ class ObjectView(DefaultView):
                     line = []
                     self.generate_value_from_item(item, line)
                     #print line
-                    line = ', '.join(line)
+                    line = '<p>'.join(line)
                     
                     result.append(line)
                 result = '<p>'.join(result)

@@ -35,6 +35,10 @@ class ObjPathSource(PathSource):
         if hasattr(item, 'identification_identification_objectNumber'):
             title = "%s - %s" %(item.identification_identification_objectNumber, brain.Title)
 
+        url = brain.getURL()
+
+        title = "<a href='%s'>%s</a>" %(url, title)
+
         return SimpleTerm(value, token=brain.getPath(), title=title or
                           brain.id)
 

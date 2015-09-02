@@ -986,6 +986,10 @@ msgid "Format"
 msgstr "Formaat"
 
 #: ../object.py
+msgid "format"
+msgstr "Formaat"
+
+#: ../object.py
 msgid "Identifier (URL)"
 msgstr "Identifier (URL)"
 
@@ -1443,7 +1447,6 @@ msgstr 'Zoeken'
 msgid "regiment or service"
 msgstr "dienstonderdeel"
 
-
 #: ../object.py
 msgid 'label_datering_van'
 msgstr 'Datering van'
@@ -1488,25 +1491,265 @@ msgstr "Bestemming"
 msgid "Delivery date"
 msgstr "Aankomstdatum"
 
+#: ../object.py
+msgid 'date'
+msgstr 'Datum'
 
+#: ../object.py
+msgid 'type'
+msgstr 'Soort'
 
+#: ../object.py
+msgid 'name'
+msgstr 'Naam'
 
+#: ../object.py
+msgid 'title'
+msgstr 'Titel'
 
+#: ../object.py
+msgid 'notes'
+msgstr 'Bijzonderheden'
 
+#: ../object.py
+msgid 'scientific_name'
+msgstr 'Wetenschappelijke naam'
 
+#: ../object.py
+msgid 'common_name'
+msgstr 'Populaire naam'
 
+#: ../object.py
+msgid 'rank'
+msgstr 'Taxonomische rang'
 
+#: ../object.py
+msgid 'date_early_precision'
+msgstr 'Precisie'
 
+#: ../object.py
+msgid 'date_late'
+msgstr 'Tot'
 
+#: ../object.py
+msgid 'date_early'
+msgstr 'Datering van'
 
+#: ../object.py
+msgid 'date_late_precision'
+msgstr 'Precisie'
 
+#: ../object.py
+msgid 'frame'
+msgstr 'Omlijsting'
 
+#: ../object.py
+msgid 'detail'
+msgstr 'Bijzonderheden'
 
+#: ../object.py
+msgid 'term'
+msgstr 'Term'
 
+#: ../object.py
+msgid 'code'
+msgstr 'Code'
 
+#: ../object.py
+msgid 'part'
+msgstr 'Onderdeel'
 
+#: ../object.py
+msgid 'position'
+msgstr 'Positie'
 
+#: ../object.py
+msgid 'number'
+msgstr 'Nummer'
 
+#: ../object.py
+msgid 'article'
+msgstr 'Lidwoord'
+
+#: ../object.py
+msgid 'identifierURL'
+msgstr 'Identifier (URL)'
+
+#: ../object.py
+msgid 'reference'
+msgstr 'Referentie'
+
+#: ../object.py
+msgid 'checked_by'
+msgstr 'Controleur'
+
+#: ../object.py
+msgid 'status'
+msgstr 'Status'
+
+#: ../object.py
+msgid 'reason'
+msgstr 'Reden'
+
+#: ../object.py
+msgid 'requester'
+msgstr 'Aanvrager'
+
+#: ../object.py
+msgid 'treatmentMethod'
+msgstr 'Behandelmethode'
+
+#: ../object.py
+msgid 'until'
+msgstr 'Tot'
+
+#: ../object.py
+msgid 'renewalDate'
+msgstr 'Verl.datum'
+
+#: ../object.py
+msgid 'requirementsHeld'
+msgstr 'Vereisten in Bezit'
+
+#: ../object.py
+msgid 'currentFrom'
+msgstr 'Geldig van'
+
+#: ../object.py
+msgid 'curr'
+msgstr 'Val.'
+
+#: ../object.py
+msgid 'policy_number'
+msgstr 'Polisnummer'
+
+#: ../object.py
+msgid 'insurance_company'
+msgstr 'Verzekeringsmij.'
+
+#: ../object.py
+msgid 'valuer'
+msgstr 'Taxateur'
+
+#: ../object.py
+msgid 'renewal_date'
+msgstr 'Verl.datum'
+
+#: ../object.py
+msgid 'conditions'
+msgstr 'Voorwaarden'
+
+#: ../object.py
+msgid 'description'
+msgstr 'Beschrijving'
+
+#: ../object.py
+msgid 'gridType'
+msgstr 'Coördinatenstelsel'
+
+#: ../object.py
+msgid 'xCoordinate'
+msgstr 'X-coördinaat'
+
+#: ../object.py
+msgid 'yCoordinate'
+msgstr 'Y-coördinaat'
+
+#: ../object.py
+msgid 'precision'
+msgstr 'Precisie'
+
+#: ../object.py
+msgid 'xAddition'
+msgstr 'Toevoeging'
+
+#: ../object.py
+msgid 'yAddition'
+msgstr 'Toevoeging'
+
+#: ../object.py
+msgid 'exhibitionName'
+msgstr 'Tentoonstellingsnaam'
+
+#: ../object.py
+msgid 'catObject'
+msgstr 'Cat.nr. object'
+
+#: ../object.py
+msgid 'venue'
+msgstr 'Locatie'
+
+#: ../object.py
+msgid 'place'
+msgstr 'Plaats'
+
+#: ../object.py
+msgid 'organiser'
+msgstr 'Organisator'
+
+#: ../object.py
+msgid 'loanNumber'
+msgstr 'Bruikleennummer'
+
+#: ../object.py
+msgid 'contractPeriod'
+msgstr 'Contractperiode'
+
+#: ../object.py
+msgid 'requestReason'
+msgstr 'Reden aanvraag'
+
+#: ../object.py
+msgid 'requestPeriodTo'
+msgstr 't/m'
+
+#: ../object.py
+msgid 'lender'
+msgstr 'Bruikleengever'
+
+#: ../object.py
+msgid 'contact'
+msgstr 'Contactpersoon'
+
+#: ../object.py
+msgid 'transport_number'
+msgstr 'Ingangsnummer'
+
+#: ../object.py
+msgid 'entry_date'
+msgstr 'Datum binnenkomst'
+
+#: ../object.py
+msgid 'entry_reason'
+msgstr 'Afzender'
+
+#: ../object.py
+msgid 'depositor'
+msgstr 'Tijd'
+
+#: ../object.py
+msgid 'return_date'
+msgstr 'Retourdatum'
+
+#: ../object.py
+msgid 'owner'
+msgstr 'Eigenaar'
+
+#: ../object.py
+msgid 'content'
+msgstr 'Inhoud'
+
+#: ../object.py
+msgid 'notesConfidential'
+msgstr 'Vertrouwelijk'
+
+#: ../object.py
+msgid 'editDate'
+msgstr 'editDate'
+
+#: ../object.py
+msgid 'editSource'
+msgstr 'editSource'
 
 
 
