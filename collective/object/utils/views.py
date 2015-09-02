@@ -93,6 +93,13 @@ class ObjectView(DefaultView):
             value = "<a href='%s'>%s</a>" %(url, value.title)
             _list.append(value)
             return
+        elif 'collective.' in str(type(value)):
+            uid = value.UID()
+
+            url = self.get_url_by_uid(uid)
+            value = "<a href='%s'>%s</a>" %(url, value.title)
+            _list.append(value)
+            return
 
         if value != "" and value != None and value != " " and value != []:
             _list.append(value)
