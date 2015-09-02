@@ -375,6 +375,10 @@
     name="collective.object.aspects"
     />
 
+  <adapter
+    factory=".object.ObjectNumberValidator"
+    />
+
 
   <!-- -*- extra stuff goes here -*- -->
 

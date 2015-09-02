@@ -10,6 +10,8 @@ from zope.interface import alsoProvides
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.fieldproperty import FieldProperty
 from zope.component import getMultiAdapter
+from z3c.form import validator
+from zope.interface import Invalid
 
 #
 # Plone dependencies
@@ -1808,8 +1810,6 @@ class IObject(form.Schema):
 
 
 
-
-
 # # # # # # # # # # # # #
 # Object declaration    #
 # # # # # # # # # # # # #
@@ -1838,6 +1838,8 @@ class AddForm(add.DefaultAddForm):
                 widget.auto_append = True
                 widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
+
+
 
 class AddView(add.DefaultAddView):
     form = AddForm
@@ -1887,6 +1889,29 @@ class EditForm(edit.DefaultEditForm):
                     url = image.getURL()+"/@@images/image/large"
 
         return url
+
+class ObjectNumberValidator(validator.SimpleFieldValidator):
+    def validate(self, value):
+        super(ObjectNumberValidator, self).validate(value)
+        
+        # Fetch context
+        context = self.context
+        context_uid = context.UID()
+        catalog = self.context.portal_catalog
+        
+        # Check if identification number already exists
+        brains = catalog(identification_identification_objectNumber=value)
+        if brains:
+            for brain in brains:
+                if brain.UID == context_uid:
+                    return None
+
+            raise Invalid(_(u"Object number already exists."))
+
+
+validator.WidgetValidatorDiscriminators(ObjectNumberValidator, field=IObject['identification_identification_objectNumber'])
+grok.global_adapter(ObjectNumberValidator)
+
 
     
     
