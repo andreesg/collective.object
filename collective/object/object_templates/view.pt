@@ -60,7 +60,7 @@
   <tal:admin tal:condition="user_admin">
     <!-- ADMIN -->
     <tal:fields>
-      <div id="parent-fieldname-text">
+      <div id="parent-fieldname-text" tal:define="total_groups python: view.get_groups()">
           <div class="container object-container" style="display:block;">
             <div class="object-fieldsets" style="display:block;">
               

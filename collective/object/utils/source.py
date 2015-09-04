@@ -33,11 +33,19 @@ class ObjPathSource(PathSource):
 
         title = brain.Title
         if hasattr(item, 'identification_identification_objectNumber'):
-            title = "%s - %s" %(item.identification_identification_objectNumber, brain.Title)
+            title = "%s - %s" %(item.identification_identification_objectNumber, title)
+
+        if hasattr(item, 'titleAuthorImprintCollation_titleAuthor_author'):
+            authors = item.titleAuthorImprintCollation_titleAuthor_author
+            if authors:
+                author_name = authors[0]['author']
+                if author_name:
+                    title = "%s - %s" %(author_name, title)
 
         url = brain.getURL()
 
-        title = "<a href='%s'>%s</a>" %(url, title)
+        # Adds link to access related item
+        title = '<a href="%s">%s</a>' %(url, title)
 
         return SimpleTerm(value, token=brain.getPath(), title=title or
                           brain.id)

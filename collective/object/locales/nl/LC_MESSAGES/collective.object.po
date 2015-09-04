@@ -1752,9 +1752,87 @@ msgid 'editSource'
 msgstr 'editSource'
 
 
+# 
 
+#: ../object.py
+msgid 'production_notes'
+msgstr 'Bijzonderheden'
 
+#: ../object.py
+msgid 'role'
+msgstr 'Rol'
 
+#: ../object.py
+msgid 'qualifier'
+msgstr 'Kwalificatie'
+
+#: ../object.py
+msgid 'makers'
+msgstr 'Vervaardiger'
+
+#: ../object.py
+msgid 'dateDeath'
+msgstr 'Sterfdatum'
+
+#: ../object.py
+msgid 'dateBirth'
+msgstr 'Geboortedatum'
+
+#: ../object.py
+msgid 'units'
+msgstr 'Eenh'
+
+#: ../object.py
+msgid 'dimension'
+msgstr 'Afmetingen'
+
+#: ../object.py
+msgid 'material'
+msgstr 'Materiaal'
+
+#: ../object.py
+msgid 'value'
+msgstr 'Waarde'
+
+#: ../object.py
+msgid 'aspect'
+msgstr 'Aspect'
+
+#: ../object.py
+msgid 'keyword'
+msgstr 'Trefwoorden'
+
+#: ../object.py
+msgid 'technique'
+msgstr 'Techniek'
+
+#: ../object.py
+msgid 'nameType'
+msgstr 'Soort naam'
+
+#: ../object.py
+msgid 'pageMark'
+msgstr 'Pagina-aanduiding'
+
+#: ../object.py
+msgid 'creator'
+msgstr 'Vervaardiger'
+
+#: ../object.py
+msgid 'completeness'
+msgstr 'Compleetheid'
+
+#: ../object.py
+msgid 'treatment'
+msgstr 'Behandeling'
+
+#: ../object.py
+msgid 'endDate'
+msgstr 'Einddatum'
+
+#: ../object.py
+msgid 'requestPeriod'
+msgstr 'Aaanvraagperiode'
 
 
 

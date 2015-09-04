@@ -15,6 +15,8 @@ from collective.object.utils.interfaces import IListField
 from z3c.relationfield.interfaces import IRelationList
 from zope.i18nmessageid import MessageFactory
 
+from collective.object.utils.variables import GENERAL_WIDGETS
+
 _ = MessageFactory('collective.object')
 
 # # # # # # # # # # # # #
@@ -33,6 +35,10 @@ class ObjectView(DefaultView):
     SelectWidget
 
     """
+
+    general_widgets = {}
+    general_widgets_order = GENERAL_WIDGETS
+
     def get_fieldtype_by_schema(self, field):
         f = str(field)
 
@@ -87,6 +93,32 @@ class ObjectView(DefaultView):
 
         return value
 
+    def generate_generalwidgets(self):
+        #print self.widgets.values()
+        for widget in self.widgets.values():
+            name = widget.__name__
+            self.general_widgets[name] = widget
+
+    def add_generalwidgets(self, group):
+        name = group.__name__
+        if name in self.general_widgets_order:
+            for field in self.general_widgets_order[name]:
+                if field['name'] in self.general_widgets:
+                    #print len(group.widgets.values())
+                    group.widgets.values().append(self.general_widgets[field['name']])
+                    #print len(group.widgets.values())
+
+        return True
+
+    def get_groups(self):
+        groups = self.groups
+
+        self.generate_generalwidgets()
+        for group in groups:
+            self.add_generalwidgets(group)
+
+        return groups
+
     def show_fieldset(self, fieldset):
         for widget in fieldset.widgets.values():
             if widget.value:
@@ -127,8 +159,9 @@ class ObjectView(DefaultView):
 
             _list.append(self.transform_value(value))
 
-    def generate_value_from_item(self, item, line):
-        if type(item) is str:
+    def generate_value_from_item(self, item, line, widget_name=""):
+
+        if type(item) is str or type(item) is unicode:
             self.append_value(line, self.transform_value(item))
         
         elif type(item) is list:
@@ -140,12 +173,13 @@ class ObjectView(DefaultView):
                         self.append_value(line, val, key)
                 
                 elif type(elem) is list:
+
                     for e in elem:
                         self.append_value(line, e)
                 else:
                     self.append_value(line, elem)
                 
-                self.append_value(line, '<p>')
+                self.append_value(line, '<p><hr/></p>')
         else:
             for key in item.keys():
                 if type(item[key]) is list:
@@ -168,11 +202,15 @@ class ObjectView(DefaultView):
             return ""
 
         if _type in ["datagrid", "select"]:
+            if _type == "select":
+                if type(value) not in [list]:
+                    value = value.split('_')
+
             try:
                 result = []
                 for item in value:
                     line = []
-                    self.generate_value_from_item(item, line)
+                    self.generate_value_from_item(item, line, widget.__name__)
                     #print line
                     line = '<p>'.join(line)
                     
