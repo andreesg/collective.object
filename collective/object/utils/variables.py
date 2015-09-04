@@ -16,21 +16,29 @@ BIBLIOTHEEK_FOLDER = "/zm/nl/bibliotheek"
 
 GENERAL_WIDGETS = {
         "identification": [
-            {"name": "identification_objectName_objectname"},
-            {"name": "identification_objectName_category"},
-            {"name": "identification_identification_collections"},
+            {"name": "identification_objectName_objectname", "position": 9},
+            {"name": "identification_objectName_category", "position": 9},
+            {"name": "identification_identification_collections", "position": 3},
         ],
+        
         "production_dating": [
-        	{"name":"productionDating_productionDating"},
-			{"name":"productionDating_production_schoolstyle"},
-			{"name":"productionDating_production_schoolStyles"},
-			{"name":"productionDating_production_periods"}
+        	{"name":"productionDating_productionDating", "position": 0},
+			{"name":"productionDating_production_schoolStyles", "position":2},
+			{"name":"productionDating_production_periods", "position": 4}
         ],
+        
         "physical_characteristics": [
-        	{"name":"physicalCharacteristics_technique"},
-			{"name":"physicalCharacteristics_material"},
-			{"name":"physicalCharacteristics_dimension"},
-			{"name":"physicalCharacteristics_keyword"}
+        	{"name":"physicalCharacteristics_keyword", "position": 1},
+        	{"name":"physicalCharacteristics_technique", "position": 2},
+			{"name":"physicalCharacteristics_material", "position": 3},
+			{"name":"physicalCharacteristics_dimension", "position": 4},
+        ],
+
+        "iconography": [
+			{"name":"iconography_generalSearchCriteria_generalthemes", "position": 1},
+			{"name":"iconography_generalSearchCriteria_specificthemes", "position": 2},
+			{"name":"iconography_contentSubjects", "position": 7},
+			{"name":"iconography_contentPeriodDates", "position": 8}
         ]
 }
 

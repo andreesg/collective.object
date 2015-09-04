@@ -14,7 +14,7 @@ from plone.app.textfield.interfaces import IRichText
 from collective.object.utils.interfaces import IListField
 from z3c.relationfield.interfaces import IRelationList
 from zope.i18nmessageid import MessageFactory
-
+from zope.schema import getFields, getFieldsInOrder
 from collective.object.utils.variables import GENERAL_WIDGETS
 
 _ = MessageFactory('collective.object')
@@ -105,7 +105,13 @@ class ObjectView(DefaultView):
             for field in self.general_widgets_order[name]:
                 if field['name'] in self.general_widgets:
                     #print len(group.widgets.values())
-                    group.widgets.values().append(self.general_widgets[field['name']])
+                    if 'position' in field:
+                        if field['position'] < len(group.widgets.values()):
+                            group.widgets.values().insert(field['position'], self.general_widgets[field['name']])
+                        else:
+                            group.widgets.values().append(self.general_widgets[field['name']])
+                    else:
+                        group.widgets.values().append(self.general_widgets[field['name']])
                     #print len(group.widgets.values())
 
         return True
@@ -159,7 +165,7 @@ class ObjectView(DefaultView):
 
             _list.append(self.transform_value(value))
 
-    def generate_value_from_item(self, item, line, widget_name=""):
+    def generate_value_from_item(self, item, line, widget_name="", schema=None):
 
         if type(item) is str or type(item) is unicode:
             self.append_value(line, self.transform_value(item))
@@ -179,21 +185,53 @@ class ObjectView(DefaultView):
                 else:
                     self.append_value(line, elem)
                 
-                self.append_value(line, '<p><hr/></p>')
+                self.append_value(line, '<p></p>')
         else:
-            for key in item.keys():
-                if type(item[key]) is list:
-                    for val in item[key]:
-                        vals = []
-                        if val:
-                            vals.append(self.transform_value(val))
-                        vals = ', '.join(vals)
+            if schema:
+                items = getFieldsInOrder(schema)
+                for key, field_widget in items:
+                    if key in item:
+                        if type(item[key]) is list:
+                            for val in item[key]:
+                                vals = []
+                                if val:
+                                    vals.append(self.transform_value(val))
+                                vals = ', '.join(vals)
+                                self.append_value(line, vals, field_widget.title)
+                        else:
+                            #val = "%s: %s<p>" %(key, item[key])
+                            val = item[key]
+                            self.append_value(line, val, field_widget.title)
 
-                        self.append_value(line, vals, key)
-                else:
-                    #val = "%s: %s<p>" %(key, item[key])
-                    val = item[key]
-                    self.append_value(line, val, key)
+            else:
+                for key in item.keys():
+                    if type(item[key]) is list:
+                        for val in item[key]:
+                            vals = []
+                            if val:
+                                vals.append(self.transform_value(val))
+                            vals = ', '.join(vals)
+
+                            self.append_value(line, vals, key)
+                    else:
+                        #val = "%s: %s<p>" %(key, item[key])
+                        val = item[key]
+                        self.append_value(line, val, key)
+
+    def get_field_relation(self, value):
+        final = []
+        for path in value:
+            obj = self.context.restrictedTraverse(path)
+            url = obj.absolute_url()
+            title = obj.title
+            val = "<a href='%s'>%s</a>" %(url, title)
+            final.append(val)
+
+        final_result = ""
+        if final:
+            final_result = "<p>".join(final)
+
+        return final_result
 
     def get_field_value(self, value, widget):
         _type = self.get_fieldtype_by_schema(widget)
@@ -201,7 +239,11 @@ class ObjectView(DefaultView):
         if value == None:
             return ""
 
+        schema = None
         if _type in ["datagrid", "select"]:
+            if _type == "datagrid":
+                schema = widget.field.value_type.schema
+
             if _type == "select":
                 if type(value) not in [list]:
                     value = value.split('_')
@@ -210,7 +252,7 @@ class ObjectView(DefaultView):
                 result = []
                 for item in value:
                     line = []
-                    self.generate_value_from_item(item, line, widget.__name__)
+                    self.generate_value_from_item(item, line, widget.__name__, schema)
                     #print line
                     line = '<p>'.join(line)
                     
@@ -222,7 +264,8 @@ class ObjectView(DefaultView):
                 return ""
 
         elif _type == "relation":
-            return ""
+            val = self.get_field_relation(value)
+            return val
 
 
         return value
