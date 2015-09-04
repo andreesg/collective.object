@@ -1834,6 +1834,30 @@ msgstr 'Einddatum'
 msgid 'requestPeriod'
 msgstr 'Aaanvraagperiode'
 
+#: ../object.py
+msgid 'names'
+msgstr 'Naam'
+
+#: ../object.py
+msgid 'titles'
+msgstr 'Titel'
+
+#: ../object.py
+msgid 'parts'
+msgstr 'Onderdeel'
+
+#: ../object.py
+msgid 'treatmentNumber'
+msgstr 'Behandelingsnummer'
+
+#: ../object.py
+msgid 'loannumber'
+msgstr 'Bruikleennummer'
+
+#: ../object.py
+msgid 'text'
+msgstr 'Tekst'
+
 
 
 
