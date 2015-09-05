@@ -39,6 +39,59 @@ GENERAL_WIDGETS = {
 			{"name":"iconography_generalSearchCriteria_specificthemes", "position": 2},
 			{"name":"iconography_contentSubjects", "position": 7},
 			{"name":"iconography_contentPeriodDates", "position": 8}
+        ],
+
+        "associations": [
+            {"name":"associations_associatedSubjects"},
+            {"name":"associations_associatedPeriods"},
+            {"name":"associations_associatedPersonInstitutions"}
+        ],
+
+        "value_insurance": [
+            {"name":"valueInsurance_valuations"}
+
+        ],
+
+        "condition_conservation": [
+            {"name":"conditionConservation_conditions"},
+            {"name":"conditionConservation_preservationForm"}
+        ],
+
+        "acquisition": [
+            {"name":"acquisition_methods"},
+            {"name":"acquisition_places"},
+            {"name":"acquisition_costs_offer_price_currency"},
+            {"name":"acquisition_costs_purchase_price_currency"},
+            {"name":"acquisition_fundings"}
+        ],
+
+        "disposal": [
+            {"name":"disposal_finance_currency"}
+        ],
+
+        "ownership_history": [
+            {"name":"ownershipHistory_history_exchangeMethod"},
+            {"name":"ownershipHistory_history_place"},
+            {"name":"ownershipHistory_historyOwner"}
+        ],
+
+        "location": [
+            {"name":"location_normalLocation_normalLocation"},
+            {"name":"location_currentLocation"}
+        ],
+
+        "field_collection": [
+            {"name":"fieldCollection_fieldCollection_collectors"},
+            {"name":"fieldCollection_fieldCollection_events"},
+            {"name":"fieldCollection_fieldCollection_methods"},
+            {"name":"fieldCollection_fieldCollection_places"},
+            {"name":"fieldCollection_fieldCollection_placeFeatures"},
+            {"name":"fieldCollection_fieldCollection_placeCodes"},
+            {"name":"fieldCollection_habitatStratigraphy_stratigrafie"}
+        ],
+
+        "numbers_relationships": [
+            {"name":"numbersRelationships_relationshipsWithOtherObjects_relatedObjects"}
         ]
 }
 

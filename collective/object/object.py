@@ -12,6 +12,7 @@ from zope.schema.fieldproperty import FieldProperty
 from zope.component import getMultiAdapter
 from z3c.form import validator
 from zope.interface import Invalid
+from collective.z3cform.widgets.multicontent_search_widget import MultiContentSearchFieldWidget
 
 #
 # Plone dependencies
@@ -419,6 +420,7 @@ class IObject(form.Schema):
     model.fieldset('identification', label=_(u'Identification'), 
         fields=[#'identification_identification_institutionName', 
                 'identification_identification_institutionNames', 
+                'identification_identification_institutionnames',
                 #'identification_identification_institutionCode', 
                 'identification_identification_institutionPlace', 'identification_identification_administrativeName', 
                 #'identification_identification_collection', 
@@ -461,6 +463,18 @@ class IObject(form.Schema):
         ),
         required=False
     )
+
+    form.widget(identification_identification_institutionnames=MultiContentSearchFieldWidget)
+    identification_identification_institutionnames = RelationList(
+        title=_(u'Institution name'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+        ),
+        required=False
+    )
+
 
     #identification_identification_institutionCode = schema.TextLine(
     #    title=_(u'Institution code'), 

@@ -121,6 +121,7 @@ class ObjectView(DefaultView):
 
         self.generate_generalwidgets()
         for group in groups:
+            print self.context.translate(_(group.label))
             self.add_generalwidgets(group)
 
         return groups
