@@ -24,7 +24,7 @@ class ObjExtendedPathSource(ObjPathSource):
 
                 return self._getBrainByToken('/'.join(value.getPhysicalPath()))
         except:
-            pass
+            raise
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Extended function that uses custom ObjPathSource class    #
