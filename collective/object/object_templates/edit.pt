@@ -12,6 +12,8 @@
         <h1 class="documentFirstHeading" tal:content="page_title"></h1>
       </div>
 
+      <tal:test_body_start tal:define="start_time python:view.print_time()"></tal:test_body_start>
+
       <div id="content-core">
         
         <div id="editing-bar"
@@ -181,5 +183,8 @@
             </metal:define>
         </div>
       </div>
+
+      <tal:test_body_end tal:define="end_time python:view.print_time()"></tal:test_body_end>
+
     </metal:block>
 </html>

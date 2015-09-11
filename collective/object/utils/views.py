@@ -196,8 +196,11 @@ class ObjectView(DefaultView):
                                 vals = []
                                 if val:
                                     vals.append(self.transform_value(val))
-                                vals = ', '.join(vals)
-                                self.append_value(line, vals, field_widget.title)
+                                try:
+                                    vals = ', '.join(vals)
+                                    self.append_value(line, vals, field_widget.title)
+                                except:
+                                    pass
                         else:
                             #val = "%s: %s<p>" %(key, item[key])
                             val = item[key]

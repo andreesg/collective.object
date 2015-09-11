@@ -12,6 +12,10 @@ from zope.schema.fieldproperty import FieldProperty
 from zope.component import getMultiAdapter
 from z3c.form import validator
 from zope.interface import Invalid
+from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE, IDataConverter, NO_VALUE
+from z3c.form.converter import BaseDataConverter
+import datetime
+
 #
 # Plone dependencies
 #
@@ -41,14 +45,14 @@ from collective.z3cform.datagridfield.interfaces import IDataGridField
 #
 # Plone app widget dependencies
 #
-from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget, IAjaxSelectWidget
+from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget, IAjaxSelectWidget, RelatedItemsFieldWidget
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 
 #
 # DataGridFields dependencies
 #
-from collective.z3cform.datagridfield import DataGridFieldFactory, DictRow
+from collective.z3cform.datagridfield import DataGridFieldFactory, DictRow, IDataGridField
 from collective.z3cform.datagridfield.blockdatagridfield import BlockDataGridFieldFactory
 
 
@@ -71,7 +75,7 @@ from .utils.interfaces import *
 from .utils.views import *
 from .utils.source import ObjPathSourceBinder
 from .utils.variables import *
-from .utils.widgets import AjaxSingleSelectFieldWidget
+from .utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget
 
 from plone.formwidget.contenttree import ObjPathSourceBinder as sb
 
@@ -460,6 +464,8 @@ class IObject(form.Schema):
         ),
         required=False
     )
+
+    form.widget('identification_identification_institutionNames', SimpleRelatedItemsFieldWidget, vocabulary='plone.app.vocabularies.Catalog')
 
 
     #identification_identification_institutionCode = schema.TextLine(
@@ -1892,6 +1898,10 @@ class EditForm(edit.DefaultEditForm):
                 widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
 
+    def print_time(self):
+        print datetime.datetime.today().isoformat()
+        return True
+
     def get_page_title(self):
         context = self.context
         heading = self.label
@@ -1919,6 +1929,39 @@ class EditForm(edit.DefaultEditForm):
                     url = image.getURL()+"/@@images/image/large"
 
         return url
+
+"""class GridDataConverter(grok.MultiAdapter, BaseDataConverter):
+    #Convert between the AddressList object and the widget. 
+    #   If you are using objects, you must provide a custom converter
+    
+    
+    grok.adapts(ListField, IDataGridField)
+    grok.implements(IDataConverter)
+
+    def toWidgetValue(self, value):
+        print "To widget value"
+
+        #Simply pass the data through with no change
+        rv = list()
+        for row in value:
+            d = dict()
+            for name, field in getFieldsInOrder(IObject):
+                d[name] = getattr(row, name)
+            rv.append(d)
+
+        return rv
+
+    def toFieldValue(self, value):
+        print "to fieldValue"
+        rv = Object()
+        for row in value:
+            d = dict()
+            for name, field in getFieldsInOrder(IObject):
+                if row.get(name, NO_VALUE) != NO_VALUE:
+                    d[name] = row.get(name)
+            rv.append(Object(**d))
+        return rv"""
+
 
 class ObjectNumberValidator(validator.SimpleFieldValidator):
     def validate(self, value):
