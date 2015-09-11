@@ -14,7 +14,7 @@ from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceType
 
 from ..utils.source import ObjPathSourceBinder
 from ..utils.variables import *
-from ..utils.widgets import AjaxSingleSelectFieldWidget
+from ..utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget
 
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
@@ -105,6 +105,7 @@ class IProductiondating(Interface):
         ),
         required=False
     )
+    form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='plone.app.vocabularies.Catalog')
 
     qualifier = schema.TextLine(title=_(u'label_kwal'), required=False)
     
