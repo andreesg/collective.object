@@ -121,11 +121,17 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
             args['pattern_options'])
 
         args['pattern_options']['selectableTypes'] = ['PersonOrInstitution']
-        args['pattern_options']['basePath'] = '/nl/personen-en-instellingen/personen-en-instellingen'
+        #args['pattern_options']['basePath'] = '/nl/personen-en-instellingen/personen-en-instellingen'
+        #args['pattern_options']['baseCriteria'] = [{
+        #    'i': 'path',
+        #    'o': 'plone.app.querystring.operation.string.path',
+        #    'v': '/nl/personen-en-instellingen/personen-en-instellingen'
+        #}]
+
         args['pattern_options']['baseCriteria'] = [{
-            'i': 'path',
-            'o': 'plone.app.querystring.operation.string.path',
-            'v': '/nl/personen-en-instellingen/personen-en-instellingen'
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.is',
+            'v': 'PersonOrInstitution'
         }]
 
         if not self.vocabulary:  # widget vocab takes precedence over field
