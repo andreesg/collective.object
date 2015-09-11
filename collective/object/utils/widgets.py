@@ -11,6 +11,7 @@ from plone.app.widgets.utils import get_ajaxselect_options
 from z3c.form.widget import FieldWidget
 from plone.app.widgets.base import dict_merge
 from plone.app.widgets.utils import get_relateditems_options
+from .variables import PERSON_INSTITUTION_FOLDER
 
 class AjaxSingleSelectWidget(AjaxSelectWidget):
     separator = '_'
@@ -96,6 +97,8 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
         field = self.field
         args['pattern_options']['maximumSelectionSize'] = 1
 
+
+
         #if IChoice.providedBy(self.field):
         #    args['pattern_options']['maximumSelectionSize'] = 1
         #    field = self.field
@@ -116,6 +119,14 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
                                      self.vocabulary_view, field_name,
                                      ),
             args['pattern_options'])
+
+        args['pattern_options']['selectableTypes'] = ['PersonOrInstitution']
+        args['pattern_options']['basePath'] = '/nl/personen-en-instellingen/personen-en-instellingen'
+        args['pattern_options']['baseCriteria'] = [{
+            'i': 'path',
+            'o': 'plone.app.querystring.operation.string.path',
+            'v': '/nl/personen-en-instellingen/personen-en-instellingen'
+        }]
 
         if not self.vocabulary:  # widget vocab takes precedence over field
             if field and getattr(field, 'vocabulary', None):
