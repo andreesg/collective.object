@@ -95,10 +95,10 @@ class IFrom(Interface):
     )
 
 ## Production & Dating
-class IProductiondating(Interface):
+class IProductiondating(form.Schema):
     makers = RelationList(
         title=_(u'Maker'),
-        default=[],
+        missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
             source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})

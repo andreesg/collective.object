@@ -16,6 +16,11 @@ from z3c.relationfield.interfaces import IRelationList
 from zope.i18nmessageid import MessageFactory
 from zope.schema import getFields, getFieldsInOrder
 from collective.object.utils.variables import GENERAL_WIDGETS
+from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget, IAjaxSelectWidget, RelatedItemsFieldWidget
+from zope.interface import alsoProvides
+from .interfaces import IFormWidget
+from plone.dexterity.browser import add, edit
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 _ = MessageFactory('collective.object')
 
@@ -23,7 +28,7 @@ _ = MessageFactory('collective.object')
 # View specific methods #
 # # # # # # # # # # # # #
 
-class ObjectView(DefaultView):
+class ObjectView(edit.DefaultEditForm):
     """ View class """
 
     """
@@ -38,6 +43,23 @@ class ObjectView(DefaultView):
 
     general_widgets = {}
     general_widgets_order = GENERAL_WIDGETS
+
+    template = ViewPageTemplateFile('../object_templates/view.pt')
+
+    def update(self):
+        super(ObjectView, self).update()
+        for group in self.groups:
+            for widget in group.widgets.values():
+                if IDataGridField.providedBy(widget):
+                    widget.auto_append = False
+                    widget.allow_reorder = True
+                alsoProvides(widget, IFormWidget)
+
+        for widget in self.widgets.values():
+            if IDataGridField.providedBy(widget) or IAjaxSelectWidget.providedBy(widget):
+                widget.auto_append = False
+                widget.allow_reorder = True
+                alsoProvides(widget, IFormWidget)
 
     def get_fieldtype_by_schema(self, field):
         f = str(field)

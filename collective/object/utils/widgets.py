@@ -89,21 +89,13 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
         """
         args = super(SimpleRelatedItemsWidget, self)._base_args()
 
-        args['name'] = self.name
+        """args['name'] = self.name
         args['value'] = self.value
         args.setdefault('pattern_options', {})
 
         field = None
         field = self.field
         args['pattern_options']['maximumSelectionSize'] = 1
-
-
-
-        #if IChoice.providedBy(self.field):
-        #    args['pattern_options']['maximumSelectionSize'] = 1
-        #    field = self.field
-        #elif ICollection.providedBy(self.field):
-        #    field = self.field.value_type
 
         vocabulary_name = self.vocabulary
         if not vocabulary_name:
@@ -121,6 +113,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
             args['pattern_options'])
 
         args['pattern_options']['selectableTypes'] = ['PersonOrInstitution']
+        
         #args['pattern_options']['basePath'] = '/nl/personen-en-instellingen/personen-en-instellingen'
         #args['pattern_options']['baseCriteria'] = [{
         #    'i': 'path',
@@ -140,6 +133,15 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
                 source_url = "%s/++widget++%s/@@getSource" % (
                     form_url, self.name)
                 args['pattern_options']['vocabularyUrl'] = source_url
+        """
+
+        args['pattern_options']['maximumSelectionSize'] = 1
+        args['pattern_options']['selectableTypes'] = ['PersonOrInstitution']
+        args['pattern_options']['baseCriteria'] = [{
+            'i': 'portal_type',
+            'o': 'plone.app.querystring.operation.selection.is',
+            'v': 'PersonOrInstitution'
+        }]
 
         return args
 

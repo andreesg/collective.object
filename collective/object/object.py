@@ -28,7 +28,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 #
 # z3c.forms dependencies
 #
-from z3c.form import group, field
+from z3c.form import group, field, button
 from z3c.form.form import extends
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.relationfield.schema import RelationChoice
@@ -1930,37 +1930,21 @@ class EditForm(edit.DefaultEditForm):
 
         return url
 
-"""class GridDataConverter(grok.MultiAdapter, BaseDataConverter):
-    #Convert between the AddressList object and the widget. 
-    #   If you are using objects, you must provide a custom converter
-    
-    
-    grok.adapts(ListField, IDataGridField)
-    grok.implements(IDataConverter)
+    """@button.buttonAndHandler(u'Save', name='save')
+    def handleSave(self, action):
+        print "handle save"
 
-    def toWidgetValue(self, value):
-        print "To widget value"
+        data, errors = self.extractData()
+        print data['productionDating_productionDating']
 
-        #Simply pass the data through with no change
-        rv = list()
-        for row in value:
-            d = dict()
-            for name, field in getFieldsInOrder(IObject):
-                d[name] = getattr(row, name)
-            rv.append(d)
+        if errors:
+            self.status = self.formErrorsMessage
+            return
 
-        return rv
-
-    def toFieldValue(self, value):
-        print "to fieldValue"
-        rv = Object()
-        for row in value:
-            d = dict()
-            for name, field in getFieldsInOrder(IObject):
-                if row.get(name, NO_VALUE) != NO_VALUE:
-                    d[name] = row.get(name)
-            rv.append(Object(**d))
-        return rv"""
+        context = self.getContent()
+        print context
+        for k, v in data.items():
+            setattr(context, k, v)"""
 
 
 class ObjectNumberValidator(validator.SimpleFieldValidator):
@@ -1981,10 +1965,16 @@ class ObjectNumberValidator(validator.SimpleFieldValidator):
 
             raise Invalid(_(u"Object number already exists."))
 
+class ProductionNumberValidator(validator.SimpleFieldValidator):
+    def validate(self, value):
+        super(ProductionNumberValidator, self).validate(value)
+
 
 validator.WidgetValidatorDiscriminators(ObjectNumberValidator, field=IObject['identification_identification_objectNumber'])
-grok.global_adapter(ObjectNumberValidator)
+validator.WidgetValidatorDiscriminators(ProductionNumberValidator, field=IObject['productionDating_productionDating'])
 
+grok.global_adapter(ObjectNumberValidator)
+grok.global_adapter(ProductionNumberValidator)
 
     
     

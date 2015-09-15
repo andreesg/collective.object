@@ -23,7 +23,7 @@
               i18n:attributes="title title_required;">&nbsp;</span>
 
         <!--<span class="formHelp"
-            tal:define="description widget/field/description"
+            tal:define="descri ption widget/field/description"
             i18n:translate=""
             tal:content="structure description"
             tal:condition="python:description and not hidden"

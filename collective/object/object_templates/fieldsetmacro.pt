@@ -1,5 +1,117 @@
 	<!-- Secondary fieldsets -->
   
+<div metal:define-macro="private_view">
+  <tal:identification tal:condition='python: fieldset_text == "identification"'
+    tal:define='widgets group/widgets'>
+    <!-- Identification -->
+
+      <div class="row no-padding">
+        
+        <h2 class="page-header" i18n:translate="">Identificatie</h2>
+    
+        <div class="form-horizontal hide-relation">
+
+          
+          <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/> 
+
+        
+          <tal:widget tal:replace="structure widgets/identification_identification_administrativeName/@@ploneform-render-widget"/>
+        </div>
+
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/identification_identification_collections/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+        
+          <tal:widget tal:replace="structure widgets/identification_identification_objectNumber/@@ploneform-render-widget"/>
+          
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/identification_identification_part/@@ploneform-render-widget"/>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/identification_identification_totNumber/@@ploneform-render-widget"/>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/identification_identification_copyNumber/@@ploneform-render-widget"/>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/identification_identification_edition/@@ploneform-render-widget"/>
+          </div>
+
+          <tal:widget tal:replace="structure widgets/identification_identification_distinguishFeatures/@@ploneform-render-widget"/>
+
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Objectnaam</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/identification_objectName_category/@@ploneform-render-widget"/>
+        </div>
+        
+        <div class="form-horizontal table-responsive gridfield">
+          <tal:widget tal:replace="structure view/widgets/identification_objectName_objectname/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal table-responsive gridfield">
+          <tal:widget tal:replace="structure widgets/identification_objectName_otherName/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Titel en beschrijving</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/identification_titleDescription_title/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+            <tal:widget tal:replace="structure widgets/identification_titleDescription_translatedTitle/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/identification_titleDescription_description/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/identification_titleDescription_language/@@ploneform-render-widget"/>
+          
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/identification_titleDescription_describer/@@ploneform-render-widget"/>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/identification_titleDescription_titleDate/@@ploneform-render-widget"/>
+          </div>
+
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Taxonomie</h2>
+
+        <div class="form-horizontal table-responsive gridfield">
+           <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield hide-relation">
+           <tal:widget tal:replace="structure widgets/identification_taxonomy_determiners/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/identification_taxonomy_objectstatus/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal table-responsive gridfield">
+           <tal:widget tal:replace="structure widgets/identification_taxonomy_notes/@@ploneform-render-widget"/>
+        </div>
+
+      </div>
+
+
+  </tal:identification>
+</div>
+
   <div metal:define-macro="test">
   	<tal:identification tal:condition='python: fieldset_text == "identification"'
     tal:define='widgets group/widgets'>
