@@ -88,7 +88,7 @@
 
         </div>
 
-        <h2 class="page-header" i18n:translate="">Taxonomie</h2>
+        <h2 class="page-header header-padding" i18n:translate="">Taxonomie</h2>
 
         <div class="form-horizontal table-responsive gridfield">
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
@@ -110,6 +110,702 @@
 
 
   </tal:identification>
+
+  <tal:physical_characteristics tal:condition='python: fieldset_text == "physical_characteristics"'
+    tal:define='widgets group/widgets'>
+    <!-- Physical Characteristics -->
+    <div class="row no-padding">
+      <h2 class="page-header" i18n:translate="">Physical Description</h2>
+
+      <div class="form-horizontal">
+        <tal:widget tal:replace="structure widgets/physicalCharacteristics_physicalDescription_description/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Keywords</h2>
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure view/widgets/physicalCharacteristics_keyword/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Techniques</h2>
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure view/widgets/physicalCharacteristics_technique/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Materials</h2>
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure view/widgets/physicalCharacteristics_material/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Dimensions</h2>
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure view/widgets/physicalCharacteristics_dimension/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Frame</h2>
+      <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/physicalCharacteristics_frame/@@ploneform-render-widget"/>
+      </div>
+    </div>
+  </tal:physical_characteristics>
+
+  <tal:iconography tal:condition='python: fieldset_text == "iconography"'
+    tal:define='widgets group/widgets'>
+    <!-- Iconography -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">General search criteria</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/iconography_generalSearchCriteria_generalthemes/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure view/widgets/iconography_generalSearchCriteria_specificthemes/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/iconography_generalSearchCriteria_classificationTheme/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Content description</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/iconography_contentDescription/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Content person/institution</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/iconography_contentPersonInstitution/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Content subject</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/iconography_contentSubjects/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Content period/date</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/iconography_contentPeriodDates/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Iconography source</h2>
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/iconography_iconographySource_sourceGeneral/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/iconography_iconographySource_sourceSpecific/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/iconography_iconographySource_sourceObjectNumber/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:iconography>
+
+  <tal:inscriptions_markings tal:condition='python: fieldset_text == "inscriptions_markings"'
+    tal:define='widgets group/widgets'>
+    <!-- Inscriptions and markings -->
+    <div class="row no-padding">
+
+        <h2 class="page-header" i18n:translate="">Inscriptions and markings</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/inscriptionsMarkings_inscriptionsAndMarkings/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:inscriptions_markings>
+  
+  <tal:production_dating tal:condition='python: fieldset_text == "production_dating"'
+    tal:define='widgets group/widgets'>
+    <div class="row no-padding">
+      <!-- Production | Dating -->
+      <h2 class="page-header" i18n:translate="">Production</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/productionDating_productionDating/@@ploneform-render-widget"/>
+        </div>
+        
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/productionDating_production_productionReason/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/productionDating_production_schoolStyles/@@ploneform-render-widget"/>
+        </div>
+
+      <h2 class="page-header" i18n:translate="">Dating</h2>
+
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure widgets/productionDating_dating_period/@@ploneform-render-widget"/>
+      </div>
+
+      <div class="form-horizontal">
+        <tal:widget tal:replace="structure view/widgets/productionDating_production_periods/@@ploneform-render-widget"/>
+      </div>
+      
+
+      <div class="form-horizontal gridfield table-responsive show-label hide-th">
+        <tal:widget tal:replace="structure widgets/productionDating_dating_notes/@@ploneform-render-widget"/>
+      </div>
+
+    </div>
+  </tal:production_dating>
+
+  <!-- Condition & Conservation -->
+  <tal:condition_conservation tal:condition='python: fieldset_text == "condition_conservation"'
+    tal:define='widgets group/widgets'>
+    <!-- Production | Dating -->
+    <div class="row no-padding">
+
+      <h2 class="page-header" i18n:translate="">Condition</h2>
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure view/widgets/conditionConservation_conditions/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Completeness</h2>
+
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure widgets/conditionConservation_completeness/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Conservation request</h2>
+
+      <div class="form-horizontal gridfield table-responsive">
+        <tal:widget tal:replace="structure widgets/conditionConservation_conservation_request/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Conservation treatment</h2>
+
+      <div class="form-horizontal gridfield">
+        <tal:widget tal:replace="structure widgets/conditionConservation_conservationTreatments/@@ploneform-render-widget"/>
+      </div>
+
+      <h2 class="page-header" i18n:translate="">Preservation form</h2>
+      <div class="form-horizontal gridfield">
+        <tal:widget tal:replace="structure view/widgets/conditionConservation_preservationForm/@@ploneform-render-widget"/>
+      </div>
+
+    </div>
+  </tal:condition_conservation>
+
+  <tal:recommendations_requirements tal:condition='python: fieldset_text == "recommendations_requirements"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Credit line</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/recommendationsRequirements_creditLine_creditLine/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Legal / license requirements</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/recommendationsRequirements_legalLicenceRequirements_requirements/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/recommendationsRequirements_legalLicenceRequirements_requirementsHeld/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Recommendations</h2>
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_display/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_environment/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_handling/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_packing/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_security/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_storage/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/conditionConservation_recommendations_specialRequirements/@@ploneform-render-widget"/>
+        </div>
+        
+    </div>
+  </tal:recommendations_requirements>
+
+  
+
+  <tal:associations tal:condition='python: fieldset_text == "associations"'
+    tal:define='widgets group/widgets'>
+    <!-- Associations -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Associated person/institution</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/associations_associatedPersonInstitutions/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Associated subject</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/associations_associatedSubjects/@@ploneform-render-widget"/>
+        </div>
+
+
+        <h2 class="page-header" i18n:translate="">Associated period</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/associations_associatedPeriods/@@ploneform-render-widget"/>
+        </div>
+
+
+    </div>
+  </tal:associations>
+
+  <tal:numbers_relationships tal:condition='python: fieldset_text == "numbers_relationships"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Numbers</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/numbersRelationships_numbers/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Relationships with other objects</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/numbersRelationships_relationshipsWithOtherObjects_partOf/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/numbersRelationships_relationshipsWithOtherObjects_notes/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/numbersRelationships_relationshipsWithOtherObjects_parts/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/numbersRelationships_relationshipsWithOtherObjects_relatedObjects/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Digital references</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+            <tal:widget tal:replace="structure widgets/numbersRelationships_digitalReferences/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:numbers_relationships>
+
+  <tal:documentation tal:condition='python: fieldset_text == "documentation"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Documentation</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/documentation_documentation/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:documentation>
+
+  <tal:documentation_free_archive tal:condition='python: fieldset_text == "documentation_free_archive"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Documentation (free text)</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/documentationFreeArchive_documentationFreeText/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Archive</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/documentationFreeArchive_archiveNumber/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:documentation_free_archive>
+
+  <tal:reproductions tal:condition='python: fieldset_text == "reproductions"'
+    tal:define='widgets group/widgets'>
+    <!-- Reproductions -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Reproduction</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/reproductions_reproduction/@@ploneform-render-widget"/>
+        </div>
+        
+    </div>
+  </tal:reproductions>
+
+  <tal:value_insurance tal:condition='python: fieldset_text == "value_insurance"'
+    tal:define='widgets group/widgets'>
+    <!-- Value & Insurance -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Valuation</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/valueInsurance_valuations/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Insurance</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/valueInsurance_insurance/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:value_insurance>
+
+  <tal:acquisition tal:condition='python: fieldset_text == "acquisition"'
+    tal:define='widgets group/widgets'>
+    <!-- Acquisition -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Accession</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/acquisition_accession_date/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Acquisition</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/acquisition_number/@@ploneform-render-widget"/>
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/acquisition_date/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/acquisition_precision/@@ploneform-render-widget"/>
+          </div>
+          
+          <tal:widget tal:replace="structure view/widgets/acquisition_methods/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+            <tal:widget tal:replace="structure widgets/acquisition_acquisition_acquisitionFrom/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+          
+          <tal:widget tal:replace="structure widgets/acquisition_auction/@@ploneform-render-widget"/>
+
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/acquisition_rec_no/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/acquisition_lot_no/@@ploneform-render-widget"/>
+          </div>
+
+          <tal:widget tal:replace="structure view/widgets/acquisition_places/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/acquisition_reason/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/acquisition_conditions/@@ploneform-render-widget"/>
+
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Authorization</h2>
+
+        <div class="form-horizontal">
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/acquisition_authorization_authorizer/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+              <tal:widget tal:replace="structure widgets/acquisition_authorization_date/@@ploneform-render-widget"/>
+          </div>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Costs</h2>
+
+        <div class="form-horizontal">
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/acquisition_costs_offer_price/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure view/widgets/acquisition_costs_offer_price_currency/@@ploneform-render-widget"/>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50" style="clear:both;">
+            <tal:widget tal:replace="structure widgets/acquisition_costs_purchase_price/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure view/widgets/acquisition_costs_purchase_price_currency/@@ploneform-render-widget"/>
+          </div>
+
+          <tal:widget tal:replace="structure widgets/acquisition_costs_notes/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Funding</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/acquisition_fundings/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Documentation</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/acquisition_documentation/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Copyright</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/acquisition_copyright/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Notes</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/acquisition_notes/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:acquisition>
+
+  <tal:disposal tal:condition='python: fieldset_text == "disposal"'
+    tal:define='widgets group/widgets'>
+    <!-- Disposal -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Deaccession</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/disposal_deaccession/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/disposal_new_object_number/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Disposal</h2>
+
+        <div class="form-horizontal">
+          <div class="col-sm-12 col-md-7 col-lg-7 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/disposal_number/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-5 col-lg-5 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/disposal_date/@@ploneform-render-widget"/>
+          </div>
+          
+          <tal:widget tal:replace="structure widgets/disposal_method/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/disposal_disposal_proposedRecipient/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/disposal_disposal_recipient/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/disposal_reason/@@ploneform-render-widget"/>
+          <tal:widget tal:replace="structure widgets/disposal_provisos/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Finance</h2>
+        <div class="form-horizontal">
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/disposal_finance_disposal_price/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure view/widgets/disposal_finance_currency/@@ploneform-render-widget"/>
+          </div>
+        </div>
+
+        <h2 class="page-header" i18n:translate="" style="clear:both;">Documentation</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/disposal_documentation/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Notes</h2>
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/disposal_notes/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:disposal>
+
+  <tal:ownership_history tal:condition='python: fieldset_text == "ownership_history"'
+    tal:define='widgets group/widgets'>
+    <!-- Ownership history -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Ownership</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/ownershipHistory_ownership_currentOwner/@@ploneform-render-widget"/>
+          
+        </div>
+
+        <h2 class="page-header" i18n:translate="">History</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/ownershipHistory_historyOwner/@@ploneform-render-widget"/>
+          
+        </div>
+
+    </div>
+  </tal:ownership_history>
+
+  <tal:location tal:condition='python: fieldset_text == "location"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Normal location</h2>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/location_normalLocation_normalLocation/@@ploneform-render-widget"/>
+          
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Current location</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+         
+          <tal:widget tal:replace="structure view/widgets/location_currentLocation/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Location checks</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/location_checks/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:location>
+
+  <tal:notes tal:condition='python: fieldset_text == "notes"'
+    tal:define='widgets group/widgets'>
+    <!-- Location -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="label_opmerkingen">Notes</h2>
+
+        <div class="form-horizontal gridfield hide-thead table-responsive">
+          <tal:widget tal:replace="structure widgets/notes/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Free Fields</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/notes_free_fields/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:notes>
+
+  <tal:labels tal:condition='python: fieldset_text == "labels"'
+    tal:define='widgets group/widgets'>
+    <!-- labels -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Labels</h2>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/labels/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:labels>
+
+  <tal:field_collection tal:condition='python: fieldset_text == "field_collection"'
+    tal:define='widgets group/widgets'>
+    <!-- field_collection -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="label_field_collection">Field Collection</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_fieldCollNumber/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_collectors/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_events/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_dateEarly/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_dateEarlyPrecision/@@ploneform-render-widget"/>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
+            <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_dateLate/@@ploneform-render-widget"/>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 div-20-80 label-right">
+            <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_dateLatePrecision/@@ploneform-render-widget"/>
+          </div>
+
+        </div>
+
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_methods/@@ploneform-render-widget"/>
+        </div>
+        
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_places/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_placeCodes/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_fieldCollection_placeFeatures/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Co-ordinates field collection place</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/fieldCollection_coordinatesFieldCollectionPlace/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Habitat and stratigraphy</h2>
+
+        <div class="form-horizontal gridfield table-responsive">
+          <tal:widget tal:replace="structure widgets/fieldCollection_habitatStratigraphy_habitat/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure view/widgets/fieldCollection_habitatStratigraphy_stratigrafie/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Notes</h2>
+        <div class="form-horizontal gridfield hide-th">
+          <tal:widget tal:replace="structure widgets/fieldCollection_notes/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:field_collection>
+
+  <tal:exhibitions tal:condition='python: fieldset_text == "exhibitions"'
+    tal:define='widgets group/widgets'>
+    <!-- Exhibition -->
+    <div class="row no-padding">
+        
+        <h2 class="page-header" i18n:translate="">Exhibition</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/exhibitions_exhibition/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:exhibitions>
+
+  <tal:loans tal:condition='python: fieldset_text == "loans"'
+    tal:define='widgets group/widgets'>
+    <!-- Loans -->
+    <div class="row no-padding">
+        <h2 class="page-header" i18n:translate="">Incoming loans</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/loans_incomingLoans/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Outgoing loans</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/loans_outgoingLoans/@@ploneform-render-widget"/>
+        </div>
+    </div>
+  </tal:loans>
+
+  <tal:transport tal:condition='python: fieldset_text == "transport"'
+    tal:define='widgets group/widgets'>
+    <!-- Loans -->
+    <div class="row no-padding">
+        
+        <h2 class="page-header" i18n:translate="">Binnenkomst</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/transport_entry_number/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Verzending</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/transport_despatchNumber/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:transport>
+
+  <tal:management_details tal:condition='python: fieldset_text == "management_details"'
+    tal:define='widgets group/widgets'>
+    <!-- Management details -->
+    <div class="row no-padding">
+
+        <h2 class="page-header" i18n:translate="">Invoer</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/managementDetails_input/@@ploneform-render-widget"/>
+        </div>
+
+        <h2 class="page-header" i18n:translate="">Wijziging</h2>
+        <div class="form-horizontal gridfield">
+          <tal:widget tal:replace="structure widgets/managementDetails_edit/@@ploneform-render-widget"/>
+        </div>
+
+    </div>
+  </tal:management_details>
 </div>
 
   <div metal:define-macro="test">
@@ -200,7 +896,7 @@
 
         </div>
 
-        <h2 class="page-header" i18n:translate="">Taxonomy</h2>
+        <h2 class="page-header header-padding" i18n:translate="">Taxonomy</h2>
 
         <div class="form-horizontal table-responsive gridfield">
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>

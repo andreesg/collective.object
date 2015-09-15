@@ -55,66 +55,25 @@
   <tal:admin tal:condition="user_admin">
     <div class="template-edit">
       <div id="content-core">
-    <!-- ADMIN -->
-    <!--<tal:fields>
-      <div id="parent-fieldname-text" tal:define="total_groups python: view.get_groups()">
-          <div class="container object-container" style="display:block;">
-            <div class="object-fieldsets" style="display:block;">
-              
-              
-              <tal:fieldset tal:repeat="group view/groups">
+    
+      
+        
+        <form class="enableFormTabbing">
 
-                  <tal:showfieldset tal:condition="python: view.show_fieldset(group)">
-                  
-                    <h3 class="fieldset-header" tal:content="group/label"></h3>
-
-                    <tal:block tal:repeat="widget group/widgets/values">
-                        <tal:norelated tal:condition="python: '_relatedObjects' not in widget.__name__">
-
-                          <tal:contentfield
-                            tal:define="widget_value widget/value;
-                                        widget_label widget/label;
-                                        widget_converted_value python: view.get_field_value(widget_value, widget)">
-
-                              <tal:contents tal:condition="widget_converted_value">
-                              
-                              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 object-label" style="padding-left:0px;">
-                                <span tal:content="widget_label"></span>
-                              </div>
-                              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 object-value"
-                                >
-                                <p tal:content="structure widget_converted_value"></p>
-                              </div>
-
-                              </tal:contents>
-                          
-                          </tal:contentfield>
-                        </tal:norelated>
-                      </tal:block>
-
-                  </tal:showfieldset>
-              </tal:fieldset>
-            </div>
-          </div>
-        </div>
-    </tal:fields>-->
-
-    <tal:block tal:repeat="group view/groups">
-      <fieldset
+        <tal:block tal:repeat="group view/groups">
+        <fieldset
           tal:define="normalizeString nocall:context/@@plone/normalizeString;
                       fieldset_label group/label;
                       fieldset_name group/__name__|group/label/default|fieldset_label;
                       fieldset_text python:normalizeString(fieldset_name);
                       fieldset_name python:normalizeString(fieldset_name);"
-          tal:attributes="id string:fieldset-${fieldset_name};
-                          class string:kssattr-fieldset-${fieldset_name} formPanel;
-                          data-fieldset fieldset_name">
+
+            tal:attributes="id string:fieldset-${fieldset_name};
+                          class string:formPanel;">
               
-              <!-- Identification -->
-              <tal:identification_tab tal:condition="python: fieldset_name == 'identification'">
-                <!--<legend tal:condition="fieldset_label"
-                        tal:attributes="id string:fieldsetlegend-${fieldset_name}"
-                        tal:content="fieldset_label">Form name</legend>-->
+                <legend tal:condition="fieldset_label"
+                        tal:attributes="id string:fieldset-${fieldset_name}"
+                        tal:content="fieldset_label">Form name</legend>
 
                 <p i18n:translate=""
                    tal:define="group_description group/description|nothing"
@@ -133,11 +92,10 @@
                 </tal:block>
 
                 <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />
-
-              </tal:identification_tab>
-
-            </fieldset>
+        </fieldset>
       </tal:block>
+
+        </form>
       </div>
     </div>
   </tal:admin>
