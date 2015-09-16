@@ -35,9 +35,9 @@
   <metal:content-core define-macro="content-core">
     
     <tal:permissions
-      tal:define="user_admin view/checkUserPermission;"
+      tal:define="user_admin view/checkUserPermission;
+                  fieldset_restriction python:request.get('fieldset', None);"
     >
-
     <tal:notadmin tal:condition="not:user_admin">
       <div id="parent-fieldname-text">
         <div id="body-text">
@@ -56,11 +56,10 @@
     <div class="template-edit">
       <div id="content-core">
     
-      
-        
         <form class="enableFormTabbing">
 
         <tal:block tal:repeat="group view/groups">
+        
         <fieldset
           tal:define="normalizeString nocall:context/@@plone/normalizeString;
                       fieldset_label group/label;
@@ -91,7 +90,9 @@
                         />
                 </tal:block>
 
-                <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />
+                <!--<tal:restriction tal:condition="python: fieldset_restriction == None or fieldset_name == fieldset_restriction">-->
+                  <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />
+                <!--</tal:restriction>-->
         </fieldset>
       </tal:block>
 
@@ -102,6 +103,7 @@
   </tal:permissions>
   </metal:content-core>
 </metal:main>
+
 
 </body>
 </html>

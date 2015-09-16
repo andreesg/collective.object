@@ -7,6 +7,53 @@
             
       <metal:block fill-slot="main">
 
+      <tal:restrictions_define tal:define="fieldset_restriction python:request.get('fieldset', None);
+                                          groups view/groups">
+      
+      <tal:show_only_groups tal:condition="python: fieldset_restriction != None">
+                          <tal:block tal:repeat="group groups">
+                            <fieldset
+                                tal:define="normalizeString nocall:context/@@plone/normalizeString;
+                                            fieldset_label group/label;
+                                            fieldset_name group/__name__|group/label/default|fieldset_label;
+                                            fieldset_text python:normalizeString(fieldset_name);
+                                            fieldset_name python:normalizeString(fieldset_name);"
+                                tal:attributes="id string:fieldset-${fieldset_name};
+                                                class string:kssattr-fieldset-${fieldset_name};
+                                                data-fieldset fieldset_name">
+                                    
+                                    <!-- Identification -->
+                                    <legend tal:condition="fieldset_label"
+                                            tal:attributes="id string:fieldsetlegend-${fieldset_name}"
+                                            tal:content="fieldset_label">Form name</legend>
+
+                                    <p i18n:translate=""
+                                       tal:define="group_description group/description|nothing"
+                                       tal:condition="group_description"
+                                       tal:content="structure group_description">
+                                        Description
+                                    </p>
+
+                                    <tal:block tal:define="errors group/widgets/errors"
+                                               tal:condition="errors"
+                                               tal:repeat="error errors">
+                                        <div class="field error"
+                                            tal:condition="not:nocall:error/widget"
+                                            tal:content="structure error/render"
+                                            />
+                                    </tal:block>
+
+                                    <tal:restriction tal:condition="python: fieldset_restriction == fieldset_name">
+                                      <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/test" />
+                                    </tal:restriction>
+                                    
+                                  </fieldset>
+                          </tal:block>
+      </tal:show_only_groups>
+      
+
+      <tal:show_all tal:condition="python: fieldset_restriction == None">
+
       <div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media(); page_title python: view.get_page_title()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)">
         <!--<h1 tal:content="view/label" class="documentFirstHeading">EDIT: OBJECT</h1>-->
         <h1 class="documentFirstHeading" tal:content="page_title"></h1>
@@ -70,6 +117,7 @@
                                   has_groups python:bool(groups);
                                   form_tabbing python:(has_groups and enable_form_tabbing) and 'enableFormTabbing' or '';
                                   show_default_label python:has_groups and default_fieldset_label and len(view.widgets);
+                                  fieldset_restriction python:request.get('fieldset', None);
                                   "
                       tal:attributes="action view/action|request/getURL;
                                       enctype view/enctype;
@@ -156,10 +204,12 @@
                                             />
                                     </tal:block>
 
-                                    <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/test" />
-
+                                    <!--<tal:restriction tal:condition="python: fieldset_restriction == fieldset_name">
+                                      <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/test" />
+                                    </tal:restriction>-->
+                                    
                                   </fieldset>
-                                </tal:block>
+                          </tal:block>
 
                           
                       </metal:define>
@@ -184,7 +234,8 @@
         </div>
       </div>
 
+      </tal:show_all>
       <!--<tal:test_body_end tal:define="end_time python:view.print_time()"></tal:test_body_end>-->
-
+    </tal:restrictions_define>
     </metal:block>
 </html>
