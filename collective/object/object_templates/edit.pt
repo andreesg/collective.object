@@ -12,6 +12,8 @@
       
       <tal:show_only_groups tal:condition="python: fieldset_restriction != None">
                           <tal:block tal:repeat="group groups">
+
+                            <tal:group_name tal:define="group_name group/__name__|group/label/default|fieldset_label">
                             <fieldset
                                 tal:define="normalizeString nocall:context/@@plone/normalizeString;
                                             fieldset_label group/label;
@@ -20,7 +22,7 @@
                                             fieldset_name python:normalizeString(fieldset_name);"
                                 tal:attributes="id string:fieldset-${fieldset_name};
                                                 class string:kssattr-fieldset-${fieldset_name};
-                                                data-fieldset fieldset_name">
+                                                data-fieldset fieldset_name" tal:condition="python: fieldset_name == fieldset_restriction">
                                     
                                     <!-- Identification -->
                                     <legend tal:condition="fieldset_label"
@@ -48,13 +50,17 @@
                                     </tal:restriction>
                                     
                                   </fieldset>
+
+                                </tal:group_name>
                           </tal:block>
+
       </tal:show_only_groups>
+
       
 
-      <tal:show_all tal:condition="python: fieldset_restriction == None">
+      <tal:show_all tal:condition="python: fieldset_restriction == None or fieldset_restriction == 'all'">
 
-      <div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media(); page_title python: view.get_page_title()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)">
+      <div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media(); page_title python: view.get_page_title()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)" tal:condition="python: fieldset_restriction != 'all'">
         <!--<h1 tal:content="view/label" class="documentFirstHeading">EDIT: OBJECT</h1>-->
         <h1 class="documentFirstHeading" tal:content="page_title"></h1>
       </div>
@@ -204,9 +210,9 @@
                                             />
                                     </tal:block>
 
-                                    <!--<tal:restriction tal:condition="python: fieldset_restriction == fieldset_name">
+                                    <tal:restriction tal:condition="python: fieldset_restriction == 'all'">
                                       <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/test" />
-                                    </tal:restriction>-->
+                                    </tal:restriction>
                                     
                                   </fieldset>
                           </tal:block>

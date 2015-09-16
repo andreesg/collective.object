@@ -639,9 +639,10 @@ class IObject(form.Schema):
 
     identification_taxonomy_objectstatus = schema.Choice(
         title=_(u'Object status'),
-        required=True,
+        required=False,
         vocabulary="collective.object.objectstatus",
-        default="No value"
+        default="No value",
+        missing_value=" "
     )
     dexteritytextindexer.searchable('identification_taxonomy_objectstatus')
 
@@ -1950,20 +1951,23 @@ class EditForm(edit.DefaultEditForm):
 class ObjectNumberValidator(validator.SimpleFieldValidator):
     def validate(self, value):
         super(ObjectNumberValidator, self).validate(value)
-        
-        # Fetch context
-        context = self.context
-        context_uid = context.UID()
-        catalog = self.context.portal_catalog
-        
-        # Check if identification number already exists
-        brains = catalog(identification_identification_objectNumber=value)
-        if brains:
-            for brain in brains:
-                if brain.UID == context_uid:
-                    return None
 
-            raise Invalid(_(u"Object number already exists."))
+        if value:
+            # Fetch context
+            context = self.context
+            context_uid = context.UID()
+            catalog = self.context.portal_catalog
+            
+            # Check if identification number already exists
+            brains = catalog(identification_identification_objectNumber=value)
+            if brains:
+                for brain in brains:
+                    if brain.UID == context_uid:
+                        return None
+
+                raise Invalid(_(u"Object number already exists."))
+        else:
+            return None
 
 class ProductionNumberValidator(validator.SimpleFieldValidator):
     def validate(self, value):

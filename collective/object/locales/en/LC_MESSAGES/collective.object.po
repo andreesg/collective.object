@@ -1,0 +1,1868 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: collective.object\n"
+"POT-Creation-Date: 2015-04-09 15:28+0000\n"
+"PO-Revision-Date: 2015-04-10 15:29+0000’\n"
+"Last-Translator: INTK <info@intk.com>\n"
+"Language-Team: Dutch <info@intk.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: nl\n"
+"Language-Name: Dutch\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: collective.object\n"
+
+#: ../profiles/default/types/Object.xml:7
+msgid "Object"
+msgstr "Objecten"
+
+#: ../profiles/default/types/Object.xml:8
+msgid "Information about an object typically collected by museums"
+msgstr "Informatie over een object meestal verzameld door musea"
+
+#: ../object.py
+msgid "Body"
+msgstr "Tekst"
+
+#: ../object.py
+msgid "Name"
+msgstr "Naam"
+
+#: ../object.py
+msgid "Description"
+msgstr "Beschrijving"
+
+#: ../object.py
+msgid "Identification"
+msgstr "Identificatie"
+
+#: ../object.py
+msgid "Institution name"
+msgstr "Instellingsnaam"
+
+#: ../object.py
+msgid "Institution code"
+msgstr "Instellingscode"
+
+#: ../object.py
+msgid "Administrative name"
+msgstr "Afdeling"
+
+#: ../object.py
+msgid "Collection"
+msgstr "Collectie"
+
+#: ../object.py
+msgid "Object number"
+msgstr "Objectnummer"
+
+#: ../object.py
+msgid "Rec. type"
+msgstr "Rec. type"
+
+#: ../object.py
+msgid "Part"
+msgstr "Onderdeel"
+
+#: ../object.py
+msgid "Tot. Number"
+msgstr "Aantal"
+
+#: ../object.py
+msgid "Copy number"
+msgstr "Serienummer"
+
+#: ../object.py
+msgid "Edition"
+msgstr "Oplage"
+
+#: ../object.py
+msgid "Distinguish features"
+msgstr "Ondersch. kenmerken"
+
+#: ../object.py
+msgid "Object Category"
+msgstr "Objectcategorie"
+
+#: ../object.py
+msgid "Object name"
+msgstr "Objectnaam"
+
+#: ../object.py
+msgid "Other name"
+msgstr "Andere benaming"
+
+#: ../object.py
+msgid "Physical Characteristics"
+msgstr "Fysieke kenmerken"
+
+#: ../object.py
+msgid "Physical Description"
+msgstr "Fysieke beschrijving"
+
+#: ../object.py
+msgid "Keywords"
+msgstr "Trefwoorden"
+
+#: ../object.py
+msgid "Part"
+msgstr "Onderdeel"
+
+#: ../object.py
+msgid "Aspect"
+msgstr "Aspect"
+
+#: ../object.py
+msgid "Keyword"
+msgstr "Trefwoord"
+
+#: ../object.py
+msgid "Notes"
+msgstr "Bijzonderheden"
+
+#: ../object.py
+msgid "Techniques"
+msgstr "Technieken"
+
+#: ../object.py
+msgid "Technique"
+msgstr "Techniek"
+
+#: ../object.py
+msgid "Materials"
+msgstr "Materialen"
+
+#: ../object.py
+msgid "Material"
+msgstr "Materiaal"
+
+#: ../object.py
+msgid "Dimensions"
+msgstr "Afmetingen"
+
+
+#: ../object.py
+msgid "Dimension"
+msgstr "Afmeting"
+
+#: ../object.py
+msgid "Dimention"
+msgstr "Afmeting"
+
+#: ../object.py
+msgid "Value"
+msgstr "Waarde"
+
+#: ../object.py
+msgid "Unit"
+msgstr "Eenh"
+
+#: ../object.py
+msgid "Precision"
+msgstr "Precisie"
+
+#: ../object.py
+msgid "Dimensions (free text)"
+msgstr "Afmeting (vrije tekst)"
+
+#: ../object.py
+msgid "Frame"
+msgstr "Omlijsting"
+
+#: ../object.py
+msgid "Detail"
+msgstr "Bijzonderheden"
+
+#: ../object.py
+msgid "Production & Dating"
+msgstr "Vervaardiging & Datering"
+
+#: ../object.py
+msgid "Production"
+msgstr "Vervaardiging"
+
+#: ../object.py
+msgid "Creator"
+msgstr "Vervaardiger"
+
+#: ../object.py
+msgid "Maker"
+msgstr "Vervaardiger"
+
+#: ../object.py
+msgid "Qualifier"
+msgstr "Kwalificatie"
+
+#: ../object.py
+msgid "Role"
+msgstr "Rol"
+
+#: ../object.py
+msgid "Place"
+msgstr "Plaats"
+
+#: ../object.py
+msgid "School / style"
+msgstr "School / stijl"
+
+#: ../object.py
+msgid "Production notes"
+msgstr "Bijzonderheden"
+
+#: ../object.py
+msgid "Production reason"
+msgstr "Reden vervaardiging"
+
+#: ../object.py
+msgid "Dating"
+msgstr "Datering"
+
+#: ../object.py
+msgid "Period"
+msgstr "Periode"
+
+#: ../object.py
+msgid "Date (early)"
+msgstr "Datering van"
+
+#: ../object.py
+msgid "Precision"
+msgstr "Precisie"
+
+#: ../object.py
+msgid "Date (late)"
+msgstr "Tot"
+
+#
+# Condition & Conservation
+#
+
+#: ../object.py
+msgid "Condition & Conservation"
+msgstr "Toestand & Conservering"
+
+#: ../object.py
+msgid "Conservation treatment"
+msgstr "Conserveringsbehandeling"
+
+#: ../object.py
+msgid "Treatment number"
+msgstr "Behandelingsnummer"
+
+#: ../object.py
+msgid "Treatment method"
+msgstr "Behandelmethode"
+
+#: ../object.py
+msgid "Priority"
+msgstr "Prioriteit"
+
+#: ../object.py
+msgid "Next condition check"
+msgstr "Volgende toets en controle"
+
+#: ../object.py
+msgid "Date"
+msgstr "Datum"
+
+#: ../object.py
+msgid "Completeness"
+msgstr "Compleetheid"
+
+#: ../object.py
+msgid "Checked by"
+msgstr "Controleur"
+
+#: ../object.py
+msgid "Condition"
+msgstr "Toestand"
+
+#: ../object.py
+msgid "Condition"
+msgstr "Toestand"
+
+#: ../object.py
+msgid "Enviromental condition"
+msgstr "Bewaarvorm"
+
+#: ../object.py
+msgid "Preservation form"
+msgstr "Bewaarvorm"
+
+#: ../object.py
+msgid "Conservation request"
+msgstr "Conserveringverzoeken"
+
+#: ../object.py
+msgid "Treatment"
+msgstr "Behandeling"
+
+#: ../object.py
+msgid "Requester"
+msgstr "Aanvrager"
+
+#: ../object.py
+msgid "Reason"
+msgstr "Reden"
+
+#: ../object.py
+msgid "Status"
+msgstr "Status"
+
+#: ../object.py
+msgid "low"
+msgstr "laag"
+
+#: ../object.py
+msgid "medium"
+msgstr "normal"
+
+#: ../object.py
+msgid "high"
+msgstr "hoog"
+
+#: ../object.py
+msgid "urgent"
+msgstr "urgent"
+
+#
+# Inscriptions and markings
+#
+
+#: ../object.py
+msgid "Inscriptions and markings"
+msgstr "Opschriften / merken"
+
+#: ../object.py
+msgid "Type"
+msgstr "Soort"
+
+#: ../object.py
+msgid "Position"
+msgstr "Positie"
+
+#: ../object.py
+msgid "Method"
+msgstr "Methode"
+
+#: ../object.py
+msgid "Date"
+msgstr "Datum"
+
+#: ../object.py
+msgid "Role"
+msgstr "Rol"
+
+#: ../object.py
+msgid "Content"
+msgstr "Inhoud"
+
+#: ../object.py
+msgid "Description"
+msgstr "Beschrijving"
+
+#: ../object.py
+msgid "Interpretation"
+msgstr "Interpretatie"
+
+#: ../object.py
+msgid "Language"
+msgstr "Taal"
+
+#: ../object.py
+msgid "Notes"
+msgstr "Bijzonderheden"
+
+#
+# Value & Insurance
+#
+
+#: ../object.py
+msgid "Value & Insurance"
+msgstr "Waarde"
+
+#: ../object.py
+msgid "Valuation"
+msgstr "Waardebepaling"
+
+#: ../object.py
+msgid "Value"
+msgstr "Waarde"
+
+#: ../object.py
+msgid "Curr."
+msgstr "Val."
+
+#: ../object.py
+msgid "Valuer"
+msgstr "Taxateur"
+
+#: ../object.py
+msgid "Insurance"
+msgstr "Verzekering"
+
+#: ../object.py
+msgid "Commercial"
+msgstr "commercieel"
+
+#: ../object.py
+msgid "Indemnity"
+msgstr "indemniteit"
+
+#: ../object.py
+msgid "Policy number"
+msgstr "Polisnummer"
+
+#: ../object.py
+msgid "Insurance company"
+msgstr "Verzekeringsmij."
+
+#: ../object.py
+msgid "Confirmation date"
+msgstr "Bevestigingsdatum"
+
+#: ../object.py
+msgid "Renewal date"
+msgstr "Verl.datum"
+
+#: ../object.py
+msgid "Reference"
+msgstr "Referentie"
+
+#: ../object.py
+msgid "Conditions"
+msgstr "Voorwaarden"
+
+#
+# Acquisition
+#
+
+#: ../object.py
+msgid "Acquisition"
+msgstr "Verwerving"
+
+#: ../object.py
+msgid "Accession"
+msgstr "Inschrijving"
+
+#: ../object.py
+msgid "Accession date"
+msgstr "Inschrijvingsdatum"
+
+#: ../object.py
+msgid "Acquisition"
+msgstr "Verwerving"
+
+#: ../object.py
+msgid "Acquisition number"
+msgstr "Verwervingsnummer"
+
+#: ../object.py
+msgid "Acquisition number"
+msgstr "Verwervingsnummer"
+
+#: ../object.py
+msgid "Method"
+msgstr "Methode"
+
+#: ../object.py
+msgid "Rec.no."
+msgstr "Rec.nr."
+
+#: ../object.py
+msgid "Lot no."
+msgstr "Lotnr."
+
+#: ../object.py
+msgid "From"
+msgstr "Van"
+
+#: ../object.py
+msgid "Auction"
+msgstr "Veiling"
+
+#: ../object.py
+msgid "Place"
+msgstr "Plaats"
+
+#: ../object.py
+msgid "Reason"
+msgstr "Reden"
+
+#: ../object.py
+msgid "Conditions"
+msgstr "Voorwaarden"
+
+#: ../object.py
+msgid "Authorization"
+msgstr "Authorisatie"
+
+#: ../object.py
+msgid "Authorizer"
+msgstr "Autorisator"
+
+#: ../object.py
+msgid "Costs"
+msgstr "Kosten"
+
+#: ../object.py
+msgid "Offer price"
+msgstr "Vraagprijs"
+
+#: ../object.py
+msgid "Curr."
+msgstr "Valuta"
+
+#: ../object.py
+msgid "Purchase price"
+msgstr "Aankoopprijs"
+
+#: ../object.py
+msgid "Funding"
+msgstr "Financiering"
+
+#: ../object.py
+msgid "Amount"
+msgstr "Bedrag"
+
+#: ../object.py
+msgid "Source"
+msgstr "Bron"
+
+#: ../object.py
+msgid "Provisos"
+msgstr "Bepalingen"
+
+#: ../object.py
+msgid "label_provisos"
+msgstr "Bepalingen"
+
+
+#: ../object.py
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: ../object.py
+msgid "Reference"
+msgstr "Referentie"
+
+#
+# Disposal
+#
+
+#: ../object.py
+msgid "Disposal"
+msgstr "Afstoting"
+
+#: ../object.py
+msgid "Deaccession"
+msgstr "Uitschrijving"
+
+#: ../object.py
+msgid "Deaccession date"
+msgstr "Uitschrijvingsdatum"
+
+#: ../object.py
+msgid "New object number"
+msgstr "Nieuw objectnummer"
+
+#: ../object.py
+msgid "Disposal"
+msgstr "Afstoting"
+
+#: ../object.py
+msgid "Disposal number"
+msgstr "Afstotingsnummer"
+
+#: ../object.py
+msgid "Proposed recipient"
+msgstr "Aspirant-ontvanger"
+
+#: ../object.py
+msgid "Recipient"
+msgstr "Ontvanger"
+
+#: ../object.py
+msgid "Reason"
+msgstr "Reden"
+
+#: ../object.py
+msgid "Provisos"
+msgstr "Voorwaarden"
+
+#: ../object.py
+msgid "Finance"
+msgstr "Financiën"
+
+#: ../object.py
+msgid "Disposal price"
+msgstr "Verkoopprijs"
+
+#
+# Ownership history
+#
+
+#: ../object.py
+msgid "Ownership history"
+msgstr "Eigendomsgeschiedenis"
+
+#: ../object.py
+msgid "Ownership"
+msgstr "Eigendom"
+
+#: ../object.py
+msgid "Current Owner"
+msgstr "Huidige eigenaar"
+
+#: ../object.py
+msgid "History"
+msgstr "Geschiedenis"
+
+#: ../object.py
+msgid "Owner"
+msgstr "Eigenaar"
+
+#: ../object.py
+msgid "From"
+msgstr "Vanaf"
+
+#: ../object.py
+msgid "Until"
+msgstr "Tot"
+
+#: ../object.py
+msgid "Exchange method"
+msgstr "Verwervingsmethode"
+
+#: ../object.py
+msgid "Acquired from"
+msgstr "Verworven van"
+
+#: ../object.py
+msgid "Auction"
+msgstr "Veiling"
+
+#: ../object.py
+msgid "Price"
+msgstr "Prijs"
+
+#: ../object.py
+msgid "Ownership category"
+msgstr "Eigendomscategorie"
+
+#: ../object.py
+msgid "Access"
+msgstr "Toegankelijkheid"
+
+#
+# Location
+#
+
+#: ../object.py
+msgid "Location"
+msgstr "Standplaats"
+
+#: ../object.py
+msgid "Normal location"
+msgstr "Vaste standplaats"
+
+#: ../object.py
+msgid "Current location"
+msgstr "Huidige standplaats"
+
+#: ../object.py
+msgid "Start date"
+msgstr "Begindatum"
+
+#: ../object.py
+msgid "End date"
+msgstr "Einddatum"
+
+#: ../object.py
+msgid "Location type"
+msgstr "Soort standplaats"
+
+#: ../object.py
+msgid "Location"
+msgstr "Standplaats"
+
+#: ../object.py
+msgid "Fitness"
+msgstr "Geschiktheid"
+
+#: ../object.py
+msgid "Location checks"
+msgstr "Standplaatscontroles"
+
+#
+# Notes
+#
+
+#: ../object.py
+msgid "Free Fields"
+msgstr "Vrij velden"
+
+#: ../object.py
+msgid "Confidential"
+msgstr "Vertrouwelijk"
+
+#
+# Labels
+#
+
+#: ../object.py
+msgid "Labels"
+msgstr "Etiketten"
+
+# Identification
+
+#: ../object.py
+msgid "Translated title"
+msgstr "Vertaalde titel"
+
+#: ../object.py
+msgid "Describer"
+msgstr "Beschrijver"
+
+#: ../object.py
+msgid "Taxonomy"
+msgstr "Taxonomie"
+
+#: ../object.py
+msgid "Taxonomy rank"
+msgstr "Taxonomische rang"
+
+#: ../object.py
+msgid "Scient. name"
+msgstr "Wetenschappelijke naam"
+
+#: ../object.py
+msgid "Common name"
+msgstr "Populaire naam"
+
+#: ../object.py
+msgid "Determiner"
+msgstr "Determinator"
+
+#: ../object.py
+msgid "Object status"
+msgstr "Objectstatus"
+
+#: ../object.py
+msgid "Title and description"
+msgstr "Titel en beschrijving"
+
+
+#: ../object.py
+msgid "Title and description"
+msgstr "Titel en beschrijving"
+
+#
+# Iconography
+#
+
+#: ../object.py
+msgid "General theme"
+msgstr "Hoofdmotief algemeen"
+
+#: ../object.py
+msgid "Specific theme"
+msgstr "Hoofdmotief specifiek"
+
+#: ../object.py
+msgid "Classification theme"
+msgstr "Classificatieschema"
+
+#: ../object.py
+msgid "Code"
+msgstr "Code"
+
+#: ../object.py
+msgid "General search criteria"
+msgstr "Algemene onderwerpsontsluiting"
+
+#: ../object.py
+msgid "Content description"
+msgstr "Inhoudsbeschrijving"
+
+#: ../object.py
+msgid "Content person/institution"
+msgstr "Afgebeelde persoon/instelling"
+
+#: ../object.py
+msgid "Name type"
+msgstr "Soort naam"
+
+#: ../object.py
+msgid "Content subject"
+msgstr "Afgebeeld onderwerp"
+
+#: ../object.py
+msgid "Subject type"
+msgstr "Soort onderwerp"
+
+#: ../object.py
+msgid "Subject"
+msgstr "Onderwerp"
+
+#: ../object.py
+msgid "Taxonomic rank"
+msgstr "Taxonomische rang"
+
+#: ../object.py
+msgid "Scientific name"
+msgstr "Wetenschappelijke naam"
+
+#: ../object.py
+msgid "Proper name"
+msgstr "Eigennaam"
+
+#: ../object.py
+msgid "Identifier"
+msgstr "Identifier"
+
+#: ../object.py
+msgid "Content period/date"
+msgstr "Content period/date"
+
+#: ../object.py
+msgid "Iconography source"
+msgstr "Iconografisch bron"
+
+#: ../object.py
+msgid "Source general"
+msgstr "Bron algemeen"
+
+#: ../object.py
+msgid "Source specific"
+msgstr "Bron specifiek"
+
+#: ../object.py
+msgid "Source object number"
+msgstr "Bron objectnummer"
+
+#: ../object.py
+msgid "Iconography"
+msgstr "Iconografie"
+
+#: ../object.py
+msgid "Content period/date"
+msgstr "Afgebeelde periode/datum"
+
+#
+# Inscriptions
+#
+
+#: ../object.py
+msgid "Script"
+msgstr "Schrift"
+
+#: ../object.py
+msgid "Transliteration"
+msgstr "Transliteratie"
+
+
+#
+# Associations
+#
+
+#: ../object.py
+msgid "Associated person/institution"
+msgstr "Geassocieerde persoon/instelling"
+
+#: ../object.py
+msgid "Association"
+msgstr "Associatie"
+
+#: ../object.py
+msgid "Associated subject"
+msgstr "Geassocieerd onderwerp"
+
+#: ../object.py
+msgid "Associated period"
+msgstr "Geassocieerde periode"
+
+#: ../object.py
+msgid "Associations"
+msgstr "Associaties"
+
+#
+# Numbers/relationships
+#
+
+#: ../object.py
+msgid "Numbers/relationships"
+msgstr "Nummers/relaties"
+
+#: ../object.py
+msgid "Numbers"
+msgstr "Nummers"
+
+#: ../object.py
+msgid "Institution"
+msgstr "Instelling"
+
+#: ../object.py
+msgid "Number"
+msgstr "Nummer"
+
+#: ../object.py
+msgid "Relationships with other objects"
+msgstr "Relaties met andere objecten"
+
+#: ../object.py
+msgid "Part of"
+msgstr "Is deel van"
+
+#: ../object.py
+msgid "Parts"
+msgstr "Heeft als deel"
+
+#: ../object.py
+msgid "Related object"
+msgstr "Gerelateerd object"
+
+#: ../object.py
+msgid "Digital references"
+msgstr "Digitale referenties"
+
+#: ../object.py
+msgid "Title"
+msgstr "Titel"
+
+#: ../object.py
+msgid "Page mark"
+msgstr "Pagina-aanduiding"
+
+#: ../object.py
+msgid "Author"
+msgstr "Auteur"
+
+#: ../object.py
+msgid "Shelf mark"
+msgstr "Signatuur"
+
+#
+# Documentation (free) / archive
+#
+
+#: ../object.py
+msgid "Documentation (free) / archive"
+msgstr "Documentatie (vrij) / archief"
+
+#: ../object.py
+msgid "Documentation (free text)"
+msgstr "Documentatie (vrij tekst)"
+
+#: ../object.py
+msgid "Archive"
+msgstr "Archief"
+
+#: ../object.py
+msgid "Archive number"
+msgstr "Archiefnummer"
+
+
+#
+# Reproductions
+#
+
+#: ../object.py
+msgid "Reproductions"
+msgstr "Reproducties"
+
+#: ../object.py
+msgid "Reproduction"
+msgstr "Reproductie"
+
+#: ../object.py
+msgid "Reference"
+msgstr "Referentie"
+
+#: ../object.py
+msgid "Format"
+msgstr "Formaat"
+
+#: ../object.py
+msgid "format"
+msgstr "Formaat"
+
+#: ../object.py
+msgid "Identifier (URL)"
+msgstr "Identifier (URL)"
+
+#
+# Recommendations/requirements
+#
+
+#: ../object.py
+msgid "Recommendations/requirements"
+msgstr "Aanbevelingen / vereisten"
+
+#: ../object.py
+msgid "Recommendations"
+msgstr "Aanbevelingen"
+
+#: ../object.py
+msgid "Display"
+msgstr "Tentoonstelling"
+
+#: ../object.py
+msgid "Environment"
+msgstr "Omgeving"
+
+#: ../object.py
+msgid "Handling"
+msgstr "Behandeling"
+
+#: ../object.py
+msgid "Packing"
+msgstr "Verpakking"
+
+#: ../object.py
+msgid "Security"
+msgstr "Veiligheid"
+
+#: ../object.py
+msgid "Security"
+msgstr "Veiligheid"
+
+#: ../object.py
+msgid "Storage"
+msgstr "Berging"
+
+#: ../object.py
+msgid "Legal / license requirements"
+msgstr "Wettelijke eisen / vergunningen"
+
+#: ../object.py
+msgid "Requirements"
+msgstr "Eisen"
+
+#: ../object.py
+msgid "Requirements held"
+msgstr "Vereisten in Bezit"
+
+#: ../object.py
+msgid "Current From"
+msgstr "Geldig van"
+
+#
+# Field collection
+#
+
+#: ../object.py
+msgid "Field Collection"
+msgstr "Vondstomstandigheden"
+
+#: ../object.py
+msgid "Field coll. number"
+msgstr "Vondstnummer"
+
+#: ../object.py
+msgid "Collector"
+msgstr "Vinder"
+
+#: ../object.py
+msgid "Event"
+msgstr "Gebeurtenis"
+
+#: ../object.py
+msgid "Date (early)"
+msgstr "Begindatum"
+
+
+#: ../object.py
+msgid "Date (late)"
+msgstr "Einddatum"
+
+#: ../object.py
+msgid "Method"
+msgstr "Methode"
+
+#: ../object.py
+msgid "Place"
+msgstr "Vindplaats"
+
+#: ../object.py
+msgid "Place code"
+msgstr "Code vindplaats"
+
+#: ../object.py
+msgid "Code type"
+msgstr "Soort code"
+
+#: ../object.py
+msgid "Place feature"
+msgstr "Kenmerk vindplaats"
+
+#: ../object.py
+msgid "Co-ordinates field collection place"
+msgstr "Coördnaten vindplaats"
+
+#: ../object.py
+msgid "Grid type"
+msgstr "Coördinatenstelsel"
+
+#: ../object.py
+msgid "X co-ordinate"
+msgstr "X-coördinaat"
+
+#: ../object.py
+msgid "Addition"
+msgstr "Toevoeging"
+
+#: ../object.py
+msgid "Y co-ordinate"
+msgstr "Y-coördinaat"
+
+#: ../object.py
+msgid "Habitat and stratigraphy"
+msgstr "Milieu en stratigrafie"
+
+#: ../object.py
+msgid "Habitat"
+msgstr "Landschap/milieu"
+
+#: ../object.py
+msgid "Stratigraphy"
+msgstr "Stratigrafie"
+
+#: ../object.py
+msgid "Strat. type"
+msgstr "Soort strat."
+
+#
+# Exhibitions
+#
+
+#: ../object.py
+msgid "Exhibitions"
+msgstr "Tentoonstellingen"
+
+#: ../object.py
+msgid "Exhibition"
+msgstr "Tentoonstelling"
+
+
+#: ../object.py
+msgid "Exhibition name"
+msgstr "Tentoonstellingsnaam"
+
+#: ../object.py
+msgid "to"
+msgstr "t/m"
+
+#: ../object.py
+msgid "Venue"
+msgstr "Locatie"
+
+#: ../object.py
+msgid "Cat. no. object"
+msgstr "Cat.nr. object"
+
+#
+# Loans
+#
+
+#: ../object.py
+msgid "Loans"
+msgstr "Bruiklenen"
+
+#: ../object.py
+msgid "Incoming loans"
+msgstr "Inkomende bruiklenen"
+
+#: ../object.py
+msgid "Outgoing loans"
+msgstr "Uitgaande bruiklenen"
+
+#: ../object.py
+msgid "Loan number"
+msgstr "Bruikleennummer"
+
+#: ../object.py
+msgid "Lender"
+msgstr "Bruikleengever"
+
+#: ../object.py
+msgid "Requester"
+msgstr "Aanvrager"
+
+#: ../object.py
+msgid "Request reason"
+msgstr "Reden aanvraag"
+
+#: ../object.py
+msgid "Request period"
+msgstr "Aaanvraagperiode"
+
+#: ../object.py
+msgid "Contract period"
+msgstr "Contractperiode"
+
+
+#: ../object.py
+msgid "Contact"
+msgstr "Contactpersoon"
+
+#: ../object.py
+msgid "Books"
+msgstr "Boeken"
+
+
+# persoon, familie, instelling, dienstonderdeel
+
+#: ../object.py
+msgid "person"
+msgstr "persoon"
+
+#: ../object.py
+msgid "regiment/service"
+msgstr "dienstonderdeel"
+
+#: ../object.py
+msgid "institution"
+msgstr "instelling"
+
+#: ../object.py
+msgid "family"
+msgstr "familie"
+
+# object name, animal, plant, activity, event, subject, geography, concept, people, cultural affinity
+# objectnaam, dier, plant, activiteit, gebeurtenis, onderwerp, geographie, concept, volk, culturele affiniteit
+
+#: ../object.py
+msgid "object name"
+msgstr "objectnaam"
+
+#: ../object.py
+msgid "animal"
+msgstr "dier"
+
+
+#: ../object.py
+msgid "plant"
+msgstr "plant"
+
+
+#: ../object.py
+msgid "activity"
+msgstr "activiteit"
+
+
+#: ../object.py
+msgid "event"
+msgstr "gebeurtenis"
+
+
+#: ../object.py
+msgid "subject"
+msgstr "onderwerp"
+
+
+#: ../object.py
+msgid "geography"
+msgstr "geografie"
+
+
+#: ../object.py
+msgid "concept"
+msgstr "concept"
+
+
+#: ../object.py
+msgid "people"
+msgstr "volk"
+
+#: ../object.py
+msgid "cultural affinity"
+msgstr "culturele affiniteit"
+
+#: ../object.py
+msgid 'kingdom'
+msgstr 'rijk'
+
+#: ../object.py
+msgid 'subkingdom'
+msgstr 'subrijk'
+
+#: ../object.py
+msgid 'phylum/division'
+msgstr 'fylum/divisie'
+
+#: ../object.py
+msgid 'subphylum/subdivision'
+msgstr 'subfylum/subdivisie'
+
+#: ../object.py
+msgid 'subphylum or subdivision'
+msgstr 'subfylum/subdivisie'
+
+#: ../object.py
+msgid 'superclass'
+msgstr 'superklasse'
+
+#: ../object.py
+msgid 'class'
+msgstr 'klasse'
+
+#: ../object.py
+msgid 'subclass'
+msgstr 'subklasse'
+
+#: ../object.py
+msgid 'infraclass'
+msgstr 'infraklasse'
+
+#: ../object.py
+msgid 'superorder'
+msgstr 'superorde'
+
+#: ../object.py
+msgid 'order'
+msgstr 'orde'
+
+#: ../object.py
+msgid 'suborder'
+msgstr 'suborde'
+
+#: ../object.py
+msgid 'infraorder'
+msgstr 'infraorde'
+
+#: ../object.py
+msgid 'superfamily'
+msgstr 'superfamilie'
+
+#: ../object.py
+msgid 'family'
+msgstr 'familie'
+
+#: ../object.py
+msgid 'subfamily'
+msgstr 'subfamilie'
+
+#: ../object.py
+msgid 'tribe'
+msgstr 'stam'
+
+#: ../object.py
+msgid 'subtribe'
+msgstr 'substam'
+
+#: ../object.py
+msgid 'genus'
+msgstr 'geslacht'
+
+#: ../object.py
+msgid 'subgenus'
+msgstr 'subgeslacht'
+
+#: ../object.py
+msgid 'section'
+msgstr 'sectie'
+
+#: ../object.py
+msgid 'subsection'
+msgstr 'subsectie'
+
+#: ../object.py
+msgid 'species'
+msgstr 'soort'
+
+#: ../object.py
+msgid 'subspecies'
+msgstr 'ondersoort'
+
+#: ../object.py
+msgid 'variety'
+msgstr 'variëteit'
+
+#: ../object.py
+msgid 'subvariety'
+msgstr 'subvariëteit'
+
+#: ../object.py
+msgid 'form'
+msgstr 'vorm'
+
+#: ../object.py
+msgid 'subform'
+msgstr 'subvorm'
+
+#: ../object.py
+msgid 'Translation'
+msgstr 'Vertaling'
+
+#: ../object.py
+msgid 'Special requirements'
+msgstr 'Speciale eisen'
+
+#: ../object.py
+msgid 'label_from'
+msgstr 'Van'
+
+#: ../object.py
+msgid 'label_acquisition_place'
+msgstr 'Plaats'
+
+#: ../object.py
+msgid 'label_plaats'
+msgstr 'Plaats'
+
+#: ../object.py
+msgid 'label_description'
+msgstr 'Omschrijving'
+
+#: ../object.py
+msgid 'label_field_collection'
+msgstr 'Vondst en vindplaats'
+
+#: ../object.py
+msgid 'label_opmerkingen'
+msgstr 'Opmerkingen'
+
+#: ../object.py
+msgid 'label_kwal'
+msgstr 'Kwal.'
+
+
+#: ../object.py
+msgid 'Text'
+msgstr 'Tekst'
+
+#: ../object.py
+msgid 'label_soort_doel'
+msgstr 'Soort / doel'
+
+#: ../object.py
+msgid 'Search'
+msgstr 'Zoeken'
+
+
+#: ../object.py
+msgid "regiment or service"
+msgstr "dienstonderdeel"
+
+#: ../object.py
+msgid 'label_datering_van'
+msgstr 'Datering van'
+
+#: ../object.py
+msgid 'label_date_tot'
+msgstr 'Tot'
+
+#: ../object.py
+msgid "Article"
+msgstr "Lidwoord"
+
+#: ../object.py
+msgid "Depositor"
+msgstr "Tijd"
+
+#: ../object.py
+msgid "Entry reason"
+msgstr "Afzender"
+
+#: ../object.py
+msgid "Transport number"
+msgstr "Ingangsnummer"
+
+#: ../object.py
+msgid "Despatch number"
+msgstr "Verzendingsnummer"
+
+#: ../object.py
+msgid "Despatch date"
+msgstr "Verzendingsdatum"
+
+#: ../object.py
+msgid "Entry date"
+msgstr "Datum binnenkomst"
+
+#: ../object.py
+msgid "Destination"
+msgstr "Bestemming"
+
+#: ../object.py
+msgid "Delivery date"
+msgstr "Aankomstdatum"
+
+#: ../object.py
+msgid 'date'
+msgstr 'Datum'
+
+#: ../object.py
+msgid 'type'
+msgstr 'Soort'
+
+#: ../object.py
+msgid 'name'
+msgstr 'Naam'
+
+#: ../object.py
+msgid 'title'
+msgstr 'Titel'
+
+#: ../object.py
+msgid 'notes'
+msgstr 'Bijzonderheden'
+
+#: ../object.py
+msgid 'scientific_name'
+msgstr 'Wetenschappelijke naam'
+
+#: ../object.py
+msgid 'common_name'
+msgstr 'Populaire naam'
+
+#: ../object.py
+msgid 'rank'
+msgstr 'Taxonomische rang'
+
+#: ../object.py
+msgid 'date_early_precision'
+msgstr 'Precisie'
+
+#: ../object.py
+msgid 'date_late'
+msgstr 'Tot'
+
+#: ../object.py
+msgid 'date_early'
+msgstr 'Datering van'
+
+#: ../object.py
+msgid 'date_late_precision'
+msgstr 'Precisie'
+
+#: ../object.py
+msgid 'frame'
+msgstr 'Omlijsting'
+
+#: ../object.py
+msgid 'detail'
+msgstr 'Bijzonderheden'
+
+#: ../object.py
+msgid 'term'
+msgstr 'Term'
+
+#: ../object.py
+msgid 'code'
+msgstr 'Code'
+
+#: ../object.py
+msgid 'part'
+msgstr 'Onderdeel'
+
+#: ../object.py
+msgid 'position'
+msgstr 'Positie'
+
+#: ../object.py
+msgid 'number'
+msgstr 'Nummer'
+
+#: ../object.py
+msgid 'article'
+msgstr 'Lidwoord'
+
+#: ../object.py
+msgid 'identifierURL'
+msgstr 'Identifier (URL)'
+
+#: ../object.py
+msgid 'reference'
+msgstr 'Referentie'
+
+#: ../object.py
+msgid 'checked_by'
+msgstr 'Controleur'
+
+#: ../object.py
+msgid 'status'
+msgstr 'Status'
+
+#: ../object.py
+msgid 'reason'
+msgstr 'Reden'
+
+#: ../object.py
+msgid 'requester'
+msgstr 'Aanvrager'
+
+#: ../object.py
+msgid 'treatmentMethod'
+msgstr 'Behandelmethode'
+
+#: ../object.py
+msgid 'until'
+msgstr 'Tot'
+
+#: ../object.py
+msgid 'renewalDate'
+msgstr 'Verl.datum'
+
+#: ../object.py
+msgid 'requirementsHeld'
+msgstr 'Vereisten in Bezit'
+
+#: ../object.py
+msgid 'currentFrom'
+msgstr 'Geldig van'
+
+#: ../object.py
+msgid 'curr'
+msgstr 'Val.'
+
+#: ../object.py
+msgid 'policy_number'
+msgstr 'Polisnummer'
+
+#: ../object.py
+msgid 'insurance_company'
+msgstr 'Verzekeringsmij.'
+
+#: ../object.py
+msgid 'valuer'
+msgstr 'Taxateur'
+
+#: ../object.py
+msgid 'renewal_date'
+msgstr 'Verl.datum'
+
+#: ../object.py
+msgid 'conditions'
+msgstr 'Voorwaarden'
+
+#: ../object.py
+msgid 'description'
+msgstr 'Beschrijving'
+
+#: ../object.py
+msgid 'gridType'
+msgstr 'Coördinatenstelsel'
+
+#: ../object.py
+msgid 'xCoordinate'
+msgstr 'X-coördinaat'
+
+#: ../object.py
+msgid 'yCoordinate'
+msgstr 'Y-coördinaat'
+
+#: ../object.py
+msgid 'precision'
+msgstr 'Precisie'
+
+#: ../object.py
+msgid 'xAddition'
+msgstr 'Toevoeging'
+
+#: ../object.py
+msgid 'yAddition'
+msgstr 'Toevoeging'
+
+#: ../object.py
+msgid 'exhibitionName'
+msgstr 'Tentoonstellingsnaam'
+
+#: ../object.py
+msgid 'catObject'
+msgstr 'Cat.nr. object'
+
+#: ../object.py
+msgid 'venue'
+msgstr 'Locatie'
+
+#: ../object.py
+msgid 'place'
+msgstr 'Plaats'
+
+#: ../object.py
+msgid 'organiser'
+msgstr 'Organisator'
+
+#: ../object.py
+msgid 'loanNumber'
+msgstr 'Bruikleennummer'
+
+#: ../object.py
+msgid 'contractPeriod'
+msgstr 'Contractperiode'
+
+#: ../object.py
+msgid 'requestReason'
+msgstr 'Reden aanvraag'
+
+#: ../object.py
+msgid 'requestPeriodTo'
+msgstr 't/m'
+
+#: ../object.py
+msgid 'lender'
+msgstr 'Bruikleengever'
+
+#: ../object.py
+msgid 'contact'
+msgstr 'Contactpersoon'
+
+#: ../object.py
+msgid 'transport_number'
+msgstr 'Ingangsnummer'
+
+#: ../object.py
+msgid 'entry_date'
+msgstr 'Datum binnenkomst'
+
+#: ../object.py
+msgid 'entry_reason'
+msgstr 'Afzender'
+
+#: ../object.py
+msgid 'depositor'
+msgstr 'Tijd'
+
+#: ../object.py
+msgid 'return_date'
+msgstr 'Retourdatum'
+
+#: ../object.py
+msgid 'owner'
+msgstr 'Eigenaar'
+
+#: ../object.py
+msgid 'content'
+msgstr 'Inhoud'
+
+#: ../object.py
+msgid 'notesConfidential'
+msgstr 'Vertrouwelijk'
+
+#: ../object.py
+msgid 'editDate'
+msgstr 'editDate'
+
+#: ../object.py
+msgid 'editSource'
+msgstr 'editSource'
+
+
+# 
+
+#: ../object.py
+msgid 'production_notes'
+msgstr 'Bijzonderheden'
+
+#: ../object.py
+msgid 'role'
+msgstr 'Rol'
+
+#: ../object.py
+msgid 'qualifier'
+msgstr 'Kwalificatie'
+
+#: ../object.py
+msgid 'makers'
+msgstr 'Vervaardiger'
+
+#: ../object.py
+msgid 'dateDeath'
+msgstr 'Sterfdatum'
+
+#: ../object.py
+msgid 'dateBirth'
+msgstr 'Geboortedatum'
+
+#: ../object.py
+msgid 'units'
+msgstr 'Eenh'
+
+#: ../object.py
+msgid 'dimension'
+msgstr 'Afmetingen'
+
+#: ../object.py
+msgid 'material'
+msgstr 'Materiaal'
+
+#: ../object.py
+msgid 'value'
+msgstr 'Waarde'
+
+#: ../object.py
+msgid 'aspect'
+msgstr 'Aspect'
+
+#: ../object.py
+msgid 'keyword'
+msgstr 'Trefwoorden'
+
+#: ../object.py
+msgid 'technique'
+msgstr 'Techniek'
+
+#: ../object.py
+msgid 'nameType'
+msgstr 'Soort naam'
+
+#: ../object.py
+msgid 'pageMark'
+msgstr 'Pagina-aanduiding'
+
+#: ../object.py
+msgid 'creator'
+msgstr 'Vervaardiger'
+
+#: ../object.py
+msgid 'completeness'
+msgstr 'Compleetheid'
+
+#: ../object.py
+msgid 'treatment'
+msgstr 'Behandeling'
+
+#: ../object.py
+msgid 'endDate'
+msgstr 'Einddatum'
+
+#: ../object.py
+msgid 'requestPeriod'
+msgstr 'Aaanvraagperiode'
+
+#: ../object.py
+msgid 'names'
+msgstr 'Naam'
+
+#: ../object.py
+msgid 'titles'
+msgstr 'Titel'
+
+#: ../object.py
+msgid 'parts'
+msgstr 'Onderdeel'
+
+#: ../object.py
+msgid 'treatmentNumber'
+msgstr 'Behandelingsnummer'
+
+#: ../object.py
+msgid 'loannumber'
+msgstr 'Bruikleennummer'
+
+#: ../object.py
+msgid 'text'
+msgstr 'Tekst'
+
+
+
+
+
+
+
+
+
