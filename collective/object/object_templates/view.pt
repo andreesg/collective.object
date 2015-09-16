@@ -53,13 +53,13 @@
   </tal:notadmin>
 
   <tal:admin tal:condition="user_admin">
-    <div class="template-edit">
+    <div class="template-edit" style="display:none;">
       <div id="content-core">
     
         <form class="enableFormTabbing">
 
         <tal:block tal:repeat="group view/groups">
-        
+       
         <fieldset
           tal:define="normalizeString nocall:context/@@plone/normalizeString;
                       fieldset_label group/label;
@@ -90,10 +90,11 @@
                         />
                 </tal:block>
 
-                <!--<tal:restriction tal:condition="python: fieldset_restriction == None or fieldset_name == fieldset_restriction">-->
+                <tal:restriction tal:condition="python: fieldset_name == 'identification'">
                   <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />
-                <!--</tal:restriction>-->
+                </tal:restriction>
         </fieldset>
+      
       </tal:block>
 
         </form>
