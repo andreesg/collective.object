@@ -207,13 +207,13 @@
                                             />
                                     </tal:block>
 
-                                    <tal:spinning tal:condition="python: fieldset_name not in ['identification', 'production_dating']">
+                                    <!--<tal:spinning tal:condition="python: fieldset_name not in ['identification', 'production_dating']">
                                         <div class='tab-spinning'>
                                           <img src="spinner.gif" class='tab-spinner'/>
                                         </div>
-                                    </tal:spinning>
+                                    </tal:spinning>-->
 
-                                    <tal:restriction tal:condition="python: (fieldset_restriction == 'all' and (fieldset_name not in ['identification', 'production_dating'])) or (fieldset_restriction != 'all' and fieldset_name in ['identification', 'production_dating'])">
+                                    <tal:restriction tal:condition="python: (fieldset_restriction == 'all') or (fieldset_name in ['identification', 'production_dating'])">
                                       <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/test" />
                                     </tal:restriction>
                                     
