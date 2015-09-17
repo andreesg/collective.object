@@ -465,7 +465,7 @@ class IObject(form.Schema):
         required=False
     )
 
-    form.widget('identification_identification_institutionNames', SimpleRelatedItemsFieldWidget, vocabulary='plone.app.vocabularies.Catalog')
+    form.widget('identification_identification_institutionNames', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
 
     #identification_identification_institutionCode = schema.TextLine(

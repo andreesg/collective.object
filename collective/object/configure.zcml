@@ -146,6 +146,11 @@
 
 
   <utility
+    component=".utils.vocabularies.RelatedItemsVocabularyFactory"
+    name="collective.object.relateditems"
+    />
+
+  <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
     name="collective.object.objectCategory"
     />

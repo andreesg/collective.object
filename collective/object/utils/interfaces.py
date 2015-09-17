@@ -10,7 +10,7 @@ from zope.component import adapts
 ## Utils
 ##
 from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceTypeVocabulary, \
-                                _createNameTypeVocabulary, _createSubjectTypeVocabulary, _createTaxonomyRankVocabulary
+                                _createNameTypeVocabulary, _createSubjectTypeVocabulary, _createTaxonomyRankVocabulary,RelatedItemsVocabulary, RelatedItemsVocabularyFactory
 
 from ..utils.source import ObjPathSourceBinder
 from ..utils.variables import *
@@ -105,7 +105,7 @@ class IProductiondating(form.Schema):
         ),
         required=False
     )
-    form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='plone.app.vocabularies.Catalog')
+    form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     qualifier = schema.TextLine(title=_(u'label_kwal'), required=False)
     

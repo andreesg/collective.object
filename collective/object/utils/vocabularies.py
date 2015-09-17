@@ -18,7 +18,8 @@ from plone import api
 from zope.component.hooks import getSite
 from binascii import b2a_qp
 from Products.CMFPlone.utils import safe_unicode
-
+from plone.app.vocabularies.catalog import CatalogVocabulary
+from plone.app.querystring import queryparser
 
 # # # # # # # # # # # # # #
 # Vocabularies            #
@@ -140,6 +141,37 @@ class ObjectVocabulary(object):
         return SimpleVocabulary(items)
 
 
+class RelatedItemsVocabulary(object):
+    
+    implements(IVocabularyFactory)
+
+    def __init__(self, sort_on=None):
+        self.sort_on = sort_on
+
+    def __call__(self, context, query=None):
+        parsed = {}
+        if query:
+            parsed = queryparser.parseFormquery(context, query['criteria'])
+            if 'sort_on' in query:
+                parsed['sort_on'] = query['sort_on']
+            if 'sort_order' in query:
+                parsed['sort_order'] = str(query['sort_order'])
+
+            if self.sort_on:
+                for c in query['criteria']:
+                    if c['i'] == 'Type':
+                        self.sort_on = "getObjPositionInParent"
+                        break
+                parsed['sort_on'] = self.sort_on
+        try:
+            catalog = getToolByName(context, 'portal_catalog')
+        except AttributeError:
+            catalog = getToolByName(getSite(), 'portal_catalog')
+        brains = catalog(**parsed)
+
+        return CatalogVocabulary.fromItems(brains, context)
+
+
 class ATVMVocabulary(object):
     implements(IVocabularyFactory)
     def __init__(self, name):
@@ -164,6 +196,7 @@ class ATVMVocabulary(object):
         return SimpleVocabulary(terms)
 
 
+RelatedItemsVocabularyFactory = RelatedItemsVocabulary('sortable_title')
 
 # Updated vocabularies
 CategoryVocabularyFactory = ObjectVocabulary('identification_objectName_category')
