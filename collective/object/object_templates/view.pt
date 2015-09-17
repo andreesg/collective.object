@@ -53,7 +53,7 @@
   </tal:notadmin>
 
   <tal:admin tal:condition="user_admin">
-    <div class="template-edit" style="display:none;">
+    <div class="template-edit">
       <div id="content-core">
     
         <form class="enableFormTabbing">
@@ -89,6 +89,8 @@
                         tal:content="structure error/render"
                         />
                 </tal:block>
+
+                
 
                 <tal:restriction tal:condition="python: fieldset_name == 'identification'">
                   <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />
