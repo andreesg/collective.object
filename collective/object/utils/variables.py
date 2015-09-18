@@ -58,7 +58,12 @@ OBJECTENTRY_FOLDER = {
 BIBLIOTHEEK_FOLDER = {
     "nl":"/nl/bibliotheek",
     "en":"",
-    "portal_type":""
+    "portal_type":"",
+    "criteria": [{
+        'i': 'path',
+        'o': 'plone.app.querystring.operation.string.path',
+        'v': "/zm/nl/bibliotheek"
+    }]
 }
 
 TREATMENT_FOLDER = {

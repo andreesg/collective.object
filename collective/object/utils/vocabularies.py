@@ -173,19 +173,24 @@ class RelatedItemsVocabulary(object):
     def __call__(self, context, query=None):
         parsed = {}
         if query:
+            self.sort_on = 'sortable_title'
+            for c in query['criteria']:
+                if c['i'] == 'Type':
+                    self.sort_on = "getObjPositionInParent"
+                    break
+                if c['i'] == 'path':
+                    if c['v'] == "/zm/nl/bibliotheek" and len(query['criteria']) > 1:
+                        query['criteria'] = query['criteria'][1:]
+                        break
+
             parsed = queryparser.parseFormquery(context, query['criteria'])
             if 'sort_on' in query:
                 parsed['sort_on'] = query['sort_on']
             if 'sort_order' in query:
                 parsed['sort_order'] = str(query['sort_order'])
 
-            if self.sort_on:
-                self.sort_on = "sortable_title"
-                for c in query['criteria']:
-                    if c['i'] == 'Type':
-                        self.sort_on = "getObjPositionInParent"
-                        break
-                parsed['sort_on'] = self.sort_on
+            parsed['sort_on'] = self.sort_on
+                
         try:
             catalog = getToolByName(context, 'portal_catalog')
         except AttributeError:

@@ -117,6 +117,10 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
                 'v': portal_type
             }]
 
+        if fieldname in ['titles']:
+            criteria = contenttype_folder['criteria']
+            args['pattern_options']['baseCriteria'] = criteria
+
         return args
 
 @implementer(IFieldWidget)
