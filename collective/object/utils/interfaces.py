@@ -89,10 +89,12 @@ class IFrom(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+
+    form.widget('aquisitionFrom', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
 ## Production & Dating
 class IProductiondating(form.Schema):
@@ -101,7 +103,7 @@ class IProductiondating(form.Schema):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
@@ -286,10 +288,11 @@ class IInscriptions(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+    form.widget('creators', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.inscriptionsRole")
     role = schema.List(
@@ -469,6 +472,7 @@ class ICollectionCollectors(Interface):
         ),
         required=False
     )
+    form.widget('name', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
     role = schema.List(
@@ -484,10 +488,11 @@ class IHistoryOwner(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+    form.widget('owner', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     startDate = schema.TextLine(title=_(u'From'), required=False)
     endDate = schema.TextLine(title=_(u'Until'), required=False)
@@ -505,10 +510,11 @@ class IHistoryOwner(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+    form.widget('acquiredFrom', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     lotnr =  schema.TextLine(title=_(u'Lot no.'), required=False)
     auction = schema.TextLine(title=_(u'Auction'), required=False)
@@ -590,10 +596,12 @@ class IRelatedObjects(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object', navigation_tree_query={'path':{'query':OBJECT_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='Object')
         ),
         required=False
     )
+    form.widget('relatedObject', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
     
     #relatedObject = schema.TextLine(title=_(u'Related object'), required=False)
     form.widget('associations', AjaxSelectFieldWidget, vocabulary="collective.object.relatedassociations")
@@ -660,6 +668,8 @@ class IDeterminers(form.Schema):
         ),
         required=False
     )
+    form.widget('name', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
     date = schema.TextLine(title=_(u'Date'), required=False)
     #form.widget(determinerDate=DatetimeFieldWidget)
     #determinerDate = schema.Datetime(title=_(u'Date'), required=False)
@@ -762,6 +772,7 @@ class IConsTreatments(Interface):
         ),
         required=False
     )
+    form.widget('treatmentNumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     treatmentMethod = schema.TextLine(title=_(u'Treatment method'), required=False)
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
@@ -800,10 +811,11 @@ class IParts(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object', navigation_tree_query={'path':{'query':OBJECT_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='Object')
         ),
         required=False
     )
+    form.widget('parts', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     notes = schema.Text(title=_(u'Notes'), required=False)
 
@@ -832,15 +844,18 @@ class IDigitalReferences(Interface):
 class IDocumentationDocumentation(Interface):
     article = schema.TextLine(title=_(u'Article'), required=False)
     #title = schema.TextLine(title=_(u'Title'), required=False)
+
     titles = RelationList(
         title=_(u'Title'),
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(navigation_tree_query={'path':{'query':BIBLIOTHEEK_FOLDER}})
+            source=ObjPathSourceBinder()
         ),
         required=False
     )
+    form.widget('titles', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
     #author = schema.TextLine(title=_(u'Author'), required=False)
     pageMark = schema.TextLine(title=_(u'Page mark'), required=False)
     #shelfMark = schema.TextLine(title=_(u'Shelf mark'), required=False)
@@ -892,10 +907,11 @@ class IEntryNumber(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='ObjectEntry', navigation_tree_query={'path':{'query':OBJECTENTRY_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='ObjectEntry')
         ),
         required=False
     )
+    form.widget('transport_number', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     depositor = schema.TextLine(title=_(u'Depositor'), required=False)
     entry_reason = schema.TextLine(title=_(u'Entry reason'), required=False)
@@ -951,10 +967,11 @@ class IAssociatedPersonInstitutions(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+    form.widget('names', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
     
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
     endDate = schema.TextLine(title=_(u'End date'), required=False)
@@ -1094,10 +1111,12 @@ class IIconographyContentPersonInstitution(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+    form.widget('names', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
 
     notes = schema.Text(title=_(u'Notes'), required=False)
 
@@ -1183,10 +1202,11 @@ class IExhibition(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Exhibition', navigation_tree_query={'path':{'query':EXHIBITION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='Exhibition')
         ),
         required=False
     )
+    form.widget('exhibitionName', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     name = schema.TextLine(title=_(u'Exhibition name'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
@@ -1205,10 +1225,11 @@ class IIncomingLoan(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='IncomingLoan', navigation_tree_query={'path':{'query':INCOMINGLOAN_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='IncomingLoan')
         ),
         required=False
     )
+    form.widget('loannumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     loanNumber = schema.TextLine(title=_(u'Loan number'), required=False)
     status = schema.TextLine(title=_(u'Status'), required=False)
@@ -1226,10 +1247,12 @@ class IArchiveNumber(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Archive', navigation_tree_query={'path':{'query':ARCHIVE_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='Archive')
         ),
         required=False
     )
+    form.widget('number', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
 
 class IOutgoingLoan(Interface):
     loannumber = RelationList(
@@ -1237,10 +1260,12 @@ class IOutgoingLoan(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='OutgoingLoan', navigation_tree_query={'path':{'query':OUTGOINGLOAN_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='OutgoingLoan')
         ),
         required=False
     )
+    form.widget('loannumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
     status = schema.TextLine(title=_(u'Status'), required=False)
     requester = schema.TextLine(title=_(u'Requester'), required=False)
     contact = schema.TextLine(title=_(u'Contact'), required=False)

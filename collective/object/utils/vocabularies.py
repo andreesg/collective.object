@@ -140,38 +140,6 @@ class ObjectVocabulary(object):
 
         return SimpleVocabulary(items)
 
-
-class RelatedItemsVocabulary(object):
-    
-    implements(IVocabularyFactory)
-
-    def __init__(self, sort_on=None):
-        self.sort_on = sort_on
-
-    def __call__(self, context, query=None):
-        parsed = {}
-        if query:
-            parsed = queryparser.parseFormquery(context, query['criteria'])
-            if 'sort_on' in query:
-                parsed['sort_on'] = query['sort_on']
-            if 'sort_order' in query:
-                parsed['sort_order'] = str(query['sort_order'])
-
-            if self.sort_on:
-                for c in query['criteria']:
-                    if c['i'] == 'Type':
-                        self.sort_on = "getObjPositionInParent"
-                        break
-                parsed['sort_on'] = self.sort_on
-        try:
-            catalog = getToolByName(context, 'portal_catalog')
-        except AttributeError:
-            catalog = getToolByName(getSite(), 'portal_catalog')
-        brains = catalog(**parsed)
-
-        return CatalogVocabulary.fromItems(brains, context)
-
-
 class ATVMVocabulary(object):
     implements(IVocabularyFactory)
     def __init__(self, name):
@@ -194,6 +162,37 @@ class ATVMVocabulary(object):
                 terms.append(SimpleVocabulary.createTerm(
                     term, term.encode('utf-8'), _(units[term].title)))
         return SimpleVocabulary(terms)
+
+class RelatedItemsVocabulary(object):
+    
+    implements(IVocabularyFactory)
+
+    def __init__(self, sort_on=None):
+        self.sort_on = sort_on
+
+    def __call__(self, context, query=None):
+        parsed = {}
+        if query:
+            parsed = queryparser.parseFormquery(context, query['criteria'])
+            if 'sort_on' in query:
+                parsed['sort_on'] = query['sort_on']
+            if 'sort_order' in query:
+                parsed['sort_order'] = str(query['sort_order'])
+
+            if self.sort_on:
+                self.sort_on = "sortable_title"
+                for c in query['criteria']:
+                    if c['i'] == 'Type':
+                        self.sort_on = "getObjPositionInParent"
+                        break
+                parsed['sort_on'] = self.sort_on
+        try:
+            catalog = getToolByName(context, 'portal_catalog')
+        except AttributeError:
+            catalog = getToolByName(getSite(), 'portal_catalog')
+        brains = catalog(**parsed)
+
+        return CatalogVocabulary.fromItems(brains, context)
 
 
 RelatedItemsVocabularyFactory = RelatedItemsVocabulary('sortable_title')

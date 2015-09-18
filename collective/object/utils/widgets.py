@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 #
 # Customise widgets
 #
@@ -11,7 +14,36 @@ from plone.app.widgets.utils import get_ajaxselect_options
 from z3c.form.widget import FieldWidget
 from plone.app.widgets.base import dict_merge
 from plone.app.widgets.utils import get_relateditems_options
-from .variables import PERSON_INSTITUTION_FOLDER
+from .variables import PERSON_INSTITUTION_FOLDER, DEFAULT_LANGUAGE, \
+                        ROOT_FOLDER, OBJECT_FOLDER, BIBLIOTHEEK_FOLDER, ARCHIVE_FOLDER, \
+                        TREATMENT_FOLDER, EXHIBITION_FOLDER, INCOMINGLOAN_FOLDER, OBJECTENTRY_FOLDER, \
+                        OUTGOINGLOAN_FOLDER
+
+CONTENTTYPE_CHOICES = {
+    "makers": PERSON_INSTITUTION_FOLDER,
+    "name": PERSON_INSTITUTION_FOLDER,
+    "identification_identification_institutionNames": PERSON_INSTITUTION_FOLDER,
+    "names": PERSON_INSTITUTION_FOLDER,
+    "creators": PERSON_INSTITUTION_FOLDER,
+    "numbersRelationships_relationshipsWithOtherObjects_partOf": OBJECT_FOLDER,
+    "parts": OBJECT_FOLDER,
+    "relatedObject": OBJECT_FOLDER,
+    "titles": BIBLIOTHEEK_FOLDER,
+    "number": ARCHIVE_FOLDER,
+    "treatmentNumber": TREATMENT_FOLDER,
+    "aquisitionFrom": PERSON_INSTITUTION_FOLDER,
+    "disposal_disposal_proposedRecipient": PERSON_INSTITUTION_FOLDER,
+    "disposal_disposal_recipient": PERSON_INSTITUTION_FOLDER,
+    "ownershipHistory_ownership_currentOwner": PERSON_INSTITUTION_FOLDER,
+    "owner": PERSON_INSTITUTION_FOLDER,
+    "acquiredFrom": PERSON_INSTITUTION_FOLDER,
+    "exhibitionName": EXHIBITION_FOLDER,
+    "loannumber": INCOMINGLOAN_FOLDER,
+    "loannumber_out": OUTGOINGLOAN_FOLDER,
+    "transport_number": OBJECTENTRY_FOLDER
+}
+
+# form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
 class AjaxSingleSelectWidget(AjaxSelectWidget):
     separator = '_'
@@ -28,54 +60,22 @@ class AjaxSingleSelectWidget(AjaxSelectWidget):
         """
 
         args = super(AjaxSingleSelectWidget, self)._base_args()
-
-        args['name'] = self.name
-        args['value'] = self.value
-
-        args.setdefault('pattern_options', {})
-
-        field_name = self.field and self.field.__name__ or None
-
-        context = self.context
-        # We need special handling for AddForms
-        if IAddForm.providedBy(getattr(self, 'form')):
-            context = self.form
-
-        vocabulary_name = self.vocabulary
-        field = None
-
         args['pattern_options']['maximumSelectionSize'] = 1
-        field = self.field.value_type
-        
-        #if IChoice.providedBy(self.field):
-        #    args['pattern_options']['maximumSelectionSize'] = 1
-        #    field = self.field
-        #elif ICollection.providedBy(self.field):
-        #    field = self.field.value_type
-
-
-        if not vocabulary_name and field is not None:
-            vocabulary_name = field.vocabularyName
-
-        args['pattern_options'] = dict_merge(
-            get_ajaxselect_options(context, args['value'], self.separator,
-                                   vocabulary_name, self.vocabulary_view,
-                                   field_name),
-            args['pattern_options'])
-
-        if field and getattr(field, 'vocabulary', None):
-            form_url = self.request.getURL()
-            source_url = "%s/++widget++%s/@@getSource" % (form_url, self.name)
-            args['pattern_options']['vocabularyUrl'] = source_url
-
-        # ISequence represents an orderable collection
-        if ISequence.providedBy(self.field) or self.orderable:
-            args['pattern_options']['orderable'] = True
 
         return args
 
 class SimpleRelatedItemsWidget(RelatedItemsWidget):
     """RelatedItems widget for z3c.form."""
+
+    def get_current_fieldname(self):
+        fieldname = self.field.__name__
+        try:
+            if fieldname in ['loannumber']: # Loans exception 
+                if self.field.value_type.source.selectable_filter.criteria['portal_type'][0] == 'OutgoingLoan':
+                    fieldname = "loannumber_out"
+        except:
+            return fieldname
+        return fieldname
 
     def _base_args(self):
         """Method which will calculate _base class arguments.
@@ -88,14 +88,35 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
         :rtype: dict
         """
         args = super(SimpleRelatedItemsWidget, self)._base_args()
+        
+        # Get current fieldname
+        fieldname = self.get_current_fieldname()
+        
+        # Get request language
+        context = self.request.PARENTS[0]
+        language = DEFAULT_LANGUAGE
+        if context:
+            language = context.language
 
+        # Get content type folder
+        contenttype_folder = CONTENTTYPE_CHOICES.get(fieldname, ROOT_FOLDER)
+        portal_type = contenttype_folder['portal_type']
+        basePath = contenttype_folder[language]
+
+        # Set extra settings
         args['pattern_options']['maximumSelectionSize'] = 1
-        args['pattern_options']['selectableTypes'] = ['PersonOrInstitution']
-        args['pattern_options']['baseCriteria'] = [{
-            'i': 'portal_type',
-            'o': 'plone.app.querystring.operation.selection.is',
-            'v': 'PersonOrInstitution'
-        }]
+        
+        if basePath:
+            args['pattern_options']['basePath'] = basePath
+       
+        if portal_type:
+            args['pattern_options']['selectableTypes'] = [portal_type]
+            args['pattern_options']['baseCriteria'] = [{
+                'i': 'portal_type',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': portal_type
+            }]
+
         return args
 
 @implementer(IFieldWidget)

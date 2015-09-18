@@ -4,15 +4,68 @@
 ## Global definition of navigation tree variables
 ##
 
-PERSON_INSTITUTION_FOLDER = '/zm/nl/personen-en-instellingen/personen-en-instellingen'
-OBJECT_FOLDER = '/zm/nl/collectie'
-EXHIBITION_FOLDER = '/zm/nl/bezoek-het-museum'
-ARCHIVE_FOLDER = '/zm/nl/archiefstukken/archiefstukken'
-INCOMINGLOAN_FOLDER = '/zm/nl/binnenkomende-bruiklenen/binnenkomende-bruiklenen/folder_contents'
-OUTGOINGLOAN_FOLDER = '/zm/nl/uitgaande-bruiklenen/uitgaande-bruiklenen'
-ARTICLE_FOLDER = "/zm/nl/bibliotheek/artikelen"
-OBJECTENTRY_FOLDER = "/zm/nl/collectie/binnenkomst-objecten"
-BIBLIOTHEEK_FOLDER = "/zm/nl/bibliotheek"
+DEFAULT_LANGUAGE = 'nl'
+
+ROOT_FOLDER = {
+    "nl":"/nl",
+    "en":"/en",
+    "portal_type":""
+}
+
+PERSON_INSTITUTION_FOLDER = {
+    "nl":'/nl/intern/personen-en-instellingen',
+    "en":'',
+    "portal_type":'PersonOrInstitution'
+}
+
+OBJECT_FOLDER = {
+    "nl":'/nl/collectie',
+    "en":"",
+    "portal_type":"Object"
+}
+
+EXHIBITION_FOLDER = {
+    "nl":'/nl/bezoek-het-museum',
+    "en":"",
+    "portal_type":"Exhibition"
+}
+ARCHIVE_FOLDER = {
+    "nl":'/nl/intern/archiefstukken',
+    "en":"",
+    "portal_type":"Archive"
+}
+INCOMINGLOAN_FOLDER = {
+    "nl":'/nl/intern/binnenkomende-bruiklenen',
+    "en":"",
+    "portal_type":"IncomingLoan"
+}
+
+OUTGOINGLOAN_FOLDER = {
+    "nl":'/nl/intern/uitgaande-bruiklenen',
+    "en":"",
+    "portal_type":"OutgoingLoan"
+}
+ARTICLE_FOLDER = {
+    "nl":"/nl/bibliotheek/artikelen",
+    "en":"",
+    "portal_type":"Article"
+}
+OBJECTENTRY_FOLDER = {
+    "nl":"/nl/intern/binnenkomst-objecten",
+    "en":"",
+    "portal_type":"ObjectEntry"
+}
+BIBLIOTHEEK_FOLDER = {
+    "nl":"/nl/bibliotheek",
+    "en":"",
+    "portal_type":""
+}
+
+TREATMENT_FOLDER = {
+    "nl":"/nl/intern/conserverings-behandelingen",
+    "en":"",
+    "portal_type":"treatment"
+}
 
 GENERAL_WIDGETS = {
         "identification": [

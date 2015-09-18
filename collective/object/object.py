@@ -886,10 +886,11 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object', navigation_tree_query={'path':{'query':OBJECT_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='Object')
         ),
         required=False
     )
+    form.widget('numbersRelationships_relationshipsWithOtherObjects_partOf', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
     
     numbersRelationships_relationshipsWithOtherObjects_notes = schema.TextLine(
         title=_(u'Notes'),
@@ -1373,20 +1374,23 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+    form.widget('disposal_disposal_recipient', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     disposal_disposal_proposedRecipient = RelationList(
         title=_(u'Proposed recipient'),
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+    form.widget('disposal_disposal_proposedRecipient', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
 
     disposal_recipient = schema.TextLine(
         title=_(u'Recipient'),
@@ -1452,10 +1456,11 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
+    form.widget('ownershipHistory_ownership_currentOwner', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     # History
     ownershipHistory_owner = schema.TextLine(
