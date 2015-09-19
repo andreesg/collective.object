@@ -209,6 +209,7 @@ RoleVocabularyFactory = ObjectVocabulary('productionDating__production_productio
 PlaceVocabularyFactory = ObjectVocabulary('productionDating__production_productionPlace')
 SchoolStyleVocabularyFactory = ObjectVocabulary('productionDating__production_schoolStyle')
 
+ObjectNameTypeVocabularyFactory = ObjectVocabulary('identification__objectName_objectname_type')
 TechniqueVocabularyFactory = ObjectVocabulary('physicalCharacteristics__technique')
 MaterialVocabularyFactory = ObjectVocabulary('physicalCharacteristics__material')
 DimensionVocabularyFactory = ObjectVocabulary('physicalCharacteristics__dimension')

@@ -34,6 +34,24 @@ def identification_objectName_objectname(object, **kw):
         return []
 
 @indexer(IObject)
+def identification_objectName_objectname_type(object, **kw):
+    try:
+        if hasattr(object, 'identification_objectName_objectname'):
+            object_names = []
+            items = object.identification_objectName_objectname
+            if items != None:
+                for item in items:
+                    if item['types'] != None:
+                        for name in item['types']:
+                            if name:
+                                object_names.append(name)
+            return object_names
+        else:
+            return []
+    except:
+        return []
+
+@indexer(IObject)
 def productionDating_production_productionRole(object, **kw):
     try:
         if hasattr(object, 'productionDating_productionDating'):

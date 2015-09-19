@@ -73,6 +73,15 @@ class IObjectname(form.Schema):
     )
 
     type = schema.TextLine(title=_(u'Type'), required=False)
+    
+    form.widget('types', AjaxSingleSelectFieldWidget, vocabulary="collective.object.objectname_type")
+    types = schema.List(
+        title=_(u'Type'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+
     notes = schema.Text(title=_(u'Notes'), required=False, default=u"", missing_value=u"")
 
 class ITitle(Interface):

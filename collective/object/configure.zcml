@@ -88,6 +88,7 @@
   
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
   <adapter name="identification_objectName_objectname" factory=".indexers.identification_objectName_objectname" />
+  <adapter name="identification__objectName_objectname_type" factory=".indexers.identification_objectName_objectname_type" />
   <adapter name="identification__identification_collections" factory=".indexers.identification__identification_collections" />
   <adapter name="person_priref" factory=".indexers.person_priref" />
   <adapter name="archive_priref" factory=".indexers.archive_priref" />
@@ -158,6 +159,11 @@
   <utility
     component=".utils.vocabularies.ObjectNameVocabularyFactory"
     name="collective.object.objectname"
+    />
+
+  <utility
+    component=".utils.vocabularies.ObjectNameTypeVocabularyFactory"
+    name="collective.object.objectname_type"
     />
 
   <utility
