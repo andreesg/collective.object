@@ -815,7 +815,7 @@
 
       <div class="row no-padding">
         
-        <h2 class="page-header" i18n:translate="">Identification</h2>
+        <h2 class="page-header" i18n:translate="">Identificatie</h2>
     
         <div class="form-horizontal hide-relation">
 
@@ -855,7 +855,7 @@
 
         </div>
 
-        <h2 class="page-header" i18n:translate="">Object name</h2>
+        <h2 class="page-header" i18n:translate="">Objectnaam</h2>
 
         <div class="form-horizontal">
           <tal:widget tal:replace="structure view/widgets/identification_objectName_category/@@ploneform-render-widget"/>
@@ -869,7 +869,7 @@
           <tal:widget tal:replace="structure widgets/identification_objectName_otherName/@@ploneform-render-widget"/>
         </div>
 
-        <h2 class="page-header" i18n:translate="">Title and description</h2>
+        <h2 class="page-header" i18n:translate="">Titel en beschrijving</h2>
 
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/identification_titleDescription_title/@@ploneform-render-widget"/>
@@ -896,7 +896,7 @@
 
         </div>
 
-        <h2 class="page-header header-padding" i18n:translate="">Taxonomy</h2>
+        <h2 class="page-header header-padding" i18n:translate="">Taxonomie</h2>
 
         <div class="form-horizontal table-responsive gridfield">
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
