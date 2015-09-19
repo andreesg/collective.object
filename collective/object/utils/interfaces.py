@@ -79,7 +79,8 @@ class IObjectname(form.Schema):
         title=_(u'Type'),
         required=False,
         value_type=schema.TextLine(),
-        missing_value=[]
+        missing_value=[],
+        default=[]
     )
 
     notes = schema.Text(title=_(u'Notes'), required=False, default=u"", missing_value=u"")
