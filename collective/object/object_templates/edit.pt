@@ -10,7 +10,7 @@
       <tal:restrictions_define tal:define="fieldset_restriction python:request.get('fieldset', None);
                                           groups view/groups">
       
-      <tal:show_only_groups tal:condition="python: fieldset_restriction != None">
+      <tal:show_only_groups tal:condition="python: fieldset_restriction != None and fieldset_restriction != 'all'">
         <tal:block tal:repeat="group groups">
 
           <tal:group_name tal:define="group_name group/__name__|group/label/default|fieldset_label">
@@ -55,14 +55,11 @@
         </tal:block>
       </tal:show_only_groups>
 
-      <tal:show_all tal:condition="python: fieldset_restriction == None or fieldset_restriction == 'all'">
-
       <div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media(); page_title python: view.get_page_title()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)" tal:condition="python: fieldset_restriction != 'all'">
-        <!--<h1 tal:content="view/label" class="documentFirstHeading">EDIT: OBJECT</h1>-->
         <h1 class="documentFirstHeading" tal:content="page_title"></h1>
       </div>
 
-      <!--<tal:test_body_start tal:define="start_time python:view.print_time()"></tal:test_body_start>-->
+      <tal:show_all tal:condition="python: fieldset_restriction == None or fieldset_restriction == 'all'">
 
       <div id="content-core">
         
@@ -207,12 +204,6 @@
                                             />
                                     </tal:block>
 
-                                    <!--<tal:spinning tal:condition="python: fieldset_name not in ['identification', 'production_dating']">
-                                        <div class='tab-spinning'>
-                                          <img src="spinner.gif" class='tab-spinner'/>
-                                        </div>
-                                    </tal:spinning>-->
-
                                     <tal:restriction tal:condition="python: (fieldset_restriction == 'all') or (fieldset_name in ['identification', 'production_dating'])">
                                       <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/test" />
                                     </tal:restriction>
@@ -244,7 +235,6 @@
       </div>
 
       </tal:show_all>
-      <!--<tal:test_body_end tal:define="end_time python:view.print_time()"></tal:test_body_end>-->
     </tal:restrictions_define>
     </metal:block>
 </html>
