@@ -40,7 +40,13 @@ CONTENTTYPE_CHOICES = {
     "exhibitionName": EXHIBITION_FOLDER,
     "loannumber": INCOMINGLOAN_FOLDER,
     "loannumber_out": OUTGOINGLOAN_FOLDER,
-    "transport_number": OBJECTENTRY_FOLDER
+    "transport_number": OBJECTENTRY_FOLDER,
+    "authors": PERSON_INSTITUTION_FOLDER,
+    "illustrators": PERSON_INSTITUTION_FOLDER,
+    "partOf": BIBLIOTHEEK_FOLDER,
+    "consistsOf": BIBLIOTHEEK_FOLDER,
+    "objectNo": OBJECT_FOLDER,
+    "copyNumber": BIBLIOTHEEK_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
@@ -91,7 +97,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
         
         # Get current fieldname
         fieldname = self.get_current_fieldname()
-        
+
         # Get request language
         context = self.request.PARENTS[0]
         language = DEFAULT_LANGUAGE
@@ -117,7 +123,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
                 'v': portal_type
             }]
 
-        if fieldname in ['titles']:
+        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber"]:
             criteria = contenttype_folder['criteria']
             args['pattern_options']['baseCriteria'] = criteria
 

@@ -460,7 +460,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER, 'depth': 0}})
+            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
         ),
         required=False
     )
