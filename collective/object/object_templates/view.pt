@@ -55,6 +55,8 @@
   <tal:admin tal:condition="user_admin">
     <div class="template-edit">
       <div id="content-core">
+
+        <div id="ajax-error-msg" class="alert alert-warning" role="alert"></div>
     
         <form class="enableFormTabbing">
 

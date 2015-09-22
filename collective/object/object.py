@@ -551,8 +551,6 @@ class IObject(form.Schema):
     #form.widget(identification_objectName_objectName=DataGridFieldFactory)
     #dexteritytextindexer.searchable('identification_objectName_objectName')
 
-    
-
     # Title and description
     """identification_titleDescription_notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
@@ -566,7 +564,7 @@ class IObject(form.Schema):
     form.widget(identification_titleDescription_title=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('identification_titleDescription_title')
 
-    identification_titleDescription_description = schema.TextLine(
+    identification_titleDescription_description = schema.Text(
         title=_(u'Description'),
         required=False
     )
