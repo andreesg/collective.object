@@ -939,7 +939,7 @@ class IObject(form.Schema):
     documentationFreeArchive_documentationFreeText = ListField(title=_(u'Documentation (free text)'),
         value_type=DictRow(title=_(u'Documentation (free text)'), schema=IDocumentationFreeText),
         required=False)
-    form.widget(documentationFreeArchive_documentationFreeText=DataGridFieldFactory)
+    form.widget(documentationFreeArchive_documentationFreeText=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('documentationFreeArchive_documentationFreeText')
 
     documentationFreeArchive_archive = ListField(title=_(u'Archive'),
