@@ -93,6 +93,7 @@ class ITitle(Interface):
 class ITranslatedTitle(Interface):
     title = schema.TextLine(title=_(u'Translated title'), required=False)
 
+
 class IFrom(Interface):
     aquisitionFrom = RelationList(
         title=_(u'label_from', default=u'From'),
