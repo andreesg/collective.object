@@ -29,6 +29,7 @@ CONTENTTYPE_CHOICES = {
     "parts": OBJECT_FOLDER,
     "relatedObject": OBJECT_FOLDER,
     "titles": BIBLIOTHEEK_FOLDER,
+    "title": BIBLIOTHEEK_FOLDER,
     "number": ARCHIVE_FOLDER,
     "treatmentNumber": TREATMENT_FOLDER,
     "aquisitionFrom": PERSON_INSTITUTION_FOLDER,
@@ -51,7 +52,9 @@ CONTENTTYPE_CHOICES = {
     "printer": PERSON_INSTITUTION_FOLDER,
     "corpAuthor": PERSON_INSTITUTION_FOLDER,
     "use": PERSON_INSTITUTION_FOLDER,
-    "usedFor": PERSON_INSTITUTION_FOLDER
+    "usedFor": PERSON_INSTITUTION_FOLDER,
+    "venue": PERSON_INSTITUTION_FOLDER,
+    "objectNumber": OBJECT_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
@@ -128,7 +131,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
                 'v': portal_type
             }]
 
-        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber"]:
+        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber", "title"]:
             criteria = contenttype_folder['criteria']
             args['pattern_options']['baseCriteria'] = criteria
 

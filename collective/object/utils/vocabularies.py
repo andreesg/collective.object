@@ -157,10 +157,13 @@ class ATVMVocabulary(object):
         #        if taxonomy not in units:
         #            atvm.TaxonomyRank.addTerm(taxonomy.encode('ascii', 'ignore'), str(taxonomy))
 
-        for term in units:
-            if units[term]:
-                terms.append(SimpleVocabulary.createTerm(
-                    term, term.encode('utf-8'), _(units[term].title)))
+        if units:
+            for term in units:
+                if units[term]:
+                    terms.append(SimpleVocabulary.createTerm(
+                        term, term.encode('utf-8'), _(units[term].title)))
+        else:
+            return SimpleVocabulary(terms)
         return SimpleVocabulary(terms)
 
 class RelatedItemsVocabulary(object):

@@ -859,6 +859,7 @@ class IDocumentationDocumentation(Interface):
     titles = RelationList(
         title=_(u'Title'),
         default=[],
+        missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
             source=ObjPathSourceBinder()
@@ -884,6 +885,7 @@ class IArchives(Interface):
     archiveNumber = RelationList(
         title=_(u'Archive number'),
         default=[],
+        missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
             source=ObjPathSourceBinder(portal_type='Archive', navigation_tree_query={'path':{'query':ARCHIVE_FOLDER}})
@@ -1256,6 +1258,7 @@ class IArchiveNumber(Interface):
     number = RelationList(
         title=_(u'Archive number'),
         default=[],
+        missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
             source=ObjPathSourceBinder(portal_type='Archive')
