@@ -49,7 +49,9 @@ CONTENTTYPE_CHOICES = {
     "copyNumber": BIBLIOTHEEK_FOLDER,
     "publisher": PERSON_INSTITUTION_FOLDER,
     "printer": PERSON_INSTITUTION_FOLDER,
-    "corpAuthor": PERSON_INSTITUTION_FOLDER
+    "corpAuthor": PERSON_INSTITUTION_FOLDER,
+    "use": PERSON_INSTITUTION_FOLDER,
+    "usedFor": PERSON_INSTITUTION_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
