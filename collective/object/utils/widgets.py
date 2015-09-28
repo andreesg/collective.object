@@ -54,7 +54,9 @@ CONTENTTYPE_CHOICES = {
     "use": PERSON_INSTITUTION_FOLDER,
     "usedFor": PERSON_INSTITUTION_FOLDER,
     "venue": PERSON_INSTITUTION_FOLDER,
-    "objectNumber": OBJECT_FOLDER
+    "objectNumber": OBJECT_FOLDER,
+    "broadcastingCompany": PERSON_INSTITUTION_FOLDER,
+    "productionCompany": PERSON_INSTITUTION_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
