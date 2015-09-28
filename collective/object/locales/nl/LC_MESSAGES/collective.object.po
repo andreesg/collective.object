@@ -1427,7 +1427,7 @@ msgstr 'Opmerkingen'
 
 #: ../object.py
 msgid 'label_kwal'
-msgstr 'Kwal.'
+msgstr 'Kwalificatie'
 
 
 #: ../object.py

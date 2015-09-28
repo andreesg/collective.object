@@ -437,7 +437,11 @@ def ownershipHistory_history_exchangeMethod(object, **kw):
 def identification_identification_objectNumber(object, **kw):
     try:
         if hasattr(object, 'identification_identification_objectNumber'):
-            return object.identification_identification_objectNumber
+            value = object.identification_identification_objectNumber
+            if value:
+                return value.lower()
+            else:
+                return ""
         else:
             return ""
     except:

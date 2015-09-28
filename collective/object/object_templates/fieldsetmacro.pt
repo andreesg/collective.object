@@ -72,11 +72,15 @@
         </div>
 
         <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/identification_titleDescription_language/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/identification_titleDescription_description/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/identification_titleDescription_language/@@ploneform-render-widget"/>
+          
           
           <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
             <tal:widget tal:replace="structure widgets/identification_titleDescription_describer/@@ploneform-render-widget"/>
@@ -880,12 +884,15 @@
         </div>
 
         <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/identification_titleDescription_language/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/identification_titleDescription_description/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal">
-          <tal:widget tal:replace="structure widgets/identification_titleDescription_language/@@ploneform-render-widget"/>
-          
+
           <div class="col-sm-12 col-md-6 col-lg-6 padding-right div-50">
             <tal:widget tal:replace="structure widgets/identification_titleDescription_describer/@@ploneform-render-widget"/>
           </div>

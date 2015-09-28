@@ -1962,7 +1962,8 @@ class ObjectNumberValidator(validator.SimpleFieldValidator):
             catalog = self.context.portal_catalog
             
             # Check if identification number already exists
-            brains = catalog(identification_identification_objectNumber=value)
+            search_value = value.lower()
+            brains = catalog(identification_identification_objectNumber=search_value)
             if brains:
                 for brain in brains:
                     if brain.UID == context_uid:

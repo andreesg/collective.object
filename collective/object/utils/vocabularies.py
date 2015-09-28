@@ -151,12 +151,6 @@ class ATVMVocabulary(object):
         units = atvm.getVocabularyByName(self.name)
         terms = []
 
-        #if self.name == "TaxonomyRank":
-        #    taxonomies = ["kingdom", "subkingdom", "phylum or division", "subphylum or subdivision", "superclass", "class", "subclass", "infraclass", "superorder", "order", "suborder", "infraorder", "superfamily", "family", "subfamily", "tribe", "subtribe", "genus", "subgenus", "section", "subsection", "species", "subspecies", "variety", "subvariety", "form", "subform"]
-        #    for taxonomy in taxonomies:
-        #        if taxonomy not in units:
-        #            atvm.TaxonomyRank.addTerm(taxonomy.encode('ascii', 'ignore'), str(taxonomy))
-
         if units:
             for term in units:
                 if units[term]:
@@ -201,6 +195,17 @@ class RelatedItemsVocabulary(object):
         brains = catalog(**parsed)
 
         return CatalogVocabulary.fromItems(brains, context)
+
+
+
+
+
+
+
+
+
+
+
 
 
 RelatedItemsVocabularyFactory = RelatedItemsVocabulary('sortable_title')
