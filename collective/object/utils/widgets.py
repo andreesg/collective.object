@@ -78,8 +78,6 @@ class AjaxSingleSelectWidget(AjaxSelectWidget):
         args = super(AjaxSingleSelectWidget, self)._base_args()
         args['pattern_options']['maximumSelectionSize'] = 1
 
-        
-        
         return args
 
 class SimpleRelatedItemsWidget(RelatedItemsWidget):
