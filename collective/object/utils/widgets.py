@@ -61,7 +61,7 @@ CONTENTTYPE_CHOICES = {
     "loanRequest_general_requester": PERSON_INSTITUTION_FOLDER,
     "loanRequest_general_contact": PERSON_INSTITUTION_FOLDER,
     "loanRequest_internalCoordination_coordinator": PERSON_INSTITUTION_FOLDER,
-    "loanRequest_requestDetails_exhibition": PERSON_INSTITUTION_FOLDER,
+    "loanRequest_requestDetails_exhibition": EXHIBITION_FOLDER,
     "authoriserInternal": PERSON_INSTITUTION_FOLDER,
     "review_authoriser": PERSON_INSTITUTION_FOLDER,
     "entryNumber": OBJECTENTRY_FOLDER
