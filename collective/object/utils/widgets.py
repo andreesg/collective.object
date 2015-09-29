@@ -41,6 +41,7 @@ CONTENTTYPE_CHOICES = {
     "exhibitionName": EXHIBITION_FOLDER,
     "loannumber": INCOMINGLOAN_FOLDER,
     "loannumber_out": OUTGOINGLOAN_FOLDER,
+    "loanNumber": OUTGOINGLOAN_FOLDER, # Needs fix
     "transport_number": OBJECTENTRY_FOLDER,
     "authors": PERSON_INSTITUTION_FOLDER,
     "illustrators": PERSON_INSTITUTION_FOLDER,
@@ -56,7 +57,14 @@ CONTENTTYPE_CHOICES = {
     "venue": PERSON_INSTITUTION_FOLDER,
     "objectNumber": OBJECT_FOLDER,
     "broadcastingCompany": PERSON_INSTITUTION_FOLDER,
-    "productionCompany": PERSON_INSTITUTION_FOLDER
+    "productionCompany": PERSON_INSTITUTION_FOLDER,
+    "loanRequest_general_requester": PERSON_INSTITUTION_FOLDER,
+    "loanRequest_general_contact": PERSON_INSTITUTION_FOLDER,
+    "loanRequest_internalCoordination_coordinator": PERSON_INSTITUTION_FOLDER,
+    "loanRequest_requestDetails_exhibition": PERSON_INSTITUTION_FOLDER,
+    "authoriserInternal": PERSON_INSTITUTION_FOLDER,
+    "review_authoriser": PERSON_INSTITUTION_FOLDER,
+    "entryNumber": OBJECTENTRY_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
