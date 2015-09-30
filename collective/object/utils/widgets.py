@@ -64,7 +64,8 @@ CONTENTTYPE_CHOICES = {
     "loanRequest_requestDetails_exhibition": EXHIBITION_FOLDER,
     "authoriserInternal": PERSON_INSTITUTION_FOLDER,
     "review_authoriser": PERSON_INSTITUTION_FOLDER,
-    "entryNumber": OBJECTENTRY_FOLDER
+    "entryNumber": OBJECTENTRY_FOLDER,
+    "loanRequest_general_lender": PERSON_INSTITUTION_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
