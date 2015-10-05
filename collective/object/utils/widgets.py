@@ -17,7 +17,7 @@ from plone.app.widgets.utils import get_relateditems_options
 from .variables import PERSON_INSTITUTION_FOLDER, DEFAULT_LANGUAGE, \
                         ROOT_FOLDER, OBJECT_FOLDER, BIBLIOTHEEK_FOLDER, ARCHIVE_FOLDER, \
                         TREATMENT_FOLDER, EXHIBITION_FOLDER, INCOMINGLOAN_FOLDER, OBJECTENTRY_FOLDER, \
-                        OUTGOINGLOAN_FOLDER
+                        OUTGOINGLOAN_FOLDER, LOANS_FOLDER
 
 CONTENTTYPE_CHOICES = {
     "makers": PERSON_INSTITUTION_FOLDER,
@@ -41,7 +41,7 @@ CONTENTTYPE_CHOICES = {
     "exhibitionName": EXHIBITION_FOLDER,
     "loannumber": INCOMINGLOAN_FOLDER,
     "loannumber_out": OUTGOINGLOAN_FOLDER,
-    "loanNumber": OUTGOINGLOAN_FOLDER, # Needs fix
+    "loanNumber": LOANS_FOLDER, # Needs fix
     "transport_number": OBJECTENTRY_FOLDER,
     "authors": PERSON_INSTITUTION_FOLDER,
     "illustrators": PERSON_INSTITUTION_FOLDER,
@@ -142,7 +142,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
                 'v': portal_type
             }]
 
-        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber", "title"]:
+        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber", "title", "loanNumber"]:
             criteria = contenttype_folder['criteria']
             args['pattern_options']['baseCriteria'] = criteria
 

@@ -66,6 +66,17 @@ BIBLIOTHEEK_FOLDER = {
     }]
 }
 
+LOANS_FOLDER = {
+    "nl":"/nl/intern/bruiklenen",
+    "en":"",
+    "portal_type":"",
+    "criteria": [{
+        'i': 'path',
+        'o': 'plone.app.querystring.operation.string.path',
+        'v': "/zm/nl/intern/bruiklenen"
+    }]
+}
+
 TREATMENT_FOLDER = {
     "nl":"/nl/intern/conserverings-behandelingen",
     "en":"",

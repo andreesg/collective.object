@@ -179,6 +179,9 @@ class RelatedItemsVocabulary(object):
                     if c['v'] == "/zm/nl/bibliotheek" and len(query['criteria']) > 1:
                         query['criteria'] = query['criteria'][1:]
                         break
+                    if c['v'] == "/zm/nl/intern/bruiklenen" and len(query['criteria']) > 1:
+                        query['criteria'] = query['criteria'][1:]
+                        break
 
             parsed = queryparser.parseFormquery(context, query['criteria'])
             if 'sort_on' in query:
