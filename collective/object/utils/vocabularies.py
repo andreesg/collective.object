@@ -160,6 +160,7 @@ class ATVMVocabulary(object):
             return SimpleVocabulary(terms)
         return SimpleVocabulary(terms)
 
+
 class RelatedItemsVocabulary(object):
     
     implements(IVocabularyFactory)
@@ -198,12 +199,6 @@ class RelatedItemsVocabulary(object):
         brains = catalog(**parsed)
 
         return CatalogVocabulary.fromItems(brains, context)
-
-
-
-
-
-
 
 
 
