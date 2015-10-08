@@ -73,7 +73,8 @@ CONTENTTYPE_CHOICES = {
     "general_entry_destinationContact": PERSON_INSTITUTION_FOLDER,
     "general_entry_destination": PERSON_INSTITUTION_FOLDER,
     "shipper": PERSON_INSTITUTION_FOLDER,
-    "templateForObjectData_currentOwner": PERSON_INSTITUTION_FOLDER
+    "templateForObjectData_currentOwner": PERSON_INSTITUTION_FOLDER,
+    "contributor": PERSON_INSTITUTION_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
