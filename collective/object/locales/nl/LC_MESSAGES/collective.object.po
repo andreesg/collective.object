@@ -1862,8 +1862,33 @@ msgstr 'Tekst'
 msgid "purchase"
 msgstr "aankoop"
 
+#: ../object.py
+msgid "donation"
+msgstr "schenking"
 
+#: ../object.py
+msgid "loan"
+msgstr "bruikleen"
 
+#: ../object.py
+msgid "exhibition"
+msgstr "tentoonstelling"
+
+#: ../object.py
+msgid "restoration"
+msgstr "restauratie"
+
+#: ../object.py
+msgid "photography"
+msgstr "fotografie"
+
+#: ../object.py
+msgid "study or advice"
+msgstr "studie/advies"
+
+#: ../object.py
+msgid "study/advice"
+msgstr "studie/advies"
 
 
 
