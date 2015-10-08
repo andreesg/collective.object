@@ -201,11 +201,6 @@ class RelatedItemsVocabulary(object):
         return CatalogVocabulary.fromItems(brains, context)
 
 
-
-
-
-
-
 RelatedItemsVocabularyFactory = RelatedItemsVocabulary('sortable_title')
 
 # Updated vocabularies
@@ -272,3 +267,4 @@ objectstatus_vocabulary = SimpleVocabulary(list(_createObjectStatusVocabulary())
 nametype_vocabulary = SimpleVocabulary(list(_createNameTypeVocabulary()))
 subjecttype_vocabulary = SimpleVocabulary(list(_createSubjectTypeVocabulary()))
 taxonomyrank_vocabulary = SimpleVocabulary(list(_createTaxonomyRankVocabulary()))
+

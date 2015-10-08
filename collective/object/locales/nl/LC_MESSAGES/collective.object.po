@@ -1858,7 +1858,9 @@ msgstr 'Bruikleennummer'
 msgid 'text'
 msgstr 'Tekst'
 
-
+#: ../object.py
+msgid "purchase"
+msgstr "aankoop"
 
 
 

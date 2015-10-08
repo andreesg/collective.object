@@ -25,6 +25,7 @@ CONTENTTYPE_CHOICES = {
     "identification_identification_institutionNames": PERSON_INSTITUTION_FOLDER,
     "names": PERSON_INSTITUTION_FOLDER,
     "creators": PERSON_INSTITUTION_FOLDER,
+    "creator": PERSON_INSTITUTION_FOLDER,
     "numbersRelationships_relationshipsWithOtherObjects_partOf": OBJECT_FOLDER,
     "parts": OBJECT_FOLDER,
     "relatedObject": OBJECT_FOLDER,
@@ -65,7 +66,14 @@ CONTENTTYPE_CHOICES = {
     "authoriserInternal": PERSON_INSTITUTION_FOLDER,
     "review_authoriser": PERSON_INSTITUTION_FOLDER,
     "entryNumber": OBJECTENTRY_FOLDER,
-    "loanRequest_general_lender": PERSON_INSTITUTION_FOLDER
+    "loanRequest_general_lender": PERSON_INSTITUTION_FOLDER,
+    "general_entry_currentOwner": PERSON_INSTITUTION_FOLDER,
+    "general_entry_depositor": PERSON_INSTITUTION_FOLDER,
+    "general_entry_depositorContact": PERSON_INSTITUTION_FOLDER,
+    "general_entry_destinationContact": PERSON_INSTITUTION_FOLDER,
+    "general_entry_destination": PERSON_INSTITUTION_FOLDER,
+    "shipper": PERSON_INSTITUTION_FOLDER,
+    "templateForObjectData_currentOwner": PERSON_INSTITUTION_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
