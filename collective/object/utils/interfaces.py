@@ -208,7 +208,8 @@ class IDimensions(Interface):
         title=_(u'Unit'),
         required=True,
         vocabulary="collective.object.units",
-        default="No value"
+        default="No value",
+        missing_value=" "
     )
 
     precision = schema.TextLine(title=_(u'Precision'), required=False)

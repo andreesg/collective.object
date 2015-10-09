@@ -18,6 +18,12 @@ PERSON_INSTITUTION_FOLDER = {
     "portal_type":'PersonOrInstitution'
 }
 
+TAXONOMY_FOLDER = {
+    "nl":'/nl/intern/taxonomy',
+    "en":'',
+    "portal_type":'Taxonomie'
+}
+
 OBJECT_FOLDER = {
     "nl":'/nl/collectie',
     "en":"",

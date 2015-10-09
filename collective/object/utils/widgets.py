@@ -17,7 +17,7 @@ from plone.app.widgets.utils import get_relateditems_options
 from .variables import PERSON_INSTITUTION_FOLDER, DEFAULT_LANGUAGE, \
                         ROOT_FOLDER, OBJECT_FOLDER, BIBLIOTHEEK_FOLDER, ARCHIVE_FOLDER, \
                         TREATMENT_FOLDER, EXHIBITION_FOLDER, INCOMINGLOAN_FOLDER, OBJECTENTRY_FOLDER, \
-                        OUTGOINGLOAN_FOLDER, LOANS_FOLDER
+                        OUTGOINGLOAN_FOLDER, LOANS_FOLDER, TAXONOMY_FOLDER
 
 CONTENTTYPE_CHOICES = {
     "makers": PERSON_INSTITUTION_FOLDER,
@@ -74,7 +74,11 @@ CONTENTTYPE_CHOICES = {
     "general_entry_destination": PERSON_INSTITUTION_FOLDER,
     "shipper": PERSON_INSTITUTION_FOLDER,
     "templateForObjectData_currentOwner": PERSON_INSTITUTION_FOLDER,
-    "contributor": PERSON_INSTITUTION_FOLDER
+    "contributor": PERSON_INSTITUTION_FOLDER,
+    "taxonomicTermDetails_status_validAcceptedName": TAXONOMY_FOLDER,
+    "synonym": TAXONOMY_FOLDER,
+    "childName": TAXONOMY_FOLDER,
+    "taxonomicTermDetails_hierarchy_parentName": TAXONOMY_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
