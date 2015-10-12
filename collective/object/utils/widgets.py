@@ -161,7 +161,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
 
         return args
 
-class MakerRelatedItemsWidget(RelatedItemsWidget):
+class TaxonomicRelatedItemsWidget(RelatedItemsWidget):
     """RelatedItems widget for z3c.form."""
 
     def _base_args(self):
@@ -174,7 +174,7 @@ class MakerRelatedItemsWidget(RelatedItemsWidget):
         :returns: Arguments which will be passed to _base
         :rtype: dict
         """
-        args = super(MakerRelatedItemsWidget, self)._base_args()
+        args = super(TaxonomicRelatedItemsWidget, self)._base_args()
         
         # Get request language
         context = self.request.PARENTS[0]
@@ -183,10 +183,10 @@ class MakerRelatedItemsWidget(RelatedItemsWidget):
             language = context.language
 
         # Get content type folder
-        contenttype_folder = PERSON_INSTITUTION_FOLDER
+        contenttype_folder = TAXONOMY_FOLDER
         portal_type = contenttype_folder['portal_type']
-        basePath = contenttype_folder[language]+"/A"
-
+        basePath = contenttype_folder[language]
+        
         # Set extra settings
         args['pattern_options']['maximumSelectionSize'] = 1
         
@@ -199,12 +199,7 @@ class MakerRelatedItemsWidget(RelatedItemsWidget):
                 'i': 'portal_type',
                 'o': 'plone.app.querystring.operation.selection.is',
                 'v': portal_type
-            }, {
-                'i': 'path',
-                'o': 'plone.app.querystring.operation.string.path',
-                'v': "/zm/nl/intern/personen-en-instellingen/A"
-                }
-            ]
+            }]
 
         return args
 
@@ -221,8 +216,8 @@ def SimpleRelatedItemsFieldWidget(field, request, extra=None):
     return FieldWidget(field, SimpleRelatedItemsWidget(request))
 
 @implementer(IFieldWidget)
-def MakerRelatedItemsFieldWidget(field, request, extra=None):
+def TaxonomicRelatedItemsFieldWidget(field, request, extra=None):
     if extra is not None:
         request = extra
-    return FieldWidget(field, MakerRelatedItemsWidget(request))
+    return FieldWidget(field, TaxonomicRelatedItemsWidget(request))
 

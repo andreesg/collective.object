@@ -184,7 +184,6 @@ class RelatedItemsVocabulary(object):
                         query['criteria'] = query['criteria'][1:]
                         break
 
-
             parsed = queryparser.parseFormquery(context, query['criteria'])
             if 'sort_on' in query:
                 parsed['sort_on'] = query['sort_on']
@@ -202,7 +201,42 @@ class RelatedItemsVocabulary(object):
         return CatalogVocabulary.fromItems(brains, context)
 
 
+class TaxonomicRelatedItemsVocabulary(object):
+    
+    implements(IVocabularyFactory)
+
+    def __init__(self, sort_on=None):
+        self.sort_on = sort_on
+
+    def __call__(self, context, query=None):
+        parsed = {}
+        if query:
+            self.sort_on = 'sortable_title'
+
+            parsed = queryparser.parseFormquery(context, query['criteria'])
+            if 'sort_on' in query:
+                parsed['sort_on'] = query['sort_on']
+            if 'sort_order' in query:
+                parsed['sort_order'] = str(query['sort_order'])
+
+            parsed['sort_on'] = self.sort_on
+
+            if 'taxonomic_rank' in query:
+                parsed = {'taxonomicTermDetails_term_scientificName': query['taxonomic_rank']}
+                parsed['sort_on'] = self.sort_on
+                
+        try:
+            catalog = getToolByName(context, 'portal_catalog')
+        except AttributeError:
+            catalog = getToolByName(getSite(), 'portal_catalog')
+        
+        brains = catalog(**parsed)
+
+        return CatalogVocabulary.fromItems(brains, context)
+
+
 RelatedItemsVocabularyFactory = RelatedItemsVocabulary('sortable_title')
+TaxonomicRelatedItemsVocabularyFactory = TaxonomicRelatedItemsVocabulary()
 
 # Updated vocabularies
 CategoryVocabularyFactory = ObjectVocabulary('identification_objectName_category')

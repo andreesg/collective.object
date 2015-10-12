@@ -152,6 +152,11 @@
     />
 
   <utility
+    component=".utils.vocabularies.TaxonomicRelatedItemsVocabularyFactory"
+    name="collective.object.relatedTaxonomicRank"
+    />
+
+  <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
     name="collective.object.objectCategory"
     />

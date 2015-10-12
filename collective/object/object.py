@@ -605,7 +605,7 @@ class IObject(form.Schema):
     identification_taxonomy = ListField(title=_(u'Taxonomy'),
         value_type=DictRow(title=_(u'Taxonomy'), schema=ITaxonomy),
         required=False)
-    form.widget(identification_taxonomy=DataGridFieldFactory)
+    form.widget(identification_taxonomy=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('identification_taxonomy')
 
     #identification_taxonomy_determiner = ListField(title=_(u'Determiner'),

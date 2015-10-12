@@ -14,7 +14,7 @@ from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceType
 
 from ..utils.source import ObjPathSourceBinder
 from ..utils.variables import *
-from ..utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget, MakerRelatedItemsFieldWidget
+from ..utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget, TaxonomicRelatedItemsFieldWidget
 
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
@@ -667,8 +667,18 @@ class ITaxonomy(Interface):
         default="No value"
     )
 
-    scientific_name = schema.TextLine(title=_(u'Scient. name'), required=False)
-    common_name = schema.TextLine(title=_(u'Common name'), required=False)
+    scientific_name = RelationList(
+        title=_(u'Scientific name'),
+        default=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type="Taxonomie")
+        ),
+        required=False
+    )
+    form.widget('scientific_name', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
+
+    #common_name = schema.TextLine(title=_(u'Common name'), required=False)
 
 class IDeterminer(form.Schema):
     name = schema.TextLine(title=_(u'Determiner'), required=False)
