@@ -222,7 +222,7 @@ class TaxonomicRelatedItemsVocabulary(object):
             parsed['sort_on'] = self.sort_on
 
             if 'taxonomic_rank' in query:
-                parsed = {'taxonomicTermDetails_term_rank': query['taxonomic_rank']}
+                parsed['taxonomicTermDetails_term_rank'] = query['taxonomic_rank']
                 parsed['sort_on'] = self.sort_on
                 
         try:
