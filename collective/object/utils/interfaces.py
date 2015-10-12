@@ -14,7 +14,7 @@ from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceType
 
 from ..utils.source import ObjPathSourceBinder
 from ..utils.variables import *
-from ..utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget
+from ..utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget, MakerRelatedItemsFieldWidget
 
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
@@ -109,6 +109,13 @@ class IFrom(Interface):
 
 ## Production & Dating
 class IProductiondating(form.Schema):
+    makerController = schema.Choice(title=_(u' '), 
+        required=True, 
+        vocabulary="collective.object.makerController", 
+        default=u"No value", 
+        missing_value=u" "
+    )
+
     makers = RelationList(
         title=_(u'Maker'),
         missing_value=[],
@@ -118,7 +125,7 @@ class IProductiondating(form.Schema):
         ),
         required=False
     )
-    form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('makers', MakerRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     qualifier = schema.TextLine(title=_(u'label_kwal'), required=False)
     

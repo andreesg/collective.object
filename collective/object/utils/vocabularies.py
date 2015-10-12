@@ -183,6 +183,10 @@ class RelatedItemsVocabulary(object):
                     if c['v'] == "/zm/nl/intern/bruiklenen" and len(query['criteria']) > 1:
                         query['criteria'] = query['criteria'][1:]
                         break
+                    if c['v'] == "/zm/nl/intern/personen-en-instellingen/others" and len(query['criteria']) > 2:
+                        query['criteria'].pop(1)
+                        break
+
 
             parsed = queryparser.parseFormquery(context, query['criteria'])
             if 'sort_on' in query:
@@ -256,7 +260,7 @@ NameTypeVocabularyFactory = ATVMVocabulary('NameType')
 SubjectTypeVocabularyFactory = ATVMVocabulary('SubjectType')
 DimensionsUnitVocabularyFactory = ATVMVocabulary('Unit')
 TaxonomyRankVocabularyFactory = ATVMVocabulary('TaxonomyRank')
-
+MakerControllerVocabularyFactory = ATVMVocabulary('PersonFolder')
 
 #
 # Static vocabula

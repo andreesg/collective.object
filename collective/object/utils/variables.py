@@ -15,7 +15,7 @@ ROOT_FOLDER = {
 PERSON_INSTITUTION_FOLDER = {
     "nl":'/nl/intern/personen-en-instellingen',
     "en":'',
-    "portal_type":'PersonOrInstitution'
+    "portal_type":'PersonOrInstitution',
 }
 
 TAXONOMY_FOLDER = {

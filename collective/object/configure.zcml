@@ -386,6 +386,11 @@
     name="collective.object.aspects"
     />
 
+  <utility
+    component=".utils.vocabularies.MakerControllerVocabularyFactory"
+    name="collective.object.makerController"
+    />
+
   <adapter
     factory=".object.ObjectNumberValidator"
     />

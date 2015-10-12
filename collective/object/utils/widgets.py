@@ -161,6 +161,53 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
 
         return args
 
+class MakerRelatedItemsWidget(RelatedItemsWidget):
+    """RelatedItems widget for z3c.form."""
+
+    def _base_args(self):
+        """Method which will calculate _base class arguments.
+        Returns (as python dictionary):
+            - `pattern`: pattern name
+            - `pattern_options`: pattern options
+            - `name`: field name
+            - `value`: field value
+        :returns: Arguments which will be passed to _base
+        :rtype: dict
+        """
+        args = super(MakerRelatedItemsWidget, self)._base_args()
+        
+        # Get request language
+        context = self.request.PARENTS[0]
+        language = DEFAULT_LANGUAGE
+        if context:
+            language = context.language
+
+        # Get content type folder
+        contenttype_folder = PERSON_INSTITUTION_FOLDER
+        portal_type = contenttype_folder['portal_type']
+        basePath = contenttype_folder[language]+"/others"
+
+        # Set extra settings
+        args['pattern_options']['maximumSelectionSize'] = 1
+        
+        if basePath:
+            args['pattern_options']['basePath'] = basePath
+       
+        if portal_type:
+            args['pattern_options']['selectableTypes'] = [portal_type]
+            args['pattern_options']['baseCriteria'] = [{
+                'i': 'portal_type',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': portal_type
+            }, {
+                'i': 'path',
+                'o': 'plone.app.querystring.operation.string.path',
+                'v': "/zm/nl/intern/personen-en-instellingen/others"
+                }
+            ]
+
+        return args
+
 @implementer(IFieldWidget)
 def AjaxSingleSelectFieldWidget(field, request, extra=None):
     if extra is not None:
@@ -172,4 +219,10 @@ def SimpleRelatedItemsFieldWidget(field, request, extra=None):
     if extra is not None:
         request = extra
     return FieldWidget(field, SimpleRelatedItemsWidget(request))
+
+@implementer(IFieldWidget)
+def MakerRelatedItemsFieldWidget(field, request, extra=None):
+    if extra is not None:
+        request = extra
+    return FieldWidget(field, MakerRelatedItemsWidget(request))
 
