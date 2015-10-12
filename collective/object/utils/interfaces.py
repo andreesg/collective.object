@@ -109,12 +109,12 @@ class IFrom(Interface):
 
 ## Production & Dating
 class IProductiondating(form.Schema):
-    makerController = schema.Choice(title=_(u' '), 
-        required=True, 
-        vocabulary="collective.object.makerController", 
-        default=u"A", 
-        missing_value=u"A"
-    )
+    #makerController = schema.Choice(title=_(u' '), 
+    #    required=True, 
+    #    vocabulary="collective.object.makerController", 
+    #    default=u"A", 
+    #    missing_value=u"A"
+    #)
 
     makers = RelationList(
         title=_(u'Maker'),
@@ -125,7 +125,7 @@ class IProductiondating(form.Schema):
         ),
         required=False
     )
-    form.widget('makers', MakerRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     qualifier = schema.TextLine(title=_(u'label_kwal'), required=False)
     
