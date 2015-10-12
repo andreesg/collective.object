@@ -112,8 +112,8 @@ class IProductiondating(form.Schema):
     makerController = schema.Choice(title=_(u' '), 
         required=True, 
         vocabulary="collective.object.makerController", 
-        default=u"No value", 
-        missing_value=u" "
+        default=u"A", 
+        missing_value=u"A"
     )
 
     makers = RelationList(

@@ -185,7 +185,7 @@ class MakerRelatedItemsWidget(RelatedItemsWidget):
         # Get content type folder
         contenttype_folder = PERSON_INSTITUTION_FOLDER
         portal_type = contenttype_folder['portal_type']
-        basePath = contenttype_folder[language]+"/others"
+        basePath = contenttype_folder[language]+"/A"
 
         # Set extra settings
         args['pattern_options']['maximumSelectionSize'] = 1
@@ -202,7 +202,7 @@ class MakerRelatedItemsWidget(RelatedItemsWidget):
             }, {
                 'i': 'path',
                 'o': 'plone.app.querystring.operation.string.path',
-                'v': "/zm/nl/intern/personen-en-instellingen/others"
+                'v': "/zm/nl/intern/personen-en-instellingen/A"
                 }
             ]
 

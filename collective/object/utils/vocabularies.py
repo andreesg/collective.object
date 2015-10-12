@@ -183,7 +183,7 @@ class RelatedItemsVocabulary(object):
                     if c['v'] == "/zm/nl/intern/bruiklenen" and len(query['criteria']) > 1:
                         query['criteria'] = query['criteria'][1:]
                         break
-                    if c['v'] == "/zm/nl/intern/personen-en-instellingen/others" and len(query['criteria']) > 2:
+                    if c['v'] == "/zm/nl/intern/personen-en-instellingen/A" and len(query['criteria']) > 2:
                         query['criteria'].pop(1)
                         break
 
