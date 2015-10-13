@@ -670,6 +670,7 @@ class ITaxonomy(Interface):
     scientific_name = RelationList(
         title=_(u'Scientific name'),
         default=[],
+        missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
             source=ObjPathSourceBinder(portal_type="Taxonomie")
@@ -691,6 +692,7 @@ class IDeterminers(form.Schema):
     name = RelationList(
         title=_(u'Determiner'),
         default=[],
+        missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
             source=ObjPathSourceBinder(portal_type="PersonOrInstitution")

@@ -80,7 +80,8 @@ CONTENTTYPE_CHOICES = {
     "childName": TAXONOMY_FOLDER,
     "taxonomicTermDetails_hierarchy_parentName": TAXONOMY_FOLDER,
     "continuedFrom": BIBLIOTHEEK_FOLDER,
-    "continuedAs": BIBLIOTHEEK_FOLDER
+    "continuedAs": BIBLIOTHEEK_FOLDER,
+    "sourceTitle": BIBLIOTHEEK_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
