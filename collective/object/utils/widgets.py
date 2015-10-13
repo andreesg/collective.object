@@ -78,7 +78,9 @@ CONTENTTYPE_CHOICES = {
     "taxonomicTermDetails_status_validAcceptedName": TAXONOMY_FOLDER,
     "synonym": TAXONOMY_FOLDER,
     "childName": TAXONOMY_FOLDER,
-    "taxonomicTermDetails_hierarchy_parentName": TAXONOMY_FOLDER
+    "taxonomicTermDetails_hierarchy_parentName": TAXONOMY_FOLDER,
+    "continuedFrom": BIBLIOTHEEK_FOLDER,
+    "continuedAs": BIBLIOTHEEK_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')

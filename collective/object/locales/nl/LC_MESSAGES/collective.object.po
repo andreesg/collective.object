@@ -1890,6 +1890,16 @@ msgstr "studie/advies"
 msgid "study/advice"
 msgstr "studie/advies"
 
+#: ../serial.py
+msgid "personal name"
+msgstr "persoonsnaam"
 
+#: ../serial.py
+msgid "institution"
+msgstr "instelling"
+
+#: ../serial.py
+msgid "regiment/service"
+msgstr "dienstonderdeel"
 
 
