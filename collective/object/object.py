@@ -465,7 +465,7 @@ class IObject(form.Schema):
         required=False
     )
 
-    form.widget('identification_identification_institutionNames', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('identification_identification_institutionNames', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedInstitution')
 
 
     #identification_identification_institutionCode = schema.TextLine(

@@ -201,6 +201,43 @@ class RelatedItemsVocabulary(object):
         return CatalogVocabulary.fromItems(brains, context)
 
 
+class InstitutioRelatedItemsVocabulary(object):
+    
+    implements(IVocabularyFactory)
+
+    def __init__(self, sort_on=None):
+        self.sort_on = sort_on
+
+    def __call__(self, context, query=None):
+        parsed = {}
+        if query:
+            index_choice = "institution"
+            catalog_index = "nameInformation_name_nameType_type"
+
+            self.sort_on = 'sortable_title'
+            for c in query['criteria']:
+                if c['i'] == 'Type':
+                    self.sort_on = "getObjPositionInParent"
+                    break
+
+            parsed = queryparser.parseFormquery(context, query['criteria'])
+            if 'sort_on' in query:
+                parsed['sort_on'] = query['sort_on']
+            if 'sort_order' in query:
+                parsed['sort_order'] = str(query['sort_order'])
+
+            ### Search for index
+            parsed['sort_on'] = self.sort_on
+            parsed[catalog_index] = index_choice
+                
+        try:
+            catalog = getToolByName(context, 'portal_catalog')
+        except AttributeError:
+            catalog = getToolByName(getSite(), 'portal_catalog')
+        brains = catalog(**parsed)
+
+        return CatalogVocabulary.fromItems(brains, context)
+
 class TaxonomicRelatedItemsVocabulary(object):
     
     implements(IVocabularyFactory)
@@ -237,6 +274,8 @@ class TaxonomicRelatedItemsVocabulary(object):
 
 RelatedItemsVocabularyFactory = RelatedItemsVocabulary('sortable_title')
 TaxonomicRelatedItemsVocabularyFactory = TaxonomicRelatedItemsVocabulary()
+InstitutioRelatedItemsVocabularyFactory = InstitutioRelatedItemsVocabulary()
+
 
 # Updated vocabularies
 CategoryVocabularyFactory = ObjectVocabulary('identification_objectName_category')

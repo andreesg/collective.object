@@ -157,6 +157,11 @@
     />
 
   <utility
+    component=".utils.vocabularies.InstitutioRelatedItemsVocabularyFactory"
+    name="collective.object.relatedInstitution"
+    />
+
+  <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
     name="collective.object.objectCategory"
     />
