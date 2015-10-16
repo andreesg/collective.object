@@ -764,6 +764,14 @@ msgstr "Titel en beschrijving"
 #
 
 #: ../object.py
+msgid "add_new"
+msgstr "Nieuw item toevoegen"
+
+#: ../object.py
+msgid "Add new"
+msgstr "Nieuw item toevoegen"
+
+#: ../object.py
 msgid "General theme"
 msgstr "Hoofdmotief algemeen"
 
@@ -1857,6 +1865,8 @@ msgstr 'Bruikleennummer'
 #: ../object.py
 msgid 'text'
 msgstr 'Tekst'
+
+
 
 
 

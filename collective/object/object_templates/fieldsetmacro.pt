@@ -94,6 +94,15 @@
 
         <h2 class="page-header header-padding" i18n:translate="">Taxonomie</h2>
 
+        <div class="form-horizontal">
+          <div class="col-sm-3 control-label taxonomy-link">
+             
+          </div>
+          <div class="col-sm-9 fieldset-input taxonomy-link">
+            <a href="/nl/intern/taxonomy/++add++Taxonomie" target="_blank" i18n:translate="" style="pointer-events:none;">Nieuw item toevoegen</a>
+          </div>
+       </div>
+
         <div class="form-horizontal table-responsive gridfield">
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
         </div>
@@ -825,8 +834,6 @@
 
           
           <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/> 
-
-        
           <tal:widget tal:replace="structure widgets/identification_identification_administrativeName/@@ploneform-render-widget"/>
         </div>
 
@@ -904,6 +911,21 @@
         </div>
 
         <h2 class="page-header header-padding" i18n:translate="">Taxonomie</h2>
+
+        <div class="form-horizontal">
+          <div class="col-sm-3 control-label taxonomy-link">
+             
+          </div>
+          <div class="col-sm-9 fieldset-input taxonomy-link"
+            tal:define="ahref python: '/%s/intern/taxonomy/++add++Taxonomie'%(context.language)">
+            <tal:nl tal:condition="python: context.language == 'nl'">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">Nieuw item toevoegen</a>
+            </tal:nl>
+            <tal:en tal:condition="python: context.language == 'en'">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">Add new</a>
+            </tal:en>
+          </div>
+       </div>
 
         <div class="form-horizontal table-responsive gridfield">
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
