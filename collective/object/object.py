@@ -106,7 +106,7 @@ class IObject(form.Schema):
 
 
     identification_objectName_category = schema.List(
-        title=_(u'Object Category'),
+        title=_(u'Object category'),
         required=False,
         value_type=schema.TextLine(),
         missing_value=[]

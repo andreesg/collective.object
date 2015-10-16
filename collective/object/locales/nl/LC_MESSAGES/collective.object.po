@@ -87,6 +87,10 @@ msgid "Object Category"
 msgstr "Objectcategorie"
 
 #: ../object.py
+msgid "Object category"
+msgstr "Objectcategorie"
+
+#: ../object.py
 msgid "Object name"
 msgstr "Objectnaam"
 
