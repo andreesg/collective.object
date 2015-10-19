@@ -24,7 +24,6 @@
                               class string:kssattr-fieldset-${fieldset_name};
                               data-fieldset fieldset_name" tal:condition="python: fieldset_name == fieldset_restriction">
                   
-                  <!-- Identification -->
                   <legend tal:condition="fieldset_label"
                           tal:attributes="id string:fieldsetlegend-${fieldset_name}"
                           tal:content="fieldset_label">Form name</legend>
@@ -183,7 +182,6 @@
                                                 class string:kssattr-fieldset-${fieldset_name};
                                                 data-fieldset fieldset_name">
                                     
-                                    <!-- Identification -->
                                     <legend tal:condition="fieldset_label"
                                             tal:attributes="id string:fieldsetlegend-${fieldset_name}"
                                             tal:content="fieldset_label">Form name</legend>

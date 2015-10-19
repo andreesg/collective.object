@@ -277,13 +277,26 @@ class IIconographyContentSubjects(Interface):
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
     
     form.widget('properName', AjaxSingleSelectFieldWidget, vocabulary="collective.object.contentsubjects")
+    
+    scientificName = RelationList(
+        title=_(u'Scientific name'),
+        default=[],
+        missing_value=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type="Taxonomie")
+        ),
+        required=False
+    )
+    form.widget('scientificName', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
+
     properName = schema.List(
         title=_(u'Proper name'),
         required=False,
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    
     notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Inscriptions and Markings
@@ -363,7 +376,17 @@ class IAssociatedSubjects(Interface):
     )
 
     taxonomicRank = schema.Choice(title=_(u'Taxonomic rank'), required=True, vocabulary="collective.object.taxonomyrank", default="No value")
-    scientificName = schema.TextLine(title=_(u'Scientific name'), required=False)
+    scientificName = RelationList(
+        title=_(u'Scientific name'),
+        default=[],
+        missing_value=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=ObjPathSourceBinder(portal_type="Taxonomie")
+        ),
+        required=False
+    )
+    form.widget('scientificName', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
 
     # These fields are going to be removed in the future
     form.widget('properName', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
