@@ -2,13 +2,11 @@
 # -*- coding: utf-8 -*-
 from plone.formwidget.contenttree.source import PathSourceBinder, PathSource, ObjPathSource
 from zope.schema.vocabulary import SimpleTerm
-
+from plone.app.uuid.utils import uuidToCatalogBrain
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Extended function that generates SimpleTerm for each related item   #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-
-
 
 class ObjExtendedPathSource(ObjPathSource):
 
@@ -16,11 +14,10 @@ class ObjExtendedPathSource(ObjPathSource):
         try:
             if type(value) != str and type(value) != unicode:
                 if not value.absolute_url():
-                    portal_catalog = self.context.portal_catalog
-                    brains = portal_catalog(UID=value.UID())
+                    uuid = value.UID()
+                    brains = uuidToCatalogBrain(uuid)
                     if brains:
-                        brain = brains[0]
-                        return brain
+                        return brains
 
                 return self._getBrainByToken('/'.join(value.getPhysicalPath()))
         except:

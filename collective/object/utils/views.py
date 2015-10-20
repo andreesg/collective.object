@@ -21,6 +21,8 @@ from zope.interface import alsoProvides
 from .interfaces import IFormWidget
 from plone.dexterity.browser import add, edit
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.app.uuid.utils import uuidToCatalogBrain, uuidToObject
+
 
 _ = MessageFactory('collective.object')
 
@@ -154,11 +156,9 @@ class ObjectView(edit.DefaultEditForm):
         return False
 
     def get_url_by_uid(self, uid):
-        catalog = self.context.portal_catalog
-        brains = catalog(UID=uid)
+        brains = uuidToCatalogBrain(uid)
         if brains:
-            obj = brains[0]
-            return obj.getURL()
+            return brains.getURL()
 
         return ""
 
