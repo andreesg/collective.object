@@ -986,7 +986,8 @@ class IObject(form.Schema):
     conditionConservation_priority = schema.Choice(
         vocabulary=priority_vocabulary,
         title=_(u'Priority'),
-        required=False
+        required=False,
+        missing_value=" "
     )
     dexteritytextindexer.searchable('conditionConservation_priority')
 

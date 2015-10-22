@@ -57,7 +57,7 @@ def _createPriorityVocabulary():
         "medium": _(u"medium"),
         "high": _(u"high"),
         "urgent": _(u"urgent"),
-        "":""
+        "No value":" "
     }
 
     for key, name in priorities.items():
@@ -71,7 +71,7 @@ def _createNameTypeVocabulary():
         "family": _(u"family"),
         "institution": _(u"institution"),
         "regiment/service": _(u"regiment/service"),
-        "":""
+        "No value":u" "
     }
     for key, name in names.items():
         term = SimpleTerm(value=key, token=str(key), title=name)
@@ -90,7 +90,7 @@ def _createSubjectTypeVocabulary():
         "concept": _(u"concept"),
         "people": _(u"people"),
         "cultural affinity": _(u"cultural affinity"),
-        "":""
+        "No value":u" "
     }
 
     for key, name in names.items():
@@ -98,13 +98,15 @@ def _createSubjectTypeVocabulary():
         yield term
 
 def _createTaxonomyRankVocabulary():
-    taxonomies = ["kingdom", "subkingdom", "phylum/division", "subphylum/subdivision", "superclass", "class", "subclass", "infraclass", "superorder", "order", "suborder", "infraorder", "superfamily", "family", "subfamily", "tribe", "subtribe", "genus", "subgenus", "section", "subsection", "species", "subspecies", "variety", "subvariety", "form", "subform", ""]
+    taxonomies = ["kingdom", "subkingdom", "phylum/division", "subphylum/subdivision", "superclass", "class", "subclass", "infraclass", "superorder", "order", "suborder", "infraorder", "superfamily", "family", "subfamily", "tribe", "subtribe", "genus", "subgenus", "section", "subsection", "species", "subspecies", "variety", "subvariety", "form", "subform", "No value"]
     names = {}
 
     for tax in taxonomies:
         names[tax] = _(u'%s'%(tax))
 
     for key, name in names.items():
+        if key == "No value":
+            name = " "
         term = SimpleTerm(value=key, token=str(key), title=name)
         yield term
 
