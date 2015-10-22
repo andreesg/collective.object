@@ -44,7 +44,7 @@ def _createObjectStatusVocabulary():
         "paralectotype": _(u"paralectotype"),
         "paratype": _(u"paratype"),
         "syntype": _(u"syntype"),
-        "":""
+        "No value":" "
     }
 
     for key, name in status_types.items():
@@ -278,7 +278,6 @@ class TaxonomicRelatedItemsVocabulary(object):
 RelatedItemsVocabularyFactory = RelatedItemsVocabulary('sortable_title')
 TaxonomicRelatedItemsVocabularyFactory = TaxonomicRelatedItemsVocabulary()
 InstitutioRelatedItemsVocabularyFactory = InstitutioRelatedItemsVocabulary()
-
 
 # Updated vocabularies
 CategoryVocabularyFactory = ObjectVocabulary('identification_objectName_category')
