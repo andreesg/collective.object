@@ -1433,14 +1433,14 @@ class IObject(form.Schema):
     location_current_location = ListField(title=_(u'Current location'),
         value_type=DictRow(title=_(u'Current location'), schema=ICurrentLocation),
         required=False)
-    form.widget(location_current_location=DataGridFieldFactory)
+    form.widget(location_current_location=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('location_current_location')
 
     # Location checks
     location_checks = ListField(title=_(u'Location checks'),
         value_type=DictRow(title=_(u'Location checks'), schema=ILocationChecks),
         required=False)
-    form.widget(location_checks=DataGridFieldFactory)
+    form.widget(location_checks=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('location_checks')
 
     # # # # # # # # # # # 

@@ -245,7 +245,7 @@ msgstr "Tot"
 
 #: ../object.py
 msgid "Condition & Conservation"
-msgstr "Toestand & Conservering"
+msgstr "Toestand/Conservering"
 
 #: ../object.py
 msgid "Conservation treatment"
