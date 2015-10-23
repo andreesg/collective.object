@@ -920,7 +920,7 @@ class IDocumentationFreeText(Interface):
 
 class IArchive(Interface):
     archiveNumber = schema.TextLine(title=_(u'Archive number'), required=False)
-    content = schema.TextLine(title=_(u'Content'), required=False)
+    #content = schema.TextLine(title=_(u'Content'), required=False)
 
 class IArchives(Interface):
     archiveNumber = RelationList(

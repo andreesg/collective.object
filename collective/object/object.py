@@ -804,7 +804,7 @@ class IObject(form.Schema):
     dexteritytextindexer.searchable('documentationFreeArchive_archive')
 
     documentationFreeArchive_archiveNumber = ListField(title=_(u'Archive number'),
-        value_type=DictRow(title=_(u'Archive number'), schema=IArchiveNumber),
+        value_type=DictRow(title=_(u'Archive number'), schema=IArchive),
         required=False)
     form.widget(documentationFreeArchive_archiveNumber=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('documentationFreeArchive_archiveNumber')
