@@ -606,8 +606,8 @@
           <tal:widget tal:replace="structure view/widgets/acquisition_methods/@@ploneform-render-widget"/>
         </div>
 
-        <div class="form-horizontal gridfield">
-            <tal:widget tal:replace="structure widgets/acquisition_acquisition_acquisitionFrom/@@ploneform-render-widget"/>
+        <div class="form-horizontal">
+            <tal:widget tal:replace="structure widgets/acquisition_acquisition_acquisitionfrom/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal">

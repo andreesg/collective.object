@@ -88,7 +88,22 @@ CONTENTTYPE_CHOICES = {
     "titleAuthorImprintCollation_imprint_publishers": PERSON_INSTITUTION_FOLDER,
     "relations_analyticalCataloguing_partsOf": BIBLIOTHEEK_FOLDER,
     "relations_analyticalCataloguing_consistsof": BIBLIOTHEEK_FOLDER,
-    "relations_museumobjects": OBJECT_FOLDER
+    "relations_museumobjects": OBJECT_FOLDER,
+    "taxonomicTermDetails_hierarchy_childNames": TAXONOMY_FOLDER,
+    "taxonomicTermDetails_synonym": TAXONOMY_FOLDER,
+    "transport_entrydetails": OBJECTENTRY_FOLDER,
+    "acquisition_acquisition_acquisitionfrom": PERSON_INSTITUTION_FOLDER,
+    "nameInformation_relationWithOtherNames_usedfor": PERSON_INSTITUTION_FOLDER,
+    "nameInformation_relationWithOtherNames_uses": PERSON_INSTITUTION_FOLDER,
+    "nameInformation_relationWithOtherNames_equivalents": PERSON_INSTITUTION_FOLDER,
+    "exhibitionsDetails_organizingInstitution": PERSON_INSTITUTION_FOLDER,
+    "linkedObjects_linkedobjects": OBJECT_FOLDER,
+    "titleAuthorSource_titleAuthor_corpAuthor": PERSON_INSTITUTION_FOLDER,
+    "seriesNotesISBN_notes_broadcastingcompany": PERSON_INSTITUTION_FOLDER,
+    "seriesNotesISBN_notes_productioncompany": PERSON_INSTITUTION_FOLDER,
+    "resourceDublinCore_creators": PERSON_INSTITUTION_FOLDER,
+    "resourceDublinCore_contributors": PERSON_INSTITUTION_FOLDER,
+    "resourceDublinCore_publishers": PERSON_INSTITUTION_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
@@ -290,4 +305,11 @@ def TaxonomicRelatedItemsFieldWidget(field, request, extra=None):
     if extra is not None:
         request = extra
     return FieldWidget(field, TaxonomicRelatedItemsWidget(request))
+
+@implementer(IFieldWidget)
+def ExtendedRelatedItemsFieldWidget(field, request, extra=None):
+    if extra is not None:
+        request = extra
+    return FieldWidget(field, ExtendedRelatedItemsWidget(request))
+
 

@@ -263,7 +263,7 @@ class TaxonomicRelatedItemsVocabulary(object):
             if 'taxonomic_rank' in query:
                 if query['taxonomic_rank'] != "" and query['taxonomic_rank'] != " ":
                     parsed['taxonomicTermDetails_term_rank'] = query['taxonomic_rank']
-                parsed['sort_on'] = self.sort_on
+                
                 
         try:
             catalog = getToolByName(context, 'portal_catalog')

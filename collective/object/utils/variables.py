@@ -41,13 +41,13 @@ ARCHIVE_FOLDER = {
     "portal_type":"Archive"
 }
 INCOMINGLOAN_FOLDER = {
-    "nl":'/nl/intern/binnenkomende-bruiklenen',
+    "nl":'/nl/intern/bruiklenen/binnenkomende-bruiklenen',
     "en":"",
     "portal_type":"IncomingLoan"
 }
 
 OUTGOINGLOAN_FOLDER = {
-    "nl":'/nl/intern/uitgaande-bruiklenen',
+    "nl":'/nl/intern/bruiklenen/uitgaande-bruiklenen',
     "en":"",
     "portal_type":"OutgoingLoan"
 }
