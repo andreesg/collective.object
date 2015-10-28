@@ -103,7 +103,10 @@ CONTENTTYPE_CHOICES = {
     "seriesNotesISBN_notes_productioncompany": PERSON_INSTITUTION_FOLDER,
     "resourceDublinCore_creators": PERSON_INSTITUTION_FOLDER,
     "resourceDublinCore_contributors": PERSON_INSTITUTION_FOLDER,
-    "resourceDublinCore_publishers": PERSON_INSTITUTION_FOLDER
+    "resourceDublinCore_publishers": PERSON_INSTITUTION_FOLDER,
+    "reproductionData_descriptiveElements_creator": PERSON_INSTITUTION_FOLDER,
+    "reproductionData_descriptiveElements_publisher": PERSON_INSTITUTION_FOLDER,
+    "reproductionData_descriptiveElements_contributor": PERSON_INSTITUTION_FOLDER
 }
 
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
