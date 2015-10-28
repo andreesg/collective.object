@@ -193,6 +193,9 @@ class RelatedItemsVocabulary(object):
                 parsed['sort_order'] = str(query['sort_order'])
 
             parsed['sort_on'] = self.sort_on
+
+            if 'SearchableText' in parsed:
+                parsed['Title'] = parsed.pop('SearchableText')
                 
         try:
             catalog = getToolByName(context, 'portal_catalog')
@@ -231,6 +234,9 @@ class InstitutioRelatedItemsVocabulary(object):
             ### Search for index
             parsed['sort_on'] = self.sort_on
             parsed[catalog_index] = index_choice
+
+            if 'SearchableText' in parsed:
+                parsed['Title'] = parsed.pop('SearchableText')
                 
         try:
             catalog = getToolByName(context, 'portal_catalog')
@@ -263,7 +269,9 @@ class TaxonomicRelatedItemsVocabulary(object):
             if 'taxonomic_rank' in query:
                 if query['taxonomic_rank'] != "" and query['taxonomic_rank'] != " ":
                     parsed['taxonomicTermDetails_term_rank'] = query['taxonomic_rank']
-                
+
+            if 'SearchableText' in parsed:
+                parsed['Title'] = parsed.pop('SearchableText')
                 
         try:
             catalog = getToolByName(context, 'portal_catalog')
