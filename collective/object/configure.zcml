@@ -84,6 +84,13 @@
       permission="zope.Public"
     />
 
+  <browser:page
+      for="*"
+      name="collective.object.slideshowmacro"
+      template="object_templates/slideshowmacro.pt"
+      permission="zope.Public"
+    />
+
   <adapter name="identification_identification_objectNumber" factory=".indexers.identification_identification_objectNumber" />
   
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />

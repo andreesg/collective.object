@@ -54,10 +54,13 @@
         </tal:block>
       </tal:show_only_groups>
 
-      <tal:show_all_header tal:condition="python: fieldset_restriction == None">
-      <div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media(); page_title python: view.get_page_title()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)" tal:condition="python: fieldset_restriction != 'all'">
-        <h1 class="documentFirstHeading" tal:content="page_title"></h1>
-      </div>
+    <tal:show_all_header tal:condition="python: fieldset_restriction == None">
+        <!--<div id="edit-header-wrapper" tal:define="lead_url python: view.get_lead_media(); page_title python: view.get_page_title()" tal:attributes="style python: 'background-image:url(%s)' %(lead_url)" tal:condition="python: fieldset_restriction != 'all'">
+          <h1 class="documentFirstHeading" tal:content="page_title"></h1>
+        </div>-->
+
+        <tal metal:use-macro="view/context/@@collective.object.slideshowmacro/slideshow" />
+
     </tal:show_all_header>
 
       <tal:show_all tal:condition="python: fieldset_restriction == None or fieldset_restriction == 'all'">
