@@ -93,21 +93,6 @@
 
         <h2 class="page-header header-padding" i18n:translate="">Taxonomie</h2>
 
-       <div class="form-horizontal">
-          <div class="col-sm-3 control-label taxonomy-link">
-             
-          </div>
-          <div class="col-sm-9 fieldset-input taxonomy-link"
-            tal:define="ahref python: '/%s/intern/taxonomy/++add++Taxonomie'%(context.language)">
-            <tal:nl tal:condition="python: context.language == 'nl'">
-              <a tal:attributes="href ahref" target="_blank" i18n:translate="" style="pointer-events:none;">Nieuw Taxonomie</a>
-            </tal:nl>
-            <tal:en tal:condition="python: context.language == 'en'">
-              <a tal:attributes="href ahref" target="_blank" style="pointer-events:none;">New Taxonomy</a>
-            </tal:en>
-          </div>
-       </div>
-
         <div class="form-horizontal table-responsive gridfield">
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
         </div>
@@ -136,10 +121,19 @@
       <div class="row no-padding">
         
         <h2 class="page-header" i18n:translate="">Identification</h2>
+
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label">
+             
+          </div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+       </div>
     
         <div class="form-horizontal hide-relation">
 
-          
           <tal:widget tal:replace="structure widgets/identification_identification_institutionNames/@@ploneform-render-widget"/> 
           <tal:widget tal:replace="structure widgets/identification_identification_administrativeName/@@ploneform-render-widget"/>
         </div>
@@ -238,6 +232,14 @@
            <tal:widget tal:replace="structure widgets/identification_taxonomy/@@ploneform-render-widget"/>
         </div>
 
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label add-link"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+        </div>
+
         <div class="form-horizontal gridfield hide-relation">
            <tal:widget tal:replace="structure widgets/identification_taxonomy_determiners/@@ploneform-render-widget"/>
         </div>
@@ -315,6 +317,15 @@
         </div>
 
         <h2 class="page-header" i18n:translate="">Content person/institution</h2>
+
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label add-link"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+        </div>
+
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure widgets/iconography_contentPersonInstitution/@@ploneform-render-widget"/>
         </div>
@@ -347,6 +358,14 @@
 
         <h2 class="page-header" i18n:translate="">Inscriptions and markings</h2>
 
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label add-link"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+        </div>
+
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure view/widgets/inscriptionsMarkings_inscriptionsAndMarkings/@@ploneform-render-widget"/>
         </div>
@@ -359,6 +378,14 @@
     <div class="row no-padding">
     	<!-- Production | Dating -->
       <h2 class="page-header" i18n:translate="">Production</h2>
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label add-link"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+       </div>
+
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure view/widgets/productionDating_productionDating/@@ploneform-render-widget"/>
         </div>
@@ -467,6 +494,13 @@
     <!-- Associations -->
     <div class="row no-padding">
         <h2 class="page-header" i18n:translate="">Associated person/institution</h2>
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label add-link"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+        </div>
 
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure view/widgets/associations_associatedPersonInstitutions/@@ploneform-render-widget"/>
@@ -605,6 +639,14 @@
           
           <tal:widget tal:replace="structure view/widgets/acquisition_methods/@@ploneform-render-widget"/>
         </div>
+        
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+        </div>
 
         <div class="form-horizontal">
             <tal:widget tal:replace="structure widgets/acquisition_acquisition_acquisitionfrom/@@ploneform-render-widget"/>
@@ -706,8 +748,21 @@
       	  </div>
           
           <tal:widget tal:replace="structure widgets/disposal_method/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+        </div>
+
+        <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/disposal_disposal_proposedRecipient/@@ploneform-render-widget"/>
           <tal:widget tal:replace="structure widgets/disposal_disposal_recipient/@@ploneform-render-widget"/>
+        </div>
+        <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/disposal_reason/@@ploneform-render-widget"/>
           <tal:widget tal:replace="structure widgets/disposal_provisos/@@ploneform-render-widget"/>
         </div>
@@ -742,12 +797,27 @@
     <div class="row no-padding">
         <h2 class="page-header" i18n:translate="">Ownership</h2>
 
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label add-link"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+        </div>
+
         <div class="form-horizontal">
           <tal:widget tal:replace="structure widgets/ownershipHistory_ownership_currentOwner/@@ploneform-render-widget"/>
           
         </div>
 
         <h2 class="page-header" i18n:translate="">History</h2>
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label add-link"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
+        </div>
 
         <div class="form-horizontal gridfield">
           <tal:widget tal:replace="structure view/widgets/ownershipHistory_historyOwner/@@ploneform-render-widget"/>
@@ -821,6 +891,14 @@
 
         <div class="form-horizontal gridfield table-responsive">
           <tal:widget tal:replace="structure widgets/fieldCollection_fieldCollection_fieldCollNumber/@@ploneform-render-widget"/>
+        </div>
+
+        <div class="form-horizontal add-form-link">
+          <div class="col-sm-3 control-label add-link"></div>
+          <div class="col-sm-9 fieldset-input add-link"
+            tal:define="ahref python: '/%s/intern/personen-en-instellingen/++add++PersonOrInstitution'%(context.language)">
+              <a tal:attributes="href ahref" target="_blank" i18n:translate="">New Person or Institution</a>
+          </div>
         </div>
 
         <div class="form-horizontal gridfield table-responsive">

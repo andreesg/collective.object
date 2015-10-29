@@ -1809,7 +1809,6 @@ class ObjectNumberValidator(validator.SimpleFieldValidator):
             return None
 
 validator.WidgetValidatorDiscriminators(ObjectNumberValidator, field=IObject['identification_identification_objectNumber'])
-
 grok.global_adapter(ObjectNumberValidator)
 
     
