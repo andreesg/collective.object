@@ -11,7 +11,7 @@
 	  	<div id="fb-root"></div>
 	  	<div class="slideshowWrapper">
 			<tal:checkslideshow
-			tal:define="context_url python: context.absolute_url()+'/slideshow/?recursive=true';">
+			tal:define="context_url python: context.absolute_url()+'/slideshow/?recursive=true&edit=true';">
 				<div class="slick-slideshow regular">
 	            <a id='slide-get-content' tal:attributes="href context_url"></a>    
 	            </div>
