@@ -110,6 +110,8 @@
                   </p>
                 </metal:description-slot>
 
+                <div id="ajax-error-msg" class="alert alert-warning" role="alert"></div>
+                
                 <form class="rowlike enableUnloadProtection" action="." method="post"
                       tal:define="groups view/groups | nothing;
                                   form_name view/form_name | nothing;
