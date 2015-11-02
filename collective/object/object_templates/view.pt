@@ -8,6 +8,26 @@
 
 <body>
 
+<tal:head_restrictions tal:define="collection_id python: request.get('collection_id', None)">
+  <tal:allow_header tal:condition="python: collection_id != None">
+    <tal:details metal:fill-slot="head_slot">
+        <tal:definitions
+          tal:define="details view/get_details;
+                      zm_image python: details['image'];
+                      zm_title python: details['title'];
+                      zm_description python: details['description']">
+          
+          <tal:fb-properties omit-tag="">
+                <meta property="zm:image" tal:attributes="content zm_image"/>
+                <meta property="zm:title" tal:attributes="content zm_title"/>
+                <meta property="zm:description" tal:attributes="content zm_description"/>
+          </tal:fb-properties>
+        </tal:definitions>
+
+    </tal:details>
+  </tal:allow_header>
+</tal:head_restrictions>
+
 <metal:title fill-slot="content-title">
       <metal:block define-macro="content-title">
         <tal:definitions define="user_admin view/checkUserPermission;

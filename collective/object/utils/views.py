@@ -65,3 +65,21 @@ class ObjectView(edit.DefaultEditForm):
             return brains.getURL()
         return ""
 
+    def get_details(self):
+        item = self.context
+        item_uid = item.UID()
+        
+        details = {}
+        details["title"] = item.Title()
+        details["description"] = item.Description()
+        details["image"] = ""
+
+        brain = uuidToCatalogBrain(item_uid)
+        if brain:
+            leadmedia_uid = brain.leadMedia
+            if leadmedia_uid:
+                lead_media = uuidToCatalogBrain(leadmedia_uid)
+                details['image'] = lead_media.getURL() + "/@@images/image/large"
+
+        return details
+
