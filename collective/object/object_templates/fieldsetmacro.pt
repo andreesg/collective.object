@@ -113,7 +113,7 @@
   </tal:identification>
 </div>
 
-  <div metal:define-macro="test">
+  <div metal:define-macro="test" i18n:domain="collective.object">
   	<tal:identification tal:condition='python: fieldset_text == "identification"'
     tal:define='widgets group/widgets'>
     <!-- Identification -->

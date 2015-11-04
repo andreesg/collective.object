@@ -119,12 +119,7 @@
                         tal:content="structure error/render"
                         />
                 </tal:block>
-
-                
-
-                <tal:restriction tal:condition="python: fieldset_name == 'identification'">
-                  <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />
-                </tal:restriction>
+                <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/test" />       
         </fieldset>
       
       </tal:block>
