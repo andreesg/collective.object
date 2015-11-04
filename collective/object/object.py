@@ -902,11 +902,11 @@ class IObject(form.Schema):
     model.fieldset('acquisition', label=_(u'Acquisition'), 
         fields=['acquisition_accession_date', 'acquisition_number', 'acquisition_date', 'acquisition_precision',
                 'acquisition_method', 'acquisition_rec_no', 'acquisition_lot_no', 'acquisition_acquisition_acquisitionfrom',
-                'acquisition_from', 'acquisition_auction', 'acquisition_place', 'acquisition_reason',
+                'acquisition_auction', 'acquisition_place', 'acquisition_reason',
                 'acquisition_conditions', 'acquisition_authorization_authorizer', 'acquisition_authorization_date',
                 'acquisition_costs_offer_price', 'acquisition_costs_offer_price_curr', 'acquisition_costs_purchase_price',
                 'acquisition_costs_purchase_price_curr', 'acquisition_costs_notes', 'acquisition_funding', 'acquisition_documentation',
-                'acquisition_copyright', 'acquisition_notes', 'acquisition_acquisition_from']
+                'acquisition_copyright', 'acquisition_notes']
     )
 
     # Accession
@@ -946,11 +946,6 @@ class IObject(form.Schema):
         required=False
     )
 
-    acquisition_from = schema.TextLine(
-        title=_(u'label_from', default=u'From'),
-        required=False
-    )
-
     acquisition_acquisition_acquisitionfrom = RelationList(
         title=_(u'label_from', default=u'From'),
         default=[],
@@ -962,16 +957,6 @@ class IObject(form.Schema):
     )
 
     form.widget('acquisition_acquisition_acquisitionfrom', ExtendedRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
-
-    acquisition_acquisition_from = RelationList(
-        title=_(u'label_from', default=u'From'),
-        default=[],
-        value_type=RelationChoice(
-            title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
-        ),
-        required=False
-    )
     
     acquisition_auction = schema.TextLine(
         title=_(u'Auction'),
