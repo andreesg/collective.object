@@ -1911,3 +1911,8 @@ msgid "New Person or Institution"
 msgstr "Nieuw Personen en Instellingen"
 
 
+#: ../object.py
+msgid 'identification_identification_objectNumber'
+msgstr 'Objectnummer'
+
+

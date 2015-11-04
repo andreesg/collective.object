@@ -90,6 +90,7 @@ def _createSubjectTypeVocabulary():
         "concept": _(u"concept"),
         "people": _(u"people"),
         "cultural affinity": _(u"cultural affinity"),
+        "subject": _(u"subject"),
         "No value":u" "
     }
 

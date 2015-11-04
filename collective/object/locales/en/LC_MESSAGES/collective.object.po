@@ -330,6 +330,11 @@ msgstr 'Taxonomy'
 msgid 'Taxonomie'
 msgstr 'Taxonomy'
 
+#: ../object.py
+msgid 'identification_identification_objectNumber'
+msgstr 'Object number'
+
+
 
 
 
