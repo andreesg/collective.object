@@ -501,7 +501,7 @@ msgstr "Voorwaarden"
 
 #: ../object.py
 msgid "Authorization"
-msgstr "Authorisatie"
+msgstr "Autorisatie"
 
 #: ../object.py
 msgid "Authorizer"
