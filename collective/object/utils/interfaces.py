@@ -37,8 +37,18 @@ taxonomyrank_vocabulary = SimpleVocabulary(list(_createTaxonomyRankVocabulary())
 class IListField(Interface):
     pass
 
+ 
+class IListRelatedField(Interface):
+    pass   
+
 class ListField(schema.List):
     grok.implements(IListField)
+    """We need to have a unique class for the field list so that we
+    can apply a custom adapter."""
+    pass
+
+class ListRelatedField(schema.List):
+    grok.implements(IListRelatedField)
     """We need to have a unique class for the field list so that we
     can apply a custom adapter."""
     pass

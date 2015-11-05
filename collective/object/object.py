@@ -35,7 +35,7 @@ from z3c.form.form import extends
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
-from z3c.relationfield.interfaces import IRelationList
+from z3c.relationfield.interfaces import IRelationList, IRelationValue
 
 try:
     from z3c.form.browser.textlines import TextLinesFieldWidget
@@ -93,18 +93,31 @@ from Products.CMFCore.utils import getToolByName
 
 class ListFieldConverter(DefaultDexterityTextIndexFieldConverter):
     implements(IDexterityTextIndexFieldConverter)
-    adapts(IDexterityContent, IListField, IWidget)
+    adapts(IDexterityContent, IListRelatedField, IWidget)
 
     def convert(self):
         html = self.widget.render().strip()
+
         transforms = getToolByName(self.context, 'portal_transforms')
         if isinstance(html, unicode):
             html = html.encode('utf-8')
         stream = transforms.convertTo('text/plain', html, mimetype='text/html')
 
         datastripped = stream.getData().strip()
+        
+        for line in self.widget.value:
+            for key, value in line.iteritems():
+                if IRelationValue.providedBy(value):
+                    try:
+                        to_obj = value.to_object
+                        title = getattr(to_obj, 'title', "")
+                        if title:
+                            datastripped = "%s %s" %(datastripped, title)
+                    except:
+                        continue
+
         print datastripped
-        return ''
+        return datastripped
 
 class IObject(form.Schema):
 
@@ -122,6 +135,7 @@ class IObject(form.Schema):
         missing_value=[]
     )
     form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
+    dexteritytextindexer.searchable('identification_identification_collections')
 
     identification_objectName_category = schema.List(
         title=_(u'Object category'),
@@ -135,9 +149,10 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
         required=False)
     form.widget(identification_objectName_objectname=DataGridFieldFactory)
-
+    dexteritytextindexer.searchable('identification_objectName_objectname')
+    
     # Production
-    productionDating_productionDating = ListField(title=_(u'Production & Dating'),
+    productionDating_productionDating = ListRelatedField(title=_(u'Production & Dating'),
         value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
         required=False)
     form.widget(productionDating_productionDating=BlockDataGridFieldFactory)
@@ -170,11 +185,13 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
         required=False)
     form.widget(physicalCharacteristics_technique=DataGridFieldFactory)
+    dexteritytextindexer.searchable('physicalCharacteristics_technique')
 
     physicalCharacteristics_material = ListField(title=_(u'Materials'),
         value_type=DictRow(title=_(u'Materials'), schema=IMaterials),
         required=False)
     form.widget(physicalCharacteristics_material=DataGridFieldFactory)
+    dexteritytextindexer.searchable('physicalCharacteristics_material')
 
     physicalCharacteristics_dimension = ListField(title=_(u'Dimensions'),
         value_type=DictRow(title=_(u'Dimensions'), schema=IDimensions),
@@ -446,6 +463,7 @@ class IObject(form.Schema):
         title=_(u'Object number'),
         required=False
     )
+    dexteritytextindexer.searchable('identification_identification_objectNumber')
    
     identification_identification_part = schema.TextLine(
         title=_(u'Part'),
