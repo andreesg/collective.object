@@ -1915,4 +1915,12 @@ msgstr "Nieuw Personen en Instellingen"
 msgid 'identification_identification_objectNumber'
 msgstr 'Objectnummer'
 
+#: ../object.py
+msgid 'titleAuthorImprintCollation_titleAuthor_author'
+msgstr 'Auteur'
+
+#: ../object.py
+msgid 'titleAuthorImprintCollation_imprint_year'
+msgstr 'Jaar'
+
 
