@@ -6,6 +6,7 @@
 #
 from zope import schema
 from zope.interface import invariant, Invalid, Interface, implements
+from zope.component import adapts
 from zope.interface import alsoProvides
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.fieldproperty import FieldProperty
@@ -65,7 +66,7 @@ from collective import dexteritytextindexer
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.content import Container
 from plone.dexterity.browser import add, edit
-
+from z3c.form.interfaces import IWidget
 
 # # # # # # # # # # # # # # # # 
 # !Object specific imports!   #
@@ -79,6 +80,10 @@ from .utils.variables import *
 from .utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget, ExtendedRelatedItemsFieldWidget
 
 from plone.formwidget.contenttree import ObjPathSourceBinder as sb
+from collective.dexteritytextindexer.converters import DefaultDexterityTextIndexFieldConverter
+from collective.dexteritytextindexer.interfaces import IDexterityTextIndexFieldConverter
+from plone.dexterity.interfaces import IDexterityContent
+from Products.CMFCore.utils import getToolByName
 
 # # # # # # # # # #
 # # # # # # # # # #
@@ -102,8 +107,8 @@ class IObject(form.Schema):
         missing_value=[]
     )
     form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
-
-
+    dexteritytextindexer.searchable('identification_identification_collections')
+    
     identification_objectName_category = schema.List(
         title=_(u'Object category'),
         required=False,
@@ -116,17 +121,14 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
         required=False)
     form.widget(identification_objectName_objectname=DataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_objectName_objectname')
 
     # Production
     productionDating_productionDating = ListField(title=_(u'Production & Dating'),
         value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
         required=False)
     form.widget(productionDating_productionDating=BlockDataGridFieldFactory)
-
-    #productionDating_production_schoolstyle = ListField(title=_(u'School / style'),
-    #    value_type=DictRow(title=_(u'School / style'), schema=ISchoolStyle),
-    #    required=False)
-    #form.widget(productionDating_production_schoolstyle=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('productionDating_productionDating')
 
     productionDating_production_schoolStyles = schema.List(
         title=_(u'School / style'),
@@ -155,11 +157,13 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
         required=False)
     form.widget(physicalCharacteristics_technique=DataGridFieldFactory)
+    dexteritytextindexer.searchable('physicalCharacteristics_technique')
 
     physicalCharacteristics_material = ListField(title=_(u'Materials'),
         value_type=DictRow(title=_(u'Materials'), schema=IMaterials),
         required=False)
     form.widget(physicalCharacteristics_material=DataGridFieldFactory)
+    dexteritytextindexer.searchable('physicalCharacteristics_material')
 
     physicalCharacteristics_dimension = ListField(title=_(u'Dimensions'),
         value_type=DictRow(title=_(u'Dimensions'), schema=IDimensions),
@@ -463,6 +467,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Title'), schema=ITitle),
         required=False)
     form.widget(identification_titleDescription_title=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('identification_titleDescription_title')
 
     identification_titleDescription_description = schema.Text(
         title=_(u'Description'),

@@ -25,6 +25,7 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList, Relation
 
 import datetime
+from five import grok
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
@@ -37,13 +38,10 @@ class IListField(Interface):
     pass
 
 class ListField(schema.List):
-    
+    grok.implements(IListField)
     """We need to have a unique class for the field list so that we
     can apply a custom adapter."""
     pass
-
-
-
 
 # # # # # # # # # # # # #
 # Widget interface      #
