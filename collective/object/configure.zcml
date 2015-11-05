@@ -91,6 +91,8 @@
       permission="zope.Public"
     />
 
+  <adapter factory=".object.ListFieldConverter" />
+
   <adapter name="identification_identification_objectNumber" factory=".indexers.identification_identification_objectNumber" />
   
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />

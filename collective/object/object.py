@@ -91,6 +91,21 @@ from Products.CMFCore.utils import getToolByName
 # # # # # # # # # #
 # # # # # # # # # #
 
+class ListFieldConverter(DefaultDexterityTextIndexFieldConverter):
+    implements(IDexterityTextIndexFieldConverter)
+    adapts(IDexterityContent, IListField, IWidget)
+
+    def convert(self):
+        html = self.widget.render().strip()
+        transforms = getToolByName(self.context, 'portal_transforms')
+        if isinstance(html, unicode):
+            html = html.encode('utf-8')
+        stream = transforms.convertTo('text/plain', html, mimetype='text/html')
+
+        datastripped = stream.getData().strip()
+        print datastripped
+        return ''
+
 class IObject(form.Schema):
 
     priref = schema.TextLine(
@@ -107,8 +122,7 @@ class IObject(form.Schema):
         missing_value=[]
     )
     form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
-    dexteritytextindexer.searchable('identification_identification_collections')
-    
+
     identification_objectName_category = schema.List(
         title=_(u'Object category'),
         required=False,
@@ -121,7 +135,6 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
         required=False)
     form.widget(identification_objectName_objectname=DataGridFieldFactory)
-    dexteritytextindexer.searchable('identification_objectName_objectname')
 
     # Production
     productionDating_productionDating = ListField(title=_(u'Production & Dating'),
@@ -157,13 +170,11 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
         required=False)
     form.widget(physicalCharacteristics_technique=DataGridFieldFactory)
-    dexteritytextindexer.searchable('physicalCharacteristics_technique')
 
     physicalCharacteristics_material = ListField(title=_(u'Materials'),
         value_type=DictRow(title=_(u'Materials'), schema=IMaterials),
         required=False)
     form.widget(physicalCharacteristics_material=DataGridFieldFactory)
-    dexteritytextindexer.searchable('physicalCharacteristics_material')
 
     physicalCharacteristics_dimension = ListField(title=_(u'Dimensions'),
         value_type=DictRow(title=_(u'Dimensions'), schema=IDimensions),
@@ -383,7 +394,6 @@ class IObject(form.Schema):
         title=_(u"Body"),
         required=False
     )
-    dexteritytextindexer.searchable('text')
 
     # # # # # # # # # # # # # # 
     # Identification fieldset #
@@ -436,8 +446,7 @@ class IObject(form.Schema):
         title=_(u'Object number'),
         required=False
     )
-    dexteritytextindexer.searchable('identification_identification_objectNumber')
-
+   
     identification_identification_part = schema.TextLine(
         title=_(u'Part'),
         required=False
@@ -467,8 +476,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Title'), schema=ITitle),
         required=False)
     form.widget(identification_titleDescription_title=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('identification_titleDescription_title')
-
+    
     identification_titleDescription_description = schema.Text(
         title=_(u'Description'),
         required=False
