@@ -107,16 +107,24 @@ class ListFieldConverter(DefaultDexterityTextIndexFieldConverter):
         
         for line in self.widget.value:
             for key, value in line.iteritems():
-                if IRelationValue.providedBy(value):
-                    try:
-                        to_obj = value.to_object
-                        title = getattr(to_obj, 'title', "")
-                        if title:
-                            datastripped = "%s %s" %(datastripped, title)
-                    except:
-                        continue
+                if type(value) == list:
+                    for val in value:
+                        if IRelationValue.providedBy(val):
+                            try:
+                                to_obj = value.to_object
+                                title = getattr(to_obj, 'title', "")
+                                if title:
+                                    datastripped = "%s %s" %(datastripped, title)
+                            except:
+                                continue
+                        else:
+                            portal_type = getattr(val, 'portal_type', '')
+                            if portal_type:
+                                if portal_type == "PersonOrInstitution":
+                                    title = getattr(val, 'title', "")
+                                    if title:
+                                        datastripped = "%s %s" %(datastripped, title)
 
-        print datastripped
         return datastripped
 
 class IObject(form.Schema):
@@ -150,7 +158,7 @@ class IObject(form.Schema):
         required=False)
     form.widget(identification_objectName_objectname=DataGridFieldFactory)
     dexteritytextindexer.searchable('identification_objectName_objectname')
-    
+
     # Production
     productionDating_productionDating = ListRelatedField(title=_(u'Production & Dating'),
         value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
