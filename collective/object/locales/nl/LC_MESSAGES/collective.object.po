@@ -429,7 +429,7 @@ msgstr "Bevestigingsdatum"
 
 #: ../object.py
 msgid "Renewal date"
-msgstr "Verl.datum"
+msgstr "Verlengen voor"
 
 #: ../object.py
 msgid "Reference"
@@ -1104,7 +1104,7 @@ msgstr "Kenmerk vindplaats"
 
 #: ../object.py
 msgid "Co-ordinates field collection place"
-msgstr "Coördnaten vindplaats"
+msgstr "Coördinaten vindplaats"
 
 #: ../object.py
 msgid "Grid type"

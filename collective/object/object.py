@@ -106,27 +106,17 @@ class ListFieldConverter(DefaultDexterityTextIndexFieldConverter):
         datastripped = stream.getData().strip()
         
         for line in self.widget.value:
-            for key, value in line.iteritems():
-                if type(value) == list:
-                    for val in value:
-                        if IRelationValue.providedBy(val):
-                            try:
-                                to_obj = val.to_object
-                                title = getattr(to_obj, 'title', "")
-                                if title:
-                                    datastripped = "%s %s" %(datastripped, title)
-                            except:
-                                continue
-                        else:
-                            try:
-                                portal_type = getattr(val, 'portal_type', '')
-                                if portal_type:
-                                    if portal_type == "PersonOrInstitution":
-                                        title = getattr(val, 'title', "")
-                                        if title:
-                                            datastripped = "%s %s" %(datastripped, title)
-                            except:
-                                continue
+            if 'makers' in line:
+                for maker in line['makers']:
+                    if IRelationValue.providedBy(maker):
+                        maker_obj = maker.to_object
+                        title = getattr(maker_obj, 'title', "")
+                        datastripped = "%s %s" %(datastripped, title)
+                    elif getattr(maker, 'portal_type', "") == "PersonOrInstitution":
+                        title = getattr(maker, 'title', "")
+                        datastripped = "%s %s" %(datastripped, title)
+                    else:
+                        continue
 
         return datastripped
 
