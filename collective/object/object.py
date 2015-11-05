@@ -111,19 +111,22 @@ class ListFieldConverter(DefaultDexterityTextIndexFieldConverter):
                     for val in value:
                         if IRelationValue.providedBy(val):
                             try:
-                                to_obj = value.to_object
+                                to_obj = val.to_object
                                 title = getattr(to_obj, 'title', "")
                                 if title:
                                     datastripped = "%s %s" %(datastripped, title)
                             except:
                                 continue
                         else:
-                            portal_type = getattr(val, 'portal_type', '')
-                            if portal_type:
-                                if portal_type == "PersonOrInstitution":
-                                    title = getattr(val, 'title', "")
-                                    if title:
-                                        datastripped = "%s %s" %(datastripped, title)
+                            try:
+                                portal_type = getattr(val, 'portal_type', '')
+                                if portal_type:
+                                    if portal_type == "PersonOrInstitution":
+                                        title = getattr(val, 'title', "")
+                                        if title:
+                                            datastripped = "%s %s" %(datastripped, title)
+                            except:
+                                continue
 
         return datastripped
 
