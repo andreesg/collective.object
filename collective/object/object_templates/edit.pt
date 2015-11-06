@@ -204,9 +204,9 @@
                                             />
                                     </tal:block>
 
-                                    
+                                    <tal:restriction tal:condition="python: (fieldset_restriction == 'all') or (fieldset_name in ['identification', 'production_dating'])">
                                       <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/test" />
-                                    
+                                    </tal:restriction>
                                     
                                   </fieldset>
                           </tal:block>
