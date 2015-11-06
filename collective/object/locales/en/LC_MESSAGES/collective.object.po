@@ -342,7 +342,25 @@ msgstr 'Author'
 msgid 'titleAuthorImprintCollation_imprint_year'
 msgstr 'Year'
 
+#: ../object.py
+msgid 'identification__objectName_objectname_type'
+msgstr 'Object type'
 
+#: ../object.py
+msgid 'physicalCharacteristics__material'
+msgstr 'Material'
+
+#: ../object.py
+msgid 'identification__identification_collections'
+msgstr 'Collection'
+
+#: ../object.py
+msgid 'physicalCharacteristics__technique'
+msgstr 'Technique'
+
+#: ../object.py
+msgid 'productionDating_productionDating_maker'
+msgstr 'Maker'
 
 
 

@@ -93,6 +93,8 @@
 
   <adapter factory=".object.ListFieldConverter" />
 
+
+
   <adapter name="identification_identification_objectNumber" factory=".indexers.identification_identification_objectNumber" />
   
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
@@ -154,6 +156,7 @@
 
   <adapter name="numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association" factory=".indexers.numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association" />
 
+  <adapter name="productionDating_productionDating_maker" factory=".indexers.productionDating_productionDating_maker" />
 
   <utility
     component=".utils.vocabularies.RelatedItemsVocabularyFactory"

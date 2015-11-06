@@ -1923,4 +1923,29 @@ msgstr 'Auteur'
 msgid 'titleAuthorImprintCollation_imprint_year'
 msgstr 'Jaar'
 
+#: ../object.py
+msgid 'identification__objectName_objectname_type'
+msgstr 'Soort object'
+
+#: ../object.py
+msgid 'physicalCharacteristics__material'
+msgstr 'Materiaal'
+
+#: ../object.py
+msgid 'identification__identification_collections'
+msgstr 'Collectie'
+
+#: ../object.py
+msgid 'physicalCharacteristics__technique'
+msgstr 'Techniek'
+
+#: ../object.py
+msgid 'productionDating_productionDating_maker'
+msgstr 'Vervaardiger'
+
+
+
+
+
+
 

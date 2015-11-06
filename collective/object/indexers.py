@@ -4,6 +4,8 @@ from .object import IObject
 from collective.personOrInstitution.personOrInstitution import IPersonOrInstitution
 from collective.archive.archive import IArchive
 from collective.treatment.treatment import ITreatment
+from z3c.relationfield.interfaces import IRelationList, IRelationValue
+
 
 @indexer(IObject)
 def identification_objectName_category(object, **kw):
@@ -658,7 +660,6 @@ def physicalCharacteristics__keyword_keyword(object, **kw):
         return []
 
 
-
 @indexer(IObject)
 def identification__identification_collections(object, **kw):
     try:
@@ -698,6 +699,36 @@ def treatment_priref(object, **kw):
             return ""
     except:
         return ""
+
+@indexer(IObject)
+def productionDating_productionDating_maker(object, **kw):
+    try:
+        if hasattr(object, 'productionDating_productionDating'):
+            terms = []
+            production = object.productionDating_productionDating
+            for line in production:
+                if 'makers' in line:
+                    makers = line['makers']
+                    for maker in makers:
+                        if IRelationValue.providedBy(maker):
+                            maker_obj = maker.to_object
+                            title = getattr(maker_obj, 'title', "")
+                            titles = title.split()
+                            terms.extend(titles)
+                        elif getattr(maker, 'portal_type', "") == "PersonOrInstitution":
+                            title = getattr(maker, 'title', "")
+                            titles = title.split()
+                            terms.extend(titles)
+                        else:
+                            continue
+                            
+            final_terms = " ".join(terms)
+            return final_terms
+        else:
+            return ""
+    except:
+        return ""
+
 
 
 

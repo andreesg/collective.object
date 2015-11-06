@@ -136,7 +136,6 @@ class IObject(form.Schema):
         missing_value=[]
     )
     form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
-    dexteritytextindexer.searchable('identification_identification_collections')
 
     identification_objectName_category = schema.List(
         title=_(u'Object category'),
@@ -150,14 +149,12 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
         required=False)
     form.widget(identification_objectName_objectname=DataGridFieldFactory)
-    dexteritytextindexer.searchable('identification_objectName_objectname')
 
     # Production
     productionDating_productionDating = ListRelatedField(title=_(u'Production & Dating'),
         value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
         required=False)
     form.widget(productionDating_productionDating=BlockDataGridFieldFactory)
-    dexteritytextindexer.searchable('productionDating_productionDating')
 
     productionDating_production_schoolStyles = schema.List(
         title=_(u'School / style'),
@@ -186,13 +183,11 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
         required=False)
     form.widget(physicalCharacteristics_technique=DataGridFieldFactory)
-    dexteritytextindexer.searchable('physicalCharacteristics_technique')
 
     physicalCharacteristics_material = ListField(title=_(u'Materials'),
         value_type=DictRow(title=_(u'Materials'), schema=IMaterials),
         required=False)
     form.widget(physicalCharacteristics_material=DataGridFieldFactory)
-    dexteritytextindexer.searchable('physicalCharacteristics_material')
 
     physicalCharacteristics_dimension = ListField(title=_(u'Dimensions'),
         value_type=DictRow(title=_(u'Dimensions'), schema=IDimensions),
