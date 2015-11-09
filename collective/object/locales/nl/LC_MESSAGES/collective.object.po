@@ -1944,7 +1944,9 @@ msgid 'productionDating_productionDating_maker'
 msgstr 'Vervaardiger'
 
 
-
+#: ../object.py
+msgid 'identification_taxonomy_commonName'
+msgstr "Populaire naam"
 
 
 

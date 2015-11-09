@@ -515,7 +515,6 @@ class IObject(form.Schema):
         title=_(u'Date'),
         required=False
     )
-   
 
     # Taxonomy
     identification_taxonomy = ListField(title=_(u'Taxonomy'),

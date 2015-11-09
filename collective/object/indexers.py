@@ -701,6 +701,39 @@ def treatment_priref(object, **kw):
         return ""
 
 @indexer(IObject)
+def identification_taxonomy_commonName(object, **kw):
+    try:
+        if hasattr(object, 'identification_taxonomy'):
+            terms = []
+
+            taxonomies = object.identification_taxonomy
+
+            if taxonomies:
+                for line in taxonomies:
+                    tax = line['scientific_name']
+                    if tax:
+                        tax_rel = tax[0]
+                        if IRelationValue.providedBy(tax_rel):
+                            tax_obj = tax_rel.to_object
+                        elif getattr(tax_rel, 'portal_type', "") == "Taxonomie":
+                            tax_obj = tax_rel
+                        else:
+                            continue
+
+                        common_name = getattr(tax_obj, 'taxonomicTermDetails_commonName', None)
+                        if common_name:
+                            for name in common_name:
+                                new_name = name['commonName']
+                                if new_name:
+                                    terms.append(new_name)
+
+            return terms
+        else:
+            return []
+    except:
+        return []
+
+@indexer(IObject)
 def productionDating_productionDating_maker(object, **kw):
     try:
         if hasattr(object, 'productionDating_productionDating'):

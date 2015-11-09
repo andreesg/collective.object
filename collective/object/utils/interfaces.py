@@ -135,25 +135,23 @@ class IProductiondating(form.Schema):
     )
     form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
-    qualifier = schema.TextLine(title=_(u'label_kwal'), required=False)
+    qualifier = schema.TextLine(title=_(u'label_kwal'), required=False, default=u"", missing_value=u"")
     
-    form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionRole")
     role = schema.List(
         title=_(u'Role'),
         required=False,
         value_type=schema.TextLine(),
-        missing_value=[],
-        max_length=1
+        missing_value=[]
     )
+    form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionRole")
 
-    form.widget('place', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionPlace")
     place = schema.List(
         title=_(u'label_plaats'),
         required=False,
         value_type=schema.TextLine(),
         missing_value=[],
-        max_length=1
     )
+    form.widget('place', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionPlace")
 
     dateBirth = schema.TextLine(title=_(u'Date birth'), required=False)
     dateDeath = schema.TextLine(title=_(u'Date death'), required=False)

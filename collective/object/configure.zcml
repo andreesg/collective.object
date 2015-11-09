@@ -152,11 +152,12 @@
   <adapter name="fieldCollection__fieldCollection_event" factory=".indexers.fieldCollection_fieldCollection_event" />
   <adapter name="fieldCollection__fieldCollection_placeCode" factory=".indexers.fieldCollection__fieldCollection_placeCode" />
   <adapter name="fieldCollection__fieldCollection_placeCodeType" factory=".indexers.fieldCollection__fieldCollection_placeCodeType" />
-  
 
   <adapter name="numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association" factory=".indexers.numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association" />
 
   <adapter name="productionDating_productionDating_maker" factory=".indexers.productionDating_productionDating_maker" />
+  <adapter name="identification_taxonomy_commonName" factory=".indexers.identification_taxonomy_commonName" />
+  
 
   <utility
     component=".utils.vocabularies.RelatedItemsVocabularyFactory"

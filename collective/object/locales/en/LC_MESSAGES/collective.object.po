@@ -362,6 +362,12 @@ msgstr 'Technique'
 msgid 'productionDating_productionDating_maker'
 msgstr 'Maker'
 
+#: ../object.py
+msgid 'identification_taxonomy_commonName'
+msgstr 'Common name'
+
+
+
 
 
 
