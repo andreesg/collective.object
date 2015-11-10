@@ -1434,8 +1434,7 @@ class IObject(form.Schema):
     # # # # # # # #
 
     model.fieldset('loans', label=_(u'Loans'), 
-        fields=['loans_incomingLoans', 'loans_outgoingLoans',
-                'loans_incomingLoan', 'loans_outgoingLoan']
+        fields=['loans_incomingLoans', 'loans_outgoingLoans']
     )
 
     loans_incomingLoans = ListField(title=_(u'Incoming loans'),
@@ -1447,26 +1446,6 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Outgoing loans'), schema=IOutgoingLoan),
         required=False)
     form.widget(loans_outgoingLoans=BlockDataGridFieldFactory)
-
-    loans_incomingLoan = RelationList(
-        title=_(u'Incoming loans'),
-        default=[],
-        value_type=RelationChoice(
-            title=u"Related",
-            source=ObjPathSourceBinder(portal_type='IncomingLoan', navigation_tree_query={'path':{'query':INCOMINGLOAN_FOLDER}})
-        ),
-        required=False
-    )
-
-    loans_outgoingLoan = RelationList(
-        title=_(u'Outgoing loans'),
-        default=[],
-        value_type=RelationChoice(
-            title=u"Related",
-            source=ObjPathSourceBinder(portal_type='OutgoingLoan', navigation_tree_query={'path':{'query':OUTGOINGLOAN_FOLDER}})
-        ),
-        required=False
-    )
 
     #
     # Transport tab

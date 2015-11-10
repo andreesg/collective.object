@@ -211,13 +211,17 @@ class InstitutioRelatedItemsVocabulary(object):
     
     implements(IVocabularyFactory)
 
-    def __init__(self, sort_on=None):
-        self.sort_on = sort_on
+    def __init__(self, index=""):
+        self.index = index
 
     def __call__(self, context, query=None):
         parsed = {}
         if query:
-            index_choice = "institution"
+            if self.index:
+                index_choice = self.index
+            else:
+                index_choice = "institution"
+
             catalog_index = "nameInformation_name_nameType_type"
 
             self.sort_on = 'sortable_title'
@@ -286,7 +290,10 @@ class TaxonomicRelatedItemsVocabulary(object):
 
 RelatedItemsVocabularyFactory = RelatedItemsVocabulary('sortable_title')
 TaxonomicRelatedItemsVocabularyFactory = TaxonomicRelatedItemsVocabulary()
-InstitutioRelatedItemsVocabularyFactory = InstitutioRelatedItemsVocabulary()
+InstitutioRelatedItemsVocabularyFactory = InstitutioRelatedItemsVocabulary('institution')
+MakerRelatedItemsVocabularyFactory = InstitutioRelatedItemsVocabulary('maker')
+CollectorRelatedItemsVocabularyFactory = InstitutioRelatedItemsVocabulary('field collector')
+
 
 # Updated vocabularies
 CategoryVocabularyFactory = ObjectVocabulary('identification_objectName_category')
@@ -294,7 +301,6 @@ ObjectNameVocabularyFactory = ObjectVocabulary('identification_objectName_object
 RoleVocabularyFactory = ObjectVocabulary('productionDating__production_productionRole')
 PlaceVocabularyFactory = ObjectVocabulary('productionDating__production_productionPlace')
 SchoolStyleVocabularyFactory = ObjectVocabulary('productionDating__production_schoolStyle')
-
 ObjectNameTypeVocabularyFactory = ObjectVocabulary('identification__objectName_objectname_type')
 TechniqueVocabularyFactory = ObjectVocabulary('physicalCharacteristics__technique')
 MaterialVocabularyFactory = ObjectVocabulary('physicalCharacteristics__material')

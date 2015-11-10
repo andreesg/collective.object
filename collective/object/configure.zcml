@@ -175,6 +175,17 @@
     />
 
   <utility
+    component=".utils.vocabularies.MakerRelatedItemsVocabularyFactory"
+    name="collective.object.relatedMaker"
+    />
+
+    <utility
+    component=".utils.vocabularies.CollectorRelatedItemsVocabularyFactory"
+    name="collective.object.relatedCollector"
+    />
+
+    
+  <utility
     component=".utils.vocabularies.CategoryVocabularyFactory"
     name="collective.object.objectCategory"
     />

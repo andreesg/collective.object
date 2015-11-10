@@ -133,7 +133,7 @@ class IProductiondating(form.Schema):
         ),
         required=False
     )
-    form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedMaker')
 
     qualifier = schema.TextLine(title=_(u'label_kwal'), required=False, default=u"", missing_value=u"")
     
@@ -329,7 +329,7 @@ class IInscriptions(Interface):
         ),
         required=False
     )
-    form.widget('creators', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('creators', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedMaker')
 
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.inscriptionsRole")
     role = schema.List(
@@ -517,7 +517,7 @@ class ICollectionCollectors(Interface):
         ),
         required=False
     )
-    form.widget('name', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('name', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedCollector')
 
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
     role = schema.List(

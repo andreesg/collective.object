@@ -136,7 +136,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
     def get_current_fieldname(self):
         fieldname = self.field.__name__
         try:
-            if fieldname in ['loannumber']: # Loans exception 
+            if fieldname in ['loannumber']: # Loans exception
                 if self.field.value_type.source.selectable_filter.criteria['portal_type'][0] == 'OutgoingLoan':
                     fieldname = "loannumber_out"
         except:
@@ -174,7 +174,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
         
         if basePath:
             args['pattern_options']['basePath'] = basePath
-       
+
         if portal_type:
             args['pattern_options']['selectableTypes'] = [portal_type]
             args['pattern_options']['baseCriteria'] = [{
@@ -196,8 +196,10 @@ class ExtendedRelatedItemsWidget(RelatedItemsWidget):
         fieldname = self.field.__name__
         try:
             if fieldname in ['loannumber']: # Loans exception 
+                print fieldname
                 if self.field.value_type.source.selectable_filter.criteria['portal_type'][0] == 'OutgoingLoan':
                     fieldname = "loannumber_out"
+                print fieldname
         except:
             return fieldname
         return fieldname
