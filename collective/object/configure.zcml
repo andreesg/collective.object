@@ -157,7 +157,13 @@
 
   <adapter name="productionDating_productionDating_maker" factory=".indexers.productionDating_productionDating_maker" />
   <adapter name="identification_taxonomy_commonName" factory=".indexers.identification_taxonomy_commonName" />
+  <adapter name="fieldCollection_habitatStratigraphy_habitats" factory=".indexers.fieldCollection_habitatStratigraphy_habitats" />
   
+  
+  <utility
+    component=".utils.vocabularies.HabitatVocabularyFactory"
+    name="collective.object.habitat"
+    />
 
   <utility
     component=".utils.vocabularies.RelatedItemsVocabularyFactory"

@@ -112,7 +112,7 @@ CONTENTTYPE_CHOICES = {
 # form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
 class AjaxSingleSelectWidget(AjaxSelectWidget):
-    separator = '_'
+    separator = '___'
 
     def _base_args(self):
         """Method which will calculate _base class arguments.

@@ -98,6 +98,15 @@ def productionDating_production_schoolStyle(object, **kw):
     except:
         return []
 
+@indexer(IObject)
+def fieldCollection_habitatStratigraphy_habitats(object, **kw):
+    try:
+        if hasattr(object, 'fieldCollection_habitatStratigraphy_habitats'):
+            return object.fieldCollection_habitatStratigraphy_habitats
+        else:
+            return []
+    except:
+        return []
 
 @indexer(IObject)
 def productionDating__production_periods(object, **kw):

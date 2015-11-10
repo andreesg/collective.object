@@ -1322,8 +1322,8 @@ class IObject(form.Schema):
                 'fieldCollection_fieldCollection_dateLatePrecision', 'fieldCollection_fieldCollection_method',
                 'fieldCollection_fieldCollection_place', 'fieldCollection_fieldCollection_placeCode',
                 'fieldCollection_fieldCollection_placeFeature', 'fieldCollection_coordinatesFieldCollectionPlace',
-                'fieldCollection_habitatStratigraphy_habitat', 'fieldCollection_habitatStratigraphy_stratigraphy',
-                'fieldCollection_notes']
+                'fieldCollection_habitatStratigraphy_stratigraphy',
+                'fieldCollection_notes', 'fieldCollection_habitatStratigraphy_habitats']
     )
 
     fieldCollection_fieldCollection_fieldCollNumber = ListField(title=_(u'Field coll. number'),
@@ -1389,10 +1389,14 @@ class IObject(form.Schema):
 
 
     # Habitat and stratigraphy
-    fieldCollection_habitatStratigraphy_habitat = ListField(title=_(u'Habitat'),
-        value_type=DictRow(title=_(u'Habitat'), schema=IHabitat),
-        required=False)
-    form.widget(fieldCollection_habitatStratigraphy_habitat=BlockDataGridFieldFactory)
+
+    fieldCollection_habitatStratigraphy_habitats = schema.List(
+        title=_(u'Habitat'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('fieldCollection_habitatStratigraphy_habitats', AjaxSelectFieldWidget,  vocabulary="collective.object.habitat")
 
     fieldCollection_habitatStratigraphy_stratigraphy = ListField(title=_(u'Stratigraphy'),
         value_type=DictRow(title=_(u'Stratigraphy'), schema=IStratigraphy),

@@ -338,6 +338,8 @@ AssociationVocabularyFactory = ObjectVocabulary('associations__associatedSubject
 PeriodVocabularyFactory = ObjectVocabulary('productionDating__production_periods')
 AspectVocabularyFactory = ObjectVocabulary('physicalCharacteristics__keyword_aspect')
 KeywordVocabularyFactory = ObjectVocabulary('physicalCharacteristics__keyword_keyword')
+HabitatVocabularyFactory = ObjectVocabulary('fieldCollection_habitatStratigraphy_habitats')
+
 
 #
 # ATVM vocabularies

@@ -951,8 +951,8 @@
 
         <h2 class="page-header" i18n:translate="">Habitat and stratigraphy</h2>
 
-        <div class="form-horizontal gridfield table-responsive">
-          <tal:widget tal:replace="structure widgets/fieldCollection_habitatStratigraphy_habitat/@@ploneform-render-widget"/>
+        <div class="form-horizontal">
+          <tal:widget tal:replace="structure widgets/fieldCollection_habitatStratigraphy_habitats/@@ploneform-render-widget"/>
         </div>
 
         <div class="form-horizontal gridfield">
