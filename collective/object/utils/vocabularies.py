@@ -195,6 +195,10 @@ class RelatedItemsVocabulary(object):
 
             parsed['sort_on'] = self.sort_on
 
+            if 'name_type' in query:
+                if query['name_type'] != "" and query['name_type'] != " ":
+                    parsed['nameInformation_name_nameType_type'] = query['name_type']
+
             if 'SearchableText' in parsed:
                 parsed['Title'] = parsed.pop('SearchableText')
                 
