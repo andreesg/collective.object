@@ -196,7 +196,7 @@ class RelatedItemsVocabulary(object):
             parsed['sort_on'] = self.sort_on
 
             if 'name_type' in query:
-                if query['name_type'] != "" and query['name_type'] != " ":
+                if query['name_type'] != "" and query['name_type'] != " " and query["name_type"] != "No value":
                     parsed['nameInformation_name_nameType_type'] = query['name_type']
 
             if 'SearchableText' in parsed:
@@ -276,7 +276,7 @@ class TaxonomicRelatedItemsVocabulary(object):
             parsed['sort_on'] = self.sort_on
 
             if 'taxonomic_rank' in query:
-                if query['taxonomic_rank'] != "" and query['taxonomic_rank'] != " ":
+                if query['taxonomic_rank'] != "" and query['taxonomic_rank'] != " " and query['taxonomic_rank'] != "No value":
                     parsed['taxonomicTermDetails_term_rank'] = query['taxonomic_rank']
 
             if 'SearchableText' in parsed:
