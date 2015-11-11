@@ -736,7 +736,8 @@ def identification_taxonomy_commonName(object, **kw):
                                 if new_name:
                                     terms.append(new_name)
 
-            return terms
+            final_terms = " ".join(terms)
+            return final_terms
         else:
             return []
     except:
