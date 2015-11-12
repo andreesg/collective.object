@@ -366,7 +366,9 @@ msgstr 'Maker'
 msgid 'identification_taxonomy_commonName'
 msgstr 'Common name'
 
-
+#: ../object.py
+msgid 'type_to_search'
+msgstr "Type to search"
 
 
 
