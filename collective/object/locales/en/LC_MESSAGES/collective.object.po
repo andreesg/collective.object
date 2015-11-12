@@ -370,7 +370,9 @@ msgstr 'Common name'
 msgid 'type_to_search'
 msgstr "Type to search"
 
-
+#: ../object.py
+msgid 'path'
+msgstr "path"
 
 
 

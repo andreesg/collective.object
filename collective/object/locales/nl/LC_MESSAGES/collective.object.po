@@ -1948,10 +1948,11 @@ msgstr 'Vervaardiger'
 msgid 'identification_taxonomy_commonName'
 msgstr "Populaire naam"
 
-
 #: ../object.py
 msgid 'type_to_search'
 msgstr "Type om te zoeken"
 
-
+#: ../object.py
+msgid 'path'
+msgstr "pad"
 
