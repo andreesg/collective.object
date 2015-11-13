@@ -1911,48 +1911,364 @@ msgid "New Person or Institution"
 msgstr "Nieuw Personen en Instellingen"
 
 
-#: ../object.py
-msgid 'identification_identification_objectNumber'
-msgstr 'Objectnummer'
-
-#: ../object.py
-msgid 'titleAuthorImprintCollation_titleAuthor_author'
-msgstr 'Auteur'
-
-#: ../object.py
-msgid 'titleAuthorImprintCollation_imprint_year'
-msgstr 'Jaar'
-
-#: ../object.py
-msgid 'identification__objectName_objectname_type'
-msgstr 'Soort object'
-
-#: ../object.py
-msgid 'physicalCharacteristics__material'
-msgstr 'Materiaal'
-
-#: ../object.py
-msgid 'identification__identification_collections'
-msgstr 'Collectie'
-
-#: ../object.py
-msgid 'physicalCharacteristics__technique'
-msgstr 'Techniek'
-
-#: ../object.py
-msgid 'productionDating_productionDating_maker'
-msgstr 'Vervaardiger'
+# KEYWORD TRANSLATION
+#: ./browser/prefs_keywords_view.pt:137
+msgid "Subject"
+msgstr "Onderwerp"
 
 
-#: ../object.py
-msgid 'identification_taxonomy_commonName'
-msgstr "Populaire naam"
+#: ./browser/prefs_keywords_view.pt:137
+msgid "commentators"
+msgstr "commentators"
 
-#: ../object.py
-msgid 'type_to_search'
-msgstr "Type om te zoeken"
+# DONE
+#: ./browser/prefs_keywords_view.pt:137
+msgid "taxonomicTermDetails_term_scientificName"
+msgstr "Taxonomie - Taxonomische naamgegevens - Wetenschappelijke naam"
 
-#: ../object.py
-msgid 'path'
-msgstr "pad"
+#: ./browser/prefs_keywords_view.pt:137
+msgid "exhibitionsDetails_itinerary_place"
+msgstr "Tentoonstelling - Tentoonstelling - Plaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "general_entry_transportMethod"
+msgstr "Binnenkomst object - Algemeen - Transportmethode"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "seriesNotesISBN_series_series_series"
+msgstr "Bibliotheek - Reeks, annotatie, ISBN - Reeks"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "associations_associatedSubjects_period"
+msgstr "Object - Associaties - Periode"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "physicalCharacteristics_keyword_aspect"
+msgstr "Object - Fysieke kenmerken - Aspect"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "personDetails_nationality_language"
+msgstr "Person en instellingen - Biografische persoonsgegevens - Taal"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "personDetails_ocupation_ocupation"
+msgstr "Person en instellingen - Biografische persoonsgegevens - Beroep"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "titleAuthorImprintCollation_imprint_placesPrinted"
+msgstr "Bibliotheek - Titel, auteur, impressum, collatie - Plaats van druk"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "copiesAndShelfMarks_copyDetails_loan"
+msgstr "Bilbiotheek - Exemplaren en vindplaatsen - Bruiklenen"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "copiesAndShelfMarks_copyDetails_loanCategory"
+msgstr "Bilbiotheek - Exemplaren en vindplaatsen - Aspect"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "copiesAndShelfMarks_copyDetails_site"
+msgstr "Bilbiotheek - Exemplaren en vindplaatsen - Filiaal"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "copiesAndShelfMarks_copyDetails_resourceSite"
+msgstr "Digitale bronnen - Exemplaren en vindplaatsen - Filiaal"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "identification_objectName_category"
+msgstr "Object - Identificatie - Objectcategorie"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_fieldCollection_event"
+msgstr "Object - Vondstomstandigheden - Gebeurtenis"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "ownershipHistory_history_places"
+msgstr "Object - Eigendomsgeschiedenis - Plaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "identification_identification_objectNumber"
+msgstr "Object - Identificatie - Objectnummer"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "identification_objectName_objectname"
+msgstr "Object - Identificatie - Objectnaam"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "associations_associatedSubjects_association"
+msgstr "Object - Associaties - Geassocieerd onderwerp"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "conditionConservation_preservationForms"
+msgstr "Object - Toestand / Conservering - Bewaarvorm"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "iconography_generalSearchCriteria_specificThemes"
+msgstr "Object - Iconografie - Hoofdmotief specifiek"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "associations_associatedSubjects_subject"
+msgstr "Object - Associaties - Geassocieerd onderwerp"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "numbersRelationships_relationshipsWithOtherObjects_relatedObjects"
+msgstr "Object - Nummers/relaties - Gerelateerd object"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "physicalCharacteristics_materials"
+msgstr "Object - Fysieke kenmerken - Materiaal"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "identification_taxonomy_commonName"
+msgstr "Object - Identificatie - Populaire naam"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_habitatStratigraphy_habitats"
+msgstr "Object - Vondstomstandigheden - Landschap/milieu"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_fieldCollection_place"
+msgstr "Object - Vondstomstandigheden - Plaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "iconography_contentsubjects"
+msgstr "Object - Iconografie - Afgebeeld onderwerp"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "ownershipHistory_history_exchangeMethods"
+msgstr "Object - Eigendomsgeschiedenis - Verwervingsmethode"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "productionDating_production_productionPlace"
+msgstr "Object - Vervaardiging & Datering - Plaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "physicalCharacteristics_dimensions"
+msgstr "Object - Fysieke kenmerken - Afmetingen"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "inscriptionsMarkings_inscriptionsAndMarkings_type"
+msgstr "Object - Opschriften / merken - Soort"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "personDetails_ocupation_schoolStyle"
+msgstr "Object - School / stijl"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "inscriptionsMarkings_inscriptionsAndMarkings_script"
+msgstr "Object - Opschriften / merken soort - Schrift"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_fieldCollection_placeCodeType"
+msgstr "Object - Vondstomstandigheden - Soort code vindplaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "location_currentlocation"
+msgstr "Object - Standplaats - Huidige standplaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "productionDating_production_schoolStyle"
+msgstr "Object - Vervaardiging & Datering - School / stijl"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "productionDating_production_productionRole"
+msgstr "Object - Vervaardiging & Datering - Rol"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_fieldCollection_method"
+msgstr "Object - Vondstomstandigheden - Methode"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "acquisition_place"
+msgstr "Object - Verwerving - Plaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "physicalCharacteristics_dimensions_unit"
+msgstr "Object - Fysieke kenmerken - Eenh"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "conditionConservation_conditions_condition"
+msgstr "Object - Toestand / Conservering - Toestand"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "physicalCharacteristics_technique"
+msgstr "Object - Fysieke kenmerken - Techniek"
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_habitatAndStratigraphy_stratigraphy"
+msgstr "Object - Vondstomstandigheden - Stratigrafie"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_fieldCollection_placeCode"
+msgstr "Object - Vondstomstandigheden - Code vindplaats"
+#: ./browser/prefs_keywords_view.pt:137
+msgid "iconography_generalSearchCriteria_generalThemes"
+msgstr "Object - Iconografie - Hoofdmotief algemeen"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "identification_objectName_objectname_type"
+msgstr "Object - Identificatie - Soort object"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "inscriptionsMarkings_inscriptionsAndMarkings_role"
+msgstr "Object - Opschriften / merken - Rol"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "valueInsurance_valuations_currency"
+msgstr "Object - Waarde - Valuta"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "identification_objectName_category"
+msgstr "Object - Identificatie - Objectcategorie"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "acquisition_method"
+msgstr "Object - Verwerving - Methode"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_fieldCollection_collector_role"
+msgstr "Object - Vondstomstandigheden - Rol"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "fieldCollection_fieldCollection_placeFeature"
+msgstr "Object - Vondstomstandigheden - Kenmerk vindplaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "physicalCharacteristics_keyword_keyword"
+msgstr "Object - Fysieke kenmerken - Trefwoord"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "location_normalLocation_normallocation"
+msgstr "Object - Standplaats - Vaste standplaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "productionDating_production_period"
+msgstr "Object - Vervaardiging & Datering - Periode"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "numbersRelationships_relationshipsWithOtherObjects_relatedObjects_association"
+msgstr "Object - Nummers/relaties - Associatie"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "identification_identification_collection"
+msgstr "Object - Identificatie - Collectie"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "listWithLinkedObjects_linkedObjects_curr"
+msgstr "Binnenkomst object - Lijst met gekoppelde objecten - Valuta"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "nameInformation_miscellaneous_group"
+msgstr "Person en instellingen - Naamgegevens - Groep"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "nameInformation_addressDetails_country"
+msgstr "Person en instellingen - Naamgegevens - Land"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "abstractAndSubjectTerms_language"
+msgstr "Bibliotheek - Samenvatting, classificatie, trefwoorden - Taal"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "nameInformation_addressDetails_place"
+msgstr "Person en instellingen - Naamgegevens - Plaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "abstractAndSubjectTerms_classNumber"
+msgstr "Bibliotheek - Samenvatting, classificatie, trefwoorden - Class. code"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "abstractAndSubjectTerms_geographicalKeyword"
+msgstr "Bibliotheek - Samenvatting, classificatie, trefwoorden - Greografish trefwoord"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "abstractAndSubjectTerms_biblForm"
+msgstr "Bibliotheek - Samenvatting, classificatie, trefwoorden - Blibliogr. vorm"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "titleAuthorImprintCollation_titleAuthor_author_role"
+msgstr "Bibliotheek - Titel, auteur, impressum, collatie - Rol"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "titleAuthorImprintCollation_imprint_publisher"
+msgstr "Bibliotheek - Titel, auteur, impressum, collatie - Uitgever"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "abstractAndSubjectTerms_materialType"
+msgstr "Bibliotheek - Samenvatting, classificatie, trefwoorden - Materiaal soort"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "titleAuthorImprintCollation_titleAuthor_author"
+msgstr "Bibliotheek - Titel, auteur, impressum, collatie - Auteur"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "abstractAndSubjectTerms_subjectTerm_subjectType"
+msgstr "Bibliotheek - Samenvatting, classificatie, trefwoorden - Soort onderwerp"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "abstractAndSubjectTerms_subjectTerm_properName"
+msgstr "Bibliotheek - Samenvatting, classificatie, trefwoorden - Eigennaam"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "resourceDublinCore_language"
+msgstr "Digitale bronnen - Resource (Dublin Core) - Taal"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "resourceDublinCore_resourceType"
+msgstr "Digitale bronnen - Resource (Dublin Core) - Materiaalsoort"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "resourceDublinCore_subject"
+msgstr "Digitale bronnen - Resource (Dublin Core) - Onderwerp"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "treatmentDetails_identification_material"
+msgstr "Behandeling - Behandelingsgegevens - Materiaal"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "treatmentDetails_identification_treatmentMethod"
+msgstr "Behandeling - Behandelingsgegevens - Behandelmethode"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "nameInformation_name_nameType_type"
+msgstr "Person en instellingen - Naamgegevens - Soort naam"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "templateForObjectData_material"
+msgstr "Binnenkomst object - Sjabloon voor objectgegevens - Materiaal"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "templateForObjectData_location"
+msgstr "Binnenkomst object - Sjabloon voor objectgegevens - Standplaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "templateForObjectData_creator_productionPlace"
+msgstr "Binnenkomst object - Sjabloon voor objectgegevens - Vervaardiging plaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "templateForObjectData_objectName"
+msgstr "Binnenkomst object - Sjabloon voor objectgegevens - Objectnaam"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "templateForObjectData_technique"
+msgstr "Binnenkomst object - Sjabloon voor objectgegevens - Techniek"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "reproductionData_identification_techniques"
+msgstr "Beelddocumentatie - Reproductiegegevens - Techniek"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "reproductionData_descriptiveElements_subject"
+msgstr "Beelddocumentatie - Reproductiegegevens - Onderwerp"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "reproductionData_identification_location"
+msgstr "Beelddocumentatie - Reproductiegegevens - Plaats"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "reproductionData_identification_reproductionType"
+msgstr "Beelddocumentatie - Reproductiegegevens - Soort reproductie"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "reproductionData_descriptiveElements_coverage"
+msgstr "Beelddocumentatie - Reproductiegegevens - Coverage"
 

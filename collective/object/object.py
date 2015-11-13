@@ -1317,11 +1317,10 @@ class IObject(form.Schema):
 
     model.fieldset('field_collection', label=_(u'Field Collection'), 
         fields=['fieldCollection_fieldCollection_fieldCollNumber', 'fieldCollection_fieldCollection_collector',
-                'fieldCollection_fieldCollection_event', 'fieldCollection_fieldCollection_dateEarly',
+                'fieldCollection_fieldCollection_dateEarly',
                 'fieldCollection_fieldCollection_dateEarlyPrecision', 'fieldCollection_fieldCollection_dateLate',
-                'fieldCollection_fieldCollection_dateLatePrecision', 'fieldCollection_fieldCollection_method',
-                'fieldCollection_fieldCollection_place', 'fieldCollection_fieldCollection_placeCode',
-                'fieldCollection_fieldCollection_placeFeature', 'fieldCollection_coordinatesFieldCollectionPlace',
+                'fieldCollection_fieldCollection_dateLatePrecision',
+                'fieldCollection_coordinatesFieldCollectionPlace',
                 'fieldCollection_habitatStratigraphy_stratigraphy',
                 'fieldCollection_notes', 'fieldCollection_habitatStratigraphy_habitats']
     )
@@ -1335,11 +1334,6 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Collector'), schema=ICollector),
         required=False)
     form.widget(fieldCollection_fieldCollection_collector=DataGridFieldFactory)
-
-    fieldCollection_fieldCollection_event = ListField(title=_(u'Event'),
-        value_type=DictRow(title=_(u'Event'), schema=IEvent),
-        required=False)
-    form.widget(fieldCollection_fieldCollection_event=BlockDataGridFieldFactory)
 
     fieldCollection_fieldCollection_dateEarly = schema.TextLine(
         title=_(u'Date (early)'),
@@ -1360,26 +1354,6 @@ class IObject(form.Schema):
         title=_(u'Precision'),
         required=False
     )
-
-    fieldCollection_fieldCollection_method = ListField(title=_(u'Method'),
-        value_type=DictRow(title=_(u'Method'), schema=IMethod),
-        required=False)
-    form.widget(fieldCollection_fieldCollection_method=BlockDataGridFieldFactory)
-
-    fieldCollection_fieldCollection_place = ListField(title=_(u'Place'),
-        value_type=DictRow(title=_(u'Place'), schema=IPlace),
-        required=False)
-    form.widget(fieldCollection_fieldCollection_place=BlockDataGridFieldFactory)
-
-    fieldCollection_fieldCollection_placeCode = ListField(title=_(u'Place code'),
-        value_type=DictRow(title=_(u'Place code'), schema=IPlaceCode),
-        required=False)
-    form.widget(fieldCollection_fieldCollection_placeCode=BlockDataGridFieldFactory)
-
-    fieldCollection_fieldCollection_placeFeature = ListField(title=_(u'Place feature'),
-        value_type=DictRow(title=_(u'Place feature'), schema=IPlaceFeature),
-        required=False)
-    form.widget(fieldCollection_fieldCollection_placeFeature=BlockDataGridFieldFactory)
 
     # Co-ordinates field collection place
     fieldCollection_coordinatesFieldCollectionPlace = ListField(title=_(u'Co-ordinates field collection place'),
