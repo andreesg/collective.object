@@ -1927,6 +1927,11 @@ msgid "taxonomicTermDetails_term_scientificName"
 msgstr "Taxonomie - Taxonomische naamgegevens - Wetenschappelijke naam"
 
 #: ./browser/prefs_keywords_view.pt:137
+msgid "taxonomicTermDetails_term_rank"
+msgstr "Taxonomie - Taxonomische naamgegevens - Taxonomische rang"
+
+
+#: ./browser/prefs_keywords_view.pt:137
 msgid "exhibitionsDetails_itinerary_place"
 msgstr "Tentoonstelling - Tentoonstelling - Plaats"
 
@@ -1937,6 +1942,10 @@ msgstr "Binnenkomst object - Algemeen - Transportmethode"
 #: ./browser/prefs_keywords_view.pt:137
 msgid "seriesNotesISBN_series_series_series"
 msgstr "Bibliotheek - Reeks, annotatie, ISBN - Reeks"
+
+#: ./browser/prefs_keywords_view.pt:137
+msgid "seriesNotesISBN_series_subseries_subseries"
+msgstr "Bibliotheek - Reeks, annotatie, ISBN - Onderreeks"
 
 #: ./browser/prefs_keywords_view.pt:137
 msgid "associations_associatedSubjects_period"
@@ -2091,8 +2100,9 @@ msgid "conditionConservation_conditions_condition"
 msgstr "Object - Toestand / Conservering - Toestand"
 
 #: ./browser/prefs_keywords_view.pt:137
-msgid "physicalCharacteristics_technique"
+msgid "physicalCharacteristics_techniques"
 msgstr "Object - Fysieke kenmerken - Techniek"
+
 #: ./browser/prefs_keywords_view.pt:137
 msgid "fieldCollection_habitatAndStratigraphy_stratigraphy"
 msgstr "Object - Vondstomstandigheden - Stratigrafie"
@@ -2253,7 +2263,7 @@ msgid "templateForObjectData_technique"
 msgstr "Binnenkomst object - Sjabloon voor objectgegevens - Techniek"
 
 #: ./browser/prefs_keywords_view.pt:137
-msgid "reproductionData_identification_techniques"
+msgid "reproductionData_identification_technique"
 msgstr "Beelddocumentatie - Reproductiegegevens - Techniek"
 
 #: ./browser/prefs_keywords_view.pt:137
