@@ -729,6 +729,10 @@ def identification_taxonomy_commonName(object, **kw):
                         else:
                             continue
 
+                        tax_title = getattr(tax_obj, 'title', '')
+                        if tax_title:
+                            terms.append(tax_title)
+                            
                         common_name = getattr(tax_obj, 'taxonomicTermDetails_commonName', None)
                         if common_name:
                             for name in common_name:
