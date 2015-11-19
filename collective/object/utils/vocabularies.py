@@ -142,7 +142,7 @@ class ObjectVocabulary(object):
             if type(i) != list and (query is None or safe_encode(query) in safe_encode(i))
         ]
 
-        items.sort(key=lambda x: x.token)
+        items.sort(key=lambda x: x.token.lower())
 
         return SimpleVocabulary(items)
 
