@@ -133,6 +133,7 @@ class ObjectVocabulary(object):
                 # no need to use portal encoding for transitional encoding from
                 # unicode to ascii. utf-8 should be fine.
                 term = term.encode('utf-8')
+                term = term.lower()
             return term
 
         items = [
@@ -140,6 +141,8 @@ class ObjectVocabulary(object):
             for i in index._index
             if type(i) != list and (query is None or safe_encode(query) in safe_encode(i))
         ]
+
+        items.sort(key=lambda x: x.token)
 
         return SimpleVocabulary(items)
 
