@@ -134,12 +134,12 @@ class ObjectVocabulary(object):
                 # unicode to ascii. utf-8 should be fine.
                 term = term.encode('utf-8')
                 term = term.lower()
-            return term
+            return term.lower()
 
         items = [
-            SimpleTerm(i, b2a_qp(safe_encode(i)), safe_unicode(i))
+            SimpleTerm(i, b2a_qp(safe_encode(i).lower()), safe_unicode(i))
             for i in index._index
-            if type(i) != list and (query is None or safe_encode(query) in safe_encode(i))
+            if type(i) != list and (query is None or safe_encode(query) in safe_encode(i).lower())
         ]
 
         items.sort(key=lambda x: x.token.lower())
