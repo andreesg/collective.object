@@ -102,6 +102,8 @@
 
   <!-- Already fixed -->
   <adapter name="identification_identification_objectNumber" factory=".indexers.identification_identification_objectNumber" />
+  <adapter name="identification_objectNumber" factory=".indexers.identification_objectNumber" />
+  
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
   <adapter name="identification_objectName_objectname" factory=".indexers.identification_objectName_objectname" />
   <adapter name="identification_taxonomy_commonName" factory=".indexers.identification_taxonomy_commonName" />
@@ -148,7 +150,8 @@
   <adapter name="acquisition_place" factory=".indexers.acquisition_places" />
   <adapter name="valueInsurance_valuations_currency" factory=".indexers.valueInsurance_valuations_currency" />
   <adapter name="numbersRelationships_relationshipsWithOtherObjects_relatedObjects_association" factory=".indexers.numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association" />
-  
+
+
 
 
   <utility

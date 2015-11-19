@@ -459,6 +459,20 @@ def identification_identification_objectNumber(object, **kw):
         return ""
 
 @indexer(IObject)
+def identification_objectNumber(object, **kw):
+    try:
+        if hasattr(object, 'identification_identification_objectNumber'):
+            value = object.identification_identification_objectNumber
+            if value:
+                return value.lower()
+            else:
+                return ""
+        else:
+            return ""
+    except:
+        return ""
+
+@indexer(IObject)
 def ownershipHistory_history_place(object, **kw):
     try:
         if hasattr(object, 'ownershipHistory_history_place'):

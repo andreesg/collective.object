@@ -1993,7 +1993,7 @@ msgstr "Object - Vondstomstandigheden - Gebeurtenis"
 
 #: ./browser/prefs_keywords_view.pt:137
 msgid "ownershipHistory_history_places"
-msgstr "Object - Eigendomsgeschiedenis - Plaats"
+msgstr "Object - Eigendomsgeschiedenis - Vindplaats"
 
 #: ./browser/prefs_keywords_view.pt:137
 msgid "identification_identification_objectNumber"
