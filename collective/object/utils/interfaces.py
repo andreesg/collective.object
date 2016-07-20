@@ -18,7 +18,7 @@ from ..utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsField
 
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
-from plone.app.widgets.dx import AjaxSelectFieldWidget, DatetimeFieldWidget
+from plone.app.z3cform.widget import AjaxSelectFieldWidget, DatetimeFieldWidget
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 from z3c.relationfield.schema import RelationChoice

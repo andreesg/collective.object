@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from collective.leadmedia.adapters import ICanContainMedia
+#from collective.leadmedia.adapters import ICanContainMedia
 from zope.component import getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from collective.object import MessageFactory as _
@@ -16,7 +16,7 @@ from z3c.relationfield.interfaces import IRelationList
 from zope.i18nmessageid import MessageFactory
 from zope.schema import getFields, getFieldsInOrder
 from collective.object.utils.variables import GENERAL_WIDGETS
-from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget, IAjaxSelectWidget, RelatedItemsFieldWidget
+from plone.app.z3cform.widget import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget, IAjaxSelectWidget, RelatedItemsFieldWidget
 from zope.interface import alsoProvides
 from .interfaces import IFormWidget
 from plone.dexterity.browser import add, edit
@@ -75,11 +75,11 @@ class ObjectView(edit.DefaultEditForm):
         details["image"] = ""
 
         brain = uuidToCatalogBrain(item_uid)
-        if brain:
-            leadmedia_uid = brain.leadMedia
-            if leadmedia_uid:
-                lead_media = uuidToCatalogBrain(leadmedia_uid)
-                details['image'] = lead_media.getURL() + "/@@images/image/large"
+        #if brain:
+        #    leadmedia_uid = brain.leadMedia
+        #    if leadmedia_uid:
+        #        lead_media = uuidToCatalogBrain(leadmedia_uid)
+        #        details['image'] = lead_media.getURL() + "/@@images/image/large"
 
         return details
 

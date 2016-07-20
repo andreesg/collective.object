@@ -6,7 +6,7 @@
 
       <body>
 
-        <div class="form" metal:define-macro="form">
+        <div class="form container" metal:define-macro="form">
         <div class="template-add-form" style="display:none"></div>
 
             <metal:define define-macro="titlelessform">

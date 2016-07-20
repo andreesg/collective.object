@@ -96,9 +96,9 @@
 
 
 
-  <adapter name="person_priref" factory=".indexers.person_priref" />
+  <!--<adapter name="person_priref" factory=".indexers.person_priref" />
   <adapter name="archive_priref" factory=".indexers.archive_priref" />
-  <adapter name="treatment_priref" factory=".indexers.treatment_priref" />
+  <adapter name="treatment_priref" factory=".indexers.treatment_priref" />-->
 
   <!-- Already fixed -->
   <adapter name="identification_identification_objectNumber" factory=".indexers.identification_identification_objectNumber" />

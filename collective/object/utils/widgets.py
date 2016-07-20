@@ -5,7 +5,7 @@
 # Customise widgets
 #
 
-from plone.app.widgets.dx import AjaxSelectFieldWidget, AjaxSelectWidget, IRelatedItemsWidget, RelatedItemsWidget
+from plone.app.z3cform.widget import AjaxSelectFieldWidget, AjaxSelectWidget, IRelatedItemsWidget, RelatedItemsWidget
 from z3c.form.interfaces import IFieldWidget
 from zope.interface import implementer
 from z3c.form.interfaces import IAddForm
@@ -160,9 +160,10 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
 
         # Get request language
         context = self.request.PARENTS[0]
+        DEFAULT_LANGUAGE = "en"
         language = DEFAULT_LANGUAGE
         if context:
-            language = context.language
+            language = DEFAULT_LANGUAGE
 
         # Get content type folder
         contenttype_folder = CONTENTTYPE_CHOICES.get(fieldname, ROOT_FOLDER)
@@ -221,9 +222,11 @@ class ExtendedRelatedItemsWidget(RelatedItemsWidget):
 
         # Get request language
         context = self.request.PARENTS[0]
+        DEFAULT_LANGUAGE = "en"
         language = DEFAULT_LANGUAGE
+
         if context:
-            language = context.language
+            language = DEFAULT_LANGUAGE
 
         # Get content type folder
         contenttype_folder = CONTENTTYPE_CHOICES.get(fieldname, ROOT_FOLDER)
@@ -268,9 +271,10 @@ class TaxonomicRelatedItemsWidget(RelatedItemsWidget):
         
         # Get request language
         context = self.request.PARENTS[0]
+        DEFAULT_LANGUAGE = 'en'
         language = DEFAULT_LANGUAGE
         if context:
-            language = context.language
+            language = DEFAULT_LANGUAGE
 
         # Get content type folder
         contenttype_folder = TAXONOMY_FOLDER

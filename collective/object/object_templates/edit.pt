@@ -55,18 +55,14 @@
       </tal:show_only_groups>
 
     <tal:show_all_header tal:condition="python: fieldset_restriction == None">
-        <tal metal:use-macro="view/context/@@collective.object.slideshowmacro/slideshow" />
+        <!--<tal metal:use-macro="view/context/@@collective.object.slideshowmacro/slideshow" />-->
     </tal:show_all_header>
 
       <tal:show_all tal:condition="python: fieldset_restriction == None or fieldset_restriction == 'all'">
 
       <div id="content-core">
         
-        <div id="editing-bar"
-          tal:condition="show_border"
-          tal:content="structure provider:plone.contentviews" />
-        
-        <div class="form" metal:define-macro="form">
+        <div class="form container" metal:define-macro="form">
 
             <metal:define define-macro="titlelessform">
 
@@ -107,7 +103,7 @@
 
                 <div id="ajax-error-msg" class="alert alert-warning" role="alert"></div>
 
-                <form class="rowlike enableUnloadProtection" action="." method="post"
+                <form class="rowlike enableUnloadProtection enableFormTabbing" action="." method="post"
                       tal:define="groups view/groups | nothing;
                                   form_name view/form_name | nothing;
                                   form_class view/css_class | string:;

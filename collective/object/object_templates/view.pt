@@ -117,10 +117,10 @@
                     <div class="field error"
                         tal:condition="not:nocall:error/widget"
                         tal:content="structure error/render"
-                        />
+                    />
                 </tal:block>
                 <tal:restriction tal:condition="python: fieldset_name == 'identification'">
-                  <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />    
+                  <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />
                 </tal:restriction>   
         </fieldset>
       
