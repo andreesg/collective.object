@@ -452,7 +452,7 @@ class IObject(form.Schema):
         required=False,
         default=u"",
         missing_value=u"",
-        description=_(u"Administration name<br><br>The name of the department responsible for the object itself and for the documentation about the object.<br><br>Examples:<br>Textiles<br>Geology<br>Glass and ceramics")
+        description=_(u"")
     )
 
     identification_identification_objectNumber = schema.TextLine(
