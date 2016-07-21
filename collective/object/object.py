@@ -128,71 +128,12 @@ class IObject(form.Schema):
     )
 
     # Vocabularies
-
-    identification_identification_collections = schema.List(
-        title=_(u'Collection'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
-
-    identification_objectName_category = schema.List(
-        title=_(u'Object category'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
-
-    identification_objectName_objectname = ListField(title=_(u'Object name'),
-        value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
-        required=False)
-    form.widget(identification_objectName_objectname=DataGridFieldFactory)
+    
 
     # Production
-    productionDating_productionDating = ListRelatedField(title=_(u'Production & Dating'),
-        value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
-        required=False)
-    form.widget(productionDating_productionDating=BlockDataGridFieldFactory)
-
-    productionDating_production_schoolStyles = schema.List(
-        title=_(u'School / style'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('productionDating_production_schoolStyles', AjaxSelectFieldWidget,  vocabulary="collective.object.productionSchoolStyle")
-
-    productionDating_production_periods = schema.List(
-        title=_(u'Period'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('productionDating_production_periods', AjaxSelectFieldWidget,  vocabulary="collective.object.periods")
+    
 
     # Physical characteristics
-
-    physicalCharacteristics_keyword = ListField(title=_(u'Keywords'),
-        value_type=DictRow(title=_(u'Keywords'), schema=IKeywords),
-        required=False)
-    form.widget(physicalCharacteristics_keyword=DataGridFieldFactory)
-
-    physicalCharacteristics_technique = ListField(title=_(u'Techniques'),
-        value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
-        required=False)
-    form.widget(physicalCharacteristics_technique=DataGridFieldFactory)
-
-    physicalCharacteristics_material = ListField(title=_(u'Materials'),
-        value_type=DictRow(title=_(u'Materials'), schema=IMaterials),
-        required=False)
-    form.widget(physicalCharacteristics_material=DataGridFieldFactory)
-
-    physicalCharacteristics_dimension = ListField(title=_(u'Dimensions'),
-        value_type=DictRow(title=_(u'Dimensions'), schema=IDimensions),
-        required=False)
-    form.widget(physicalCharacteristics_dimension=DataGridFieldFactory)
 
     iconography_generalSearchCriteria_generalthemes = schema.List(
         title=_(u'General theme'),
@@ -347,53 +288,7 @@ class IObject(form.Schema):
     form.widget(location_currentLocation=BlockDataGridFieldFactory)
 
     # Field collection
-    fieldCollection_fieldCollection_collectors = ListField(title=_(u'Collector'),
-        value_type=DictRow(title=_(u'Collector'), schema=ICollectionCollectors),
-        required=False)
-    form.widget(fieldCollection_fieldCollection_collectors=BlockDataGridFieldFactory)
-
-    fieldCollection_fieldCollection_events = schema.List(
-        title=_(u'Event'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('fieldCollection_fieldCollection_events', AjaxSelectFieldWidget,  vocabulary="collective.object.events")
-
-
-    fieldCollection_fieldCollection_methods = schema.List(
-        title=_(u'Method'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('fieldCollection_fieldCollection_methods', AjaxSelectFieldWidget,  vocabulary="collective.object.fieldCollection_method")
-
-    fieldCollection_fieldCollection_places = schema.List(
-        title=_(u'Place'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('fieldCollection_fieldCollection_places', AjaxSelectFieldWidget,  vocabulary="collective.object.fieldCollection_place")
-
-    fieldCollection_fieldCollection_placeFeatures = schema.List(
-        title=_(u'Place feature'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('fieldCollection_fieldCollection_placeFeatures', AjaxSelectFieldWidget,  vocabulary="collective.object.fieldCollection_placeFeature")
-
-    fieldCollection_fieldCollection_placeCodes = ListField(title=_(u'Place code'),
-        value_type=DictRow(title=_(u'Place code'), schema=IPlaceCodes),
-        required=False)
-    form.widget(fieldCollection_fieldCollection_placeCodes=BlockDataGridFieldFactory)
-
-    fieldCollection_habitatStratigraphy_stratigrafie = ListField(title=_(u'Stratigraphy'),
-        value_type=DictRow(title=_(u'Stratigraphy'), schema=IStratigrafie),
-        required=False)
-    form.widget(fieldCollection_habitatStratigraphy_stratigrafie=BlockDataGridFieldFactory)
+    
 
 
     # Numbers / relations
@@ -414,6 +309,8 @@ class IObject(form.Schema):
     model.fieldset('identification', label=_(u'Identification'), 
         fields=[
                 'identification_identification_institutionNames', 
+                'identification_identification_collections', 'identification_objectName_category',
+                'identification_objectName_objectname',
                 'identification_identification_institutionPlace', 'identification_identification_administrativeName', 
                 'identification_identification_objectNumber',
                 'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
@@ -446,6 +343,27 @@ class IObject(form.Schema):
         title=_(u'Institution place'), 
         required=False
     )
+
+    identification_identification_collections = schema.List(
+        title=_(u'Collection'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
+
+    identification_objectName_category = schema.List(
+        title=_(u'Object category'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
+
+    identification_objectName_objectname = ListField(title=_(u'Object name'),
+        value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
+        required=False)
+    form.widget(identification_objectName_objectname=DataGridFieldFactory)
 
     identification_identification_administrativeName = schema.TextLine(
         title=_(u'Administrative name'), 
@@ -550,7 +468,9 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # # # #
 
     model.fieldset('production_dating', label=_(u'Production & Dating'), 
-        fields=[
+        fields=['productionDating_productionDating',
+                'productionDating_production_schoolStyles',
+                'productionDating_production_periods',
                 'productionDating_production_productionReason', 
                 'productionDating_dating_period', 'productionDating_dating_notes']
     )
@@ -559,6 +479,27 @@ class IObject(form.Schema):
         title=_(u'Production reason'),
         required=False
     )
+
+    productionDating_productionDating = ListRelatedField(title=_(u'Production & Dating'),
+        value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
+        required=False)
+    form.widget(productionDating_productionDating=BlockDataGridFieldFactory)
+
+    productionDating_production_schoolStyles = schema.List(
+        title=_(u'School / style'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('productionDating_production_schoolStyles', AjaxSelectFieldWidget,  vocabulary="collective.object.productionSchoolStyle")
+
+    productionDating_production_periods = schema.List(
+        title=_(u'Period'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('productionDating_production_periods', AjaxSelectFieldWidget,  vocabulary="collective.object.periods")
 
     # Dating #
     productionDating_dating_period = ListField(title=_(u'Dating'),
@@ -578,8 +519,32 @@ class IObject(form.Schema):
 
     model.fieldset('physical_characteristics', label=_(u'Physical Characteristics'), 
         fields=['physicalCharacteristics_physicalDescription_description', 
-                'physicalCharacteristics_frame']
+                'physicalCharacteristics_frame',
+                'physicalCharacteristics_keyword',
+                'physicalCharacteristics_technique',
+                'physicalCharacteristics_material',
+                'physicalCharacteristics_dimension']
     )
+
+    physicalCharacteristics_keyword = ListField(title=_(u'Keywords'),
+        value_type=DictRow(title=_(u'Keywords'), schema=IKeywords),
+        required=False)
+    form.widget(physicalCharacteristics_keyword=DataGridFieldFactory)
+
+    physicalCharacteristics_technique = ListField(title=_(u'Techniques'),
+        value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
+        required=False)
+    form.widget(physicalCharacteristics_technique=DataGridFieldFactory)
+
+    physicalCharacteristics_material = ListField(title=_(u'Materials'),
+        value_type=DictRow(title=_(u'Materials'), schema=IMaterials),
+        required=False)
+    form.widget(physicalCharacteristics_material=DataGridFieldFactory)
+
+    physicalCharacteristics_dimension = ListField(title=_(u'Dimensions'),
+        value_type=DictRow(title=_(u'Dimensions'), schema=IDimensions),
+        required=False)
+    form.widget(physicalCharacteristics_dimension=DataGridFieldFactory)
 
     # Physical Description
     physicalCharacteristics_physicalDescription_description = schema.Text(
@@ -1322,13 +1287,70 @@ class IObject(form.Schema):
                 'fieldCollection_fieldCollection_dateLatePrecision',
                 'fieldCollection_coordinatesFieldCollectionPlace',
                 'fieldCollection_habitatStratigraphy_stratigraphy',
-                'fieldCollection_notes', 'fieldCollection_habitatStratigraphy_habitats']
+                'fieldCollection_notes', 'fieldCollection_habitatStratigraphy_habitats',
+                'fieldCollection_fieldCollection_collectors',
+                'fieldCollection_fieldCollection_events',
+                'fieldCollection_fieldCollection_methods',
+                'fieldCollection_fieldCollection_places',
+                'fieldCollection_fieldCollection_placeFeatures',
+                'fieldCollection_fieldCollection_placeCodes',
+                'fieldCollection_habitatStratigraphy_stratigrafie']
     )
 
     fieldCollection_fieldCollection_fieldCollNumber = ListField(title=_(u'Field coll. number'),
         value_type=DictRow(title=_(u'Field coll. number'), schema=IFieldCollNumber),
         required=False)
     form.widget(fieldCollection_fieldCollection_fieldCollNumber=BlockDataGridFieldFactory)
+
+    fieldCollection_fieldCollection_collectors = ListField(title=_(u'Collector'),
+        value_type=DictRow(title=_(u'Collector'), schema=ICollectionCollectors),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_collectors=BlockDataGridFieldFactory)
+
+    fieldCollection_fieldCollection_events = schema.List(
+        title=_(u'Event'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('fieldCollection_fieldCollection_events', AjaxSelectFieldWidget,  vocabulary="collective.object.events")
+
+
+    fieldCollection_fieldCollection_methods = schema.List(
+        title=_(u'Method'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('fieldCollection_fieldCollection_methods', AjaxSelectFieldWidget,  vocabulary="collective.object.fieldCollection_method")
+
+    fieldCollection_fieldCollection_places = schema.List(
+        title=_(u'Place'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('fieldCollection_fieldCollection_places', AjaxSelectFieldWidget,  vocabulary="collective.object.fieldCollection_place")
+
+    fieldCollection_fieldCollection_placeFeatures = schema.List(
+        title=_(u'Place feature'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('fieldCollection_fieldCollection_placeFeatures', AjaxSelectFieldWidget,  vocabulary="collective.object.fieldCollection_placeFeature")
+
+    fieldCollection_fieldCollection_placeCodes = ListField(title=_(u'Place code'),
+        value_type=DictRow(title=_(u'Place code'), schema=IPlaceCodes),
+        required=False)
+    form.widget(fieldCollection_fieldCollection_placeCodes=BlockDataGridFieldFactory)
+
+    fieldCollection_habitatStratigraphy_stratigrafie = ListField(title=_(u'Stratigraphy'),
+        value_type=DictRow(title=_(u'Stratigraphy'), schema=IStratigrafie),
+        required=False)
+    form.widget(fieldCollection_habitatStratigraphy_stratigrafie=BlockDataGridFieldFactory)
+
+
 
     fieldCollection_fieldCollection_collector = ListField(title=_(u'Collector'),
         value_type=DictRow(title=_(u'Collector'), schema=ICollector),

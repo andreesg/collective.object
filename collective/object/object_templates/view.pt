@@ -86,7 +86,7 @@
 
         <div id="ajax-error-msg" class="alert alert-warning" role="alert"></div>
     
-        <form class="enableFormTabbing">
+        <form data-pat-autotoc="levels: legend; section: fieldset; className: autotabs" class="rowlike enableUnloadProtection enableFormTabbing pat-autotoc autotabs;">
 
         <tal:block tal:repeat="group view/groups">
        
@@ -119,9 +119,9 @@
                         tal:content="structure error/render"
                     />
                 </tal:block>
-                <tal:restriction tal:condition="python: fieldset_name == 'identification'">
-                  <tal metal:use-macro="view/context/@@collective.object.fieldsetmacro/private_view" />
-                </tal:restriction>   
+                <tal:block define="view nocall:group">
+                    <metal:block use-macro="context/@@ploneform-macros/widget_rendering" />
+                </tal:block> 
         </fieldset>
       
       </tal:block>
