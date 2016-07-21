@@ -73,7 +73,7 @@
         </div>
 
         <div class="container object-container">
-          <div class="object-fieldset row">
+          <div class="object-fieldset">
             
           </div>
         </div>
@@ -86,7 +86,7 @@
 
         <div id="ajax-error-msg" class="alert alert-warning" role="alert"></div>
     
-        <form data-pat-autotoc="levels: legend; section: fieldset; className: autotabs" class="rowlike enableUnloadProtection enableFormTabbing pat-autotoc autotabs;" id="form">
+        <form data-pat-autotoc="levels: legend; section: fieldset; className: autotabs" class="rowlike enableUnloadProtection enableFormTabbing pat-autotoc autotabs;">
 
         <tal:block tal:repeat="group view/groups">
        

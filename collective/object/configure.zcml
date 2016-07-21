@@ -431,5 +431,18 @@
 
 
   <!-- -*- extra stuff goes here -*- -->
+  <plone:static
+    directory="resources"
+    type="plone"
+    name="collective.object"
+    />
+
+  <browser:page
+      name="get_object_fields"
+      for="*"
+      class=".utils.views.ObjectFields"
+      template="object_templates/get_object_fields.pt"
+      permission="zope2.View"
+    />
 
 </configure>

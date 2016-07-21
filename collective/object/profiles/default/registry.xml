@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<registry>
+	<records prefix="plone.resources/collectiveobject"
+	          interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+	   <value key="js">++plone++collective.object/js/custom.js</value>
+	   <value key="css">
+	      <element>++plone++collective.object/css/custom.less</element>
+	   </value>
+	</records>
+
+
+	<!-- bundle definition -->
+	<records prefix="plone.bundles/collectiveobject-bundle"
+	          interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+	  <value key="resources">
+	    <element>collectiveobject</element>
+	  </value>
+	  <value key="enabled">True</value>
+	  <value key="compile">True</value>
+	  <value key="jscompilation">++plone++collective.object/js/collectiveobject-bundle-compiled.js</value>
+	  <value key="csscompilation">++plone++collective.object/css/collectiveobject-bundle-compiled.css</value>
+	  <value key="last_compilation"></value>
+	</records>
+</registry>

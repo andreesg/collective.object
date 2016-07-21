@@ -7,20 +7,20 @@
 DEFAULT_LANGUAGE = 'nl'
 
 ROOT_FOLDER = {
-    "nl":"/nl",
-    "en":"/en",
+    "nl":"",
+    "en":"",
     "portal_type":""
 }
 
 PERSON_INSTITUTION_FOLDER = {
     "nl":'/nl/intern/personen-en-instellingen',
-    "en":'',
+    "en":'/intern/persons-and-institutions',
     "portal_type":'PersonOrInstitution',
 }
 
 TAXONOMY_FOLDER = {
     "nl":'/nl/intern/taxonomy',
-    "en":'',
+    "en":'/intern/taxonomy',
     "portal_type":'Taxonomie'
 }
 

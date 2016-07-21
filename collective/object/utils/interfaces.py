@@ -33,6 +33,10 @@ nametype_vocabulary = SimpleVocabulary(list(_createNameTypeVocabulary()))
 subjecttype_vocabulary = SimpleVocabulary(list(_createSubjectTypeVocabulary()))
 taxonomyrank_vocabulary = SimpleVocabulary(list(_createTaxonomyRankVocabulary()))
 
+class IThemeSpecific(Interface):
+    """ Marker interface that defines a Zope 3 Interface.
+    """
+
 
 class IListField(Interface):
     pass
