@@ -14,17 +14,28 @@ div.template-edit {
 	    box-shadow: none;
 	}
 
-	.pattern-relateditems-container {
-		pointer-events: none;
-	}
-
 	.pattern-relateditems-path {
 		display: none;
 	}
 }
 
+body.template-edit {
+	.pattern-relateditems-path {
+		z-index: initial;
+	}
+
+	#content-core .pattern-relateditems-container .pattern-relateditems-tree a {
+		border-bottom: 0px;
+	}
+
+	.pattern-relateditems-tree .tree-container .pat-tree {
+		max-height: none;
+	}
+}
+
 .template-edit,
-.template-collective-object-object {
+.template-collective-object-object,
+.template-collective-personorinstitution-personorinstitution {
 	.pat-select2 {
 		min-width: 100%;
 	}
@@ -55,9 +66,7 @@ div.template-edit {
 		padding: 6px 12px;
 	}
 
-	.datagridwidget-cell input.select2-input {
-		width: 100% !important;
-	}
+	
 
 	.datagridwidget-manipulator {
 		vertical-align: middle;
@@ -84,6 +93,18 @@ div.template-edit {
 
 	.select2-container-multi .select2-choices .select2-search-field {
 		height: 32px;
+	}
+
+
+	.select2-container-multi .select2-choices .select2-search-choice {
+		margin: 6px 0 3px 5px;
+	}
+}
+
+.template-collective-object-object,
+.template-collective-personorinstitution-personorinstitution {
+	.datagridwidget-cell input.select2-input {
+		width: 100% !important;
 	}
 }
 
@@ -136,4 +157,65 @@ body.portaltype-object.fields-loaded.template-edit {
 		visibility: visible;
 	}
 }
+
+body.portaltype-object:not(.template-edit) div.template-edit .select2-container-multi.select2-orderable .select2-search-choice span, 
+body.portaltype-object:not(.template-edit) div.template-edit .select2-container-multi.select2-orderable .select2-search-choice {
+    cursor: auto;
+}
+
+body:not(.template-edit) div.template-edit  {
+	.select2-container-multi .select2-choices .select2-search-choice {
+		border: 0px;
+		border-radius: 0px;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		margin: 7px 0 3px 5px;
+		pointer-events: none;
+	}
+
+	.select2-container-multi .select2-choices .select2-search-choice {
+		color: #696969;
+	}
+
+	.pat-relateditems .select2-search-choice {
+		z-index: 1;
+	}
+
+	.pat-relateditems .pattern-relateditems-item {
+		z-index: 10;
+
+		a {
+			pointer-events: all;
+		}
+	} 
+
+	.pat-select2 .select2-search-choice {
+		z-index: 1;
+	}
+
+	.pat-select2 .select2-search-choice div,
+	.pat-select2 .select2-search-choice a {
+		z-index: 10;
+	}
+
+	.pat-select2 .select2-search-choice a {
+		pointer-events: all;
+	}
+
+	.select2-container-multi .select2-choices {
+		background-image: none;
+		background-color: #f4f4f4;
+	}
+}
+
+#formfield-form-widgets-priref {
+	display: none;
+}
+
+span.pattern-relateditems-item-path {
+	padding-top: 2px;
+}
+
+
+
 

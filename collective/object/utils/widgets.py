@@ -160,8 +160,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
 
         # Get request language
         context = self.request.PARENTS[0]
-        DEFAULT_LANGUAGE = "en"
-        language = DEFAULT_LANGUAGE
+        language = getattr(context, 'language', DEFAULT_LANGUAGE)
         if context:
             language = DEFAULT_LANGUAGE
 
@@ -197,10 +196,8 @@ class ExtendedRelatedItemsWidget(RelatedItemsWidget):
         fieldname = self.field.__name__
         try:
             if fieldname in ['loannumber']: # Loans exception 
-                print fieldname
                 if self.field.value_type.source.selectable_filter.criteria['portal_type'][0] == 'OutgoingLoan':
                     fieldname = "loannumber_out"
-                print fieldname
         except:
             return fieldname
         return fieldname
@@ -223,10 +220,9 @@ class ExtendedRelatedItemsWidget(RelatedItemsWidget):
         # Get request language
         context = self.request.PARENTS[0]
         DEFAULT_LANGUAGE = "en"
-        language = DEFAULT_LANGUAGE
 
         if context:
-            language = DEFAULT_LANGUAGE
+            language = getattr(context, 'language', DEFAULT_LANGUAGE)
 
         # Get content type folder
         contenttype_folder = CONTENTTYPE_CHOICES.get(fieldname, ROOT_FOLDER)

@@ -127,177 +127,6 @@ class IObject(form.Schema):
         required=False
     )
 
-    # Vocabularies
-    
-
-    # Production
-    
-
-    # Physical characteristics
-
-    iconography_generalSearchCriteria_generalthemes = schema.List(
-        title=_(u'General theme'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('iconography_generalSearchCriteria_generalthemes', AjaxSelectFieldWidget,  vocabulary="collective.object.generalthemes")
-
-    iconography_generalSearchCriteria_specificthemes = schema.List(
-        title=_(u'Specific theme'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('iconography_generalSearchCriteria_specificthemes', AjaxSelectFieldWidget,  vocabulary="collective.object.specificthemes")
-
-    # Content subject
-    iconography_contentSubjects = ListField(title=_(u'Content subject'),
-        value_type=DictRow(title=_(u'Content subject'), schema=IIconographyContentSubjects),
-        required=False)
-    form.widget(iconography_contentSubjects=BlockDataGridFieldFactory)
-
-    # Content period/date
-    iconography_contentPeriodDates = ListField(title=_(u'Content period/date'),
-        value_type=DictRow(title=_(u'Content period/date'), schema=IIconographyContentPeriodDates),
-        required=False)
-    form.widget(iconography_contentPeriodDates=BlockDataGridFieldFactory)
-
-    # Inscriptions and markings
-    inscriptionsMarkings_inscriptionsAndMarkings = ListField(title=_(u'Inscriptions and markings'),
-        value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscriptions),
-        required=False)
-    form.widget(inscriptionsMarkings_inscriptionsAndMarkings=BlockDataGridFieldFactory)
-
-    # Associations
-    associations_associatedSubjects = ListField(title=_(u'Associated subject'),
-        value_type=DictRow(title=_(u'Associated subject'), schema=IAssociatedSubjects),
-        required=False)
-    form.widget(associations_associatedSubjects=BlockDataGridFieldFactory)
-
-    associations_associatedPeriods = ListField(title=_(u'Associated period'),
-        value_type=DictRow(title=_(u'Associated period'), schema=IAssociatedPeriods),
-        required=False)
-    form.widget(associations_associatedPeriods=BlockDataGridFieldFactory)
-
-    associations_associatedPersonInstitutions = ListField(title=_(u'Associated person/institution'),
-        value_type=DictRow(title=_(u'Associated person/institution'), schema=IAssociatedPersonInstitutions),
-        required=False)
-    form.widget(associations_associatedPersonInstitutions=BlockDataGridFieldFactory)
-
-    # Value & Insurance
-    valueInsurance_valuations = ListField(title=_(u'Valuation'),
-        value_type=DictRow(title=_(u'Valuation'), schema=IValuations),
-        required=False)
-    form.widget(valueInsurance_valuations=BlockDataGridFieldFactory)
-
-    # Condition & Conservation 
-    conditionConservation_conditions = ListField(title=_(u'Condition'),
-        value_type=DictRow(title=_(u'Condition'), schema=IConditions),
-        required=False)
-    form.widget(conditionConservation_conditions=DataGridFieldFactory)
-
-    conditionConservation_preservationForm = ListField(title=_(u'Preservation form'),
-        value_type=DictRow(title=_(u'Preservation form'), schema=IEnvConditions),
-        required=False)
-    form.widget(conditionConservation_preservationForm=BlockDataGridFieldFactory)
-
-
-    # Aquisition
-    acquisition_methods = schema.List(
-        title=_(u'Method'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('acquisition_methods', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.aquisitionmethod")
-
-    acquisition_places = schema.List(
-        title=_(u'label_acquisition_place', default=u"Place"),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('acquisition_places', AjaxSelectFieldWidget,  vocabulary="collective.object.aquisitionplace")
-
-    acquisition_costs_offer_price_currency = schema.List(
-        title=_(u'Curr.'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('acquisition_costs_offer_price_currency', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.currency")
-
-    acquisition_costs_purchase_price_currency = schema.List(
-        title=_(u'Curr.'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('acquisition_costs_purchase_price_currency', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.currency")
-
-    # Funding *
-    acquisition_fundings = ListField(title=_(u'Funding'),
-        value_type=DictRow(title=_(u'Funding'), schema=IFundings),
-        required=False)
-    form.widget(acquisition_fundings=BlockDataGridFieldFactory)
-
-    # Disposal
-    disposal_finance_currency = schema.List(
-        title=_(u'Curr.'),
-        required=False,
-        value_type=schema.TextLine()
-    )
-    form.widget('disposal_finance_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
-
-    # Ownership history
-    ownershipHistory_history_exchangeMethod = schema.List(
-        title=_(u'Exchange method'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('ownershipHistory_history_exchangeMethod', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.exchangemethod")
-
-    ownershipHistory_history_place = schema.List(
-        title=_(u'label_plaats', default=u'Place'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('ownershipHistory_history_place', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.historyplace")
-
-    ownershipHistory_historyOwner = ListField(title=_(u'Owner'),
-        value_type=DictRow(title=_(u'Owner'), schema=IHistoryOwner),
-        required=False)
-    form.widget(ownershipHistory_historyOwner=BlockDataGridFieldFactory)
-
-    # Location
-    location_normalLocation_normalLocation = schema.List(
-        title=_(u'Normal location'),
-        required=False,
-        value_type=schema.TextLine(),
-        missing_value=[]
-    )
-    form.widget('location_normalLocation_normalLocation', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.location")
-
-    # Current location
-    location_currentLocation = ListField(title=_(u'Current location'),
-        value_type=DictRow(title=_(u'Current location'), schema=ICurrentLocations),
-        required=False)
-    form.widget(location_currentLocation=BlockDataGridFieldFactory)
-
-    # Field collection
-    
-
-
-    # Numbers / relations
-    numbersRelationships_relationshipsWithOtherObjects_relatedObjects = ListField(title=_(u'Related object'),
-        value_type=DictRow(title=_(u'Related object'), schema=IRelatedObjects),
-        required=False)
-    form.widget(numbersRelationships_relationshipsWithOtherObjects_relatedObjects=BlockDataGridFieldFactory)
-
-
     text = RichText(
         title=_(u"Body"),
         required=False
@@ -309,22 +138,27 @@ class IObject(form.Schema):
     model.fieldset('identification', label=_(u'Identification'), 
         fields=[
                 'identification_identification_institutionNames', 
-                'identification_identification_collections', 'identification_objectName_category',
-                'identification_objectName_objectname',
-                'identification_identification_institutionPlace', 'identification_identification_administrativeName', 
+                'identification_identification_administrativeName',
+                'identification_identification_collections',
                 'identification_identification_objectNumber',
-                'identification_identification_part', 'identification_identification_totNumber', 'identification_identification_copyNumber', 
-                'identification_identification_edition', 'identification_identification_distinguishFeatures',
-                'identification_objectName_otherName', 
+                'identification_identification_part',
+                'identification_identification_totNumber',
+                'identification_identification_copyNumber',
+                'identification_identification_edition',
+                'identification_identification_distinguishFeatures',
+                'identification_objectName_category',
+                'identification_objectName_objectname',
+                'identification_objectName_otherName',
                 'identification_titleDescription_title',
                 'identification_titleDescription_translatedTitle',
-                'identification_titleDescription_description',
                 'identification_titleDescription_language',
+                'identification_titleDescription_description',
                 'identification_titleDescription_describer',
                 'identification_titleDescription_titleDate',
                 'identification_taxonomy',
                 'identification_taxonomy_determiners',
-                'identification_taxonomy_objectstatus', 'identification_taxonomy_notes']
+                'identification_taxonomy_objectstatus', 
+                'identification_taxonomy_notes']
     )
 
     identification_identification_institutionNames = RelationList(
@@ -332,17 +166,11 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relatedInstitution'
         ),
         required=False
     )
-
     form.widget('identification_identification_institutionNames', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedInstitution')
-
-    identification_identification_institutionPlace = schema.TextLine(
-        title=_(u'Institution place'), 
-        required=False
-    )
 
     identification_identification_collections = schema.List(
         title=_(u'Collection'),
@@ -469,10 +297,9 @@ class IObject(form.Schema):
 
     model.fieldset('production_dating', label=_(u'Production & Dating'), 
         fields=['productionDating_productionDating',
+                'productionDating_production_productionReason',
                 'productionDating_production_schoolStyles',
-                'productionDating_production_periods',
-                'productionDating_production_productionReason', 
-                'productionDating_dating_period', 'productionDating_dating_notes']
+                'productionDating_dating_period', 'productionDating_production_periods', 'productionDating_dating_notes']
     )
 
     productionDating_production_productionReason = schema.Text(
@@ -519,11 +346,12 @@ class IObject(form.Schema):
 
     model.fieldset('physical_characteristics', label=_(u'Physical Characteristics'), 
         fields=['physicalCharacteristics_physicalDescription_description', 
-                'physicalCharacteristics_frame',
                 'physicalCharacteristics_keyword',
                 'physicalCharacteristics_technique',
                 'physicalCharacteristics_material',
-                'physicalCharacteristics_dimension']
+                'physicalCharacteristics_dimension',
+                'physicalCharacteristics_frame'
+                ]
     )
 
     physicalCharacteristics_keyword = ListField(title=_(u'Keywords'),
@@ -563,23 +391,19 @@ class IObject(form.Schema):
     # # # # # # # # # #
 
     model.fieldset('iconography', label=_(u'Iconography'), 
-        fields=['iconography_generalSearchCriteria_generalTheme', 'iconography_generalSearchCriteria_specificTheme',
-                'iconography_generalSearchCriteria_classificationTheme', 'iconography_contentDescription',
+        fields=['iconography_generalSearchCriteria_generalthemes', 
+                'iconography_generalSearchCriteria_specificthemes',
+                'iconography_generalSearchCriteria_classificationTheme', 
+                'iconography_contentDescription',
                 'iconography_contentPersonInstitution',
-                'iconography_iconographySource_sourceGeneral', 'iconography_iconographySource_sourceSpecific',
+                "iconography_contentSubjects",
+                "iconography_contentPeriodDates",
+                'iconography_iconographySource_sourceGeneral', 
+                'iconography_iconographySource_sourceSpecific',
                 'iconography_iconographySource_sourceObjectNumber']
     )
 
     # General search criteria
-    iconography_generalSearchCriteria_generalTheme = ListField(title=_(u'General theme'),
-        value_type=DictRow(title=_(u'General theme'), schema=IIconographyGeneralTheme),
-        required=False)
-    form.widget(iconography_generalSearchCriteria_generalTheme=DataGridFieldFactory)
-
-    iconography_generalSearchCriteria_specificTheme = ListField(title=_(u'Specific theme'),
-        value_type=DictRow(title=_(u'Specific theme'), schema=IIconographySpecificTheme),
-        required=False)
-    form.widget(iconography_generalSearchCriteria_specificTheme=DataGridFieldFactory)
 
     iconography_generalSearchCriteria_classificationTheme = ListField(title=_(u'Classification theme'),
         value_type=DictRow(title=_(u'Classification theme'), schema=IIconographyClassificationTheme),
@@ -614,31 +438,69 @@ class IObject(form.Schema):
         required=False
     )
 
+
+    iconography_generalSearchCriteria_generalthemes = schema.List(
+        title=_(u'General theme'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('iconography_generalSearchCriteria_generalthemes', AjaxSelectFieldWidget,  vocabulary="collective.object.generalthemes")
+
+    iconography_generalSearchCriteria_specificthemes = schema.List(
+        title=_(u'Specific theme'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('iconography_generalSearchCriteria_specificthemes', AjaxSelectFieldWidget,  vocabulary="collective.object.specificthemes")
+
+    # Content subject
+    iconography_contentSubjects = ListField(title=_(u'Content subject'),
+        value_type=DictRow(title=_(u'Content subject'), schema=IIconographyContentSubjects),
+        required=False)
+    form.widget(iconography_contentSubjects=BlockDataGridFieldFactory)
+
+    # Content period/date
+    iconography_contentPeriodDates = ListField(title=_(u'Content period/date'),
+        value_type=DictRow(title=_(u'Content period/date'), schema=IIconographyContentPeriodDates),
+        required=False)
+    form.widget(iconography_contentPeriodDates=BlockDataGridFieldFactory)
+
     # # # # # # # # # # # # # # #
     # Inscriptions & Markings   #
     # # # # # # # # # # # # # # #
 
-    model.fieldset('inscriptions_markings', label=_(u'Inscriptions and markings'), 
-        fields=['inscriptionsMarkings_inscriptionsMarkings']
+    model.fieldset('inscriptionsMarkings_inscriptionsAndMarkings', label=_(u'Inscriptions and markings'), 
+        fields=['inscriptionsMarkings_inscriptionsAndMarkings']
     )
 
-    inscriptionsMarkings_inscriptionsMarkings = ListField(title=_(u'Inscriptions and markings'),
-        value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscription),
+    inscriptionsMarkings_inscriptionsAndMarkings = ListField(title=_(u'Inscriptions and markings'),
+        value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscriptions),
         required=False)
-    form.widget(inscriptionsMarkings_inscriptionsMarkings=BlockDataGridFieldFactory)
-
+    form.widget(inscriptionsMarkings_inscriptionsAndMarkings=BlockDataGridFieldFactory)
 
     # # # # # # # # #
     # Associations  #      
     # # # # # # # # # 
     model.fieldset('associations', label=_(u'Associations'), 
-        fields=['associations_associatedPersonInstitution']
+        fields=["associations_associatedPersonInstitutions", "associations_associatedSubjects", "associations_associatedPeriods"]
     )
 
-    associations_associatedPersonInstitution = ListField(title=_(u'Associated person/institution'),
-        value_type=DictRow(title=_(u'Associated person/institution'), schema=IAssociatedPersonInstitution),
+    associations_associatedSubjects = ListField(title=_(u'Associated subject'),
+        value_type=DictRow(title=_(u'Associated subject'), schema=IAssociatedSubjects),
         required=False)
-    form.widget(associations_associatedPersonInstitution=BlockDataGridFieldFactory)
+    form.widget(associations_associatedSubjects=BlockDataGridFieldFactory)
+
+    associations_associatedPeriods = ListField(title=_(u'Associated period'),
+        value_type=DictRow(title=_(u'Associated period'), schema=IAssociatedPeriods),
+        required=False)
+    form.widget(associations_associatedPeriods=BlockDataGridFieldFactory)
+
+    associations_associatedPersonInstitutions = ListField(title=_(u'Associated person/institution'),
+        value_type=DictRow(title=_(u'Associated person/institution'), schema=IAssociatedPersonInstitutions),
+        required=False)
+    form.widget(associations_associatedPersonInstitutions=BlockDataGridFieldFactory)
 
 
     # # # # # # # # # # # # # 
@@ -647,8 +509,7 @@ class IObject(form.Schema):
     model.fieldset('numbers_relationships', label=_(u'Numbers/relationships'), 
         fields=['numbersRelationships_numbers', 'numbersRelationships_relationshipsWithOtherObjects_partOf',
                 'numbersRelationships_relationshipsWithOtherObjects_notes', 'numbersRelationships_relationshipsWithOtherObjects_parts',
-                'numbersRelationships_relationshipsWithOtherObjects_relatedObject',
-                'numbersRelationships_digitalReferences']
+                'numbersRelationships_relationshipsWithOtherObjects_relatedObjects', 'numbersRelationships_digitalReferences', ]
     )
 
     # Numbers
@@ -663,7 +524,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -679,16 +540,16 @@ class IObject(form.Schema):
         required=False)
     form.widget(numbersRelationships_relationshipsWithOtherObjects_parts=BlockDataGridFieldFactory)
 
-    numbersRelationships_relationshipsWithOtherObjects_relatedObject = ListField(title=_(u'Related object'),
-        value_type=DictRow(title=_(u'Related object'), schema=IRelatedObject),
-        required=False)
-    form.widget(numbersRelationships_relationshipsWithOtherObjects_relatedObject=BlockDataGridFieldFactory)
-
     # Digital references
     numbersRelationships_digitalReferences = ListField(title=_(u'Digital references'),
         value_type=DictRow(title=_(u'Digital references'), schema=IDigitalReferences),
         required=False)
     form.widget(numbersRelationships_digitalReferences=DataGridFieldFactory)
+
+    numbersRelationships_relationshipsWithOtherObjects_relatedObjects = ListField(title=_(u'Related object'),
+        value_type=DictRow(title=_(u'Related object'), schema=IRelatedObjects),
+        required=False)
+    form.widget(numbersRelationships_relationshipsWithOtherObjects_relatedObjects=BlockDataGridFieldFactory)
 
     # # # # # # # # # #
     # Documentation   #
@@ -707,7 +568,7 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # # # # # #
 
     model.fieldset('documentation_free_archive', label=_(u'Documentation (free) / archive'), 
-        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive', 'documentationFreeArchive_archiveNumber']
+        fields=['documentationFreeArchive_documentationFreeText', 'documentationFreeArchive_archive']
     )
 
     documentationFreeArchive_documentationFreeText = ListField(title=_(u'Documentation (free text)'),
@@ -719,11 +580,6 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Archive'), schema=IArchive),
         required=False)
     form.widget(documentationFreeArchive_archive=DataGridFieldFactory)
-
-    documentationFreeArchive_archiveNumber = ListField(title=_(u'Archive number'),
-        value_type=DictRow(title=_(u'Archive number'), schema=IArchive),
-        required=False)
-    form.widget(documentationFreeArchive_archiveNumber=BlockDataGridFieldFactory)
 
     # # # # # # # # # #
     # Reproductions   #
@@ -744,49 +600,29 @@ class IObject(form.Schema):
     # # # # # # # # # # # # # # #
 
     model.fieldset('condition_conservation', label=_(u'Condition & Conservation'), 
-        fields=['conditionConservation_priority', 'conditionConservation_next_condition_check', 'conditionConservation_date',
-                'conditionConservation_completeness', 'conditionConservation_condition', 'conditionConservation_enviromental_condition', 'conditionConservation_conservation_request',
-                'conditionConservation_conservationTreatments']
+        fields=['conditionConservation_conditions', 'conditionConservation_completeness', 'conditionConservation_conservation_request',
+                'conditionConservation_conservationTreatments',  'conditionConservation_preservationForm']
     )
 
 
     # Conservation treatment
 
-    # Choice field
-    conditionConservation_priority = schema.Choice(
-        vocabulary=priority_vocabulary,
-        title=_(u'Priority'),
-        required=False,
-        missing_value=" "
-    )
-
-    conditionConservation_next_condition_check = schema.TextLine(
-        title=_(u'Next condition check'),
-        required=False
-    )
-
-    conditionConservation_date = schema.TextLine(
-        title=_(u'Date'),
-        required=False
-    )
-
     # Condition*
-    conditionConservation_condition = ListField(title=_(u'Condition'),
-        value_type=DictRow(title=_(u'Condition'), schema=ICondition),
+    conditionConservation_conditions = ListField(title=_(u'Condition'),
+        value_type=DictRow(title=_(u'Condition'), schema=IConditions),
         required=False)
-    form.widget(conditionConservation_condition=DataGridFieldFactory)
+    form.widget(conditionConservation_conditions=DataGridFieldFactory)
+
+    conditionConservation_preservationForm = ListField(title=_(u'Preservation form'),
+        value_type=DictRow(title=_(u'Preservation form'), schema=IEnvConditions),
+        required=False)
+    form.widget(conditionConservation_preservationForm=BlockDataGridFieldFactory)
 
     # Completeness*
     conditionConservation_completeness = ListField(title=_(u'Completeness'),
         value_type=DictRow(title=_(u'Completeness'), schema=ICompleteness),
         required=False)
     form.widget(conditionConservation_completeness=DataGridFieldFactory)
-
-    # Enviromental condition*
-    conditionConservation_enviromental_condition = ListField(title=_(u'Enviromental condition'),
-        value_type=DictRow(title=_(u'Enviromental condition'), schema=IEnvCondition),
-        required=False)
-    form.widget(conditionConservation_enviromental_condition=BlockDataGridFieldFactory)
 
     # Conservation request*
     conditionConservation_conservation_request = ListField(title=_(u'Conservation request'),
@@ -795,10 +631,6 @@ class IObject(form.Schema):
     form.widget(conditionConservation_conservation_request=DataGridFieldFactory)
 
     #Conservation treatment
-    conditionConservation_conservationTreatment = ListField(title=_(u'Conservation treatment'),
-        value_type=DictRow(title=_(u'Conservation treatment'), schema=IConsTreatment),
-        required=False)
-    form.widget(conditionConservation_conservationTreatment=DataGridFieldFactory)
 
     conditionConservation_conservationTreatments = ListField(title=_(u'Conservation treatment'),
         value_type=DictRow(title=_(u'Conservation treatment'), schema=IConsTreatments),
@@ -848,11 +680,12 @@ class IObject(form.Schema):
     model.fieldset('recommendations_requirements', label=_(u'Recommendations/requirements'), 
         fields=['recommendationsRequirements_creditLine_creditLine', 'recommendationsRequirements_legalLicenceRequirements_requirements',
                 'recommendationsRequirements_legalLicenceRequirements_requirementsHeld',
-                'conditionConservation_recommendations_display', 'conditionConservation_conservationTreatment',
+                'conditionConservation_recommendations_display',
                 'conditionConservation_recommendations_environment', 'conditionConservation_recommendations_handling',
                 'conditionConservation_recommendations_packing', 'conditionConservation_recommendations_security',
+                'conditionConservation_recommendations_storage',
                 'conditionConservation_recommendations_specialRequirements',
-                'conditionConservation_recommendations_storage']
+                ]
     )
 
     # Credit line
@@ -878,7 +711,7 @@ class IObject(form.Schema):
     # # # # # # # # # # #
 
     model.fieldset('value_insurance', label=_(u'Value & Insurance'), 
-        fields=['valueInsurance_insurance']
+        fields=[ "valueInsurance_valuations", 'valueInsurance_insurance']
     )
 
     valueInsurance_insurance = ListField(title=_(u'Insurance'),
@@ -886,18 +719,34 @@ class IObject(form.Schema):
         required=False)
     form.widget(valueInsurance_insurance=BlockDataGridFieldFactory)
 
+    valueInsurance_valuations = ListField(title=_(u'Valuation'),
+        value_type=DictRow(title=_(u'Valuation'), schema=IValuations),
+        required=False)
+    form.widget(valueInsurance_valuations=BlockDataGridFieldFactory)
+
     # # # # # # # # # #
     # Acquisition     #
     # # # # # # # # # #
 
     model.fieldset('acquisition', label=_(u'Acquisition'), 
         fields=['acquisition_accession_date', 'acquisition_number', 'acquisition_date', 'acquisition_precision',
-                'acquisition_method', 'acquisition_rec_no', 'acquisition_lot_no', 'acquisition_acquisition_acquisitionfrom',
-                'acquisition_auction', 'acquisition_place', 'acquisition_reason',
-                'acquisition_conditions', 'acquisition_authorization_authorizer', 'acquisition_authorization_date',
-                'acquisition_costs_offer_price', 'acquisition_costs_offer_price_curr', 'acquisition_costs_purchase_price',
-                'acquisition_costs_purchase_price_curr', 'acquisition_costs_notes', 'acquisition_funding', 'acquisition_documentation',
-                'acquisition_copyright', 'acquisition_notes']
+                "acquisition_methods",
+                'acquisition_acquisition_acquisitionfrom',
+                'acquisition_auction',
+                'acquisition_rec_no', 'acquisition_lot_no',
+                "acquisition_places",
+                'acquisition_reason',
+                'acquisition_conditions', 
+                'acquisition_authorization_authorizer', 
+                'acquisition_authorization_date',
+                'acquisition_costs_offer_price', 'acquisition_costs_offer_price_currency', 
+                'acquisition_costs_purchase_price', 'acquisition_costs_purchase_price_currency', 
+                'acquisition_costs_notes', 
+                "acquisition_fundings",
+                'acquisition_documentation',
+                'acquisition_copyright', 
+                'acquisition_notes',
+                ]
     )
 
     # Accession
@@ -922,11 +771,6 @@ class IObject(form.Schema):
         required=False
     )
 
-    acquisition_method = schema.TextLine(
-        title=_(u'Method'),
-        required=False
-    )
-
     acquisition_rec_no = schema.TextLine(
         title=_(u'Rec.no.'),
         required=False
@@ -942,7 +786,7 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -951,11 +795,6 @@ class IObject(form.Schema):
     
     acquisition_auction = schema.TextLine(
         title=_(u'Auction'),
-        required=False
-    )
-
-    acquisition_place = schema.TextLine(
-        title=_(u'Place'),
         required=False
     )
 
@@ -986,18 +825,8 @@ class IObject(form.Schema):
         required=False
     )
 
-    acquisition_costs_offer_price_curr = schema.TextLine(
-        title=_(u'Curr.'),
-        required=False
-    )
-
     acquisition_costs_purchase_price = schema.TextLine(
         title=_(u'Purchase price'),
-        required=False
-    )
-
-    acquisition_costs_purchase_price_curr = schema.TextLine(
-        title=_(u'Curr.'),
         required=False
     )
 
@@ -1007,10 +836,6 @@ class IObject(form.Schema):
     )
 
     # Funding *
-    acquisition_funding = ListField(title=_(u'Funding'),
-        value_type=DictRow(title=_(u'Funding'), schema=IFunding),
-        required=False)
-    form.widget(acquisition_funding=BlockDataGridFieldFactory)
 
     # Documentation *
     acquisition_documentation = ListField(title=_(u'Documentation'),
@@ -1030,15 +855,54 @@ class IObject(form.Schema):
         required=False
     )
 
+    acquisition_methods = schema.List(
+        title=_(u'Method'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('acquisition_methods', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.aquisitionmethod")
+
+    acquisition_places = schema.List(
+        title=_(u'label_acquisition_place', default=u"Place"),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('acquisition_places', AjaxSelectFieldWidget,  vocabulary="collective.object.aquisitionplace")
+
+    acquisition_costs_offer_price_currency = schema.List(
+        title=_(u'Curr.'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('acquisition_costs_offer_price_currency', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.currency")
+
+    acquisition_costs_purchase_price_currency = schema.List(
+        title=_(u'Curr.'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('acquisition_costs_purchase_price_currency', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.currency")
+
+    # Funding *
+    acquisition_fundings = ListField(title=_(u'Funding'),
+        value_type=DictRow(title=_(u'Funding'), schema=IFundings),
+        required=False)
+    form.widget(acquisition_fundings=BlockDataGridFieldFactory)
+
     # # # # # # # 
     # Disposal  #
     # # # # # # #
 
     model.fieldset('disposal', label=_(u'Disposal'), 
         fields=['disposal_deaccession', 'disposal_new_object_number', 'disposal_number',
-                'disposal_date', 'disposal_method', 'disposal_proposed_recipient', 'disposal_disposal_proposedRecipient',
-                'disposal_disposal_recipient', 'disposal_recipient', 'disposal_reason', 'disposal_provisos', 'disposal_finance_disposal_price',
-                'disposal_documentation', 'disposal_notes'
+                'disposal_date', 'disposal_method', 'disposal_disposal_proposedRecipient',
+                'disposal_disposal_recipient', 'disposal_reason', 'disposal_provisos', 'disposal_finance_disposal_price',
+                'disposal_finance_currency',
+                'disposal_documentation', 'disposal_notes',
         ]
     )
 
@@ -1069,17 +933,12 @@ class IObject(form.Schema):
         required=False
     )
 
-    disposal_proposed_recipient = schema.TextLine(
-        title=_(u'Proposed recipient'),
-        required=False
-    )
-
     disposal_disposal_recipient = RelationList(
         title=_(u'Recipient'),
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -1090,17 +949,12 @@ class IObject(form.Schema):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
     form.widget('disposal_disposal_proposedRecipient', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
-
-    disposal_recipient = schema.TextLine(
-        title=_(u'Recipient'),
-        required=False
-    )
 
     disposal_reason = schema.TextLine(
         title=_(u'Reason'),
@@ -1130,145 +984,46 @@ class IObject(form.Schema):
         required=False
     )
 
+    disposal_finance_currency = schema.List(
+        title=_(u'Curr.'),
+        required=False,
+        value_type=schema.TextLine()
+    )
+    form.widget('disposal_finance_currency', AjaxSelectFieldWidget,  vocabulary="collective.object.currency")
+
     # # # # # # # # # # # # #
     # Ownership history     #
     # # # # # # # # # # # # #
 
     model.fieldset('ownership_history', label=_(u'Ownership history'), 
-        fields=['ownershipHistory_current_owner', 'ownershipHistory_ownership_currentOwner', 
-                'ownershipHistory_owner', 'ownershipHistory_history_owner', 'ownershipHistory_from',
-                'ownershipHistory_until', 'ownershipHistory_exchange_method', 'ownershipHistory_acquired_from',
-                'ownershipHistory_history_acquiredFrom', 'ownershipHistory_auctions',
-                'ownershipHistory_auction', 'ownershipHistory_rec_no', 'ownershipHistory_lot_no', 'ownershipHistory_place',
-                'ownershipHistory_price', 'ownershipHistory_category', 'ownershipHistory_access', 'ownershipHistory_notes']
+        fields=['ownershipHistory_ownership_currentOwner', 
+                'ownershipHistory_historyOwner']
     )
 
     # Ownership
-    ownershipHistory_current_owner = schema.TextLine(
-        title=_(u'Current Owner'),
-        required=False
-    )
-
     ownershipHistory_ownership_currentOwner = RelationList(
         title=_(u'Current Owner'),
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
     form.widget('ownershipHistory_ownership_currentOwner', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
-    # History
-    ownershipHistory_owner = schema.TextLine(
-        title=_(u'Owner'),
-        required=False
-    )
-
-    ownershipHistory_history_owner = RelationList(
-        title=_(u'Owner'),
-        default=[],
-        value_type=RelationChoice(
-            title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
-        ),
-        required=False
-    )
-    ownershipHistory_from = schema.TextLine(
-        title=_(u'From'),
-        required=False
-    )
-
-    ownershipHistory_until = schema.TextLine(
-        title=_(u'Until'),
-        required=False
-    )
-
-    ownershipHistory_exchange_method = schema.TextLine(
-        title=_(u'Exchange method'),
-        required=False
-    )
-
-    ownershipHistory_acquired_from = schema.TextLine(
-        title=_(u'Acquired from'),
-        required=False
-    )
-
-    ownershipHistory_history_acquiredFrom = RelationList(
-        title=_(u'Acquired from'),
-        default=[],
-        value_type=RelationChoice(
-            title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
-        ),
-        required=False
-    )
-
-    ownershipHistory_auction = schema.TextLine(
-        title=_(u'Auction'),
-        required=False
-    )
-
-    ownershipHistory_auctions = ListField(title=_(u'Auction'),
-        value_type=DictRow(title=_(u'Auction'), schema=IAuction),
+    ownershipHistory_historyOwner = ListField(title=_(u'Owner'),
+        value_type=DictRow(title=_(u'Owner'), schema=IHistoryOwner),
         required=False)
-    form.widget(ownershipHistory_auctions=BlockDataGridFieldFactory)
-
-    ownershipHistory_rec_no = schema.TextLine(
-        title=_(u'Rec.no.'),
-        required=False
-    )
-
-    ownershipHistory_lot_no = schema.TextLine(
-        title=_(u'Lot no.'),
-        required=False
-    )
-
-    ownershipHistory_place = schema.TextLine(
-        title=_(u'label_plaats', default=u'Place'),
-        required=False
-    )
-
-    ownershipHistory_price = schema.TextLine(
-        title=_(u'Price'),
-        required=False
-    )
-
-    ownershipHistory_category = schema.TextLine(
-        title=_(u'Ownership category'),
-        required=False
-    )
-
-    ownershipHistory_access = schema.TextLine(
-        title=_(u'Access'),
-        required=False
-    )
-
-    ownershipHistory_notes = schema.TextLine(
-        title=_(u'Notes'),
-        required=False
-    )
+    form.widget(ownershipHistory_historyOwner=BlockDataGridFieldFactory)
 
     # # # # # # # # 
     # Location    #
     # # # # # # # #
 
     model.fieldset('location', label=_(u'Location'), 
-        fields=['location_normal_location', 'location_current_location', 'location_checks']
+        fields=['location_normalLocation_normalLocation', 'location_currentLocation', 'location_checks']
     )
-
-    # Normal location
-    location_normal_location = schema.TextLine(
-        title=_(u'Normal location'),
-        required=False
-    )
-
-    # Current location
-    location_current_location = ListField(title=_(u'Current location'),
-        value_type=DictRow(title=_(u'Current location'), schema=ICurrentLocation),
-        required=False)
-    form.widget(location_current_location=BlockDataGridFieldFactory)
 
     # Location checks
     location_checks = ListField(title=_(u'Location checks'),
@@ -1276,25 +1031,40 @@ class IObject(form.Schema):
         required=False)
     form.widget(location_checks=BlockDataGridFieldFactory)
 
+    location_normalLocation_normalLocation = schema.List(
+        title=_(u'Normal location'),
+        required=False,
+        value_type=schema.TextLine(),
+        missing_value=[]
+    )
+    form.widget('location_normalLocation_normalLocation', AjaxSingleSelectFieldWidget,  vocabulary="collective.object.location")
+
+    # Current location
+    location_currentLocation = ListField(title=_(u'Current location'),
+        value_type=DictRow(title=_(u'Current location'), schema=ICurrentLocations),
+        required=False)
+    form.widget(location_currentLocation=BlockDataGridFieldFactory)
+
     # # # # # # # # # # # 
     # Field Collection  #
     # # # # # # # # # # #
 
     model.fieldset('field_collection', label=_(u'Field Collection'), 
-        fields=['fieldCollection_fieldCollection_fieldCollNumber', 'fieldCollection_fieldCollection_collector',
+        fields=['fieldCollection_fieldCollection_fieldCollNumber', 
+                'fieldCollection_fieldCollection_collectors',
+                'fieldCollection_fieldCollection_events',
                 'fieldCollection_fieldCollection_dateEarly',
                 'fieldCollection_fieldCollection_dateEarlyPrecision', 'fieldCollection_fieldCollection_dateLate',
                 'fieldCollection_fieldCollection_dateLatePrecision',
-                'fieldCollection_coordinatesFieldCollectionPlace',
-                'fieldCollection_habitatStratigraphy_stratigraphy',
-                'fieldCollection_notes', 'fieldCollection_habitatStratigraphy_habitats',
-                'fieldCollection_fieldCollection_collectors',
-                'fieldCollection_fieldCollection_events',
                 'fieldCollection_fieldCollection_methods',
                 'fieldCollection_fieldCollection_places',
-                'fieldCollection_fieldCollection_placeFeatures',
                 'fieldCollection_fieldCollection_placeCodes',
-                'fieldCollection_habitatStratigraphy_stratigrafie']
+                'fieldCollection_fieldCollection_placeFeatures',
+                'fieldCollection_coordinatesFieldCollectionPlace',
+                'fieldCollection_habitatStratigraphy_habitats',
+                'fieldCollection_habitatStratigraphy_stratigrafie',
+                'fieldCollection_notes'   
+                ]
     )
 
     fieldCollection_fieldCollection_fieldCollNumber = ListField(title=_(u'Field coll. number'),
@@ -1350,13 +1120,6 @@ class IObject(form.Schema):
         required=False)
     form.widget(fieldCollection_habitatStratigraphy_stratigrafie=BlockDataGridFieldFactory)
 
-
-
-    fieldCollection_fieldCollection_collector = ListField(title=_(u'Collector'),
-        value_type=DictRow(title=_(u'Collector'), schema=ICollector),
-        required=False)
-    form.widget(fieldCollection_fieldCollection_collector=DataGridFieldFactory)
-
     fieldCollection_fieldCollection_dateEarly = schema.TextLine(
         title=_(u'Date (early)'),
         required=False
@@ -1394,11 +1157,6 @@ class IObject(form.Schema):
     )
     form.widget('fieldCollection_habitatStratigraphy_habitats', AjaxSelectFieldWidget,  vocabulary="collective.object.habitat")
 
-    fieldCollection_habitatStratigraphy_stratigraphy = ListField(title=_(u'Stratigraphy'),
-        value_type=DictRow(title=_(u'Stratigraphy'), schema=IStratigraphy),
-        required=False)
-    form.widget(fieldCollection_habitatStratigraphy_stratigraphy=BlockDataGridFieldFactory)
-
     # Notes
     fieldCollection_notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
@@ -1410,24 +1168,13 @@ class IObject(form.Schema):
     # # # # # # # # #
 
     model.fieldset('exhibitions', label=_(u'Exhibitions'), 
-        fields=['exhibitions_exhibition', 'exhibitions_relatedExhibitions']
+        fields=['exhibitions_exhibition']
     )
 
     exhibitions_exhibition = ListField(title=_(u'Exhibition'),
         value_type=DictRow(title=_(u'Exhibition'), schema=IExhibition),
         required=False)
     form.widget(exhibitions_exhibition=BlockDataGridFieldFactory)
-
-
-    exhibitions_relatedExhibitions = RelationList(
-        title=_(u'Exhibition'),
-        default=[],
-        value_type=RelationChoice(
-            title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Exhibition', navigation_tree_query={'path':{'query':EXHIBITION_FOLDER}})
-        ),
-        required=False
-    )
 
     # # # # # # # #
     # Loans       #
@@ -1451,13 +1198,8 @@ class IObject(form.Schema):
     # Transport tab
     #
     model.fieldset('transport', label=_(u'Transport'), 
-        fields=["transport_despatch", "transport_despatchNumber", "transport_entry_number"]
+        fields=["transport_despatchNumber", "transport_entry_number"]
     )
-
-    transport_despatch = ListField(title=_(u'Despatch'),
-        value_type=DictRow(title=_(u'Despatch'), schema=IDespatch),
-        required=False)
-    form.widget(transport_despatch=DataGridFieldFactory)
 
     transport_despatchNumber = ListField(title=_(u'Despatch number'),
         value_type=DictRow(title=_(u'Despatch number'), schema=IDespatchNumber),

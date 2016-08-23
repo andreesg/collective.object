@@ -92,12 +92,9 @@
     />
 
   <adapter factory=".object.ListFieldConverter" />
-
-
-
-
-  <!--<adapter name="person_priref" factory=".indexers.person_priref" />
-  <adapter name="archive_priref" factory=".indexers.archive_priref" />
+  
+  <adapter name="person_priref" factory=".indexers.person_priref" />
+  <!--<adapter name="archive_priref" factory=".indexers.archive_priref" />
   <adapter name="treatment_priref" factory=".indexers.treatment_priref" />-->
 
   <!-- Already fixed -->
@@ -150,9 +147,6 @@
   <adapter name="acquisition_place" factory=".indexers.acquisition_places" />
   <adapter name="valueInsurance_valuations_currency" factory=".indexers.valueInsurance_valuations_currency" />
   <adapter name="numbersRelationships_relationshipsWithOtherObjects_relatedObjects_association" factory=".indexers.numbersRelationships__relationshipsWithOtherObjects_relatedObjects_association" />
-
-
-
 
   <utility
     component=".utils.vocabularies.HabitatVocabularyFactory"

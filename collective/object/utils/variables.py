@@ -13,7 +13,7 @@ ROOT_FOLDER = {
 }
 
 PERSON_INSTITUTION_FOLDER = {
-    "nl":'/nl/intern/personen-en-instellingen',
+    "nl":'/intern/personen-en-instellingen',
     "en":'/intern/persons-and-institutions',
     "portal_type":'PersonOrInstitution',
 }
@@ -75,7 +75,7 @@ BIBLIOTHEEK_FOLDER = {
 LOANS_FOLDER = {
     "nl":"/nl/intern/bruiklenen",
     "en":"",
-    "portal_type":"",
+    "portal_type":"OutgoingLoan",
     "criteria": [{
         'i': 'path',
         'o': 'plone.app.querystring.operation.string.path',
@@ -85,8 +85,8 @@ LOANS_FOLDER = {
 
 TREATMENT_FOLDER = {
     "nl":"/nl/intern/conserverings-behandelingen",
-    "en":"",
-    "portal_type":"treatment"
+    "en":"/intern/conservation-treatment",
+    "portal_type":"Treatment"
 }
 
 GENERAL_WIDGETS = {

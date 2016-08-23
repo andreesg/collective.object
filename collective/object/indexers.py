@@ -1,7 +1,7 @@
 
 from plone.indexer.decorator import indexer
 from .object import IObject
-#from collective.personOrInstitution.personOrInstitution import IPersonOrInstitution
+from collective.personOrInstitution.personOrInstitution import IPersonOrInstitution
 #from collective.archive.archive import IArchive
 #from collective.treatment.treatment import ITreatment
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
@@ -693,7 +693,7 @@ def identification__identification_collections(object, **kw):
     except:
         return []
 
-"""@indexer(IPersonOrInstitution)
+@indexer(IPersonOrInstitution)
 def person_priref(object, **kw):
     try:
         if hasattr(object, 'priref'):
@@ -703,6 +703,7 @@ def person_priref(object, **kw):
     except:
         return ""
 
+"""
 @indexer(IArchive)
 def archive_priref(object, **kw):
     try:
@@ -712,8 +713,8 @@ def archive_priref(object, **kw):
             return ""
     except:
         return ""
-
-@indexer(ITreatment)
+"""
+"""@indexer(ITreatment)
 def treatment_priref(object, **kw):
     try:
         if hasattr(object, 'priref'):
@@ -723,6 +724,7 @@ def treatment_priref(object, **kw):
     except:
         return ""
 """
+
 @indexer(IObject)
 def identification_taxonomy_commonName(object, **kw):
     try:

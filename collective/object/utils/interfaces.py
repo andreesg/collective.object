@@ -83,10 +83,8 @@ class IObjectname(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-
-    type = schema.TextLine(title=_(u'Type'), required=False)
     
-    form.widget('types', AjaxSingleSelectFieldWidget, vocabulary="collective.object.objectname_type")
+    #type = schema.TextLine(title=_(u'Type'), required=False
     types = schema.List(
         title=_(u'Type'),
         required=False,
@@ -94,6 +92,7 @@ class IObjectname(form.Schema):
         missing_value=[],
         default=[]
     )
+    form.widget('types', AjaxSingleSelectFieldWidget, vocabulary="collective.object.objectname_type")
 
     notes = schema.Text(title=_(u'Notes'), required=False, default=u"", missing_value=u"")
 
@@ -112,7 +111,7 @@ class IFrom(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -133,7 +132,7 @@ class IProductiondating(form.Schema):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relatedMaker'
         ),
         required=False
     )
@@ -157,9 +156,8 @@ class IProductiondating(form.Schema):
     )
     form.widget('place', AjaxSingleSelectFieldWidget, vocabulary="collective.object.productionPlace")
 
-    dateBirth = schema.TextLine(title=_(u'Date birth'), required=False)
-    dateDeath = schema.TextLine(title=_(u'Date death'), required=False)
-
+    #dateBirth = schema.TextLine(title=_(u'Date birth'), required=False)
+    #dateDeath = schema.TextLine(title=_(u'Date death'), required=False)
     production_notes = schema.Text(title=_(u'Production notes'), required=False, default=u" ", missing_value=u" ")
 
 class ISchoolStyle(Interface):
@@ -202,7 +200,7 @@ class IAuction(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Auction')
+            vocabulary="collective.object.relateditems"
         ),
         required=False
     )
@@ -293,7 +291,7 @@ class IIconographyContentSubjects(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type="Taxonomie")
+            vocabulary='collective.object.relatedTaxonomicRank'
         ),
         required=False
     )
@@ -329,7 +327,7 @@ class IInscriptions(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relatedMaker'
         ),
         required=False
     )
@@ -391,7 +389,7 @@ class IAssociatedSubjects(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type="Taxonomie")
+            vocabulary='collective.object.relatedTaxonomicRank'
         ),
         required=False
     )
@@ -517,7 +515,7 @@ class ICollectionCollectors(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type="PersonOrInstitution")
+            vocabulary='collective.object.relatedCollector'
         ),
         required=False
     )
@@ -537,7 +535,7 @@ class IHistoryOwner(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -559,7 +557,7 @@ class IHistoryOwner(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -594,7 +592,7 @@ class ICollectors(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type="PersonOrInstitution")
+            vocabulary="collective.object.relateditems"
         ),
         required=False
     )
@@ -645,7 +643,7 @@ class IRelatedObjects(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -704,7 +702,7 @@ class ITaxonomy(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type="Taxonomie")
+            vocabulary='collective.object.relatedTaxonomicRank'
         ),
         required=False
     )
@@ -726,7 +724,7 @@ class IDeterminers(form.Schema):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type="PersonOrInstitution")
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -767,7 +765,7 @@ class IPeriod(Interface):
     date_early_precision = schema.TextLine(title=_(u'Precision'), required=False, default=u" ", missing_value=u" ")
     date_late = schema.TextLine(title=_(u'label_date_tot', default=u'Date (late)'), required=False, default=u" ", missing_value=u" ")
     date_late_precision = schema.TextLine(title=_(u'Precision'), required=False, default=u" ", missing_value=u" ")
-    period = schema.TextLine(title=_(u'Period'), required=False)
+    #period = schema.TextLine(title=_(u'Period'), required=False)
 
 ## Production & Dating
 class IProduction(Interface):
@@ -830,7 +828,7 @@ class IConsTreatments(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder()
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -873,7 +871,7 @@ class IParts(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -887,7 +885,7 @@ class IRelatedObject(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Object', navigation_tree_query={'path':{'query':OBJECT_FOLDER}})
+            vocabulary="collective.object.relateditems"
         ),
         required=False
     )
@@ -913,7 +911,7 @@ class IDocumentationDocumentation(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder()
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -939,7 +937,7 @@ class IArchives(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Archive', navigation_tree_query={'path':{'query':ARCHIVE_FOLDER}})
+            vocabulary="collective.object.relateditems"
         ),
         required=False
     )
@@ -961,9 +959,9 @@ class IDespatchNumber(Interface):
         required=False
     )"""
     transport_number = schema.TextLine(title=_(u'Despatch number'), required=False)
-    despatch_date = schema.TextLine(title=_(u'Despatch date'), required=False)
+    """despatch_date = schema.TextLine(title=_(u'Despatch date'), required=False)
     delivery_date = schema.TextLine(title=_(u'Delivery date'), required=False)
-    destination = schema.TextLine(title=_(u'Destination'), required=False)
+    destination = schema.TextLine(title=_(u'Destination'), required=False)"""
     
 class IEntryNumber(Interface):
     transport_number = RelationList(
@@ -971,18 +969,18 @@ class IEntryNumber(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='ObjectEntry')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
     form.widget('transport_number', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
-    depositor = schema.TextLine(title=_(u'Depositor'), required=False)
+    """depositor = schema.TextLine(title=_(u'Depositor'), required=False)
     entry_reason = schema.TextLine(title=_(u'Entry reason'), required=False)
     entry_date = schema.TextLine(title=_(u'Entry date'), required=False)
     return_date = schema.TextLine(title=_(u'Return date'), required=False)
     depositor = schema.TextLine(title=_(u'Depositor'), required=False)
-    owner = schema.TextLine(title=_(u'Owner'), required=False)
+    owner = schema.TextLine(title=_(u'Owner'), required=False)"""
 
 ## Reproductions
 class IReproduction(Interface):
@@ -1005,7 +1003,7 @@ class IAssociatedPersonInstitution(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution', navigation_tree_query={'path':{'query':PERSON_INSTITUTION_FOLDER}})
+            vocabulary="collective.object.relateditems"
         ),
         required=False
     )
@@ -1031,7 +1029,7 @@ class IAssociatedPersonInstitutions(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -1158,7 +1156,7 @@ class IIconographyContentPersonInstitution(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='PersonOrInstitution')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -1235,18 +1233,18 @@ class IExhibition(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Exhibition')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
     form.widget('exhibitionName', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
-    name = schema.TextLine(title=_(u'Exhibition name'), required=False)
-    date = schema.TextLine(title=_(u'Date'), required=False)
-    to = schema.TextLine(title=_(u'to'), required=False)
-    organiser = schema.TextLine(title=_(u'Organiser'), required=False)
-    venue = schema.TextLine(title=_(u'Venue'), required=False)
-    place = schema.TextLine(title=_(u'Place'), required=False)
+    #name = schema.TextLine(title=_(u'Exhibition name'), required=False)
+    #date = schema.TextLine(title=_(u'Date'), required=False)
+    #to = schema.TextLine(title=_(u'to'), required=False)
+    #organiser = schema.TextLine(title=_(u'Organiser'), required=False)
+    #venue = schema.TextLine(title=_(u'Venue'), required=False)
+    #place = schema.TextLine(title=_(u'Place'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
     catObject = schema.TextLine(title=_(u'Cat. no. object'), required=False)
 
@@ -1258,13 +1256,13 @@ class IIncomingLoan(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='IncomingLoan')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
     form.widget('loannumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
-    loanNumber = schema.TextLine(title=_(u'Loan number'), required=False)
+    """loanNumber = schema.TextLine(title=_(u'Loan number'), required=False)
     status = schema.TextLine(title=_(u'Status'), required=False)
     lender = schema.TextLine(title=_(u'Lender'), required=False)
     contact = schema.TextLine(title=_(u'Contact'), required=False)
@@ -1272,7 +1270,7 @@ class IIncomingLoan(Interface):
     requestPeriod = schema.TextLine(title=_(u'Request period'), required=False)
     requestPeriodTo = schema.TextLine(title=_(u'to'), required=False)
     contractPeriod = schema.TextLine(title=_(u'Contract period'), required=False)
-    contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)
+    contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)"""
 
 class IArchiveNumber(Interface):
     number = RelationList(
@@ -1281,7 +1279,7 @@ class IArchiveNumber(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='Archive')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
@@ -1294,20 +1292,20 @@ class IOutgoingLoan(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            source=ObjPathSourceBinder(portal_type='OutgoingLoan')
+            vocabulary='collective.object.relateditems'
         ),
         required=False
     )
     form.widget('loannumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
-    status = schema.TextLine(title=_(u'Status'), required=False)
+    """status = schema.TextLine(title=_(u'Status'), required=False)
     requester = schema.TextLine(title=_(u'Requester'), required=False)
     contact = schema.TextLine(title=_(u'Contact'), required=False)
     requestReason = schema.TextLine(title=_(u'Request reason'), required=False)
     requestPeriod = schema.TextLine(title=_(u'Request period'), required=False)
     requestPeriodTo = schema.TextLine(title=_(u'to'), required=False)
     contractPeriod = schema.TextLine(title=_(u'Contract period'), required=False)
-    contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)
+    contractPeriodTo = schema.TextLine(title=_(u'to'), required=False)"""
 
 
 

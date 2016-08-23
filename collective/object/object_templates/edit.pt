@@ -8,12 +8,6 @@
     <metal:block fill-slot="main">
 
         <div class="form" metal:define-macro="form">
-
-
-            <metal:title-slot define-slot="title">
-              <h3 tal:condition="view/label | nothing" tal:content="view/label" />
-            </metal:title-slot>
-
             <div id="content-core">
               <metal:define define-macro="titlelessform">
 
