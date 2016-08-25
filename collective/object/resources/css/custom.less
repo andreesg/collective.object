@@ -33,9 +33,21 @@ body.template-edit {
 	}
 }
 
+body:not(.template-edit) div.template-edit .datagridwidget-table-view .bool-field div.label {
+	display: none;
+}
+
+body.template-edit .datagridwidget-table-view .bool-field div.label {
+	display: none;
+}
+
 .template-edit,
 .template-collective-object-object,
-.template-collective-personorinstitution-personorinstitution {
+.template-collective-personorinstitution-personorinstitution,
+.template-collective-taxonomie-taxonomie,
+.template-collective-exhibition-exhibition,
+.template-collective-treatment-treatment,
+.template-image {
 	.pat-select2 {
 		min-width: 100%;
 	}
@@ -65,8 +77,6 @@ body.template-edit {
 	.datagridwidget-cell input[type="text"] {
 		padding: 6px 12px;
 	}
-
-	
 
 	.datagridwidget-manipulator {
 		vertical-align: middle;
@@ -102,7 +112,11 @@ body.template-edit {
 }
 
 .template-collective-object-object,
-.template-collective-personorinstitution-personorinstitution {
+.template-collective-personorinstitution-personorinstitution,
+.template-collective-taxonomie-taxonomie,
+.template-collective-exhibition-exhibition,
+.template-collective-treatment-treatment,
+.template-image {
 	.datagridwidget-cell input.select2-input {
 		width: 100% !important;
 	}
@@ -208,13 +222,47 @@ body:not(.template-edit) div.template-edit  {
 	}
 }
 
-#formfield-form-widgets-priref {
+#formfield-form-widgets-priref,
+#formfield-form-widgets-IImageReference-priref {
 	display: none;
 }
 
 span.pattern-relateditems-item-path {
 	padding-top: 2px;
 }
+
+.relationlist-field .select2-choices li {
+	float: none;
+}
+
+.relationlist-field li.select2-search-choice {
+	display: block;
+}
+
+body:not(.template-edit) div.template-edit .relationlist-field .select2-search-field {
+	display: none;
+}
+
+body.portaltype-exhibition #formfield-form-widgets-IEventBasic-start span.formHelp {
+	display: none;
+}
+
+body.portaltype-exhibition #formfield-form-widgets-IEventBasic-end span.formHelp {
+	display: none;
+}
+
+body.portaltype-exhibition #formfield-form-widgets-IEventBasic-whole_day div.formHelp {
+	display: none;
+}
+
+body.portaltype-exhibition #formfield-form-widgets-IEventBasic-open_end {
+	display: none;
+}
+
+body.portaltype-exhibition:not(.template-edit) div.template-edit .pattern-pickadate-date-wrapper input[type="text"] {
+	pointer-events: none;
+}
+
 
 
 

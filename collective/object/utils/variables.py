@@ -19,7 +19,7 @@ PERSON_INSTITUTION_FOLDER = {
 }
 
 TAXONOMY_FOLDER = {
-    "nl":'/nl/intern/taxonomy',
+    "nl":'/intern/taxonomy',
     "en":'/intern/taxonomy',
     "portal_type":'Taxonomie'
 }
@@ -35,6 +35,7 @@ EXHIBITION_FOLDER = {
     "en":"",
     "portal_type":"Exhibition"
 }
+
 ARCHIVE_FOLDER = {
     "nl":'/nl/intern/archiefstukken',
     "en":"",

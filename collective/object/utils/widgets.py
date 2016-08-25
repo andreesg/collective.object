@@ -160,9 +160,11 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
 
         # Get request language
         context = self.request.PARENTS[0]
-        language = getattr(context, 'language', DEFAULT_LANGUAGE)
+        
         if context:
-            language = DEFAULT_LANGUAGE
+            language = getattr(context, 'language', DEFAULT_LANGUAGE)
+            if not language:
+                language = DEFAULT_LANGUAGE
 
         # Get content type folder
         contenttype_folder = CONTENTTYPE_CHOICES.get(fieldname, ROOT_FOLDER)
@@ -223,6 +225,8 @@ class ExtendedRelatedItemsWidget(RelatedItemsWidget):
 
         if context:
             language = getattr(context, 'language', DEFAULT_LANGUAGE)
+            if not language:
+                language = DEFAULT_LANGUAGE
 
         # Get content type folder
         contenttype_folder = CONTENTTYPE_CHOICES.get(fieldname, ROOT_FOLDER)
