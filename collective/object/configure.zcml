@@ -93,9 +93,13 @@
 
   <adapter factory=".object.ListFieldConverter" />
   
+  <!-- Needs fix: move code to the proper package -->
   <adapter name="person_priref" factory=".indexers.person_priref" />
-  <!--<adapter name="archive_priref" factory=".indexers.archive_priref" />
-  <adapter name="treatment_priref" factory=".indexers.treatment_priref" />-->
+  <!--<adapter name="archive_priref" factory=".indexers.archive_priref" />-->
+  <adapter name="treatment_priref" factory=".indexers.treatment_priref" />
+  <adapter name="outgoingloan_priref" factory=".indexers.outgoingloan_priref" />
+  <adapter name="incomingloan_priref" factory=".indexers.incomingloan_priref" />
+  <adapter name="objectentry_priref" factory=".indexers.objectentry_priref" />
 
   <!-- Already fixed -->
   <adapter name="identification_identification_objectNumber" factory=".indexers.identification_identification_objectNumber" />

@@ -185,7 +185,7 @@ class SimpleRelatedItemsWidget(RelatedItemsWidget):
                 'v': portal_type
             }]
 
-        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber", "title", "loanNumber"]:
+        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber", "title"]: # add fix for loanNumber 
             criteria = contenttype_folder['criteria']
             args['pattern_options']['baseCriteria'] = criteria
 
@@ -247,7 +247,7 @@ class ExtendedRelatedItemsWidget(RelatedItemsWidget):
                 'v': portal_type
             }]
 
-        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber", "title", "loanNumber"]:
+        if fieldname in ['titles', 'partOf', 'consistsOf', "copyNumber", "title"]: # add fix for loanNumber
             criteria = contenttype_folder['criteria']
             args['pattern_options']['baseCriteria'] = criteria
 

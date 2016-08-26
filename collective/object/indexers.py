@@ -1,9 +1,16 @@
 
 from plone.indexer.decorator import indexer
 from .object import IObject
+
+# TODO: code needs to be moved to the correct product
 from collective.personOrInstitution.personOrInstitution import IPersonOrInstitution
 #from collective.archive.archive import IArchive
-#from collective.treatment.treatment import ITreatment
+from collective.treatment.treatment import ITreatment
+from collective.outgoingLoan.outgoingLoan import IOutgoingLoan
+from collective.incomingLoan.incomingLoan import IIncomingLoan
+from collective.objectentry.objectentry import IObjectEntry
+
+
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
 
 
@@ -714,7 +721,7 @@ def archive_priref(object, **kw):
     except:
         return ""
 """
-"""@indexer(ITreatment)
+@indexer(ITreatment)
 def treatment_priref(object, **kw):
     try:
         if hasattr(object, 'priref'):
@@ -723,7 +730,40 @@ def treatment_priref(object, **kw):
             return ""
     except:
         return ""
-"""
+
+
+@indexer(IOutgoingLoan)
+def outgoingloan_priref(object, **kw):
+    try:
+        if hasattr(object, 'priref'):
+            return object.priref
+        else:
+            return ""
+    except:
+        return ""
+
+
+@indexer(IIncomingLoan)
+def incomingloan_priref(object, **kw):
+    try:
+        if hasattr(object, 'priref'):
+            return object.priref
+        else:
+            return ""
+    except:
+        return ""
+
+
+@indexer(IObjectEntry)
+def objectentry_priref(object, **kw):
+    try:
+        if hasattr(object, 'priref'):
+            return object.priref
+        else:
+            return ""
+    except:
+        return ""
+
 
 @indexer(IObject)
 def identification_taxonomy_commonName(object, **kw):
