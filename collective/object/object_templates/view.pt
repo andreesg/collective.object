@@ -68,8 +68,11 @@
     >
     <tal:notadmin tal:condition="not:user_admin">
       <div id="parent-fieldname-text">
+        <div id="object-title">
+          <h1 tal:content="context/Title" tal:on-error="nothing"></h1>
+        </div>
         <div id="body-text">
-          <p tal:condition="context/text" tal:content="structure python:context.text.output_relative_to(context.view)" ></p>
+          <p tal:condition="context/text" tal:content="structure python:context.text.output_relative_to(context.view)" tal:on-error="nothing"></p>
         </div>
 
         <div class="container object-container">

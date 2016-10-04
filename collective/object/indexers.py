@@ -753,7 +753,6 @@ def incomingloan_priref(object, **kw):
     except:
         return ""
 
-
 @indexer(IObjectEntry)
 def objectentry_priref(object, **kw):
     try:
@@ -763,7 +762,6 @@ def objectentry_priref(object, **kw):
             return ""
     except:
         return ""
-
 
 @indexer(IObject)
 def identification_taxonomy_commonName(object, **kw):

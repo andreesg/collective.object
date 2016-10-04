@@ -443,4 +443,49 @@
       permission="zope2.View"
     />
 
+  <!-- Navigation feature -->
+  <browser:page
+      name="get_nav_objects"
+      for="*"
+      class=".utils.views.get_nav_objects"
+      template="object_templates/get_nav_objects.pt"
+      permission="zope2.View"
+    />
+
+    <browser:page
+      name="get_fields"
+      for="*"
+      class=".utils.views.ObjectFields"
+      template="object_templates/get_object_fields.pt"
+      permission="zope2.View"
+    />
+
+    <!--
+    <browser:page
+      name="get_collection_items"
+      for="*"
+      class=".utils.views.CollectionSlideshow"
+      template="object_templates/get_collection_items.pt"
+      layer=".interfaces.IThemeSpecific"
+      permission="zope2.View"
+    />-->
+
+    <browser:page
+      name="get_next_objects"
+      for="*"
+      class=".utils.views.get_nav_objects"
+      template="object_templates/get_next_objects.pt"
+      permission="zope2.View"
+    />
+
+    <!--
+    <browser:page
+      name="get_slideshow_items"
+      for="*"
+      class=".utils.views.get_nav_objects"
+      template="object_templates/get_slideshow_items.pt"
+      layer=".interfaces.IThemeSpecific"
+      permission="zope2.View"
+    />-->
+
 </configure>

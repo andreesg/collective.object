@@ -7,13 +7,17 @@
 
     <metal:block fill-slot="main">
 
+        <tal:show_all_header>
+          <tal metal:use-macro="view/context/@@collective.object.slideshowmacro/slideshow" />
+        </tal:show_all_header>
+
         <div class="form" metal:define-macro="form">
             <div id="content-core">
               <metal:define define-macro="titlelessform">
 
                   <tal:status define="status view/status;
                                       has_error python:view.widgets.errors or status == getattr(view, 'formErrorsMessage', None)" condition="status">
-                      <dl class="portalMessage error" tal:condition="has_error">
+                      <dl class="portalMessage error" tal:condition="has_err">
                           <dt i18n:translate="">
                               Error
                           </dt>
