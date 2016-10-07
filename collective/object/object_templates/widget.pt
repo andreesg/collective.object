@@ -3,17 +3,296 @@
    i18n:domain="plone"
    tal:define="widget nocall:context;
                hidden python:widget.mode == 'hidden';
+               iinfo context/@@plone_interface_info;
                error widget/error;
                error_class python:error and ' error' or '';
                empty_values python: (None, '', [], ('', '', '', '00', '00', ''), ('', '', ''));
                empty_class python: (widget.value in empty_values) and ' empty' or '';
-               fieldname_class string:kssattr-fieldname-${widget/name};"
+               fieldname_class string:kssattr-fieldname-${widget/name};
+               field_repeatable_class python: 'field-repeatable' if iinfo.provides('collective.z3cform.datagridfield.interfaces.IDataGridField') else '';
+               field_repeatable_block python: 'field-block' if 'BlockDataGridField' in str(type(context)) else '';"
    data-pat-inlinevalidation='{"type":"z3c.form"}'
-   tal:attributes="class string:field form-group pat-inlinevalidation ${fieldname_class}${error_class}${empty_class};
+   tal:attributes="class string:field pat-inlinevalidation ${fieldname_class}${error_class}${empty_class} ${field_repeatable_class} ${field_repeatable_block} form-horizontal;
                    data-fieldname widget/name;
                    id string:formfield-${widget/id};">
-    
-    <label for="" class="horizontal col-sm-3 control-label"
+
+    <tal:objtitles>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'identification_identification_institutionNames'">
+        <h4 class="page-header">Identificatie</h4>
+        <div class="control-label col-sm-3 add-link">
+        </div>
+        <div class="fieldset-input add-link col-sm-9">
+          <a href="/nl/intern/personen-en-instellingen/++add++PersonOrInstitution" class="add-link">Nieuw Personen en Instellingen</a>
+        </div>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'identification_objectName_category'">
+        <h4 class="page-header">Objectnaam</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'identification_titleDescription_title'">
+        <h4 class="page-header">Titel en beschrijving</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'identification_taxonomy'">
+        <h4 class="page-header">Taxonomie</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'productionDating_productionDating'">
+        <h4 class="page-header">Vervaardiging</h4>
+        <div class="control-label col-sm-3 add-link">
+        </div>
+        <div class="fieldset-input add-link col-sm-9">
+          <a href="/nl/intern/personen-en-instellingen/++add++PersonOrInstitution" class="add-link">Nieuw Personen en Instellingen</a>
+        </div>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'productionDating_dating_period'">
+        <h4 class="page-header">Datering</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'physicalCharacteristics_physicalDescription_description'">
+        <h4 class="page-header">Fysieke beschrijving</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'physicalCharacteristics_keyword'">
+        <h4 class="page-header">Trefwoorden</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'physicalCharacteristics_technique'">
+        <h4 class="page-header">Technieken</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'physicalCharacteristics_material'">
+        <h4 class="page-header">Materialen</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'physicalCharacteristics_dimension'">
+        <h4 class="page-header">Afmetingen</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'physicalCharacteristics_frame'">
+        <h4 class="page-header">Omlijsting</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'iconography_generalSearchCriteria_generalthemes'">
+        <h4 class="page-header">Algemene onderwerpsontsluiting</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'iconography_contentDescription'">
+        <h4 class="page-header">Inhoudsbeschrijving</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'iconography_contentPersonInstitution'">
+        <h4 class="page-header">Afgebeelde persoon/instelling</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'iconography_contentSubjects'">
+        <h4 class="page-header">Afgebeeld onderwerp</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'iconography_contentPeriodDates'">
+        <h4 class="page-header">Afgebeelde periode/datum</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'iconography_iconographySource_sourceGeneral'">
+        <h4 class="page-header">Iconografisch bron</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'inscriptionsMarkings_inscriptionsAndMarkings'">
+        <h4 class="page-header">Opschriften / merken</h4>
+      </tal:objtitle>
+
+       <tal:objtitle tal:condition="python: widget.__name__ == 'associations_associatedPersonInstitutions'">
+        <h4 class="page-header">Geassocieerde persoon/instelling</h4>
+      </tal:objtitle>
+
+       <tal:objtitle tal:condition="python: widget.__name__ == 'associations_associatedSubjects'">
+        <h4 class="page-header">Geassocieerd onderwerp</h4>
+      </tal:objtitle>
+
+       <tal:objtitle tal:condition="python: widget.__name__ == 'associations_associatedPeriods'">
+        <h4 class="page-header">Geassocieerde periode</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'numbersRelationships_numbers'">
+        <h4 class="page-header">Nummers</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'numbersRelationships_relationshipsWithOtherObjects_partOf'">
+        <h4 class="page-header">Relaties met andere objecten</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'numbersRelationships_digitalReferences'">
+        <h4 class="page-header">Digitale referenties</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'documentation_documentation'">
+        <h4 class="page-header">Documentatie</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'documentationFreeArchive_documentationFreeText'">
+        <h4 class="page-header">Documentatie (vrij tekst)</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'documentationFreeArchive_archive'">
+        <h4 class="page-header">Archief</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'reproductions_reproduction'">
+        <h4 class="page-header">Reproductie</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'conditionConservation_conditions'">
+        <h4 class="page-header">Toestand</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'conditionConservation_completeness'">
+        <h4 class="page-header">Toestand</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'conditionConservation_conservation_request'">
+        <h4 class="page-header">Conserveringverzoeken</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'conditionConservation_conservationTreatments'">
+        <h4 class="page-header">Conserveringsbehandeling</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'conditionConservation_preservationForm'">
+        <h4 class="page-header">Bewaarvorm</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'recommendationsRequirements_creditLine_creditLine'">
+        <h4 class="page-header">Credit line</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'recommendationsRequirements_legalLicenceRequirements_requirements'">
+        <h4 class="page-header">Wettelijke eisen / vergunningen</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'conditionConservation_recommendations_display'">
+        <h4 class="page-header">Aanbevelingen</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'valueInsurance_valuations'">
+        <h4 class="page-header">Waardebepaling</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'valueInsurance_insurance'">
+        <h4 class="page-header">Verzekering</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'acquisition_accession_date'">
+        <h4 class="page-header">Inschrijving</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'acquisition_number'">
+        <h4 class="page-header">Verwerving</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'acquisition_authorization_authorizer'">
+        <h4 class="page-header">Autorisatie</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'acquisition_costs_offer_price'">
+        <h4 class="page-header">Kosten</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'acquisition_fundings'">
+        <h4 class="page-header">Financiering</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'acquisition_documentation'">
+        <h4 class="page-header">Documentatie</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'acquisition_copyright'">
+        <h4 class="page-header">Copyright</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'acquisition_notes'">
+        <h4 class="page-header">Bijzonderheden</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'disposal_deaccession'">
+        <h4 class="page-header">Uitschrijving</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'disposal_number'">
+        <h4 class="page-header">Afstoting</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'disposal_finance_disposal_price'">
+        <h4 class="page-header">Financiën</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'disposal_documentation'">
+        <h4 class="page-header">Documentatie</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'disposal_notes'">
+        <h4 class="page-header">Bijzonderheden</h4>
+      </tal:objtitle>
+      
+      <tal:objtitle tal:condition="python: widget.__name__ == 'ownershipHistory_ownership_currentOwner'">
+        <h4 class="page-header">Eigendom</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'ownershipHistory_historyOwner'">
+        <h4 class="page-header">Geschiedenis</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'location_normalLocation_normalLocation'">
+        <h4 class="page-header">Vaste standplaats</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'location_currentLocation'">
+        <h4 class="page-header">Huidige standplaats</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'location_checks'">
+        <h4 class="page-header">Standplaatscontroles</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'fieldCollection_fieldCollection_fieldCollNumber'">
+        <h4 class="page-header">Vondst en vindplaats</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'fieldCollection_coordinatesFieldCollectionPlace'">
+        <h4 class="page-header">Coördinaten vindplaats</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'fieldCollection_habitatStratigraphy_habitats'">
+        <h4 class="page-header">Milieu en stratigrafie</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'fieldCollection_notes'">
+        <h4 class="page-header">Bijzonderheden</h4>
+      </tal:objtitle>
+      
+      <tal:objtitle tal:condition="python: widget.__name__ == 'exhibitions_exhibition'">
+        <h4 class="page-header">Tentoonstelling</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'loans_incomingLoans'">
+        <h4 class="page-header">Inkomende bruiklenen</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'loans_outgoingLoans'">
+        <h4 class="page-header">Uitgaande bruiklenen</h4>
+      </tal:objtitle>
+      
+      <tal:objtitle tal:condition="python: widget.__name__ == 'transport_entry_number'">
+        <h4 class="page-header">Binnenkomst</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'transport_despatchNumber'">
+        <h4 class="page-header">Verzending</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'labels'">
+        <h4 class="page-header">Etiketten</h4>
+      </tal:objtitle>
+      
+      <tal:objtitle tal:condition="python: widget.__name__ == 'notes'">
+        <h4 class="page-header">Opmerkingen</h4>
+      </tal:objtitle>
+      <tal:objtitle tal:condition="python: widget.__name__ == 'notes_free_fields'">
+        <h4 class="page-header">Vrij velden</h4>
+      </tal:objtitle>
+
+      <tal:objtitle tal:condition="python: widget.__name__ == 'managementDetails_input'">
+        <h4 class="page-header">Invoer</h4>
+      </tal:objtitle>
+       <tal:objtitle tal:condition="python: widget.__name__ == 'managementDetails_edit'">
+        <h4 class="page-header">Wijziging</h4>
+      </tal:objtitle>
+      
+      
+      
+
+    </tal:objtitles>
+
+    <label for="" class="horizontal control-label col-sm-3"
         tal:attributes="for widget/id"
         tal:condition="not:hidden">
         <span i18n:translate="" tal:replace="widget/label">label</span>
@@ -22,19 +301,22 @@
               tal:condition="python:widget.required and widget.mode == 'input'"
               i18n:attributes="title title_required;">&nbsp;</span>
 
+        <span class="formHelp"
+            tal:define="description widget/field/description"
+            i18n:translate=""
+            tal:content="structure description"
+            tal:condition="python:description and not hidden"
+            >field description
+        </span>
     </label>
 
     <div class="fieldErrorBox"
-        tal:content="structure error/render|nothing"
-        style="display:inline-block;">
+        tal:content="structure error/render|nothing">
         Error
     </div>
-    
-    <tal:widgetrender tal:define="description widget/field/description">
-      <div class="col-sm-9 fieldset-input" data-toggle="tooltip" data-html="true" data-placement='right' data-placement-lg="right" data-placement-md='right'
-       data-placement-sm="bottom" data-placement-xs="bottom" tal:attributes="title description">
-        <input type="text" tal:replace="structure widget/render"
-             metal:define-slot="widget" />
-      </div>
-    </tal:widgetrender>
+
+    <div class="col-sm-9 fieldset-input">
+      <input type="text" tal:replace="structure widget/render"
+           metal:define-slot="widget" />
+    </div>
 </div>

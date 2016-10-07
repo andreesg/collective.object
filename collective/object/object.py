@@ -1198,7 +1198,7 @@ class IObject(form.Schema):
     # Transport tab
     #
     model.fieldset('transport', label=_(u'Transport'), 
-        fields=["transport_despatchNumber", "transport_entry_number"]
+        fields=["transport_entry_number", "transport_despatchNumber"]
     )
 
     transport_despatchNumber = ListField(title=_(u'Despatch number'),
@@ -1247,7 +1247,7 @@ class IObject(form.Schema):
     #
 
     model.fieldset('management_details', label=_(u'Beheergegevens'), 
-        fields=["managementDetails_edit", "managementDetails_input"]
+        fields=["managementDetails_input", "managementDetails_edit"]
     )
 
     managementDetails_edit = ListField(title=_(u'Wijziging'),
