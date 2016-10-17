@@ -726,7 +726,13 @@ msgstr "Beelddocumentatie - Reproductiegegevens - Soort reproductie"
 msgid "reproductionData_descriptiveElements_coverage"
 msgstr "Beelddocumentatie - Reproductiegegevens - Coverage"
 
+#: ./browser/prefs_keywords_view.pt:137
+msgid "book_author"
+msgstr "Author"
 
+#: ./browser/prefs_keywords_view.pt:137
+msgid "titleAuthorImprintCollation_imprint_year"
+msgstr "Year"
 
 
 

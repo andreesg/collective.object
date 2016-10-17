@@ -1198,7 +1198,7 @@ class get_nav_objects(BrowserView):
 
                 results = catalog.searchResults(path={'query': path, 'depth': 1}, sort_on=order)
                 for brain in results:
-                    url = brain.getObject().absolute_url()
+                    url = brain.getURL()
                     slideshow_url = "%s%s" %(url, scale)
                     items.append({'url':slideshow_url})
 
@@ -1221,7 +1221,7 @@ class get_nav_objects(BrowserView):
         if is_folder:
             collection_obj = collection_object
         else:
-            collection_obj = collection_object.getObject()
+            collection_obj = collection_object.getObject() # needs to getObject
 
         if is_folder:
             folder_path = '/'.join(collection_obj.getPhysicalPath())
@@ -1234,7 +1234,7 @@ class get_nav_objects(BrowserView):
         return results
 
     def get_batch(self, collection_object, start, pagesize=33):
-        collection_obj = collection_object.getObject()
+        collection_obj = collection_object.getObject() # needs to getObject
 
         results = collection_obj.queryCatalog(batch=True, b_start=int(start), b_size=pagesize)
 
@@ -1325,10 +1325,10 @@ class get_nav_objects(BrowserView):
         object_idx = self.get_object_idx(results, self.context.getId())
         items['object_idx'] = object_idx
 
-        # NEEDS FIX
+        # NEEDS FIX - never used
         for obj in results:
             if obj != None:
-                obj_media = ICanContainMedia(obj.getObject()).getLeadMedia()
+                obj_media = ICanContainMedia(obj.getObject()).getLeadMedia() 
                 if obj_media != None:
                     items['list'].append({'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId(), 'title':obj.Title(), 'description': obj.Description(), 'body': ""})
 
@@ -1338,6 +1338,7 @@ class get_nav_objects(BrowserView):
     AJAX to get all items inside collection
     """
     def get_all_collection(self):
+        # never used
         collection_id = self.request.get('collection_id')
         items = []
         
@@ -1664,8 +1665,13 @@ class get_nav_objects(BrowserView):
         for field in production_field:
             production = {}
             if field['makers']:
-                production['maker'] = field["makers"][0].title
-                url = self.get_url_by_uid(field["makers"][0].UID())
+                try:
+                    production['maker'] = field["makers"][0].title
+                    url = self.get_url_by_uid(field["makers"][0].UID())
+                except:
+                    obj = getattr(field["makers"][0], 'to_object', None)
+                    production['maker'] = getattr(obj, 'title', "")
+                    url = self.get_url_by_uid(getattr(obj, 'UID', ""))
             else:
                 production['maker'] = ""
 
@@ -1688,7 +1694,6 @@ class get_nav_objects(BrowserView):
         if len(production_result) > 0:
             production_value = '<p>'.join(production_result)
             object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Maker')), "value": production_value})
-
 
         ## Generate Period
         period_field = self.get_field_from_object('productionDating_dating_period', object)
@@ -2276,44 +2281,46 @@ class get_nav_objects(BrowserView):
 
         if is_folder:
             for obj in list_items:
-                obj_media = ICanContainMedia(obj.getObject()).getLeadMedia()
+                p_obj = obj.getObject()
+                obj_media = ICanContainMedia(p_obj).getLeadMedia()
                 if obj_media != None:
                     if obj.portal_type == "Book":
-                        schema = self.get_all_fields_book(obj.getObject())
+                        schema = self.get_all_fields_book(p_obj)
                     else:
-                        schema = self.get_all_fields_object(obj.getObject())
+                        schema = self.get_all_fields_object(p_obj)
                         
                     if not items['has_list_images']:
-                        items['list'].append({'schema':schema, 'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId, 'title':obj.Title, 'description': obj.Description, 'body': self.get_object_body(obj.getObject())})
+                        items['list'].append({'schema':schema, 'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId, 'title':obj.Title, 'description': obj.Description, 'body': self.get_object_body(p_obj)})
                     else:
-                        items['list'].append({'schema':schema, 'images':self.get_multiple_images(obj.getObject(), view_type), 'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId, 'title':obj.Title, 'description': obj.Description, 'body': self.get_object_body(obj.getObject())})    
+                        items['list'].append({'schema':schema, 'images':self.get_multiple_images(p_obj, view_type), 'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId, 'title':obj.Title, 'description': obj.Description, 'body': self.get_object_body(p_obj)})    
                 else:
                     if obj.portal_type == "Book":
-                        schema = self.get_all_fields_book(obj.getObject())
+                        schema = self.get_all_fields_book(p_obj)
                     else:
-                        schema = self.get_all_fields_object(obj.getObject())
-                    items['list'].append({'schema':schema, 'url':obj.getURL(),'image_url': '', 'object_id': obj.getId, 'title':obj.Title, 'description': obj.Description, 'body': self.get_object_body(obj.getObject())})
+                        schema = self.get_all_fields_object(p_obj)
+                    items['list'].append({'schema':schema, 'url':obj.getURL(),'image_url': '', 'object_id': obj.getId, 'title':obj.Title, 'description': obj.Description, 'body': self.get_object_body(p_obj)})
 
         else:
             for obj in list_items:
-                obj_media = ICanContainMedia(obj.getObject()).getLeadMedia()
+                p_obj = obj.getObject()
+                obj_media = ICanContainMedia(p_obj).getLeadMedia()
                 
                 if obj_media != None:
                     if obj.portal_type == "Book":
-                        schema = self.get_all_fields_book(obj.getObject())
+                        schema = self.get_all_fields_book(p_obj)
                     else:
-                        schema = self.get_all_fields_object(obj.getObject())
+                        schema = self.get_all_fields_object(p_obj)
                     if not items['has_list_images']:
-                        items['list'].append({'schema':schema, 'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId(), 'title':obj.Title(), 'description': obj.Description(), 'body': self.get_object_body(obj)})
+                        items['list'].append({'schema':schema, 'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId(), 'title':obj.Title(), 'description': obj.Description(), 'body': self.get_object_body(p_obj)})
                     else:
-                        items['list'].append({'schema':schema, 'images':self.get_multiple_images(obj.getObject(), view_type), 'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId(), 'title':obj.Title(), 'description': obj.Description(), 'body': self.get_object_body(obj)})        
+                        items['list'].append({'schema':schema, 'images':self.get_multiple_images(p_obj, view_type), 'url':obj.getURL(),'image_url': obj_media.absolute_url()+'/@@images/image/large', 'object_id': obj.getId(), 'title':obj.Title(), 'description': obj.Description(), 'body': self.get_object_body(p_obj)})        
 
                 else:
                     if obj.portal_type == "Book":
-                        schema = self.get_all_fields_book(obj.getObject())
+                        schema = self.get_all_fields_book(p_obj)
                     else:
-                        schema = self.get_all_fields_object(obj.getObject())
-                    items['list'].append({'schema':schema, 'url':obj.getURL(),'image_url': '', 'object_id': obj.getId(), 'title':obj.Title(), 'description': obj.Description(), 'body': self.get_object_body(obj)})
+                        schema = self.get_all_fields_object(p_obj)
+                    items['list'].append({'schema':schema, 'url':obj.getURL(),'image_url': '', 'object_id': obj.getId(), 'title':obj.Title(), 'description': obj.Description(), 'body': self.get_object_body(p_obj)})
                          
         return items
 
@@ -2571,6 +2578,13 @@ class get_nav_objects(BrowserView):
                 return json.dumps(items)
         else:
             return json.dumps(items);
+
+
+class object_utils(BrowserView):
+
+    def util(self):
+        print "call utils"
+        return "Test"
 
 
 

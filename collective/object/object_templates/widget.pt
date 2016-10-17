@@ -287,9 +287,6 @@
         <h4 class="page-header">Wijziging</h4>
       </tal:objtitle>
       
-      
-      
-
     </tal:objtitles>
 
     <label for="" class="horizontal control-label col-sm-3"

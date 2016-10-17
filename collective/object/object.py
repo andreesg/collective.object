@@ -107,16 +107,19 @@ class ListFieldConverter(DefaultDexterityTextIndexFieldConverter):
         
         for line in self.widget.value:
             if 'makers' in line:
-                for maker in line['makers']:
-                    if IRelationValue.providedBy(maker):
-                        maker_obj = maker.to_object
-                        title = getattr(maker_obj, 'title', "")
-                        datastripped = "%s %s" %(datastripped, title)
-                    elif getattr(maker, 'portal_type', "") == "PersonOrInstitution":
-                        title = getattr(maker, 'title', "")
-                        datastripped = "%s %s" %(datastripped, title)
-                    else:
-                        continue
+                try:
+                    for maker in line['makers']:
+                        if IRelationValue.providedBy(maker):
+                            maker_obj = maker.to_object
+                            title = getattr(maker_obj, 'title', "")
+                            datastripped = "%s %s" %(datastripped, title)
+                        elif getattr(maker, 'portal_type', "") == "PersonOrInstitution":
+                            title = getattr(maker, 'title', "")
+                            datastripped = "%s %s" %(datastripped, title)
+                        else:
+                            continue
+                except:
+                    continue
 
         return datastripped
 
@@ -311,6 +314,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Production & Dating'), schema=IProductiondating),
         required=False)
     form.widget(productionDating_productionDating=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('productionDating_productionDating')
 
     productionDating_production_schoolStyles = schema.List(
         title=_(u'School / style'),

@@ -478,6 +478,13 @@
       permission="zope2.View"
     />
 
+    <browser:page
+      name="object_utils"
+      for="*"
+      class=".utils.views.object_utils"
+      permission="zope2.View"
+    />
+
     <!--
     <browser:page
       name="get_slideshow_items"
