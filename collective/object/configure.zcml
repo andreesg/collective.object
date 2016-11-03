@@ -93,6 +93,8 @@
 
   <adapter factory=".object.ListFieldConverter" />
   
+  <adapter name="object_on_display" factory=".indexers.object_on_display" />
+
   <!-- Needs fix: move code to the proper package -->
   <adapter name="person_priref" factory=".indexers.person_priref" />
   <!--<adapter name="archive_priref" factory=".indexers.archive_priref" />-->
@@ -475,6 +477,21 @@
       for="*"
       class=".utils.views.get_nav_objects"
       template="object_templates/get_next_objects.pt"
+      permission="zope2.View"
+    />
+
+    <browser:page
+      name="loggedinview"
+      for="*"
+      class=".utils.views.ObjectLoggedInView"
+      permission="zope2.View"
+    />
+
+    <browser:page
+      name="all_tabs"
+      for="*"
+      class=".utils.views.ObjectAllTabsView"
+      template="object_templates/all_tabs.pt"
       permission="zope2.View"
     />
 

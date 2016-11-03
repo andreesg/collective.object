@@ -13,6 +13,25 @@ from collective.objectentry.objectentry import IObjectEntry
 
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
 
+@indexer(IObject)
+def object_on_display(object, **kw):
+    try:
+        if hasattr(object, 'location_currentLocation'):
+            terms = []
+            items = object.location_currentLocation
+            if items != None:
+                if len(items) > 0:
+                    item = items[0]
+                    location = item['location_type']
+                    if location == "museum":
+                        return True
+                    else:
+                        return False
+            return False
+        else:
+            return False
+    except:
+        return False
 
 @indexer(IObject)
 def identification_objectName_category(object, **kw):

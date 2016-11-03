@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.object">
+
+      <body>
+
+<metal:main fill-slot="content-core" >
+  <metal:content-core define-macro="content-core">
+
+      	<tal:defineview tal:define="loggedinview nocall: context/@@loggedinview;
+                                  groups python:loggedinview.get_groups();">
+
+      	<form data-pat-autotoc="levels: legend; section: fieldset; className: autotabs" class="rowlike enableUnloadProtection enableFormTabbing pat-autotoc autotabs;" id="form">
+
+            <tal:block tal:repeat="group groups">
+            <tal:renderfieldset tal:define="fieldset_name group/__name__|group/label/default|fieldset_label"
+                tal:condition="python: fieldset_name not in ['identification']">
+            
+            <fieldset
+              tal:define="normalizeString nocall:context/@@plone/normalizeString;
+                          fieldset_label group/label;
+                          fieldset_name group/__name__|group/label/default|fieldset_label;
+                          fieldset_name python:normalizeString(fieldset_name);"
+
+                tal:attributes="id string:fieldset-${fieldset_name};
+                              class string:formPanel;">
+                  
+                    <legend tal:condition="fieldset_label"
+                            tal:attributes="id string:fieldset-${fieldset_name}"
+                            tal:content="fieldset_label">Form name</legend>
+
+                    
+                    <tal:block tal:define="errors group/widgets/errors"
+                               tal:condition="errors"
+                               tal:repeat="error errors">
+                        <div class="field error"
+                            tal:condition="not:nocall:error/widget"
+                            tal:content="structure error/render"
+                        />
+                    </tal:block>
+
+                    <tal:block define="view nocall:group">
+                        <metal:block use-macro="context/@@ploneform-macros/widget_rendering" />
+                    </tal:block> 
+            </fieldset>
+            </tal:renderfieldset>
+          
+          </tal:block>
+
+          </form>
+      </tal:defineview>
+  </metal:content-core>
+</metal:main>
+
+      </body>
+</html>

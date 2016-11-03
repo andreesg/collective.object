@@ -66,7 +66,7 @@ class ObjectFields(BrowserView):
             name_split[0] = self.trim_white_spaces(raw_name)
             name_artist = name_split[0]
             
-            name_artist_link = '<a href="/%s/search?SearchableText=%s">%s</a>' % (getattr(self.context, 'language', ''), name_artist, name_artist)
+            name_artist_link = '<a href="/%s/search?SearchableText=%s">%s</a>' % (getattr(self.context, 'language', 'nl'), name_artist, name_artist)
             name_split[0] = name_artist_link
 
             if len(name_split) > 1:
@@ -84,9 +84,9 @@ class ObjectFields(BrowserView):
         _value = ""
         for i, mat in enumerate(materials):
             if i == (len(materials)-1):
-                _value += '<a href="/%s/search?SearchableText=%s">%s</a>' % (getattr(self.context, 'language', ''), mat, mat)
+                _value += '<a href="/%s/search?SearchableText=%s">%s</a>' % (getattr(self.context, 'language', 'nl'), mat, mat)
             else:
-                _value += '<a href="/%s/search?SearchableText=%s">%s</a>, ' % (getattr(self.context, 'language', ''), mat, mat)
+                _value += '<a href="/%s/search?SearchableText=%s">%s</a>, ' % (getattr(self.context, 'language', 'nl'), mat, mat)
 
         return _value
 
@@ -248,18 +248,24 @@ class ObjectFields(BrowserView):
 
     def create_maker(self, name, url=False):
         maker = []
-        name_split = name.split(",")
 
-        if len(name_split) > 0:
-            if len(name_split) > 1:
-                maker.append(name_split[-1])
-                maker.append(name_split[0])
+        if name not in NOT_ALLOWED:
+            name_split = name.split(",")
+
+            if len(name_split) > 0:
+                if len(name_split) > 1:
+                    maker.append(name_split[-1])
+                    maker.append(name_split[0])
+                else:
+                    maker.append(name_split[0])
+
+            new_maker = ' '.join(maker)
+            if url:
+                new_maker = new_maker
             else:
-                maker.append(name_split[0])
-
-        new_maker = ' '.join(maker)
-        if url:
-            new_maker = new_maker
+                new_maker = "<a href='/%s/search?SearchableText=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), new_maker, new_maker)
+        else:
+            return ""
 
         return new_maker
 
@@ -268,8 +274,10 @@ class ObjectFields(BrowserView):
 
         maker = field['maker']
         qualifier = field['qualifier']
-        role = field['role']
-        place = field['place']
+        #role = field['role']
+        role = ""
+        #place = field['place']
+        place = ""
 
         production = self.create_maker(maker, url)
 
@@ -346,6 +354,7 @@ class ObjectFields(BrowserView):
         production_result = []
         # Generate production
         url = ""
+        places = []
         for field in production_field:
             production = {}
             if field['makers']:
@@ -368,6 +377,8 @@ class ObjectFields(BrowserView):
 
             if field['place']:
                 production['place'] = field['place'][0]
+                if production['place'] not in NOT_ALLOWED:
+                    places.append(production['place'])
             else:
                 production['place'] = ""
 
@@ -378,15 +389,31 @@ class ObjectFields(BrowserView):
         if len(production_result) > 0:
             production_value = '<p>'.join(production_result)
             object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Maker')), "value": production_value})
+        
+        if places:
+            place = '<p>'.join(places)
+            if place:
+                object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Vervaardigingsplaats')), "value": place})
 
         ## Generate Period
-        period_field = self.get_field_from_object('productionDating_dating_period', object)
+        period_field = self.get_field_from_object('productionDating_production_periods', object)
 
         period = []
         for field in period_field:
+            if field not in NOT_ALLOWED:
+                field_value_searchable = "<a href='/%s/search?SearchableText=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), field, field)
+                period.append(field_value_searchable)
+
+        datering_field = self.get_field_from_object('productionDating_dating_period', object)
+        datering = []
+        for field in datering_field:
             result = self.create_period_field(field)
             if result not in NOT_ALLOWED:
-                period.append(result)
+                datering.append(result)
+
+        if len(datering) > 0:
+            datering_value = ', '.join(datering)
+            object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Datering')), "value": datering_value})
 
         if len(period) > 0:
             period_value = ', '.join(period)
@@ -407,13 +434,25 @@ class ObjectFields(BrowserView):
             object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Maker')), "value": production_value})
 
         ## Generate Period
-        period_field = self.get_field_from_object('productionDating_dating_period', object)
+        period_field = self.get_field_from_object('productionDating_production_periods', object)
 
         period = []
         for field in period_field:
+            if field not in NOT_ALLOWED:
+                field_value_searchable = "<a href='/%s/search?SearchableText=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), field, field)
+                period.append(field_value_searchable)
+
+
+        datering_field = self.get_field_from_object('productionDating_dating_period', object)
+        datering = []
+        for field in datering_field:
             result = self.create_period_field(field)
             if result not in NOT_ALLOWED:
-                period.append(result)
+                datering.append(result)
+
+        if len(datering) > 0:
+            datering_value = ', '.join(datering)
+            object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Datering')), "value": datering_value})
 
         if len(period) > 0:
             period_value = ', '.join(period)
@@ -431,6 +470,8 @@ class ObjectFields(BrowserView):
                 dimension = "%s %s" %(dimension, val['units'])
             if val['dimension'] != "" and val['dimension'] != []:
                 dimension = "%s: %s" %(val['dimension'][0], dimension)
+            if val['part'] not in NOT_ALLOWED:
+                dimension = "%s (%s)" %(dimension, val['part'])
 
             new_dimension_val.append(dimension)
 
@@ -677,7 +718,8 @@ class ObjectFields(BrowserView):
             if fieldvalue != None:
                 title = fieldvalue.title
                 value = self.get_field_from_object(field, object)
-
+                if len(value) > 1:
+                    value = [value[0]]
                 schema_value = self.transform_schema_field(field, value, choice, restriction)
 
                 if schema_value != "":
@@ -798,7 +840,7 @@ class ObjectFields(BrowserView):
                                 ('identification_objectName_category', None), ('identification_objectName_objectname', 'name'),
                                 ('title', None), ('identification_taxonomy', 'scientific_name'), ('text', None)]
 
-        production_dating_tab = ['productionDating_production', 'productionDating_dating_period']
+        production_dating_tab = ['productionDating_production', 'productionDating_production_periods']
 
         physical_characteristics_tab = [('physicalCharacteristics_technique', 'technique', None), ('physicalCharacteristics_material', 'material', None),
                                         ('physicalCharacteristics_dimension', None, None)]
@@ -811,7 +853,7 @@ class ObjectFields(BrowserView):
 
         location_tab = [('location_currentLocation', 'location_type', None)]
 
-        fieldcollection_tab = [('fieldCollection_fieldCollection_places', None, None), ('fieldCollection_habitatStratigraphy_stratigrafie', 'unit', None)]
+        fieldcollection_tab = [('fieldCollection_fieldCollection_places', None, None)]
 
         exhibitions_tab = [('exhibitions_exhibition', None, 'Zeeuws Museum', ['catObject'])]
 
@@ -893,12 +935,12 @@ class ObjectFields(BrowserView):
         new_object_schema.append(object_schema['production_dating'])
         new_object_schema.append(object_schema['physical_characteristics'])
         new_object_schema.append(object_schema['associations'])
-        new_object_schema.append(object_schema['reproductions'])
+        #new_object_schema.append(object_schema['reproductions'])
         new_object_schema.append(object_schema['recommendations_requirements'])
-        new_object_schema.append(object_schema['location'])
+        #new_object_schema.append(object_schema['location'])
         new_object_schema.append(object_schema['field_collection'])
         #new_object_schema.append(object_schema['exhibitions'])
-        new_object_schema.append(object_schema['labels'])
+        #new_object_schema.append(object_schema['labels'])
         new_object_schema.append(object_schema['books'])
         new_object_schema.append(object_schema['documentation'])
 
@@ -915,16 +957,10 @@ class ObjectFields(BrowserView):
         return json.dumps({'schema':schema})
 
 
-class ObjectView(edit.DefaultEditForm):
+class ObjectLoggedInView(edit.DefaultEditForm):
     """ View class """
-
-    general_widgets = {}
-    general_widgets_order = GENERAL_WIDGETS
-
-    template = ViewPageTemplateFile('../object_templates/view.pt')
-
     def update(self):
-        super(ObjectView, self).update()
+        super(ObjectLoggedInView, self).update()
         for group in self.groups:
             for widget in group.widgets.values():
                 if IDataGridField.providedBy(widget):
@@ -938,11 +974,79 @@ class ObjectView(edit.DefaultEditForm):
                 widget.allow_reorder = True
                 alsoProvides(widget, IFormWidget)
 
+    def get_groups(self):
+        super(ObjectLoggedInView, self).update()
+        for group in self.groups:
+            for widget in group.widgets.values():
+                if IDataGridField.providedBy(widget):
+                    widget.auto_append = False
+                    widget.allow_reorder = True
+                alsoProvides(widget, IFormWidget)
+
+        for widget in self.widgets.values():
+            if IDataGridField.providedBy(widget) or IAjaxSelectWidget.providedBy(widget):
+                widget.auto_append = False
+                widget.allow_reorder = True
+                alsoProvides(widget, IFormWidget)
+                
+        return self.groups
+
+class ObjectAllTabsView(BrowserView):
+    """ View class """
+
+    general_widgets = {}
+    general_widgets_order = GENERAL_WIDGETS
+    
     def checkUserPermission(self):
         sm = getSecurityManager()
         if sm.checkPermission(ModifyPortalContent, self.context):
             return True
         return False
+
+    def get_url_by_uid(self, uid):
+        brains = uuidToCatalogBrain(uid)
+        if brains:
+            return brains.getURL()
+        return ""
+
+    def get_details(self):
+        item = self.context
+        item_uid = item.UID()
+        
+        details = {}
+        details["title"] = item.Title()
+        details["description"] = item.Description()
+        details["image"] = ""
+
+        #brain = uuidToCatalogBrain(item_uid)
+        #if brain:
+        #    leadmedia_uid = brain.leadMedia
+        #    if leadmedia_uid:
+        #        lead_media = uuidToCatalogBrain(leadmedia_uid)
+        #        details['image'] = lead_media.getURL() + "/@@images/image/large"
+
+        return details
+
+class ObjectView(BrowserView):
+    """ View class """
+
+    general_widgets = {}
+    general_widgets_order = GENERAL_WIDGETS
+
+    template = ViewPageTemplateFile('../object_templates/view.pt')
+
+    def checkUserPermission(self):
+        sm = getSecurityManager()
+        if sm.checkPermission(ModifyPortalContent, self.context):
+            return True
+        return False
+
+    def checkObjectOnDisplay(self):
+        try:
+            brain = uuidToCatalogBrain(self.context.UID())
+            return brain.object_on_display
+        except:
+            return False
 
     def get_url_by_uid(self, uid):
         brains = uuidToCatalogBrain(uid)
@@ -1171,7 +1275,7 @@ class get_nav_objects(BrowserView):
         new_object_schema.append(object_schema['title_author'])
         new_object_schema.append(object_schema['series_notes_isbn'])
         new_object_schema.append(object_schema['abstract_subject_terms'])
-        new_object_schema.append(object_schema['reproductions'])
+        #new_object_schema.append(object_schema['reproductions'])
         new_object_schema.append(object_schema['exhibitions_auctions_collections'])
         new_object_schema.append(object_schema['relations'])
         new_object_schema.append(object_schema['free_fields_numbers'])
@@ -1401,7 +1505,7 @@ class get_nav_objects(BrowserView):
             name_split[0] = self.trim_white_spaces(raw_name)
             name_artist = name_split[0]
             
-            name_artist_link = '<a href="/'+self.context.language+'/search?SearchableText=%s">%s</a>' % (name_artist, name_artist)
+            name_artist_link = '<a href="/'+getattr(self.context, 'language', 'nl')+'/search?SearchableText=%s">%s</a>' % (name_artist, name_artist)
             name_split[0] = name_artist_link
 
             if len(name_split) > 1:
@@ -1419,9 +1523,9 @@ class get_nav_objects(BrowserView):
         _value = ""
         for i, mat in enumerate(materials):
             if i == (len(materials)-1):
-                _value += '<a href="/'+self.context.language+'/search?SearchableText=%s">%s</a>' % (mat, mat)
+                _value += '<a href="/'+getattr(self.context, 'language', 'nl')+'/search?SearchableText=%s">%s</a>' % (mat, mat)
             else:
-                _value += '<a href="/'+self.context.language+'/search?SearchableText=%s">%s</a>, ' % (mat, mat)
+                _value += '<a href="/'+getattr(self.context, 'language', 'nl')+'/search?SearchableText=%s">%s</a>, ' % (mat, mat)
 
         return _value
 
@@ -1563,21 +1667,28 @@ class get_nav_objects(BrowserView):
 
     def create_maker(self, name, url=False):
         maker = []
-        name_split = name.split(",")
 
-        if len(name_split) > 0:
-            if len(name_split) > 1:
-                maker.append(name_split[-1])
-                maker.append(name_split[0])
+        if name not in NOT_ALLOWED:
+            name_split = name.split(",")
+
+            if len(name_split) > 0:
+                if len(name_split) > 1:
+                    maker.append(name_split[-1])
+                    maker.append(name_split[0])
+                else:
+                    maker.append(name_split[0])
+
+            new_maker = ' '.join(maker)
+            if url:
+                #language = self.context.language
+                #new_maker = "<a href='%s'>%s</a>" %(url, new_maker)
+                new_maker = new_maker
+                #new_maker = "<a href='/%s/search?SearchableText=%s'>%s</a>" %(language, new_maker, new_maker)
             else:
-                maker.append(name_split[0])
+                new_maker = "<a href='/%s/search?SearchableText=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), new_maker, new_maker)
 
-        new_maker = ' '.join(maker)
-        if url:
-            #language = self.context.language
-            #new_maker = "<a href='%s'>%s</a>" %(url, new_maker)
-            new_maker = new_maker
-            #new_maker = "<a href='/%s/search?SearchableText=%s'>%s</a>" %(language, new_maker, new_maker)
+        else:
+            return ""
 
         return new_maker
 
@@ -1586,8 +1697,10 @@ class get_nav_objects(BrowserView):
 
         maker = field['maker']
         qualifier = field['qualifier']
-        role = field['role']
-        place = field['place']
+        #role = field['role']
+        role = ""
+        #place = field['place']
+        place = ""
 
         production = self.create_maker(maker, url)
 
@@ -1662,6 +1775,7 @@ class get_nav_objects(BrowserView):
         production_result = []
         # Generate production
         url = ""
+        places = []
         for field in production_field:
             production = {}
             if field['makers']:
@@ -1684,6 +1798,8 @@ class get_nav_objects(BrowserView):
 
             if field['place']:
                 production['place'] = field['place'][0]
+                if production['place'] not in NOT_ALLOWED:
+                    places.append(production['place'])
             else:
                 production['place'] = ""
 
@@ -1694,15 +1810,32 @@ class get_nav_objects(BrowserView):
         if len(production_result) > 0:
             production_value = '<p>'.join(production_result)
             object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Maker')), "value": production_value})
+        
+        if places:
+            place = '<p>'.join(places)
+            if place:
+                object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Vervaardigingsplaats')), "value": place})
 
         ## Generate Period
-        period_field = self.get_field_from_object('productionDating_dating_period', object)
+        period_field = self.get_field_from_object('productionDating_production_periods', object)
 
         period = []
         for field in period_field:
+            if field not in NOT_ALLOWED:
+                field_value_searchable = "<a href='/%s/search?SearchableText=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), field, field)
+                period.append(field_value_searchable)
+
+
+        datering_field = self.get_field_from_object('productionDating_dating_period', object)
+        datering = []
+        for field in datering_field:
             result = self.create_period_field(field)
             if result not in NOT_ALLOWED:
-                period.append(result)
+                datering.append(result)
+
+        if len(datering) > 0:
+            datering_value = ', '.join(datering)
+            object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Datering')), "value": datering_value})
 
         if len(period) > 0:
             period_value = ', '.join(period)
@@ -1722,15 +1855,25 @@ class get_nav_objects(BrowserView):
             production_value = '<p>'.join(production)
             object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Maker')), "value": production_value})
 
-        ## Generate Period
-        period_field = self.get_field_from_object('productionDating_dating_period', object)
+        period_field = self.get_field_from_object('productionDating_production_periods', object)
 
         period = []
-        period_field = []
         for field in period_field:
+            if field not in NOT_ALLOWED:
+                field_value_searchable = "<a href='/%s/search?SearchableText=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), field, field)
+                period.append(field_value_searchable)
+
+
+        datering_field = self.get_field_from_object('productionDating_dating_period', object)
+        datering = []
+        for field in datering_field:
             result = self.create_period_field(field)
             if result not in NOT_ALLOWED:
-                period.append(result)
+                datering.append(result)
+
+        if len(datering) > 0:
+            datering_value = ', '.join(datering)
+            object_schema[field_schema]['fields'].append({"title": self.context.translate(_('Datering')), "value": datering_value})
 
         if len(period) > 0:
             period_value = ', '.join(period)
@@ -1748,6 +1891,8 @@ class get_nav_objects(BrowserView):
                 dimension = "%s %s" %(dimension, val['units'])
             if val['dimension'] != "" and val['dimension'] != []:
                 dimension = "%s: %s" %(val['dimension'][0], dimension)
+            if val['part'] not in NOT_ALLOWED:
+                dimension = "%s (%s)" %(dimension, val['part'])
 
             new_dimension_val.append(dimension)
 
@@ -2027,7 +2172,8 @@ class get_nav_objects(BrowserView):
             if fieldvalue != None:
                 title = fieldvalue.title
                 value = self.get_field_from_object(field, object)
-
+                if len(value) > 1:
+                    value = [value[0]]
                 schema_value = self.transform_schema_field(field, value, choice, restriction)
 
                 if schema_value != "":
@@ -2149,7 +2295,7 @@ class get_nav_objects(BrowserView):
                                 ('identification_objectName_category', None), ('identification_objectName_objectname', 'name'),
                                 ('title', None), ('identification_taxonomy', 'scientific_name'), ('text', None)]
 
-        production_dating_tab = ['productionDating_production', 'productionDating_dating_period']
+        production_dating_tab = ['productionDating_production', 'productionDating_production_periods']
 
         physical_characteristics_tab = [('physicalCharacteristics_technique', 'technique', None), ('physicalCharacteristics_material', 'material', None),
                                         ('physicalCharacteristics_dimension', None, None)]
@@ -2162,7 +2308,7 @@ class get_nav_objects(BrowserView):
 
         location_tab = [('location_current_location', 'location_type', None)]
 
-        fieldcollection_tab = [('fieldCollection_fieldCollection_places', None, None), ('fieldCollection_habitatStratigraphy_stratigrafie', 'unit', None)]
+        fieldcollection_tab = [('fieldCollection_fieldCollection_places', None, None)]
 
         exhibitions_tab = [('exhibitions_exhibition', None, 'Zeeuws Museum', ['catObject'])]
 
@@ -2244,12 +2390,12 @@ class get_nav_objects(BrowserView):
         new_object_schema.append(object_schema['production_dating'])
         new_object_schema.append(object_schema['physical_characteristics'])
         new_object_schema.append(object_schema['associations'])
-        new_object_schema.append(object_schema['reproductions'])
+        #new_object_schema.append(object_schema['reproductions'])
         new_object_schema.append(object_schema['recommendations_requirements'])
-        new_object_schema.append(object_schema['location'])
+        #new_object_schema.append(object_schema['location'])
         new_object_schema.append(object_schema['field_collection'])
         #new_object_schema.append(object_schema['exhibitions'])
-        new_object_schema.append(object_schema['labels'])
+        #new_object_schema.append(object_schema['labels'])
         new_object_schema.append(object_schema['books'])
         new_object_schema.append(object_schema['documentation'])
         return new_object_schema
@@ -2583,8 +2729,7 @@ class get_nav_objects(BrowserView):
 class object_utils(BrowserView):
 
     def util(self):
-        print "call utils"
-        return "Test"
+        return
 
 
 

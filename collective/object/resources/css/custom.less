@@ -286,4 +286,51 @@ body.portaltype-exhibition:not(.template-edit) div.template-edit .pattern-pickad
 
 
 
+div.on-display-wrapper {
+
+	position: absolute;
+    left: calc(~"100% - 15px");
+    color: white;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    width: auto;
+
+	.label_inner {
+		text-transform: uppercase;
+	    white-space: nowrap;
+	    box-sizing: border-box;
+	    background-color: #7BB0E7;
+	    font-size: 0.850em;
+	    font-weight: bold;
+	    padding: 2px 7pt 1px;
+	}
+}
+
+body:not(.portaltype-object) div.slideshowWrapper.moved {
+	div.on-display-wrapper {
+		display: none;
+	}
+}
+
+body.portaltype-object div.on-display-wrapper {
+	bottom: 80px;
+	z-index: 10000;
+	left: 50%;
+	margin-left: -46px;
+	-webkit-transform-origin: none;
+	transform-origin: none;
+    -webkit-transform: none;
+    transform: none;
+}
+
+body.portaltype-object.template-edit div.on-display-wrapper,
+body.portaltype-object.userrole-authenticated div.on-display-wrapper {
+	display: none;
+}
+
+
+
+
 

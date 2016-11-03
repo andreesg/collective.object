@@ -182,7 +182,8 @@ class IObject(form.Schema):
         missing_value=[]
     )
     form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
-
+    dexteritytextindexer.searchable('identification_identification_collections')
+    
     identification_objectName_category = schema.List(
         title=_(u'Object category'),
         required=False,
@@ -190,6 +191,7 @@ class IObject(form.Schema):
         missing_value=[]
     )
     form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
+    dexteritytextindexer.searchable('identification_objectName_category')
 
     identification_objectName_objectname = ListField(title=_(u'Object name'),
         value_type=DictRow(title=_(u'Object name'), schema=IObjectname),
@@ -331,6 +333,7 @@ class IObject(form.Schema):
         missing_value=[]
     )
     form.widget('productionDating_production_periods', AjaxSelectFieldWidget,  vocabulary="collective.object.periods")
+    dexteritytextindexer.searchable('productionDating_production_periods')
 
     # Dating #
     productionDating_dating_period = ListField(title=_(u'Dating'),
@@ -367,11 +370,13 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Techniques'), schema=ITechniques),
         required=False)
     form.widget(physicalCharacteristics_technique=DataGridFieldFactory)
+    dexteritytextindexer.searchable('physicalCharacteristics_technique')
 
     physicalCharacteristics_material = ListField(title=_(u'Materials'),
         value_type=DictRow(title=_(u'Materials'), schema=IMaterials),
         required=False)
     form.widget(physicalCharacteristics_material=DataGridFieldFactory)
+    dexteritytextindexer.searchable('physicalCharacteristics_material')
 
     physicalCharacteristics_dimension = ListField(title=_(u'Dimensions'),
         value_type=DictRow(title=_(u'Dimensions'), schema=IDimensions),
@@ -495,6 +500,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Associated subject'), schema=IAssociatedSubjects),
         required=False)
     form.widget(associations_associatedSubjects=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('associations_associatedSubjects')
 
     associations_associatedPeriods = ListField(title=_(u'Associated period'),
         value_type=DictRow(title=_(u'Associated period'), schema=IAssociatedPeriods),
