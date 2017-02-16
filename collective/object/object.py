@@ -176,7 +176,7 @@ class IObject(form.Schema):
         ),
         required=False
     )
-    #form.widget('identification_identification_institutionNames', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedInstitution')
+    form.widget('identification_identification_institutionNames', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedInstitution')
 
     identification_identification_collections = schema.List(
         title=_(u'Collection'),
@@ -184,7 +184,7 @@ class IObject(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    #form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
+    form.widget('identification_identification_collections', AjaxSelectFieldWidget,  vocabulary="collective.object.collection")
     dexteritytextindexer.searchable('identification_identification_collections')
     
     identification_objectName_category = schema.List(
@@ -193,7 +193,7 @@ class IObject(form.Schema):
         value_type=schema.TextLine(),
         missing_value=[]
     )
-    #form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
+    form.widget('identification_objectName_category', AjaxSelectFieldWidget,  vocabulary="collective.object.objectCategory")
     dexteritytextindexer.searchable('identification_objectName_category')
 
     identification_objectName_objectname = ListField(title=_(u'Object name'),
@@ -550,7 +550,7 @@ class IObject(form.Schema):
         ),
         required=False
     )
-    #form.widget('numbersRelationships_relationshipsWithOtherObjects_partOf', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('numbersRelationships_relationshipsWithOtherObjects_partOf', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
     
     numbersRelationships_relationshipsWithOtherObjects_notes = schema.TextLine(
         title=_(u'Notes'),
@@ -813,7 +813,7 @@ class IObject(form.Schema):
         required=False
     )
 
-    #form.widget('acquisition_acquisition_acquisitionfrom', ExtendedRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('acquisition_acquisition_acquisitionfrom', ExtendedRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
     
     acquisition_auction = schema.TextLine(
         title=_(u'Auction'),
@@ -964,7 +964,7 @@ class IObject(form.Schema):
         ),
         required=False
     )
-    #form.widget('disposal_disposal_recipient', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('disposal_disposal_recipient', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     disposal_disposal_proposedRecipient = RelationList(
         title=_(u'Proposed recipient'),
@@ -975,7 +975,7 @@ class IObject(form.Schema):
         ),
         required=False
     )
-    #form.widget('disposal_disposal_proposedRecipient', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('disposal_disposal_proposedRecipient', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
 
     disposal_reason = schema.TextLine(
@@ -1032,7 +1032,7 @@ class IObject(form.Schema):
         ),
         required=False
     )
-    #form.widget('ownershipHistory_ownership_currentOwner', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    form.widget('ownershipHistory_ownership_currentOwner', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     ownershipHistory_historyOwner = ListField(title=_(u'Owner'),
         value_type=DictRow(title=_(u'Owner'), schema=IHistoryOwner),
