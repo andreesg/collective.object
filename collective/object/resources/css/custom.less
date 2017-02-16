@@ -290,7 +290,7 @@ div.on-display-wrapper {
 
 	position: absolute;
     left: calc(~"100% - 15px");
-    color: white;
+    color: #7BB0E7;
     -webkit-transform-origin: 0 100%;
     transform-origin: 0 100%;
     -webkit-transform: rotate(90deg);
@@ -301,12 +301,22 @@ div.on-display-wrapper {
 		text-transform: uppercase;
 	    white-space: nowrap;
 	    box-sizing: border-box;
-	    background-color: #7BB0E7;
+	    background-color: #ffffff;
 	    font-size: 0.850em;
 	    font-weight: bold;
 	    padding: 2px 7pt 1px;
+	    border: 1px solid #7BB0E7;
+	    border-bottom: 0px;
 	}
 }
+
+div.entries.online-experience {
+	div.on-display-wrapper {
+		left: 100%;
+	}
+}
+
+
 
 body:not(.portaltype-object) div.slideshowWrapper.moved {
 	div.on-display-wrapper {
@@ -315,6 +325,7 @@ body:not(.portaltype-object) div.slideshowWrapper.moved {
 }
 
 body.portaltype-object div.on-display-wrapper {
+	display: none !important;
 	bottom: 80px;
 	z-index: 10000;
 	left: 50%;
@@ -323,12 +334,102 @@ body.portaltype-object div.on-display-wrapper {
 	transform-origin: none;
     -webkit-transform: none;
     transform: none;
+
+    color: #7BB0E7;
+
+    .label_inner {
+		background-color: transparent;
+		color: #7BB0E7;
+		border: 1px solid #7BB0E7;
+		border-bottom: 0px;
+    }
 }
 
 body.portaltype-object.template-edit div.on-display-wrapper,
 body.portaltype-object.userrole-authenticated div.on-display-wrapper {
 	display: none;
 }
+
+
+/* History view */
+
+body.template-historyview.frontend {
+	font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif; /* defaults to plone styles */
+	font-size: 14px;
+
+	h3 {
+		margin-top: 0px;
+	}
+
+	#content-core p {
+		font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif; /* defaults to plone styles */
+		font-size: 14px;
+		margin: 0 0 10px;
+		color: #696969;
+		line-height: 1.5;
+		letter-spacing: 0;
+	}
+
+	#content-core a.context {
+		border: 1px solid transparent; /* defaults to plone styles */
+		color: #ffffff;
+		background-color: #007bb1;
+    	border-color: #00587e !important;
+	}
+
+	#content-core a.standalone {
+		border: 1px solid transparent; /* defaults to plone styles */
+		color: #4d4d4d;
+	    background-color: #e5e5e5;
+	    border-color: #b2b2b2 !important;
+
+	    &:hover,
+	    &:focus {
+	    	border: 1px solid transparent; /* defaults to plone styles */
+			color: #4d4d4d;
+		    background-color: #e5e5e5;
+		    border-color: #b2b2b2 !important;
+	    }
+	}
+
+	#content-core {
+		padding-bottom: 40px;
+	}
+
+	.documentByLine {
+		padding-top: 30px;
+	}
+}
+
+#formfield-form-widgets-adlibtaxonomy-taxonomy_adlibtaxonomy span.formHelp {
+	display: none;
+}
+
+#form-widgets-identification_objectName_objectname td.cell-2 {
+	width: 200px;
+}
+
+#form-widgets-physicalCharacteristics_keyword td.cell-2,
+#form-widgets-physicalCharacteristics_keyword td.cell-3 {
+	width: 200px;
+}
+
+#form-widgets-physicalCharacteristics_technique td.cell-2 {
+	width: 200px;
+}
+
+#form-widgets-physicalCharacteristics_material td.cell-2 {
+	width: 200px;
+}
+
+#form-widgets-physicalCharacteristics_dimension td.cell-2 {
+	width: 100px;
+}
+
+
+
+
+
 
 
 

@@ -26,6 +26,7 @@ class ObjExtendedPathSource(ObjPathSource):
         except:
             raise
 
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Extended function that uses custom ObjPathSource class    #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

@@ -17,6 +17,7 @@
                    id string:formfield-${widget/id};">
 
     <tal:objtitles>
+      
       <tal:objtitle tal:condition="python: widget.__name__ == 'identification_identification_institutionNames'">
         <h4 class="page-header">Identificatie</h4>
         <div class="control-label col-sm-3 add-link">
@@ -31,7 +32,7 @@
       <tal:objtitle tal:condition="python: widget.__name__ == 'identification_titleDescription_title'">
         <h4 class="page-header">Titel en beschrijving</h4>
       </tal:objtitle>
-      <tal:objtitle tal:condition="python: widget.__name__ == 'identification_taxonomy'">
+      <tal:objtitle tal:condition="python: widget.__name__ == 'adlibtaxonomy.taxonomy_adlibtaxonomy'">
         <h4 class="page-header">Taxonomie</h4>
       </tal:objtitle>
 

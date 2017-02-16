@@ -73,10 +73,9 @@
           <h1 tal:content="context/Title" tal:on-error="nothing"></h1>
         </div>
         <div id="body-text" style="display:none;">
-          <!--<p tal:condition="context/text" tal:content="structure python:context.text.output_relative_to(context.view)" tal:on-error="nothing"></p>-->
         </div>
 
-        <p tal:content="python: context.labels[0]['text']" tal:on-error="nothing" style="padding-top: 50px; margin-bottom: -20px;"></p>
+        <p tal:define="btext view/get_text_from_labels" tal:content="structure btext" tal:on-error="nothing" style="padding-top: 0px; margin-bottom: -50px;"></p>
 
         <div class="container object-container">
           <div class="object-fieldset row">
@@ -106,7 +105,8 @@
                           fieldset_name python:normalizeString(fieldset_name);"
 
                 tal:attributes="id string:fieldset-${fieldset_name};
-                              class string:formPanel;">
+                              class string:formPanel;"
+                tal:condition="python: fieldset_name not in ['categorization']">
                   
                     <legend tal:condition="fieldset_label"
                             tal:attributes="id string:fieldset-${fieldset_name}"
@@ -122,7 +122,7 @@
                         />
                     </tal:block>
                     
-                    <tal:renderfieldset tal:condition="python: fieldset_name in ['identification']">
+                    <tal:renderfieldset tal:condition="python: fieldset_name not in ['categorization']">
                       <tal:block define="view nocall:group">
                           <metal:block use-macro="context/@@ploneform-macros/widget_rendering" />
                       </tal:block> 

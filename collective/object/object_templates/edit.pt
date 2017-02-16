@@ -147,9 +147,11 @@
                                                 />
                                         </tal:block>
 
+                                        <tal:renderfieldset>
                                         <tal:block define="view nocall:group">
                                             <metal:block use-macro="context/@@ploneform-macros/widget_rendering" />
                                         </tal:block>
+                                        </tal:renderfieldset>
 
                                 </fieldset>
                             </tal:block>

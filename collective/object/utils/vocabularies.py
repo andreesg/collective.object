@@ -305,6 +305,9 @@ CollectorRelatedItemsVocabularyFactory = InstitutioRelatedItemsVocabulary('field
 
 
 ### FIXED
+CommonNameVocabularyFactory = ObjectVocabulary('identification_taxonomy_commonName')
+ScientificNameVocabularyFactory = ObjectVocabulary('identification_taxonomy_scientificName')
+
 AssociationVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_association')
 AssociatedSubjectVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_subject')
 AssociatedPeriodVocabularyFactory = ObjectVocabulary('associations_associatedSubjects_period')

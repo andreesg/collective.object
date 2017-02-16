@@ -110,6 +110,7 @@
   <adapter name="identification_objectName_category" factory=".indexers.identification_objectName_category" />
   <adapter name="identification_objectName_objectname" factory=".indexers.identification_objectName_objectname" />
   <adapter name="identification_taxonomy_commonName" factory=".indexers.identification_taxonomy_commonName" />
+   <adapter name="identification_taxonomy_scientificName" factory=".indexers.identification_taxonomy_scientificName" />
   <adapter name="fieldCollection_habitatStratigraphy_habitats" factory=".indexers.fieldCollection_habitatStratigraphy_habitats" />
   <adapter name="productionDating_productionDating_maker" factory=".indexers.productionDating_productionDating_maker" />
 
@@ -157,6 +158,16 @@
   <utility
     component=".utils.vocabularies.HabitatVocabularyFactory"
     name="collective.object.habitat"
+    />
+
+  <utility
+    component=".utils.vocabularies.CommonNameVocabularyFactory"
+    name="collective.object.commonname"
+    />
+
+  <utility
+    component=".utils.vocabularies.ScientificNameVocabularyFactory"
+    name="collective.object.scientificname"
     />
 
   <utility

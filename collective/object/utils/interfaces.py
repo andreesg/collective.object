@@ -26,6 +26,7 @@ from z3c.relationfield.schema import RelationList, Relation
 
 import datetime
 from five import grok
+from plone.formwidget.contenttree import UUIDSourceBinder
 
 priority_vocabulary = SimpleVocabulary(list(_createPriorityVocabulary()))
 insurance_type_vocabulary = SimpleVocabulary(list(_createInsuranceTypeVocabulary()))
@@ -116,7 +117,7 @@ class IFrom(Interface):
         required=False
     )
 
-    form.widget('aquisitionFrom', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('aquisitionFrom', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
 ## Production & Dating
 class IProductiondating(form.Schema):
@@ -132,11 +133,11 @@ class IProductiondating(form.Schema):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relatedMaker'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedMaker')
+    #form.widget('makers', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedMaker')
 
     qualifier = schema.TextLine(title=_(u'label_kwal'), required=False, default=u"", missing_value=u"")
     
@@ -291,11 +292,11 @@ class IIconographyContentSubjects(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relatedTaxonomicRank'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('scientificName', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
+    #form.widget('scientificName', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
 
     properName = schema.List(
         title=_(u'Proper name'),
@@ -327,11 +328,11 @@ class IInscriptions(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relatedMaker'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('creators', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedMaker')
+    #form.widget('creators', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedMaker')
 
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.inscriptionsRole")
     role = schema.List(
@@ -389,11 +390,11 @@ class IAssociatedSubjects(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relatedTaxonomicRank'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('scientificName', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
+    #form.widget('scientificName', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
 
     # These fields are going to be removed in the future
     form.widget('properName', AjaxSingleSelectFieldWidget, vocabulary="collective.object.associatedsubjects")
@@ -515,11 +516,11 @@ class ICollectionCollectors(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relatedCollector'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('name', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedCollector')
+    #form.widget('name', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relatedCollector')
 
     form.widget('role', AjaxSingleSelectFieldWidget, vocabulary="collective.object.fieldCollection_collector_role")
     role = schema.List(
@@ -535,11 +536,11 @@ class IHistoryOwner(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('owner', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('owner', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     startDate = schema.TextLine(title=_(u'From'), required=False)
     endDate = schema.TextLine(title=_(u'Until'), required=False)
@@ -557,11 +558,11 @@ class IHistoryOwner(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('acquiredFrom', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('acquiredFrom', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     lotnr =  schema.TextLine(title=_(u'Lot no.'), required=False)
     auction = schema.TextLine(title=_(u'Auction'), required=False)
@@ -592,7 +593,7 @@ class ICollectors(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary="collective.object.relateditems"
+            source=UUIDSourceBinder()
         ),
         required=False
     )
@@ -643,11 +644,11 @@ class IRelatedObjects(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('relatedObject', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('relatedObject', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     
     #relatedObject = schema.TextLine(title=_(u'Related object'), required=False)
@@ -687,6 +688,10 @@ class IOtherName(Interface):
 class ITaxonomyRank(Interface):
     text = schema.TextLine(title=_(u'Taxonomy rank'), required=False)
 
+class ITempTaxonomy(Interface):
+    scientific_name = schema.TextLine(title=_(u'Scientific name'), required=False)
+    common_name = schema.TextLine(title=_(u'Common name'), required=False)
+
 class ITaxonomy(Interface):
     rank = schema.Choice(
         title=_(u'Taxonomy rank'), 
@@ -702,11 +707,11 @@ class ITaxonomy(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relatedTaxonomicRank'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('scientific_name', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
+    #form.widget('scientific_name', TaxonomicRelatedItemsFieldWidget, vocabulary='collective.object.relatedTaxonomicRank')
 
     #common_name = schema.TextLine(title=_(u'Common name'), required=False)
 
@@ -724,11 +729,11 @@ class IDeterminers(form.Schema):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('name', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('name', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     date = schema.TextLine(title=_(u'Date'), required=False)
     #form.widget(determinerDate=DatetimeFieldWidget)
@@ -832,7 +837,7 @@ class IConsTreatments(Interface):
         ),
         required=False
     )
-    form.widget('treatmentNumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('treatmentNumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     treatmentMethod = schema.TextLine(title=_(u'Treatment method'), required=False)
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
@@ -871,11 +876,11 @@ class IParts(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('parts', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('parts', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     notes = schema.Text(title=_(u'Notes'), required=False)
 
@@ -885,7 +890,7 @@ class IRelatedObject(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary="collective.object.relateditems"
+            source=UUIDSourceBinder()
         ),
         required=False
     )
@@ -911,11 +916,11 @@ class IDocumentationDocumentation(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('titles', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('titles', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     #author = schema.TextLine(title=_(u'Author'), required=False)
     pageMark = schema.TextLine(title=_(u'Page mark'), required=False)
@@ -937,7 +942,7 @@ class IArchives(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary="collective.object.relateditems"
+            source=UUIDSourceBinder()
         ),
         required=False
     )
@@ -969,11 +974,11 @@ class IEntryNumber(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('transport_number', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('transport_number', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     """depositor = schema.TextLine(title=_(u'Depositor'), required=False)
     entry_reason = schema.TextLine(title=_(u'Entry reason'), required=False)
@@ -1003,7 +1008,7 @@ class IAssociatedPersonInstitution(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary="collective.object.relateditems"
+            source=UUIDSourceBinder()
         ),
         required=False
     )
@@ -1029,11 +1034,11 @@ class IAssociatedPersonInstitutions(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('names', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('names', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
     
     startDate = schema.TextLine(title=_(u'Start date'), required=False)
     endDate = schema.TextLine(title=_(u'End date'), required=False)
@@ -1156,11 +1161,11 @@ class IIconographyContentPersonInstitution(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('names', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('names', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
 
     notes = schema.Text(title=_(u'Notes'), required=False)
@@ -1233,11 +1238,11 @@ class IExhibition(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('exhibitionName', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('exhibitionName', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     #name = schema.TextLine(title=_(u'Exhibition name'), required=False)
     #date = schema.TextLine(title=_(u'Date'), required=False)
@@ -1256,11 +1261,11 @@ class IIncomingLoan(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('loannumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('loannumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     """loanNumber = schema.TextLine(title=_(u'Loan number'), required=False)
     status = schema.TextLine(title=_(u'Status'), required=False)
@@ -1279,11 +1284,11 @@ class IArchiveNumber(Interface):
         missing_value=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('number', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('number', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
 
 class IOutgoingLoan(Interface):
@@ -1292,11 +1297,11 @@ class IOutgoingLoan(Interface):
         default=[],
         value_type=RelationChoice(
             title=u"Related",
-            vocabulary='collective.object.relateditems'
+            source=UUIDSourceBinder()
         ),
         required=False
     )
-    form.widget('loannumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+    #form.widget('loannumber', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
 
     """status = schema.TextLine(title=_(u'Status'), required=False)
     requester = schema.TextLine(title=_(u'Requester'), required=False)

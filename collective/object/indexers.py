@@ -9,12 +9,14 @@ from collective.treatment.treatment import ITreatment
 from collective.outgoingLoan.outgoingLoan import IOutgoingLoan
 from collective.incomingLoan.incomingLoan import IIncomingLoan
 from collective.objectentry.objectentry import IObjectEntry
-
+import datetime
 
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
 
 @indexer(IObject)
-def object_on_display(object, **kw):
+def object_on_display(object, **kw): 
+    allowed_values = ["balanszalen","geschiedenis/middeleeuwen","geschiedenis/schilderijen","geschiedenis/vroegtijd","geschiedenis/wandtapijten","geschiedenis/zilver","mode 1","mode 2","wonderkamers","wonderkamers/huis & handel","wonderkamers/leven & dood","wonderkamers/macht & pracht"]
+    
     try:
         if hasattr(object, 'location_currentLocation'):
             terms = []
@@ -22,11 +24,21 @@ def object_on_display(object, **kw):
             if items != None:
                 if len(items) > 0:
                     item = items[0]
-                    location = item['location_type']
-                    if location == "museum":
-                        return True
-                    else:
-                        return False
+                    location = item['location']
+                    end_date = item['end_date']
+
+                    if location:
+                        if location[0].lower() in allowed_values:
+                            if end_date not in ['', ' ', None]:
+                                try:
+                                    date_obj = datetime.datetime.strptime(end_date, "%Y-%m-%d")
+                                    if date_obj < datetime.datetime.now():
+                                        return False
+                                except:
+                                    return False
+                            return True
+                        else:
+                            return False
             return False
         else:
             return False
@@ -782,7 +794,41 @@ def objectentry_priref(object, **kw):
     except:
         return ""
 
+
 @indexer(IObject)
+def identification_taxonomy_scientificName(object, **kw):
+    try:
+        if hasattr(object, 'identification_taxonomy_temp'):
+            names = []
+            items = object.identification_taxonomy_temp
+            if items != None:
+                for item in items:
+                    if item['scientific_name'] not in [" ", "", None]:
+                        names.append(item['scientific_name'])
+            return names
+        else:
+            return []
+    except:
+        return []
+
+@indexer(IObject)
+def identification_taxonomy_commonName(object, **kw):
+    try:
+        if hasattr(object, 'identification_taxonomy_temp'):
+            names = []
+            items = object.identification_taxonomy_temp
+            if items != None:
+                for item in items:
+                    if item['common_name'] not in [" ", "", None]:
+                        names.append(item['common_name'])
+            return names
+        else:
+            return []
+    except:
+        return []
+
+
+"""@indexer(IObject)
 def identification_taxonomy_commonName(object, **kw):
     try:
         if hasattr(object, 'identification_taxonomy'):
@@ -818,7 +864,7 @@ def identification_taxonomy_commonName(object, **kw):
         else:
             return []
     except:
-        return []
+        return []"""
 
 @indexer(IObject)
 def productionDating_productionDating_maker(object, **kw):
