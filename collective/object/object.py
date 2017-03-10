@@ -17,6 +17,7 @@ from z3c.form.interfaces import DISPLAY_MODE, HIDDEN_MODE, IDataConverter, NO_VA
 from z3c.form.converter import BaseDataConverter
 import datetime
 from plone.app.uuid.utils import uuidToCatalogBrain, uuidToObject
+from Products.Five import BrowserView
 
 #
 # Plone dependencies
@@ -136,7 +137,8 @@ class IObject(form.Schema):
         title=_(u"Body"),
         required=False
     )
-
+    
+    
     # # # # # # # # # # # # # # 
     # Identification fieldset #
     # # # # # # # # # # # # # # 
@@ -307,6 +309,8 @@ class IObject(form.Schema):
         required=False)
     form.widget(identification_taxonomy_notes=BlockDataGridFieldFactory)
 
+    
+
     # # # # # # # # # # # # # # # # #
     # Production & Dating           #
     # # # # # # # # # # # # # # # # #
@@ -358,7 +362,6 @@ class IObject(form.Schema):
         required=False)
     form.widget(productionDating_dating_notes=DataGridFieldFactory)
 
-
     # # # # # # # # # # # # # # # # #
     # Physical Characteristics      #
     # # # # # # # # # # # # # # # # #
@@ -406,6 +409,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Frame'), schema=IFrame),
         required=False)
     form.widget(physicalCharacteristics_frame=DataGridFieldFactory)
+    
 
     # # # # # # # # # #
     # Iconography     #
@@ -487,7 +491,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Content period/date'), schema=IIconographyContentPeriodDates),
         required=False)
     form.widget(iconography_contentPeriodDates=BlockDataGridFieldFactory)
-
+    
     # # # # # # # # # # # # # # #
     # Inscriptions & Markings   #
     # # # # # # # # # # # # # # #
@@ -500,7 +504,8 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscriptions),
         required=False)
     form.widget(inscriptionsMarkings_inscriptionsAndMarkings=BlockDataGridFieldFactory)
-
+    
+    
     # # # # # # # # #
     # Associations  #      
     # # # # # # # # # 
@@ -524,14 +529,19 @@ class IObject(form.Schema):
         required=False)
     form.widget(associations_associatedPersonInstitutions=BlockDataGridFieldFactory)
 
-
+    
+    
     # # # # # # # # # # # # # 
     # Numbers/relationships #
     # # # # # # # # # # # # # 
     model.fieldset('numbers_relationships', label=_(u'Numbers/relationships'), 
-        fields=['numbersRelationships_numbers', 'numbersRelationships_relationshipsWithOtherObjects_partOf',
-                'numbersRelationships_relationshipsWithOtherObjects_notes', 'numbersRelationships_relationshipsWithOtherObjects_parts',
-                'numbersRelationships_relationshipsWithOtherObjects_relatedObjects', 'numbersRelationships_digitalReferences', ]
+        fields=['numbersRelationships_numbers', 
+                'numbersRelationships_relationshipsWithOtherObjects_partOf',
+                'numbersRelationships_relationshipsWithOtherObjects_parts',
+                'numbersRelationships_relationshipsWithOtherObjects_relatedObjects', 
+                'numbersRelationships_relationshipsWithOtherObjects_notes',
+                'numbersRelationships_digitalReferences',
+                 ]
     )
 
     # Numbers
@@ -539,6 +549,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Numbers'), schema=INumbers),
         required=False)
     form.widget(numbersRelationships_numbers=DataGridFieldFactory)
+    
 
     # Relationships with other objects
     numbersRelationships_relationshipsWithOtherObjects_partOf = RelationList(
@@ -551,39 +562,44 @@ class IObject(form.Schema):
         required=False
     )
     form.widget('numbersRelationships_relationshipsWithOtherObjects_partOf', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
-    
-    numbersRelationships_relationshipsWithOtherObjects_notes = schema.TextLine(
-        title=_(u'Notes'),
-        required=False
-    )
 
+    
     numbersRelationships_relationshipsWithOtherObjects_parts = ListField(title=_(u'Parts'),
         value_type=DictRow(title=_(u'Parts'), schema=IParts),
         required=False)
     form.widget(numbersRelationships_relationshipsWithOtherObjects_parts=BlockDataGridFieldFactory)
 
+    
     # Digital references
+    numbersRelationships_relationshipsWithOtherObjects_relatedObjects = ListField(title=_(u'Related object'),
+        value_type=DictRow(title=_(u'Related object'), schema=IRelatedObjects),
+        required=False)
+    form.widget(numbersRelationships_relationshipsWithOtherObjects_relatedObjects=BlockDataGridFieldFactory)
+    
+
     numbersRelationships_digitalReferences = ListField(title=_(u'Digital references'),
         value_type=DictRow(title=_(u'Digital references'), schema=IDigitalReferences),
         required=False)
     form.widget(numbersRelationships_digitalReferences=DataGridFieldFactory)
 
-    numbersRelationships_relationshipsWithOtherObjects_relatedObjects = ListField(title=_(u'Related object'),
-        value_type=DictRow(title=_(u'Related object'), schema=IRelatedObjects),
-        required=False)
-    form.widget(numbersRelationships_relationshipsWithOtherObjects_relatedObjects=BlockDataGridFieldFactory)
+    numbersRelationships_relationshipsWithOtherObjects_notes = schema.TextLine(
+        title=_(u'Notes'),
+        required=False
+    )
 
+    
     # # # # # # # # # #
     # Documentation   #
     # # # # # # # # # #
     model.fieldset('documentation', label=_(u'Documentation'), 
-        fields=['documentation_documentation']
+        fields=["documentation_documentation"]
     )
 
     documentation_documentation = ListField(title=_(u'Documentation'),
         value_type=DictRow(title=_(u'Documentation'), schema=IDocumentationDocumentation),
         required=False)
     form.widget(documentation_documentation=BlockDataGridFieldFactory)
+
 
     # # # # # # # # # # # # # # # # # # #
     # Documentation (free) / archive    #
@@ -603,6 +619,7 @@ class IObject(form.Schema):
         required=False)
     form.widget(documentationFreeArchive_archive=DataGridFieldFactory)
 
+    
     # # # # # # # # # #
     # Reproductions   #
     # # # # # # # # # #
@@ -616,6 +633,7 @@ class IObject(form.Schema):
         required=False)
     form.widget(reproductions_reproduction=BlockDataGridFieldFactory)
 
+    
 
     # # # # # # # # # # # # # # #
     # Condition & Conservation  #
@@ -696,6 +714,7 @@ class IObject(form.Schema):
         required=False
     )
 
+    
     # # # # # # # # # # # # # # # # # 
     # Recommendations/requirements  #
     # # # # # # # # # # # # # # # # # 
@@ -727,7 +746,7 @@ class IObject(form.Schema):
         required=False)
     form.widget(recommendationsRequirements_legalLicenceRequirements_requirementsHeld=DataGridFieldFactory)
 
-
+    
     # # # # # # # # # # #
     # Value & Insurance #
     # # # # # # # # # # #
@@ -745,6 +764,8 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Valuation'), schema=IValuations),
         required=False)
     form.widget(valueInsurance_valuations=BlockDataGridFieldFactory)
+    
+    
 
     # # # # # # # # # #
     # Acquisition     #
@@ -915,6 +936,7 @@ class IObject(form.Schema):
         required=False)
     form.widget(acquisition_fundings=BlockDataGridFieldFactory)
 
+    
     # # # # # # # 
     # Disposal  #
     # # # # # # #
@@ -1073,7 +1095,7 @@ class IObject(form.Schema):
 
     model.fieldset('field_collection', label=_(u'Field Collection'), 
         fields=['fieldCollection_fieldCollection_fieldCollNumber', 
-                'fieldCollection_fieldCollection_collectors',
+                #'fieldCollection_fieldCollection_collectors',
                 'fieldCollection_fieldCollection_events',
                 'fieldCollection_fieldCollection_dateEarly',
                 'fieldCollection_fieldCollection_dateEarlyPrecision', 'fieldCollection_fieldCollection_dateLate',
@@ -1319,7 +1341,8 @@ class AddView(add.DefaultAddView):
 class EditForm(edit.DefaultEditForm):
     template = ViewPageTemplateFile('object_templates/edit.pt')
 
-    def update(self):
+
+    def update(self):        
         super(EditForm, self).update()
         for group in self.groups:
             for widget in group.widgets.values():
@@ -1364,7 +1387,7 @@ class EditForm(edit.DefaultEditForm):
 
         return url
 
-    """@button.buttonAndHandler(u'Save', name='save')
+    @button.buttonAndHandler(u'Save', name='save')
     def handleSave(self, action):
         print "handle save"
 
@@ -1378,7 +1401,7 @@ class EditForm(edit.DefaultEditForm):
         context = self.getContent()
         print context
         for k, v in data.items():
-            setattr(context, k, v)"""
+            setattr(context, k, v)
 
 
 class ObjectNumberValidator(validator.SimpleFieldValidator):

@@ -121,11 +121,13 @@
                             tal:content="structure error/render"
                         />
                     </tal:block>
+
                     
                     <tal:renderfieldset tal:condition="python: fieldset_name not in ['categorization']">
                       <tal:block define="view nocall:group">
                           <metal:block use-macro="context/@@ploneform-macros/widget_rendering" />
                       </tal:block> 
+
                     </tal:renderfieldset>
 
             </fieldset>

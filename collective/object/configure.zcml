@@ -43,6 +43,7 @@
 
 
   <!-- Custom Edit form -->
+
   <browser:page
     name="edit"
     for="collective.object.object.IObject"
@@ -436,9 +437,9 @@
     name="collective.object.makerController"
     />
 
-  <adapter
+  <!--<adapter
     factory=".object.ObjectNumberValidator"
-    />
+    />-->
 
 
   <!-- -*- extra stuff goes here -*- -->

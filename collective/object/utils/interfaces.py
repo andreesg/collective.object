@@ -12,14 +12,16 @@ from zope.component import adapts
 from ..utils.vocabularies import _createPriorityVocabulary, _createInsuranceTypeVocabulary, \
                                 _createNameTypeVocabulary, _createSubjectTypeVocabulary, _createTaxonomyRankVocabulary,RelatedItemsVocabulary, RelatedItemsVocabularyFactory
 
-from ..utils.source import ObjPathSourceBinder
+#from ..utils.source import ObjPathSourceBinder
+from plone.formwidget.contenttree import ObjPathSourceBinder
+
 from ..utils.variables import *
 from ..utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget, TaxonomicRelatedItemsFieldWidget
 
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from plone.directives import form
 from plone.app.z3cform.widget import AjaxSelectFieldWidget, DatetimeFieldWidget
-from plone.formwidget.autocomplete import AutocompleteFieldWidget
+from plone.formwidget.autocomplete import AutocompleteFieldWidget, AutocompleteMultiFieldWidget
 
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList, Relation
@@ -38,6 +40,37 @@ class IThemeSpecific(Interface):
     """ Marker interface that defines a Zope 3 Interface.
     """
 
+class IAddress(form.Schema):
+    address_type = schema.Choice(
+        title=u'Address Type', required=False,
+        values=[u'Work', u'Home'])
+    
+    # A Relation field within a datagrid is a tricky one to get
+    # working.  Uncomment if you want to try this.
+    link = RelationChoice(
+             title=u"Link to content",
+             source=ObjPathSourceBinder(),
+             required=False)
+
+    line1 = schema.TextLine(
+        title=u'Line 1', required=False)
+    line2 = schema.TextLine(
+        title=u'Line 2', required=False)
+    city = schema.TextLine(
+        title=u'City / Town', required=False)
+    country = schema.TextLine(
+        title=u'Country', required=False)
+
+    # A sample integer field
+    personCount = schema.Int(title=u'Persons', required=False, min=0, max=15)
+
+    # A sample datetime field
+    #if widget_datetime  is not None:
+    #    form.widget(dateAdded=DataGridFieldDatetimeFieldWidget)
+    #dateAdded = schema.Datetime(title=u"Date added")
+
+    # A sample checkbox
+    billed = schema.Bool(title=u"Billed", required=False)
 
 class IListField(Interface):
     pass
@@ -905,6 +938,31 @@ class IDigitalReferences(Interface):
     type = schema.TextLine(title=_(u'Type'), required=False)
     reference = schema.TextLine(title=_(u'Reference'), required=False)
      
+
+class ITextItems(Interface):
+    item = schema.Text(title=_(u'Item'), required=False)
+
+class IRelatedItemsChoice(Interface):
+    item = RelationChoice(
+        title=u"Related",
+        source=UUIDSourceBinder(),
+        required=False
+    )
+    form.widget('item', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
+class IRelatedItems(Interface):
+    item = RelationList(
+        title=_(u'Related items'),
+        default=[],
+        missing_value=[],
+        value_type=RelationChoice(
+            title=u"Related",
+            source=UUIDSourceBinder()
+        ),
+        required=False
+    )
+    #form.widget('item', SimpleRelatedItemsFieldWidget, vocabulary='collective.object.relateditems')
+
 ## Documentation
 class IDocumentationDocumentation(Interface):
     article = schema.TextLine(title=_(u'Article'), required=False)
