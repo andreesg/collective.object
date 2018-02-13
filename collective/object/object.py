@@ -1387,7 +1387,7 @@ class EditForm(edit.DefaultEditForm):
 
         return url
 
-    @button.buttonAndHandler(u'Save', name='save')
+    """@button.buttonAndHandler(u'Save', name='save')
     def handleSave(self, action):
         print "handle save"
 
@@ -1427,7 +1427,7 @@ class ObjectNumberValidator(validator.SimpleFieldValidator):
             return None
 
 validator.WidgetValidatorDiscriminators(ObjectNumberValidator, field=IObject['identification_identification_objectNumber'])
-grok.global_adapter(ObjectNumberValidator)
+grok.global_adapter(ObjectNumberValidator)"""
 
 
 

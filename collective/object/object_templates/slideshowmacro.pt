@@ -1,19 +1,14 @@
-
-
-<!-- Slick Slideshow -->
 <div metal:define-macro="slideshow" i18n:domain="collective.object">
 	<div class="slideshow" id="slickslideshow"
 	  i18n:domain="collective.object"
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
 	  xmlns:tal="http://xml.zope.org/namespaces/tal">
-	  
 	  	<div id="fb-root"></div>
 	  	<div class="slideshowWrapper">
-			<tal:checkslideshow
-			tal:define="context_url python: context.absolute_url()+'/slideshow/?recursive=true&edit=true';">
+			<tal:checkslideshow tal:define="context_url python: context.absolute_url()+'/slideshow/?recursive=true&edit=true';">
 				<div class="slick-slideshow fullscreen regular">
-	            <a id='slide-get-content' tal:attributes="href context_url"></a>    
+	            	<a id='slide-get-content' tal:attributes="href context_url"></a>    
 	            </div>
 			</tal:checkslideshow>
 		    
@@ -36,6 +31,3 @@
 		</div>
 	</tal:definitions>
 </div>
-
-
-

@@ -3,9 +3,9 @@
    i18n:domain="plone"
    tal:define="widget nocall:context;
                hidden python:widget.mode == 'hidden';
-               iinfo context/@@plone_interface_info;
+               iinfo nocall:context/@@plone_interface_info;
                error widget/error;
-               error_class python:error and ' error' or '';
+               error_class python: error and ' error' or '';
                empty_values python: (None, '', [], ('', '', '', '00', '00', ''), ('', '', ''));
                empty_class python: (widget.value in empty_values) and ' empty' or '';
                fieldname_class string:kssattr-fieldname-${widget/name};
@@ -15,9 +15,7 @@
    tal:attributes="class string:field pat-inlinevalidation ${fieldname_class}${error_class}${empty_class} ${field_repeatable_class} ${field_repeatable_block} form-horizontal;
                    data-fieldname widget/name;
                    id string:formfield-${widget/id};">
-
     <tal:objtitles>
-      
       <tal:objtitle tal:condition="python: widget.__name__ == 'identification_identification_institutionNames'">
         <h4 class="page-header">Identificatie</h4>
         <div class="control-label col-sm-3 add-link">
@@ -287,7 +285,6 @@
        <tal:objtitle tal:condition="python: widget.__name__ == 'managementDetails_edit'">
         <h4 class="page-header">Wijziging</h4>
       </tal:objtitle>
-      
     </tal:objtitles>
 
     <label for="" class="horizontal control-label col-sm-3"
@@ -296,11 +293,11 @@
         <span i18n:translate="" tal:replace="widget/label">label</span>
 
         <span class="required horizontal" title="Required"
-              tal:condition="python:widget.required and widget.mode == 'input'"
+              tal:condition="python: widget.required and widget.mode == 'input'"
               i18n:attributes="title title_required;">&nbsp;</span>
 
         <span class="formHelp"
-            tal:define="description widget/field/description"
+            tal:define="description python: widget.field.description"
             i18n:translate=""
             tal:content="structure description"
             tal:condition="python:description and not hidden"
@@ -314,7 +311,7 @@
     </div>
 
     <div class="col-sm-9 fieldset-input">
-      <input type="text" tal:replace="structure widget/render"
+      <input type="text" tal:replace="structure python: widget.render()"
            metal:define-slot="widget" />
     </div>
 </div>

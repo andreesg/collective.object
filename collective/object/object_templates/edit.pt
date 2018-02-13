@@ -12,14 +12,14 @@
               <metal:define define-macro="titlelessform">
 
                   <tal:status define="status view/status;
-                                      has_error python:view.widgets.errors or status == getattr(view, 'formErrorsMessage', None)" condition="status">
-                      <dl class="portalMessage error" tal:condition="has_err">
+                                      has_error python:view.widgets.errors or status == getattr(view, 'formErrorsMessage', None)" condition="python:status">
+                      <dl class="portalMessage error" tal:condition="python:has_err">
                           <dt i18n:translate="">
                               Error
                           </dt>
                           <dd tal:content="status" />
                       </dl>
-                      <dl class="portalMessage info" tal:condition="not:has_error">
+                      <dl class="portalMessage info" tal:condition="python: not has_error">
                           <dt i18n:translate="">
                               Info
                           </dt>
@@ -27,11 +27,11 @@
                       </dl>
                   </tal:status>
 
-                  <tal:errors define="errors view/widgets/errors" condition="errors">
+                  <tal:errors define="errors view/widgets/errors" condition="python:errors">
                       <tal:error repeat="error errors">
                           <div class="field error"
                                tal:condition="not:nocall:error/widget"
-                               tal:content="structure error/render">
+                               tal:content="structure python: error.render()">
                                Error
                           </div>
                       </tal:error>
@@ -39,8 +39,8 @@
 
                   <metal:description-slot define-slot="description">
                     <p  class="discreet"
-                        tal:define="description view/description | nothing"
-                        tal:condition="description"
+                        tal:define="description python: view.description"
+                        tal:condition="python: description is not None"
                         tal:content="structure description">
                             Description
                     </p>
@@ -48,22 +48,22 @@
 
                   <form data-pat-autotoc="levels: legend; section: fieldset; className: autotabs"
                         class="rowlike enableUnloadProtection" action="." method="post"
-                        tal:define="groups view/groups | nothing;
-                                    form_name view/form_name | nothing;
-                                    form_class view/css_class | string:;
-                                    default_fieldset_label view/default_fieldset_label | form_name;
-                                    enable_form_tabbing view/enable_form_tabbing | python:True;
-                                    enable_unload_protection view/enable_unload_protection|python:True;
+                        tal:define="groups python: view.groups;
+                                    form_name python: view.name;
+                                    form_class python: getattr(view, 'css_class', '');
+                                    default_fieldset_label python: view.default_fieldset_label;
+                                    enable_form_tabbing python:True;
+                                    enable_unload_protection python: True;
                                     unload_protection python:enable_unload_protection and 'enableUnloadProtection';
                                     has_groups python:bool(groups);
                                     form_tabbing python:(has_groups and enable_form_tabbing) and 'enableFormTabbing pat-autotoc' or '';
                                     show_default_label python:has_groups and default_fieldset_label and len(view.widgets);
                                     "
                         tal:attributes="action view/action|request/getURL;
-                                        enctype view/enctype;
+                                        enctype python: view.enctype;
                                         class python:'rowlike %s %s %s kssattr-formname-%s' % (unload_protection, form_tabbing, form_class, view.__name__ or request.getURL().split('/')[-1]);
-                                        id view/id;
-                                        method view/method|string:'post'
+                                        id python: view.id;
+                                        method python: view.method;
                                         ">
 
                       <metal:block define-slot="formtop" />
@@ -84,7 +84,7 @@
 
                             <fieldset id="fieldset-default" tal:omit-tag="not:show_default_label">
 
-                                <legend tal:condition="show_default_label"
+                                <legend tal:condition="python:show_default_label"
                                         tal:attributes="id string:fieldsetlegend-default"
                                         tal:content="default_fieldset_label">Form name</legend>
 
@@ -92,19 +92,8 @@
                                     <tal:widgets repeat="widget view/widgets/values">
                                         <metal:field-slot define-slot="field">
                                             <metal:field define-macro="field">
-                                                <tal:notcategory tal:condition="python: widget.__name__ not in ['identification_objectName_category', 'identification_objectName_objectname', 'productionDating_productionDating', 'productionDating_production_schoolstyle', 'physicalCharacteristics_technique',
-                                                'physicalCharacteristics_material', 'physicalCharacteristics_dimension', 'iconography_generalSearchCriteria_generalThemes', 'iconography_generalSearchCriteria_specificThemes',
-                                                'iconography_contentSubjects', 'inscriptionsMarkings_inscriptionsAndMarkings', 'associations_associatedSubjects', 'associations_associatedPeriods', 'valueInsurance_valuations',
-                                                'conditionConservation_conditions', 'conditionConservation_preservationForm', 'acquisition_methods',
-                                                'acquisition_places', 'acquisition_costs_offer_price_currency', 'acquisition_costs_purchase_price_currency', 'acquisition_fundings', 'disposal_finance_currency',
-                                                'ownershipHistory_history_exchangeMethod', 'ownershipHistory_history_place', 'location_normalLocation_normalLocation', 'location_currentLocation', 'fieldCollection_fieldCollection_collectors', 'fieldCollection_fieldCollection_methods',
-                                                'fieldCollection_fieldCollection_places', 'fieldCollection_fieldCollection_placeFeatures',
-                                                'fieldCollection_habitatStratigraphy_stratigrafie', 'identification_identification_collections',
-                                                'fieldCollection_fieldCollection_events', 'fieldCollection_fieldCollection_placeCodes',
-                                                'numbersRelationships_relationshipsWithOtherObjects_relatedObjects', 'productionDating_production_schoolStyles', 'productionDating_production_periods',
-                                                'iconography_generalSearchCriteria_generalthemes', 'iconography_generalSearchCriteria_specificthemes',
-                                                'physicalCharacteristics_keyword','associations_associatedPersonInstitutions', 'iconography_contentPeriodDates', 'ownershipHistory_historyOwner']">
-                                                  <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
+                                                  <tal:notcategory tal:condition="python: widget.__name__ not in ['fieldCollection_fieldCollection_collectors']">
+                                                    <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
                                               </tal:notcategory>
                                             </metal:field>
                                         </metal:field-slot>
@@ -123,23 +112,23 @@
                                                     class string:kssattr-fieldset-${fieldset_name};
                                                     data-fieldset fieldset_name">
 
-                                        <legend tal:condition="fieldset_label"
+                                        <legend tal:condition="python:fieldset_label"
                                                 tal:attributes="id string:fieldsetlegend-${fieldset_name}"
                                                 tal:content="fieldset_label">Form name</legend>
 
                                         <p i18n:translate=""
-                                           tal:define="group_description group/description|nothing"
-                                           tal:condition="group_description"
+                                           tal:define="group_description python: group.description"
+                                           tal:condition="python:group_description"
                                            tal:content="structure group_description">
                                             Description
                                         </p>
 
                                         <tal:block tal:define="errors group/widgets/errors"
-                                                   tal:condition="errors"
+                                                   tal:condition="python:errors"
                                                    tal:repeat="error errors">
                                             <div class="field error"
                                                 tal:condition="not:nocall:error/widget"
-                                                tal:content="structure error/render"
+                                                tal:content="structure python: error.render()"
                                                 />
                                         </tal:block>
 
@@ -148,29 +137,28 @@
                                             <metal:block use-macro="context/@@ploneform-macros/widget_rendering" />
                                         </tal:block>
                                         </tal:renderfieldset>
-
                                 </fieldset>
                             </tal:block>
-
                         </metal:define>
                       </metal:fields-slot>
-
                       <metal:block define-slot="belowfields" />
-
                       <metal:actions-slot define-slot="actions">
                           <metal:define define-macro="actions">
-                              <div class="formControls" tal:condition="view/actions/values|nothing">
+                            <tal:formactions tal:define="has_actions view/actions/values|nothing">
+                              <div class="formControls" tal:condition="python: has_actions">
                                   <tal:block repeat="action view/actions/values">
-                                      <input type="submit" tal:replace="structure action/render" />
+                                      <input type="submit" tal:replace="structure python: action.render()" />
                                   </tal:block>
                               </div>
+                            </tal:formactions>
                           </metal:define>
                       </metal:actions-slot>
 
-                      <tal:block tal:condition="view/enableCSRFProtection|nothing"
-                        tal:replace="structure context/@@authenticator/authenticator" />
-                      <metal:block define-slot="formbottom" />
-
+                      <tal:has_csrf tal:define="hascsrf python: getattr(view, 'enableCSRFProtection', False)">
+                        <tal:block tal:condition="python: hascsrf"
+                          tal:replace="structure context/@@authenticator/authenticator" />
+                        <metal:block define-slot="formbottom" />
+                      </tal:has_csrf>
                   </form>
               </metal:define>
         </div>

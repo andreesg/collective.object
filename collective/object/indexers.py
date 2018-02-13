@@ -15,7 +15,7 @@ from z3c.relationfield.interfaces import IRelationList, IRelationValue
 
 @indexer(IObject)
 def object_on_display(object, **kw): 
-    allowed_values = ["balanszalen","geschiedenis/middeleeuwen","geschiedenis/schilderijen","geschiedenis/vroegtijd","geschiedenis/wandtapijten","geschiedenis/zilver","mode 1","mode 2","wonderkamers","wonderkamers/huis & handel","wonderkamers/leven & dood","wonderkamers/macht & pracht"]
+    allowed_values = ["balanszalen","geschiedenis/middeleeuwen","geschiedenis/schilderijen","geschiedenis/vroegtijd","geschiedenis/wandtapijten","geschiedenis/zilver","mode 1","mode 2","wonderkamers","wonderkamers/huis & handel","wonderkamers/leven & dood","wonderkamers/macht & pracht", "zaal 3.01", "zaal 3.02", "zaal 3.03", "zaal 3.04", "zaal 3.05", "zaal 3.06", "zaal 3.07"]
     
     try:
         if hasattr(object, 'location_currentLocation'):

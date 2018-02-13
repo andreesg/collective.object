@@ -28,6 +28,7 @@ from collective.object import MessageFactory as _
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
 from plone.app.contenttypes.behaviors.collection import ICollection
 from collective.leadmedia.interfaces import ICanContainMedia
+from lxml import etree
 
 #from collective.slickcarousel.viewlets import SlickCarouselUtils
 
@@ -36,6 +37,97 @@ NOT_ALLOWED = [None, '', ' ', 'None']
 # # # # # # # # # # # # #
 # View specific methods #
 # # # # # # # # # # # # #
+
+
+def fixNutezien():
+    import plone.api
+    import transaction 
+
+    with plone.api.env.adopt_user(username="admin"):
+        nutezienbrains = plone.api.content.find(portal_type="Object", object_on_display=True)
+        nutezienobjs = []
+        
+        for brain in nutezienbrains:
+            try:
+                obj = brain.getObject()
+                if obj.location_currentLocation[0]['end_date'] == '2018-01-22':
+                    nutezienobjs.append(obj)
+            except:
+                pass
+
+        total = len(nutezienobjs)
+        curr = 0
+
+        print "Total to be reindexed: %s" %(total)
+        for nutezienobj in nutezienobjs:
+            curr += 1
+            print "Fixing %s / %s" %(curr, total)
+            nutezienobj.reindexObject()
+            nutezienobj.reindexObject(idxs=['object_on_display'])
+
+        transaction.get().commit()
+
+    return True
+
+def getObjectsData():
+    import plone.api
+
+    path_xml = "/var/www/zm-copy/xml/Objects-all-v03.xml"
+    path_xml_third_party = "/var/www/zm-copy/xml/all-thirdpartyobjects-v02.xml"
+
+    with plone.api.env.adopt_user(username="admin"):
+
+        """ Create list of prirefs in the XML """
+        xml_prirefs = []
+
+        xmlFilePath = path_xml
+        xmlDoc = etree.parse(xmlFilePath)
+        root = xmlDoc.getroot()
+        recordList = root.find("recordList")
+        records_collection = recordList.getchildren()
+
+        xmlFilePath = path_xml_third_party
+        xmlDoc = etree.parse(xmlFilePath)
+        root = xmlDoc.getroot()
+        recordList = root.find("recordList")
+        records_third_party = recordList.getchildren()
+
+        """ Records collection + third party collection """
+        records = records_collection + records_third_party
+
+        for record in records:
+            if record.find('priref') != None:
+                priref = record.find('priref').text
+                xml_prirefs.append(priref)
+
+        """ Create list with prirefs in the website """
+        website_prirefs = []
+        objects = plone.api.content.find(portal_type="Object", Language="nl")
+
+        not_in_xml = []
+        total = len(list(objects))
+        curr = 0
+        for brain in objects:
+            curr += 1 
+            obj = brain.getObject()
+            obj_priref = getattr(obj, 'priref', None)
+
+            print "Checking object - %s - %s / %s" %(obj_priref, str(curr), str(total)) 
+            website_prirefs.append(obj_priref)
+            if obj_priref not in xml_prirefs:
+                if obj_priref not in not_in_xml:
+                    not_in_xml.append(obj_priref)
+                    print "Delete record: '%s'" %(obj_priref)
+                    plone.api.content.delete(obj=obj)
+
+        """ Check how many of the website prirefs are not in the XML """
+        print "XML prirefs: %s" %(len(xml_prirefs))
+        print "Website prirefs: %s" %(len(website_prirefs))
+        print "Not in XML: %s" %(len(not_in_xml))
+        print not_in_xml
+        return True
+
+    return True
 
 
 def fixLocations(location, end_date="2017-02-12"):
@@ -157,7 +249,6 @@ def unpublishObjects():
             print "Object number [%s] not found in the website" %(object_number)
 
     print "+++ FINISHED: Unpublishing should not be published excel +++"
-
     print "++++++++++++++++++++++++++++++"
     print "+++ Unpublishing copyright +++"
     total = len(list_to_unpublish_copyright)

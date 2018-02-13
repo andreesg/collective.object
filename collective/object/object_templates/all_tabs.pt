@@ -12,7 +12,7 @@
   <metal:content-core define-macro="content-core">
 
       	<tal:defineview tal:define="loggedinview nocall: context/@@loggedinview;
-                                  groups python:loggedinview.get_groups();">
+                                    groups python:loggedinview.get_groups();">
 
       	<form data-pat-autotoc="levels: legend; section: fieldset; className: autotabs" class="rowlike enableUnloadProtection enableFormTabbing pat-autotoc autotabs;" id="form">
 
@@ -29,13 +29,13 @@
                 tal:attributes="id string:fieldset-${fieldset_name};
                               class string:formPanel;">
                   
-                    <legend tal:condition="fieldset_label"
+                    <legend tal:condition="python:fieldset_label"
                             tal:attributes="id string:fieldset-${fieldset_name}"
                             tal:content="fieldset_label">Form name</legend>
 
                     
                     <tal:block tal:define="errors group/widgets/errors"
-                               tal:condition="errors"
+                               tal:condition="python:errors"
                                tal:repeat="error errors">
                         <div class="field error"
                             tal:condition="not:nocall:error/widget"
