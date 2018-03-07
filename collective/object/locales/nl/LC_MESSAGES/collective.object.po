@@ -56,7 +56,7 @@ msgstr "Collectie"
 
 #: ../object.py
 msgid "Object number"
-msgstr "Objectnummer"
+msgstr "Inventarisnummer"
 
 #: ../object.py
 msgid "Rec. type"
@@ -107,6 +107,10 @@ msgid "Physical Description"
 msgstr "Fysieke beschrijving"
 
 #: ../object.py
+msgid "Physical description"
+msgstr "Fysieke beschrijving"
+
+#: ../object.py
 msgid "Keywords"
 msgstr "Trefwoorden"
 
@@ -124,15 +128,15 @@ msgstr "Trefwoord"
 
 #: ../object.py
 msgid "Notes"
-msgstr "Bijzonderheden"
+msgstr "Opmerkingen"
 
 #: ../object.py
 msgid "Techniques"
-msgstr "Technieken"
+msgstr "Materiaal / Techniek"
 
 #: ../object.py
 msgid "Technique"
-msgstr "Techniek"
+msgstr "Materiaal / Techniek"
 
 #: ../object.py
 msgid "Materials"
@@ -381,7 +385,7 @@ msgstr "Taal"
 
 #: ../object.py
 msgid "Notes"
-msgstr "Bijzonderheden"
+msgstr "Opmerkingen"
 
 #
 # Value & Insurance
@@ -449,7 +453,7 @@ msgstr "Voorwaarden"
 
 #: ../object.py
 msgid "Acquisition"
-msgstr "Verwerving"
+msgstr "Verweringswijze"
 
 #: ../object.py
 msgid "Accession"
@@ -461,7 +465,7 @@ msgstr "Inschrijvingsdatum"
 
 #: ../object.py
 msgid "Acquisition"
-msgstr "Verwerving"
+msgstr "Verweringswijze"
 
 #: ../object.py
 msgid "Acquisition number"
@@ -878,7 +882,7 @@ msgstr "Transliteratie"
 
 #: ../object.py
 msgid "Associated person/institution"
-msgstr "Geassocieerde persoon/instelling"
+msgstr "Geassocieerde persoon"
 
 #: ../object.py
 msgid "Association"
@@ -886,7 +890,7 @@ msgstr "Associatie"
 
 #: ../object.py
 msgid "Associated subject"
-msgstr "Trefwoord"
+msgstr "Geassocieerd onderwerp"
 
 #: ../object.py
 msgid "Keyword"
@@ -1521,7 +1525,7 @@ msgstr 'Titel'
 
 #: ../object.py
 msgid 'notes'
-msgstr 'Bijzonderheden'
+msgstr 'Opmerkingen'
 
 #: ../object.py
 msgid 'scientific_name'
@@ -1816,7 +1820,7 @@ msgstr 'Trefwoorden'
 
 #: ../object.py
 msgid 'technique'
-msgstr 'Techniek'
+msgstr 'Materiaal / Techniek'
 
 #: ../object.py
 msgid 'nameType'
@@ -2302,4 +2306,14 @@ msgstr "Jaar"
 msgid "Date"
 msgstr "Datering"
 
+#: ../object.py
+msgid "Birth place"
+msgstr "Geboorteplaats"
 
+#: ../object.py
+msgid "Death place"
+msgstr "Sterfplaats"
+
+#: ../object.py
+msgid "Read more"
+msgstr "Lees meer"

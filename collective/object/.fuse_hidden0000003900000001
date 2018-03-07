@@ -48,7 +48,6 @@ from collective.z3cform.datagridfield.interfaces import IDataGridField
 # Plone app widget dependencies
 #
 from plone.app.z3cform.widget import AjaxSelectFieldWidget, AjaxSelectWidget, SelectWidget, DatetimeFieldWidget, IAjaxSelectWidget, RelatedItemsFieldWidget
-from plone.formwidget.autocomplete import AutocompleteFieldWidget
 
 
 #
@@ -75,7 +74,6 @@ from collective.object import MessageFactory as _
 from .utils.vocabularies import *
 from .utils.interfaces import *
 from .utils.views import *
-from .utils.source import ObjPathSourceBinder
 from .utils.variables import *
 from .utils.widgets import AjaxSingleSelectFieldWidget, SimpleRelatedItemsFieldWidget, ExtendedRelatedItemsFieldWidget
 
