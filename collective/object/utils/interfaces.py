@@ -12,6 +12,8 @@ from plone.app.z3cform.widget import AjaxSelectFieldWidget, DatetimeFieldWidget
 
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList, Relation
+from plone.autoform import directives
+from plone.app.z3cform.widget import AjaxSelectFieldWidget
 
 import datetime
 from five import grok
@@ -54,6 +56,12 @@ class IFormWidget(Interface):
 class IObjectName(form.Schema):
     name = schema.TextLine(title=_(u'Object name'), required=False)
 
+class IMotif(form.Schema):
+    motif = schema.TextLine(title=_(u'More of the same motive'), required=False)
+
+class ILocation(form.Schema):
+    name = schema.TextLine(title=_(u'Location'), required=False)
+
 class IProduction(Interface):
     date_start = schema.TextLine(title=_(u'Date start'), required=False)
     date_start_precision = schema.TextLine(title=_(u'Date start precision'), required=False)
@@ -77,6 +85,21 @@ class ICreator(Interface):
     death_date_precision = schema.TextLine(title=_(u'Death date precision '), required=False)
 
     url = schema.TextLine(title=_(u'URL'), required=False)
+    equivalent_name = schema.TextLine(title=_(u'Equivalent name'), required=False)
+
+class IDocumentation(Interface):
+    title = schema.TextLine(title=_(u'Title'), required=False)
+    lead_word = schema.TextLine(title=_(u'Lead word'), required=False)
+    author = schema.List(title=_(u'Author'), required=False, default=[], missing_value=[], value_type=schema.TextLine())
+    statement_of_responsibility = schema.TextLine(title=_(u'Statement of responsability'), required=False)
+    place_of_publication = schema.TextLine(title=_(u'Place of publication'), required=False)
+    year_of_publication = schema.TextLine(title=_(u'Year of publication'), required=False)
+
+    directives.widget(
+        'author',
+        AjaxSelectFieldWidget,
+        vocabulary='collective.object.author'
+    )
 
 
 class IProductionNotes(Interface):

@@ -26,3 +26,37 @@ body.portaltype-object p.record-extra-info {
 	}
 }
 
+body.portaltype-object #object-fields .object-value span:not(.highlightedSearchTerm) {
+	padding-bottom: 10px;
+	float:left; 
+	clear:both;
+}
+
+body.portaltype-object a.doc-more-info {
+	text-decoration: underline !important;
+
+	span {
+		text-decoration: underline !important;
+	}
+}
+
+body.portaltype-object a.doc-more-info[aria-expanded='true'] {
+	span.ariaexpanded {
+		display: block !important;
+	}
+
+	span.notariaexpanded {
+		display: none !important;
+	}
+}
+
+
+body.portaltype-object a.doc-more-info[aria-expanded='false'] {
+	span.ariaexpanded {
+		display: none !important;
+	}
+
+	span.notariaexpanded {
+		display: block !important;
+	}
+}

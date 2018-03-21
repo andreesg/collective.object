@@ -736,7 +736,7 @@ msgstr "Year"
 
 #: ./browser/prefs_keywords_view.pt:137
 msgid "not_updated"
-msgstr "The details of this object have not been updated recently"
+msgstr "This record has been reviewed by the curatorial staff but may be incomplete."
 
 #: ./browser/prefs_keywords_view.pt:137
 msgid "not_on_view"
@@ -746,7 +746,40 @@ msgstr "This object is now not on display in the museum"
 msgid "now_on_view"
 msgstr "Now on display"
 
+#: ../object.py
+msgid "Associated subject"
+msgstr "What"
 
+#: ../object.py
+msgid "Associated period"
+msgstr "When"
 
+#: ../object.py
+msgid "Associated person/institution"
+msgstr "Who"
+
+#: ../object.py
+msgid "Notes"
+msgstr "Remarks"
+
+#: ../object.py
+msgid "Object name"
+msgstr "Object type"
+
+#: ../object.py
+msgid "Techniques"
+msgstr "Material and technique"
+
+#: ../object.py
+msgid "Creator"
+msgstr "Artist"
+
+#: ../object.py
+msgid "Death place"
+msgstr "Place of dying"
+
+#: ../object.py
+msgid "Birth place"
+msgstr "Place of birth"
 
 

@@ -46,6 +46,23 @@ def object_priref(object, **kw):
     except:
         return ""
 
+@indexer(IObject)
+def documentation_author(object, **kw):
+    try:
+        if hasattr(object, 'documentation'):
+            authors = []
+            items = object.documentation
+            if items != None:
+                for item in items:
+                    if item['author'] != None:
+                        for name in item['author']:
+                            if name:
+                                authors.append(name)
+            return authors
+        else:
+            return []
+    except:
+        return []
 
 
 

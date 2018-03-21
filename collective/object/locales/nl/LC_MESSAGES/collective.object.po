@@ -2311,9 +2311,29 @@ msgid "Birth place"
 msgstr "Geboorteplaats"
 
 #: ../object.py
+msgid "Place of birth"
+msgstr "Geboorteplaats"
+
+#: ../object.py
 msgid "Death place"
+msgstr "Sterfplaats"
+
+#: ../object.py
+msgid "Place of dying"
 msgstr "Sterfplaats"
 
 #: ../object.py
 msgid "Read more"
 msgstr "Lees meer"
+
+#: ../object.py
+msgid "More of the same motive"
+msgstr "Meer van hetzelfde motief"
+
+#: ../object.py
+msgid "Artist"
+msgstr "Vervaardiger"
+
+
+
+

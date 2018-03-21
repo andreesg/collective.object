@@ -226,14 +226,31 @@ class IObject(form.Schema):
     # Notes         #      
     # # # # # # # # # 
     model.fieldset('notes', label=_(u'notes'), 
-        fields=["notes"]
+        fields=["content_motif", "notes"]
     )
+
+    content_motif = ListField(title=_(u'More of the same motive'),
+        value_type=DictRow(title=_(u'More of the same motive'), schema=IMotif),
+        required=False)
+    form.widget(content_motif=BlockDataGridFieldFactory)
 
     notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
         required=False)
     form.widget(notes=BlockDataGridFieldFactory)
 
+    # # # # # # # # # # #
+    # Location          #       
+    # # # # # # # # # # #
+    model.fieldset('location', label=_(u'location'), 
+        fields=["current_location"]
+    )
+
+    current_location = ListField(title=_(u'Location'),
+        value_type=DictRow(title=_(u'Location'), schema=ILocation),
+        required=False)
+    form.widget(current_location=BlockDataGridFieldFactory)
+    
 
     # # # # # # # # # #
     # Related objects #
@@ -259,6 +276,18 @@ class IObject(form.Schema):
         title=_(u'Exhibition name'),
         required=False
     )
+
+    # # # # # # # # # # # # #
+    # Docuemntation         #      
+    # # # # # # # # # # # # #
+    model.fieldset('documentation', label=_(u'Documentation'), 
+        fields=["documentation"]
+    )
+
+    documentation = ListField(title=_(u'Documentation'),
+        value_type=DictRow(title=_(u'Documentation'), schema=IDocumentation),
+        required=False)
+    form.widget(documentation=BlockDataGridFieldFactory)
 
 
 # # # # # # # # # # # # #

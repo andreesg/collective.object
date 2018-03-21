@@ -31,7 +31,7 @@ from zope.schema import getFieldsInOrder
 from collective.object.object import IObject
 
 NOT_ALLOWED = [None, '', ' ', 'None']
-NOT_ALLOWED_FIELDS = ['priref', 'collection', 'in_museum', 'record_published']
+NOT_ALLOWED_FIELDS = ['priref', 'collection', 'in_museum', 'record_published', 'current_location']
 
 # # # # # # # # # # # # #
 # View specific methods #
@@ -103,7 +103,8 @@ class ObjectView(DefaultView):
             "inscription": self.generate_inscription_value,
             "associated_subject": self.generate_associated_subject_value,
             "production": self.generate_production_value,
-            "acquisition": self.generate_acquisition_value
+            "acquisition": self.generate_acquisition_value,
+            "documentation": self.generate_documentation_value
         }
         return CUSTOM_FIELDS
 
@@ -116,12 +117,13 @@ class ObjectView(DefaultView):
             "object_name": "name",
             "associated_period": "period",
             "associated_person": "person",
-            "notes": "note"
+            "notes": "note",
+            "content_motif":"motif",
         }
 
         SEPARATORS = {
             "notes":"<br>",
-            "associated_person": "<br>"
+            "associated_person": "<br>",
         }
 
         separator = ", "
@@ -144,7 +146,10 @@ class ObjectView(DefaultView):
                     if subfield in subitem:
                         subfield_value = subitem.get(subfield, '')
                         if subfield_value:
-                            values.append(subfield_value)
+                            if separator == "<br>":
+                                values.append("<span>%s</span>" %(subfield_value))
+                            else:
+                                values.append("%s" %(subfield_value))
                         else:
                             pass
                     else:
@@ -248,6 +253,108 @@ class ObjectView(DefaultView):
                     creators.append(new_creator)
 
         final_value = "<br>".join(creators)
+        return final_value
+
+
+    def fix_author_name(self, value):
+
+        author = value
+        if value:
+            try:
+                author_split = value.split(',')
+                if len(author_split) > 1:
+                    firstname = author_split[1]
+                    lastname = author_split[0]
+                    firstname = firstname.strip()
+                    lastname = lastname.strip()
+                    author = "%s %s" %(firstname, lastname)
+                    return author
+            except:
+                return value
+
+        return author
+
+    def generate_documentation_value(self, field, item):
+        value = getattr(item, field, None)
+        documentations = []
+
+        if value:
+            # Check if DataGridField
+            for doc in value:
+                new_doc = ""
+
+                title = doc.get('title', '')
+                lead_word = doc.get('lead_word', '')
+                author = doc.get('author', '')
+                statement_of_responsibility = doc.get('statement_of_responsibility', '')
+                place_of_publication = doc.get('place_of_publication', '')
+                year_of_publication = doc.get('year_of_publication', '')
+
+
+                authors = []
+
+                for name in author:
+                    final_name = self.fix_author_name(name)
+                    if final_name:
+                        authors.append(final_name)
+
+                authors_final = ", ".join(authors)
+
+                dates = ""
+
+                if place_of_publication and year_of_publication:
+                    dates = "%s, %s" %(place_of_publication, year_of_publication)
+                elif not place_of_publication and year_of_publication:
+                    dates = "%s" %(year_of_publication)
+                elif not year_of_publication and place_of_publication:
+                    dates = "%s" %(place_of_publication)
+                else:
+                    dates = dates
+
+                if lead_word and title:
+                    new_doc = "%s %s" %(lead_word, title)
+                elif not lead_word and title:
+                    new_doc = "%s" %(title)
+                elif lead_word and not title:
+                    new_doc = "%s" %(lead_word)
+                else:
+                    new_doc = new_doc
+
+                if authors_final and not statement_of_responsibility:
+                    new_doc = "%s, %s" %(new_doc, authors_final)
+                elif statement_of_responsibility and not authors_final:
+                    new_doc = "%s, %s" %(new_doc, statement_of_responsibility)
+                elif statement_of_responsibility and authors_final:
+                    new_doc = "%s, %s" %(new_doc, statement_of_responsibility)
+                else:
+                    new_doc = new_doc
+
+                if dates:
+                    new_doc = "%s (%s)" %(new_doc, dates)
+
+                documentations.append("<span>"+new_doc+"</span>")
+
+
+        if len(documentations) > 3:
+
+            text_en = ["Show more", "Show less"]
+            text_nl = ["Toon alle documentatie waarin dit object voorkomt", "Toon minder documentatie"]
+
+            text_expand = text_nl
+            if getattr(self.context, 'language', 'nl') == 'en':
+                text_expand = text_en
+
+            documentation_show = documentations[:3]
+            documentation_hide = documentations[3:]
+            trigger = "<p><a href='javascript:void();' class='doc-more-info' data-toggle='collapse' data-target='#doc-list' aria-expanded='false'><span class='notariaexpanded'>%s</span><span class='ariaexpanded'>%s</span></a></p>" %(text_expand[0], text_expand[1])
+            documentation_show_html = "<br>".join(documentation_show)
+            documentation_hide_html = "<br>".join(documentation_hide)
+            documentation_hide_div = "<div id='doc-list'class='collapse' aria-expanded='false'><p>%s</p></div>" %(documentation_hide_html)
+
+            final_value = documentation_show_html + documentation_hide_div + trigger
+            return final_value
+
+        final_value = "<br>".join(documentations)
         return final_value
 
     def generate_dimension_value(self, field, item):
@@ -501,6 +608,31 @@ class ObjectView(DefaultView):
         if in_museum not in NOT_ALLOWED:
             return True
         return False
+
+    def get_current_location(self):
+        
+        locations = []
+        current_location = getattr(self.context, 'current_location', '')
+
+        if current_location:
+            for location in current_location:
+                name = location.get('name', '')
+                if name not in NOT_ALLOWED:
+                    if "EXPO" in name:
+                        name_split = name.split('.')
+                        if name_split:
+                            new_name = name_split[0]
+                            locations.append(new_name)
+                        else:
+                            locations.append(name)
+                    else:
+                        locations.append(name)
+
+        if locations:
+            locations_text = ", ".join(locations)
+            return locations_text
+        else:
+            return None
 
     def get_published(self):
         published = getattr(self.context, 'record_published', '')

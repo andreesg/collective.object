@@ -60,4 +60,11 @@
     name="collective.object"
   />
 
+  <adapter name="documentation_author" factory=".indexers.documentation_author" />
+
+  <utility
+    component=".utils.vocabularies.AuthorVocabularyFactory"
+    name="collective.object.author"
+    />
+
 </configure>

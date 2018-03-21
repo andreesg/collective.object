@@ -40,6 +40,7 @@
   <metal:content-core define-macro="content-core">
       <div class="container object-container"
         tal:define="in_museum python: view.get_in_museum();
+                    location python: view.get_current_location();
                     record_published python: view.get_published();">
 
         
@@ -52,7 +53,7 @@
 
         <p class="record-extra-info">
           <span tal:condition="not:in_museum" class="grey" i18n:translate="not_on_view">Dit object is nu niet in het museum te zien</span>
-          <span tal:condition="in_museum" i18n:translate="now_on_view">Nu in het museum</span>
+          <span tal:condition="in_museum" i18n:translate="now_on_view">Nu te zien<span tal:condition="location"> in <span tal:content="location"></span></span></span>
         <br>
           <span tal:condition="not:record_published" class="grey" i18n:translate="not_updated">De gegevens van dit object zijn niet recent gecontroleerd</span>
         </p>
