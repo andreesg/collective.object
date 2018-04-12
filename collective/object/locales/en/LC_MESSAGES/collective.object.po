@@ -782,4 +782,23 @@ msgstr "Place of dying"
 msgid "Birth place"
 msgstr "Place of birth"
 
+#: ../object.py
+msgid "creator_name"
+msgstr "Artist"
+
+#: ../object.py
+msgid "label_text"
+msgstr "Text"
+
+#: ../object.py
+msgid "object_name"
+msgstr "Object name"
+
+#: ../object.py
+msgid "technique"
+msgstr "Technique"
+
+
+
+
 

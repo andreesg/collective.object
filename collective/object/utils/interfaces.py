@@ -62,6 +62,15 @@ class IMotif(form.Schema):
 class ILocation(form.Schema):
     name = schema.TextLine(title=_(u'Location'), required=False)
 
+class IExhibition(form.Schema):
+    title = schema.TextLine(title=_(u'Title'), required=False)
+    venue = schema.TextLine(title=_(u'Venue'), required=False)
+    place = schema.TextLine(title=_(u'Place'), required=False)
+    date_start = schema.TextLine(title=_(u'Date start'), required=False)
+    date_end = schema.TextLine(title=_(u'Date end'), required=False)
+    nummer_cm = schema.TextLine(title=_(u'Nummer CM'), required=False)
+    notes = schema.TextLine(title=_(u'Notes'), required=False)
+
 class IProduction(Interface):
     date_start = schema.TextLine(title=_(u'Date start'), required=False)
     date_start_precision = schema.TextLine(title=_(u'Date start precision'), required=False)
@@ -86,6 +95,23 @@ class ICreator(Interface):
 
     url = schema.TextLine(title=_(u'URL'), required=False)
     equivalent_name = schema.TextLine(title=_(u'Equivalent name'), required=False)
+    priref = schema.TextLine(title=_(u'priref'), required=False, default=u'', missing_value=u'')
+    
+
+class IDocumentation_reference(Interface):
+    title = schema.TextLine(title=_(u'Title'), required=False)
+    lead_word = schema.TextLine(title=_(u'Lead word'), required=False)
+    author = schema.List(title=_(u'Author'), required=False, default=[], missing_value=[], value_type=schema.TextLine())
+    statement_of_responsibility = schema.TextLine(title=_(u'Statement of responsability'), required=False)
+    place_of_publication = schema.TextLine(title=_(u'Place of publication'), required=False)
+    year_of_publication = schema.TextLine(title=_(u'Year of publication'), required=False)
+    page_references = schema.TextLine(title=_(u'Page reference'), required=False, missing_value=u'', default=u'')
+
+    directives.widget(
+        'author',
+        AjaxSelectFieldWidget,
+        vocabulary='collective.object.author'
+    )
 
 class IDocumentation(Interface):
     title = schema.TextLine(title=_(u'Title'), required=False)
@@ -94,6 +120,7 @@ class IDocumentation(Interface):
     statement_of_responsibility = schema.TextLine(title=_(u'Statement of responsability'), required=False)
     place_of_publication = schema.TextLine(title=_(u'Place of publication'), required=False)
     year_of_publication = schema.TextLine(title=_(u'Year of publication'), required=False)
+    page_references = schema.TextLine(title=_(u'Page reference'), required=False, missing_value=u'', default=u'')
 
     directives.widget(
         'author',

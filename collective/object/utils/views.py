@@ -29,6 +29,7 @@ from lxml import etree
 from zope.schema import getFieldsInOrder
 #from collective.slickcarousel.viewlets import SlickCarouselUtils
 from collective.object.object import IObject
+from operator import itemgetter
 
 NOT_ALLOWED = [None, '', ' ', 'None']
 NOT_ALLOWED_FIELDS = ['priref', 'collection', 'in_museum', 'record_published', 'current_location']
@@ -38,6 +39,25 @@ NOT_ALLOWED_FIELDS = ['priref', 'collection', 'in_museum', 'record_published', '
 # # # # # # # # # # # # #
 
 
+def reindexAllObjects():
+    import plone.api
+
+    import transaction
+
+    col = plone.api.content.get(path='/nl/ontdek/collectie/moderne-en-hedendaagse-kunst')
+
+    curr = 0
+    for _id in col:
+        obj = col[_id]
+        obj.reindexObject()
+        curr += 1
+        print "Reindexing %s" %(curr)
+
+        if curr >= 500:
+            break
+
+    transaction.get().commit()
+    return True
 
 class ObjectView(DefaultView):
     """ View class """
@@ -104,7 +124,8 @@ class ObjectView(DefaultView):
             "associated_subject": self.generate_associated_subject_value,
             "production": self.generate_production_value,
             "acquisition": self.generate_acquisition_value,
-            "documentation": self.generate_documentation_value
+            "documentation": self.generate_documentation_value,
+            "exhibitions": self.generate_exhibitions_value
         }
         return CUSTOM_FIELDS
 
@@ -126,16 +147,29 @@ class ObjectView(DefaultView):
             "associated_person": "<br>",
         }
 
+        SEARCHABLE = {
+            "content_motif":"content_motif", 
+            "associated_period": "association_period",
+            "object_name":"object_name",
+            "technique":"technique",
+            "associated_person": "association_person"
+        }
+
+        is_searchable = False
+
         separator = ", "
         if field in SEPARATORS:
             separator = SEPARATORS[field]
 
-        if field in DATAGRID_SUBFIELDS:
-            return DATAGRID_SUBFIELDS[field], separator
-        else:
-            return None, separator
+        if field in SEARCHABLE:
+            is_searchable = SEARCHABLE[field]
 
-    def generate_regular_datagrid(self, field, item, subfield, separator=', '):
+        if field in DATAGRID_SUBFIELDS:
+            return DATAGRID_SUBFIELDS[field], separator, is_searchable
+        else:
+            return None, separator, is_searchable
+
+    def generate_regular_datagrid(self, field, item, subfield, separator=', ', is_searchable=False):
         value = getattr(item, field, None)
 
         values = []
@@ -147,9 +181,17 @@ class ObjectView(DefaultView):
                         subfield_value = subitem.get(subfield, '')
                         if subfield_value:
                             if separator == "<br>":
-                                values.append("<span>%s</span>" %(subfield_value))
+                                if not is_searchable:
+                                    values.append("<span>%s</span>" %(subfield_value))
+                                else:
+                                    subfield_value = "<a href='/%s/search?%s=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), is_searchable, subfield_value,subfield_value)
+                                    values.append("<span>%s</span>" %(subfield_value))
                             else:
-                                values.append("%s" %(subfield_value))
+                                if not is_searchable:
+                                    values.append("%s" %(subfield_value))
+                                else:
+                                    subfield_value = "<a href='/%s/search?%s=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), is_searchable, subfield_value,subfield_value)
+                                    values.append("%s" %(subfield_value))
                         else:
                             pass
                     else:
@@ -166,8 +208,10 @@ class ObjectView(DefaultView):
     def generate_creator_value(self, field, item):
         value = getattr(item, field, None)
         creators = []
+        context_catalog = getToolByName(self.context, 'portal_catalog')
 
         if value:
+
             # Check if DataGridField
             for creator in value:
                 new_creator = ""
@@ -186,6 +230,8 @@ class ObjectView(DefaultView):
                 death_date_end = creator.get('death_date_end', '')
                 death_date_precision = creator.get('death_date_precision', '')
 
+                creator_priref = creator.get('priref', '')
+
                 url = creator.get('url', '')
 
                 # Create name
@@ -195,13 +241,28 @@ class ObjectView(DefaultView):
                         firstname = name_split[1]
                         lastname = name_split[0]
                         name = "%s %s" %(firstname, lastname)
-                    new_creator = "%s" %(name)
+
+                    index_search = "creator_name"
+                    search_term = name
+                    person_obj_url = ""
+
+                    if creator_priref:
+                        persons = context_catalog(portal_type="Person", person_priref=creator_priref, Language=getattr(self.context,'language', 'nl'))
+                        if persons:
+                            person_obj = persons[0]
+                            if person_obj:
+                                person_obj_url = person_obj.getURL()
+
+                    if not person_obj_url:
+                        new_creator = "<a href='/%s/search?%s=%s'>%s</a>" %(getattr(self.context, 'language','nl'), index_search, search_term, name)
+                    else:
+                        new_creator = "<a href='%s'>%s</a>" %(person_obj_url, name)
 
                 if qualifier:
                     new_creator = "%s %s" %(qualifier, new_creator)
 
                 if role:
-                    new_creator = "%s (%s)" %(new_creator, role)
+                    new_creator = "%s (<a href='/%s/search?creator_role=%s'>%s</a>)" %(new_creator, getattr(self.context, 'language', 'nl'), role, role)
 
                 start_date = ""
                 end_date = ""
@@ -246,7 +307,7 @@ class ObjectView(DefaultView):
                     new_creator = "%s<br>%s: %s" %(new_creator, self.context.translate(_("Death place")), death_place)
 
                 if url:
-                    new_creator = "%s<br><a href='%s' target='_blank'>%s</a>" %(new_creator, url, self.context.translate(_("Read more")))
+                    new_creator = "%s<br>%s: <a href='%s' target='_blank'>%s</a>" %(new_creator, self.context.translate(_("Read more")), url, url)
                 
                 if new_creator:
                     new_creator = new_creator.strip()
@@ -274,13 +335,82 @@ class ObjectView(DefaultView):
 
         return author
 
+    def generate_exhibitions_value(self, field, item):
+        value = getattr(item, field, None)
+        exhibitions = []
+
+        if value:
+            # Check if DataGridField
+            for doc in value:
+                new_ex = ""
+
+                title = doc.get('title', '')
+                venue = doc.get('venue', '')
+                place = doc.get('place', '')
+                date_start = doc.get('date_start', '')
+                date_end = doc.get('date_end', '')
+
+                
+                if title:
+                    new_ex = "%s" %(title)
+
+                if venue:
+                    new_ex = "%s, %s" %(new_ex, venue)
+
+                if place:
+                    new_ex = "%s, %s" %(new_ex, place)
+
+                if date_start:
+                    date_start_split = date_start.split("-")
+                    if date_start_split:
+                        new_ex = "%s, %s" %(new_ex, date_start_split[0])
+                    else:
+                        new_ex = "%s, %s" %(new_ex, date_start)
+                elif date_end:
+                    date_end_split = date_end.split("-")
+                    if date_end_split:
+                        new_ex = "%s, %s" %(new_ex, date_end_split[0])
+                    else:
+                        new_ex = "%s, %s" %(new_ex, date_start)
+                else:
+                    new_ex = new_ex
+
+                if new_ex:
+                    exhibitions.append("<li><span>"+new_ex+"</span></li>")
+
+        if len(exhibitions) > 3:
+
+            text_en = ["Show more", "Show less"]
+            text_nl = ["Toon alle tentoonstellingen waarin dit object voorkomt", "Toon minder tentoonstellingen"]
+
+            text_expand = text_nl
+            if getattr(self.context, 'language', 'nl') == 'en':
+                text_expand = text_en
+
+            exhibition_show = exhibitions[:3]
+            exhibition_hide = exhibitions[3:]
+            trigger = "<p><a href='javascript:void();' class='doc-more-info' data-toggle='collapse' data-target='#exhibition-list' aria-expanded='false'><span class='notariaexpanded'>%s</span><span class='ariaexpanded'>%s</span></a></p>" %(text_expand[0], text_expand[1])
+            exhibition_show_html = "<ul>"+"<br>".join(exhibition_show)+"</ul>"
+            exhibition_hide_html = "<ul>"+"<br>".join(exhibition_hide)+"</ul>"
+            exhibition_hide_div = "<div id='exhibition-list'class='collapse' aria-expanded='false'><p>%s</p></div>" %(exhibition_hide_html)
+
+            final_value = exhibition_show_html + exhibition_hide_div + trigger
+            return final_value
+
+        final_value = "<ul>"+"<br>".join(exhibitions)+"</ul>"
+        return final_value
+
     def generate_documentation_value(self, field, item):
         value = getattr(item, field, None)
         documentations = []
 
         if value:
+
+            value_sorted = sorted(value, key=lambda a: a.get('title', '').lower())
+
             # Check if DataGridField
-            for doc in value:
+            for doc in value_sorted:
+
                 new_doc = ""
 
                 title = doc.get('title', '')
@@ -289,7 +419,7 @@ class ObjectView(DefaultView):
                 statement_of_responsibility = doc.get('statement_of_responsibility', '')
                 place_of_publication = doc.get('place_of_publication', '')
                 year_of_publication = doc.get('year_of_publication', '')
-
+                page_reference = doc.get('page_references', '')
 
                 authors = []
 
@@ -332,7 +462,10 @@ class ObjectView(DefaultView):
                 if dates:
                     new_doc = "%s (%s)" %(new_doc, dates)
 
-                documentations.append("<span>"+new_doc+"</span>")
+                if page_reference:
+                    new_doc = "%s (%s)" %(new_doc, page_reference)
+
+                documentations.append("<li><span>"+new_doc+"</span></li>")
 
 
         if len(documentations) > 3:
@@ -347,14 +480,14 @@ class ObjectView(DefaultView):
             documentation_show = documentations[:3]
             documentation_hide = documentations[3:]
             trigger = "<p><a href='javascript:void();' class='doc-more-info' data-toggle='collapse' data-target='#doc-list' aria-expanded='false'><span class='notariaexpanded'>%s</span><span class='ariaexpanded'>%s</span></a></p>" %(text_expand[0], text_expand[1])
-            documentation_show_html = "<br>".join(documentation_show)
-            documentation_hide_html = "<br>".join(documentation_hide)
+            documentation_show_html = "<ul>"+"<br>".join(documentation_show)+"</ul>"
+            documentation_hide_html = "<ul>"+"<br>".join(documentation_hide)+"</ul>"
             documentation_hide_div = "<div id='doc-list'class='collapse' aria-expanded='false'><p>%s</p></div>" %(documentation_hide_html)
 
             final_value = documentation_show_html + documentation_hide_div + trigger
             return final_value
 
-        final_value = "<br>".join(documentations)
+        final_value = "<ul>"+"<br>".join(documentations)+"</ul>"
         return final_value
 
     def generate_dimension_value(self, field, item):
@@ -386,7 +519,7 @@ class ObjectView(DefaultView):
                     new_dimension = "%s %s" %(new_dimension, unit)
 
                 if notes:
-                    new_dimension = "%s<br>%s" %(new_dimension, notes)
+                    new_dimension = "%s (%s)" %(new_dimension, notes)
 
                 if new_dimension:
                     new_dimension = new_dimension.strip()
@@ -473,6 +606,9 @@ class ObjectView(DefaultView):
      
                     if new_associated_subject:
                         new_associated_subject = new_associated_subject.strip()
+
+                        # Searchable
+                        new_associated_subject = "<a href='/%s/search?association_subject=%s'>%s</a>" %(getattr(self.context, 'language', 'nl'), subject, new_associated_subject)
                         associated_subjects.append(new_associated_subject)
                 else:
                     pass
@@ -591,10 +727,10 @@ class ObjectView(DefaultView):
         value = getattr(self.context, field, None)
         if value and type(value) == list:
 
-            subfield, separator = self.get_datagrid_subfield(field)
+            subfield, separator, is_searchable = self.get_datagrid_subfield(field)
 
             if subfield:
-                value = self.generate_regular_datagrid(field, item, subfield, separator)
+                value = self.generate_regular_datagrid(field, item, subfield, separator, is_searchable)
                 return value
             else:
                 return None

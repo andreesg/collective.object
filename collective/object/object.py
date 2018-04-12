@@ -233,6 +233,8 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'More of the same motive'), schema=IMotif),
         required=False)
     form.widget(content_motif=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('content_motif')
+
 
     notes = ListField(title=_(u'Notes'),
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
@@ -265,29 +267,35 @@ class IObject(form.Schema):
         required=False
     )
     
-    # # # # # # # # #
-    # Exhibitions   #
-    # # # # # # # # #
-    model.fieldset('exhibitions', label=_(u'Exhibitions'), 
-        fields=['exhibition']
-    )
-
-    exhibition = RelationList(
-        title=_(u'Exhibition name'),
-        required=False
-    )
 
     # # # # # # # # # # # # #
-    # Docuemntation         #      
+    # Documentation         #      
     # # # # # # # # # # # # #
     model.fieldset('documentation', label=_(u'Documentation'), 
         fields=["documentation"]
     )
 
     documentation = ListField(title=_(u'Documentation'),
-        value_type=DictRow(title=_(u'Documentation'), schema=IDocumentation),
+        value_type=DictRow(title=_(u'Documentation'), schema=IDocumentation_reference),
         required=False)
     form.widget(documentation=BlockDataGridFieldFactory)
+
+    # # # # # # # # #
+    # Exhibitions   #
+    # # # # # # # # #
+    model.fieldset('exhibitions', label=_(u'Exhibitions'), 
+        fields=['exhibition', 'exhibitions']
+    )
+
+    exhibitions = ListField(title=_(u'Exhibitions'),
+        value_type=DictRow(title=_(u'Exhibitions'), schema=IExhibition),
+        required=False)
+    form.widget(exhibitions=BlockDataGridFieldFactory)
+
+    exhibition = RelationList(
+        title=_(u'Exhibition name'),
+        required=False
+    )
 
 
 # # # # # # # # # # # # #

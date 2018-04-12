@@ -453,7 +453,7 @@ msgstr "Voorwaarden"
 
 #: ../object.py
 msgid "Acquisition"
-msgstr "Verweringswijze"
+msgstr "Verwervingswijze"
 
 #: ../object.py
 msgid "Accession"
@@ -465,7 +465,7 @@ msgstr "Inschrijvingsdatum"
 
 #: ../object.py
 msgid "Acquisition"
-msgstr "Verweringswijze"
+msgstr "Verwervingswijze"
 
 #: ../object.py
 msgid "Acquisition number"
@@ -2333,6 +2333,26 @@ msgstr "Meer van hetzelfde motief"
 #: ../object.py
 msgid "Artist"
 msgstr "Vervaardiger"
+
+#: ../object.py
+msgid "creator_name"
+msgstr "Vervaardiger"
+
+#: ../object.py
+msgid "label_text"
+msgstr "Tekst"
+
+#: ../object.py
+msgid "object_name"
+msgstr "Objectnaam"
+
+#: ../object.py
+msgid "technique"
+msgstr "Techniek"
+
+#: ../object.py
+msgid "association_person"
+msgstr "Geassocieerde persoon"
 
 
 

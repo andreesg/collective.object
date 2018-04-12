@@ -53,4 +53,9 @@ class ObjectVocabulary(object):
         return SimpleVocabulary(items)
 
 AuthorVocabularyFactory = ObjectVocabulary('documentation_author')
+ObjectNameVocabularyFactory = ObjectVocabulary('object_name')
+AssociationSubjectVocabularyFactory = ObjectVocabulary('association_subject')
+AcquisitionMethodVocabularyFactory = ObjectVocabulary('acquisition_method')
+CreatorRoleVocabularyFactory = ObjectVocabulary('creator_role')
+
 

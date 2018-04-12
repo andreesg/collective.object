@@ -52,6 +52,30 @@
   <adapter name="object_number" factory=".indexers.object_number" />
   <adapter name="identification_objectNumber" factory=".indexers.identification_objectNumber" />
   <adapter name="object_priref" factory=".indexers.object_priref" />
+  <adapter name="content_motif" factory=".indexers.content_motif" />
+  <adapter name="association_subject" factory=".indexers.association_subject" />
+  <adapter name="association_period" factory=".indexers.association_period" />
+  <adapter name="creator_name" factory=".indexers.creator_name" />
+  <adapter name="label_text" factory=".indexers.label_text" />
+  <adapter name="object_name" factory=".indexers.object_name" />
+  <adapter name="technique" factory=".indexers.technique" />
+  <adapter name="acquisition_date" factory=".indexers.acquisition_date" />
+  <adapter name="acquisition_method" factory=".indexers.acquisition_method" />
+  <adapter name="association_person" factory=".indexers.association_person" />
+  <adapter name="creator_role" factory=".indexers.creator_role" />
+  <adapter name="documentation_title" factory=".indexers.documentation_title" />
+  <adapter name="exhibition_title" factory=".indexers.exhibition_title" />
+  
+  <adapter name="inscription_content" factory=".indexers.inscription_content" />
+  <adapter name="inscription_type" factory=".indexers.inscription_type" />
+  <adapter name="inscription_description" factory=".indexers.inscription_description" />
+  <adapter name="object_notes" factory=".indexers.object_notes" />
+  <adapter name="physical_description" factory=".indexers.physical_description" />
+  <adapter name="production_date_start" factory=".indexers.production_date_start" />
+  <adapter name="production_date_end" factory=".indexers.production_date_end" />
+  <adapter name="object_person_priref" factory=".indexers.object_person_priref" />
+  
+
 
   <!-- -*- extra stuff goes here -*- -->
   <plone:static
@@ -66,5 +90,27 @@
     component=".utils.vocabularies.AuthorVocabularyFactory"
     name="collective.object.author"
     />
+
+  <utility
+    component=".utils.vocabularies.ObjectNameVocabularyFactory"
+    name="collective.object.objectname"
+    />
+
+  <utility
+    component=".utils.vocabularies.AssociationSubjectVocabularyFactory"
+    name="collective.object.associationsubject"
+    />
+
+  <utility
+    component=".utils.vocabularies.AcquisitionMethodVocabularyFactory"
+    name="collective.object.acquisitionmethod"
+    />
+
+  <utility
+    component=".utils.vocabularies.CreatorRoleVocabularyFactory"
+    name="collective.object.creatorrole"
+    />
+
+  
 
 </configure>
