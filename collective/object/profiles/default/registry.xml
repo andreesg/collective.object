@@ -21,4 +21,19 @@
 	  <value key="csscompilation">++plone++collective.object/css/collectiveobject-bundle-compiled.css</value>
 	  <value key="last_compilation"></value>
 	</records>
+
+
+	<records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.object_on_display">
+      <value key="title">object_on_display</value>
+      <value key="description">Object is on display</value>
+      <value key="enabled">True</value>
+      <value key="sortable">True</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.boolean.isTrue</element>
+          <element>plone.app.querystring.operation.boolean.isFalse</element>
+      </value>
+      <value key="group">Metadata</value>
+    </records>
+    
 </registry>

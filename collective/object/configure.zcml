@@ -49,33 +49,68 @@
   />
   
   <!-- Already fixed -->
-  <adapter name="object_number" factory=".indexers.object_number" />
+  <adapter name="object_on_display" factory=".indexers.object_on_display" />
+  <adapter name="sortable_object_number" factory=".indexers.sortable_object_number" />
   <adapter name="identification_objectNumber" factory=".indexers.identification_objectNumber" />
   <adapter name="object_priref" factory=".indexers.object_priref" />
   <adapter name="content_motif" factory=".indexers.content_motif" />
+  <adapter name="content_motifs" factory=".indexers.content_motifs" />
   <adapter name="association_subject" factory=".indexers.association_subject" />
   <adapter name="association_period" factory=".indexers.association_period" />
   <adapter name="creator_name" factory=".indexers.creator_name" />
+
+  <adapter name="sortable_creator_name" factory=".indexers.sortable_creator_name" />
+  <adapter name="creatorname" factory=".indexers.sortable_creator_name" />
   <adapter name="label_text" factory=".indexers.label_text" />
-  <adapter name="object_name" factory=".indexers.object_name" />
+  
+
+  <!--<adapter name="object_name" factory=".indexers.object_name" />-->
+  <adapter name="objectname" factory=".indexers.objectname" />
+  
+
+  <!-- NEW -->
+  <adapter name="object_name_index" factory=".indexers.objectname" />
+  <adapter name="technique_index" factory=".indexers.technique_index" />
+  <adapter name="material_index" factory=".indexers.material_index" />
+  <adapter name="period_index" factory=".indexers.period_index" />
+  <adapter name="object_period_index" factory=".indexers.object_period_index" />
+  <adapter name="creator_name_index" factory=".indexers.creator_name_index" />
+  <adapter name="place_index" factory=".indexers.place_index" />
+  <adapter name="website_collection_exhibition_index" factory=".indexers.website_collection_exhibition_index" />
+
+
+
   <adapter name="technique" factory=".indexers.technique" />
+  <adapter name="creator_place_index" factory=".indexers.creator_place" />
   <adapter name="acquisition_date" factory=".indexers.acquisition_date" />
   <adapter name="acquisition_method" factory=".indexers.acquisition_method" />
   <adapter name="association_person" factory=".indexers.association_person" />
   <adapter name="creator_role" factory=".indexers.creator_role" />
   <adapter name="documentation_title" factory=".indexers.documentation_title" />
   <adapter name="exhibition_title" factory=".indexers.exhibition_title" />
-  
   <adapter name="inscription_content" factory=".indexers.inscription_content" />
   <adapter name="inscription_type" factory=".indexers.inscription_type" />
   <adapter name="inscription_description" factory=".indexers.inscription_description" />
   <adapter name="object_notes" factory=".indexers.object_notes" />
   <adapter name="physical_description" factory=".indexers.physical_description" />
   <adapter name="production_date_start" factory=".indexers.production_date_start" />
+  <adapter name="sortable_production_date" factory=".indexers.sortable_production_date" />
   <adapter name="production_date_end" factory=".indexers.production_date_end" />
   <adapter name="object_person_priref" factory=".indexers.object_person_priref" />
-  
 
+  <adapter name="object_technique" factory=".indexers.object_technique" />
+  <adapter name="inscriptions_markings" factory=".indexers.inscriptions_markings" />
+  <adapter name="object_association_subject" factory=".indexers.object_association_subject" />
+  <adapter name="object_association_period" factory=".indexers.object_association_period" />
+  <adapter name="creator_qualifier" factory=".indexers.creator_qualifier" />
+  <adapter name="creator_place" factory=".indexers.creator_place" />
+
+  <adapter name="object_collection" factory=".indexers.object_collection" />
+  
+  <!-- New -->
+  <adapter name="collection" factory=".indexers.collection" />
+  <adapter name="collection_index" factory=".indexers.collection_index" />
+  <adapter name="object_acquisition_method" factory=".indexers.object_acquisition_method" />
 
   <!-- -*- extra stuff goes here -*- -->
   <plone:static
@@ -111,6 +146,80 @@
     name="collective.object.creatorrole"
     />
 
+  <utility
+    component=".utils.vocabularies.CreatorQualifierVocabularyFactory"
+    name="collective.object.creatorqualifier"
+    />
+
+  <utility
+    component=".utils.vocabularies.CreatorPlaceVocabularyFactory"
+    name="collective.object.creatorplace"
+    />
+
+    <utility
+    component=".utils.vocabularies.CreatorNameVocabularyFactory"
+    name="collective.object.creatorname"
+    />
+
+  <utility
+    component=".utils.vocabularies.CollectionVocabularyFactory"
+    name="collective.object.collection"
+    />
+
+  <utility
+    component=".utils.vocabularies.CollectionIndexVocabularyFactory"
+    name="collective.object.collection_index"
+    />
+
+
+  <utility
+    factory=".utils.vocabularies.CreatorNameVocabulary"
+    name="collective.object.creator_name"
+    />
+
+  <utility
+    factory=".utils.vocabularies.CreatorNameIndexVocabulary"
+    name="collective.object.creator_name_index"
+    />
+
+  <utility
+    factory=".utils.vocabularies.ObjectNameVocabulary"
+    name="collective.object.object_name_index"
+    />
+
+  <utility
+    factory=".utils.vocabularies.CreatorPlaceVocabulary"
+    name="collective.object.creator_place_index"
+    />
   
+  <utility
+    factory=".utils.vocabularies.TechniqueVocabulary"
+    name="collective.object.technique_index"
+    />
+
+  <utility
+    factory=".utils.vocabularies.MaterialVocabulary"
+    name="collective.object.material_index"
+    />
+
+  <utility
+    factory=".utils.vocabularies.PeriodVocabulary"
+    name="collective.object.period_index"
+    />
+
+  <utility
+    factory=".utils.vocabularies.ObjectPeriodVocabulary"
+    name="collective.object.object_period_index"
+    />
+  
+  <utility
+    factory=".utils.vocabularies.PlaceVocabulary"
+    name="collective.object.place_index"
+    />
+
+  <utility
+    factory=".utils.vocabularies.WebsiteCollectionExhibitionVocabulary"
+    name="collective.object.website_collection_exhibition_index"
+    />
 
 </configure>

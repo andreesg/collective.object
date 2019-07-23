@@ -88,7 +88,7 @@ class IObject(form.Schema):
     # Production & Dating           #
     # # # # # # # # # # # # # # # # #
     model.fieldset('production_dating', label=_(u'Production & Dating'), 
-        fields=['creator', 'production']
+        fields=['creator', 'production', 'production_place']
     )
 
     creator = ListField(title=_(u'Creator'),
@@ -103,6 +103,11 @@ class IObject(form.Schema):
     form.widget(production=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('production')
 
+    production_place = ListField(title=_(u'Production place'),
+        value_type=DictRow(title=_(u'Production place'), schema=IProductionPlace),
+        required=False)
+    form.widget(production_place=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('production_place')
 
     # # # # # # # # # # # # # # 
     # Identification fieldset #
@@ -133,12 +138,13 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Object name'), schema=IObjectName),
         required=False)
     form.widget(object_name=BlockDataGridFieldFactory)
-
+    dexteritytextindexer.searchable('object_name')
 
     collection = ListField(title=_(u'Collection'),
         value_type=DictRow(title=_(u'Collection'), schema=ICollection),
         required=False)
     form.widget(collection=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('collection')
 
     in_museum = schema.TextLine(
         title=_(u'In museum'),
@@ -151,7 +157,18 @@ class IObject(form.Schema):
         title=_(u'Published'),
         required=False
     )
-    dexteritytextindexer.searchable('in_museum')
+    dexteritytextindexer.searchable('record_published')
+
+    freeofcopyright = schema.TextLine(
+        title=_(u'Free of copyright'),
+        required=False
+    )
+
+    rights = schema.TextLine(
+        title=_(u'Rights'),
+        required=False
+    )
+    dexteritytextindexer.searchable('rights')
 
     # # # # # # # #
     # Acquisition #
@@ -165,7 +182,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Acquisition'), schema=IAcquisition),
         required=False)
     form.widget(acquisition=BlockDataGridFieldFactory)
-
+    dexteritytextindexer.searchable('acquisition')
 
     # # # # # # # # # # # # # # # # #
     # Physical Characteristics      #
@@ -178,6 +195,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Dimensions'), schema=IDimension),
         required=False)
     form.widget(dimension=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('dimension')
 
     # # # # # # # # # # # # # # #
     # Inscriptions & Markings   #
@@ -190,19 +208,21 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Inscriptions and markings'), schema=IInscription),
         required=False)
     form.widget(inscription=BlockDataGridFieldFactory)
-    
+    dexteritytextindexer.searchable('inscription')
+
     # Physical Description
     physical_description = schema.Text(
         title=_(u'Physical description'),
         required=False
     )
+    dexteritytextindexer.searchable('physical_description')
 
     
     # # # # # # # # #
     # Associations  #      
     # # # # # # # # # 
     model.fieldset('associations', label=_(u'Associations'), 
-        fields=["associated_subject", "associated_period", "associated_person"]
+        fields=["associated_subject", "associated_period", "associated_person", "associated_subjects"]
     )
 
     associated_subject = ListField(title=_(u'Associated subject'),
@@ -211,16 +231,24 @@ class IObject(form.Schema):
     form.widget(associated_subject=BlockDataGridFieldFactory)
     dexteritytextindexer.searchable('associated_subject')
 
+
+    associated_subjects = ListField(title=_(u'Associated subjects'),
+        value_type=DictRow(title=_(u'Associated subjects'), schema=IAssociatedSubjects),
+        required=False)
+    form.widget(associated_subjects=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('associated_subjects')
+
     associated_period = ListField(title=_(u'Associated period'),
         value_type=DictRow(title=_(u'Associated period'), schema=IAssociatedPeriod),
         required=False)
     form.widget(associated_period=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('associated_period')
 
     associated_person = ListField(title=_(u'Associated person/institution'),
         value_type=DictRow(title=_(u'Associated person/institution'), schema=IAssociatedPerson),
         required=False)
     form.widget(associated_person=BlockDataGridFieldFactory)
-
+    dexteritytextindexer.searchable('associated_person')
 
     # # # # # # # # #
     # Notes         #      
@@ -240,6 +268,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Notes'), schema=INotes),
         required=False)
     form.widget(notes=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('notes')
 
     # # # # # # # # # # #
     # Location          #       
@@ -252,7 +281,7 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Location'), schema=ILocation),
         required=False)
     form.widget(current_location=BlockDataGridFieldFactory)
-    
+    dexteritytextindexer.searchable('current_location')
 
     # # # # # # # # # #
     # Related objects #
@@ -279,18 +308,25 @@ class IObject(form.Schema):
         value_type=DictRow(title=_(u'Documentation'), schema=IDocumentation_reference),
         required=False)
     form.widget(documentation=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('documentation')
 
     # # # # # # # # #
     # Exhibitions   #
     # # # # # # # # #
     model.fieldset('exhibitions', label=_(u'Exhibitions'), 
-        fields=['exhibition', 'exhibitions']
+        fields=['exhibition', 'exhibitions', 'handle_url']
     )
 
     exhibitions = ListField(title=_(u'Exhibitions'),
         value_type=DictRow(title=_(u'Exhibitions'), schema=IExhibition),
         required=False)
     form.widget(exhibitions=BlockDataGridFieldFactory)
+    dexteritytextindexer.searchable('exhibitions')
+
+    handle_url = schema.TextLine(
+        title=_(u'Persistent url'), 
+        required=False
+    )
 
     exhibition = RelationList(
         title=_(u'Exhibition name'),

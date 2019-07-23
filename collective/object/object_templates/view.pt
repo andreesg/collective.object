@@ -38,28 +38,76 @@
 
 <metal:main fill-slot="content-core" >
   <metal:content-core define-macro="content-core">
-      <div class="container object-container"
+
+      <div id="object-details-btn">
+        <ul>
+          <li>
+            <a class="btn object-details-btn" href='javascript:void(0);' id="object-details-btn-trigger" data-toggle='collapse' data-target='#collapsable-object-container' aria-expanded='false'>
+
+              <tal:nl condition="python: getattr(context, 'language', 'nl') == 'nl'">
+              <span class="notariaexpanded">+ Objectgegevens</span>
+              <span class="ariaexpanded">&minus; Objectgegevens</span>
+              </tal:nl>
+
+              <tal:en condition="python: getattr(context, 'language', 'nl') == 'en'">
+                <span class="notariaexpanded">+ Object details</span>
+                <span class="ariaexpanded">&minus; Object details</span>
+              </tal:en>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="share-btn" data-toggle="popover" data-placement="top">
+              <i class="icn-share-grey40"></i>
+              <span>Share</span>
+            </a>
+            </li>
+          
+          <li class="toolbox__download">
+            <a href="#" title="Download" alt="Download" 
+            tal:attributes="class python: 'freeofcopyright' if getattr(context, 'freeofcopyright', None) not in [None, '', ' '] else ''; 
+                            data-object_number python: getattr(context, 'object_number', ''); 
+                            data-rights python: getattr(context, 'rights', '');
+                            data-creator python:context.restrictedTraverse('@@context_tools').getObjectCreator(context);
+                            data-title python: getattr(context, 'title', '');
+                            "
+                            >
+                            <i class="icn-unpublish-grey40"></i> <span>Download</span>
+            </a>
+          </li>
+        </ul>      
+      </div>
+
+      <div class="container object-container collapse" id="collapsable-object-container"
+        aria-expanded='false'
         tal:define="in_museum python: view.get_in_museum();
                     location python: view.get_current_location();
-                    record_published python: view.get_published();">
+                    record_published python: view.get_published();
+                    body_text python: getattr(context, 'text', None)">
 
-        
         <tal:block repeat="widget view/widgets/values">
-            <div class="field" tal:condition="python:widget.__name__ not in ('IBasic.title', 'IBasic.description', 'title', 'description', 'priref', 'collection', 'in_museum', 'record_published')">
+
+            <div class="expandable-text collapse" aria-expanded="false" id="expandable-text" tal:condition="python:widget.__name__ in ['IRichText.text'] and body_text and body_text.raw not in ['', None]" tal:attributes="class python: 'expandable-text collapse' if len(body_text.raw) > 450 else 'expandable-text collapse in'">
+            
+            <div class="field body-text">
                 <br />
                 <div tal:content="structure widget/render" />
             </div>
-        </tal:block>
+            </div>
 
-        <p class="record-extra-info">
-          <span tal:condition="not:in_museum" class="grey" i18n:translate="not_on_view">Dit object is nu niet in het museum te zien</span>
-          <span tal:condition="in_museum" i18n:translate="now_on_view">Nu te zien<span tal:condition="location"> in <span tal:content="location"></span></span></span>
-        <br>
-          <span tal:condition="not:record_published" class="grey" i18n:translate="not_updated">De gegevens van dit object zijn niet recent gecontroleerd</span>
-        </p>
+            <p tal:condition="python:widget.__name__ in ['IRichText.text'] and body_text and body_text.raw not in ['', None] and len(body_text.raw) > 450" class="object-expandable-trigger">
+                <a href="javascript:void();" class="doc-more-info" data-toggle="collapse" data-target="#expandable-text" aria-expanded="false">
+                  <span class="notariaexpanded" i18n:translate="show_more_collapse">Show more +</span>
+                  <span class="ariaexpanded" i18n:translate="show_less_collapse">Show less -</span>
+                </a>
+              </p>
+        </tal:block>
 
         <div id="object-fields" class="object-fieldset row">
           <tal:objectdetails tal:define="fields python: view.get_fields(); fieldvalues python: fields['fields']">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 object-label" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"><p>&nbsp;</p></div>
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 object-value" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"><p><span tal:condition="not:in_museum" class="grey" i18n:translate="not_on_view">Dit object is nu niet in het museum te zien</span>
+          <span tal:condition="in_museum" i18n:translate="now_on_view">Nu te zien<span tal:condition="location"> in <span tal:content="location"></span></span></span></p></div>
+
               <tal:block repeat="field fieldvalues">
                 <tal:definefield 
                   tal:define="fieldlabel python: field.get('label', ''); 
@@ -68,6 +116,14 @@
                   <tal:fieldvalue tal:content="structure fieldvalue"></tal:fieldvalue>
                 </tal:definefield>
               </tal:block>
+
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 object-label" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"><p>Vragen?</p></div>
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 object-value" tal:condition="python: getattr(context, 'language', 'nl') == 'nl'"><p>Ziet u een fout? Of heeft u extra informatie over dit object? <a href="" tal:attributes="href python: 'mailto:documentatie@centraalmuseum.nl?subject=opmerking over object: %s' %(getattr(context, 'object_number', ''))">Laat het ons weten!</a></p></div>
+
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 object-label" tal:condition="python: getattr(context, 'language', 'nl') == 'en'"><p>Questions?</p></div>
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 object-value" tal:condition="python: getattr(context, 'language', 'nl') == 'en'"><p>Do you have a remark or extra information on this object? <a href="" tal:attributes="href python: 'mailto:documentatie@centraalmuseum.nl?subject=remark on this object: %s' %(getattr(context, 'object_number', ''))">Please let us know!</a></p></div>
+
+
           </tal:objectdetails>
         </div>
       </div>

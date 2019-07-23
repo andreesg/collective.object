@@ -14,6 +14,10 @@ from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList, Relation
 from plone.autoform import directives
 from plone.app.z3cform.widget import AjaxSelectFieldWidget
+from plone.app.vocabularies.catalog import CatalogSource
+from z3c.relationfield.schema import RelationChoice
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives
 
 import datetime
 from five import grok
@@ -70,6 +74,22 @@ class IExhibition(form.Schema):
     date_end = schema.TextLine(title=_(u'Date end'), required=False)
     nummer_cm = schema.TextLine(title=_(u'Nummer CM'), required=False)
     notes = schema.TextLine(title=_(u'Notes'), required=False)
+    priref = schema.TextLine(title=_(u'priref'), required=False, missing_value=u"")
+    
+    """directives.widget(
+        'exhibition',
+        RelatedItemsFieldWidget,
+        pattern_options={
+            'selectableTypes': ['Event'],
+        }
+    )
+    exhibition = RelationChoice(
+        title=u"Link to exhibition in the website",
+        vocabulary='plone.app.vocabularies.Catalog',
+        required=False,
+        missing_value=u"")"""
+
+
 
 class IProduction(Interface):
     date_start = schema.TextLine(title=_(u'Date start'), required=False)
@@ -77,6 +97,9 @@ class IProduction(Interface):
     date_end = schema.TextLine(title=_(u'Date end'), required=False)
     date_end_precision = schema.TextLine(title=_(u'Date end precision'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
+
+class IProductionPlace(Interface):
+    place = schema.TextLine(title=_(u'Place'), required=False)
 
 class ICreator(Interface):
     name = schema.TextLine(title=_(u'Name'), required=False)
@@ -158,6 +181,7 @@ class IAcquisition(form.Schema):
     method = schema.TextLine(title=_(u'Method'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
     date_precision = schema.TextLine(title=_(u'Precision'), required=False)
+    notes = schema.Text(title=_(u'Notes'), required=False)
 
 # Associations
 class IAssociatedSubject(Interface):
@@ -165,6 +189,11 @@ class IAssociatedSubject(Interface):
     association = schema.TextLine(title=_(u'Association'), required=False)
     date = schema.TextLine(title=_(u'Date'), required=False)
     notes = schema.Text(title=_(u'Notes'), required=False)
+
+class IAssociatedSubjects(Interface):
+    subject = schema.TextLine(title=_(u'Subject'), required=False)
+    subject_type = schema.TextLine(title=_(u'Subject type'), required=False)
+
 
 class IAssociatedPeriod(Interface):
     period = schema.TextLine(title=_(u'Period'), required=False)

@@ -35,6 +35,10 @@ msgid 'label_description'
 msgstr 'Description'
 
 #: ../object.py
+msgid "Handle url desc"
+msgstr "To refer to this object please use the following persistent URL"
+
+#: ../object.py
 msgid 'label_field_collection'
 msgstr 'Field collection'
 

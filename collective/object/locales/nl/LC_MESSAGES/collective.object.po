@@ -31,8 +31,16 @@ msgid "Name"
 msgstr "Naam"
 
 #: ../object.py
+msgid "Handle url desc"
+msgstr "Als u naar dit object wilt verwijzen gebruik dan de duurzame URL"
+
+#: ../object.py
 msgid "Description"
 msgstr "Beschrijving"
+
+#: ../object.py
+msgid "Persistent url"
+msgstr "Duurzame url"
 
 #: ../object.py
 msgid "Identification"
@@ -453,7 +461,7 @@ msgstr "Voorwaarden"
 
 #: ../object.py
 msgid "Acquisition"
-msgstr "Verwervingswijze"
+msgstr "Verwerving"
 
 #: ../object.py
 msgid "Accession"
@@ -465,7 +473,7 @@ msgstr "Inschrijvingsdatum"
 
 #: ../object.py
 msgid "Acquisition"
-msgstr "Verwervingswijze"
+msgstr "Verwerving"
 
 #: ../object.py
 msgid "Acquisition number"
@@ -2328,7 +2336,7 @@ msgstr "Lees meer"
 
 #: ../object.py
 msgid "More of the same motive"
-msgstr "Meer van hetzelfde motief"
+msgstr "Motief"
 
 #: ../object.py
 msgid "Artist"
@@ -2354,6 +2362,11 @@ msgstr "Techniek"
 msgid "association_person"
 msgstr "Geassocieerde persoon"
 
+#: ../object.py
+msgid "show_more_collapse"
+msgstr "Toon alles +"
 
-
+#: ../object.py
+msgid "show_less_collapse"
+msgstr "Toon minder -"
 
